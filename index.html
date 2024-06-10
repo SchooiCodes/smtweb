@@ -11,14 +11,17 @@
   <style>
     body {
       font-family: 'Arial', sans-serif;
-      background: linear-gradient(135deg, #f0f2f5, #e6e9ec);
+      background: linear-gradient(135deg, #ffffff, #ff69b4, #0078d4);
+      background-attachment: fixed;
+      background-size: cover;
       margin: 0;
       padding: 0;
       color: #333;
+      overflow-x: hidden;
     }
 
     header {
-      background: linear-gradient(135deg, #0078d4, #0063b1);
+      background: rgba(0, 120, 212, 0.85);
       color: #fff;
       padding: 20px 0;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -47,7 +50,7 @@
     }
 
     footer {
-      background: linear-gradient(135deg, #0078d4, #0063b1);
+      background: rgba(0, 120, 212, 0.85);
       color: #fff;
       padding: 20px 0;
       position: relative;
@@ -95,10 +98,17 @@
       max-width: 1200px;
       margin: auto;
     }
+
+    .dot-bg {
+      background: radial-gradient(circle at 10px 10px, rgba(255, 255, 255, 0.5) 1px, transparent 1px),
+        radial-gradient(circle at 30px 30px, rgba(255, 182, 193, 0.5) 1px, transparent 1px),
+        radial-gradient(circle at 50px 50px, rgba(0, 120, 212, 0.5) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
   </style>
 </head>
 
-<body>
+<body class="dot-bg">
   <header class="text-center animate__animated animate__fadeInDown">
     <div class="container">
       <div class="row align-items-center">
