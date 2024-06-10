@@ -11,27 +11,41 @@
   <style>
     body {
       font-family: 'Arial', sans-serif;
-      background-color: #f0f2f5;
+      background: linear-gradient(135deg, #f0f2f5, #e6e9ec);
+      margin: 0;
+      padding: 0;
+      color: #333;
     }
+
     header {
       background: linear-gradient(135deg, #0078d4, #0063b1);
       color: #fff;
       padding: 20px 0;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
+
     .header-links a {
       color: #fff;
       text-decoration: none;
       margin: 0 10px;
+      font-weight: 600;
     }
+
     .header-links a:hover {
       text-decoration: underline;
     }
+
     .header-title {
       font-size: 2rem;
+      font-weight: bold;
     }
+
     .btn-rounded {
       border-radius: 50px;
+      font-weight: 600;
+      padding: 10px 20px;
     }
+
     footer {
       background: linear-gradient(135deg, #0078d4, #0063b1);
       color: #fff;
@@ -39,33 +53,47 @@
       position: relative;
       bottom: 0;
       width: 100%;
+      box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
     }
+
     section {
       padding: 60px 0;
+      opacity: 0;
+      transition: opacity 1.5s ease-in-out;
     }
+
     .features-list li {
       margin-bottom: 10px;
+      font-weight: 500;
     }
+
     .lead {
       margin-bottom: 40px;
     }
-    .fade-in {
-      opacity: 0;
-      animation: fadeIn 1.5s forwards;
+
+    .fade-in.visible {
+      opacity: 1;
     }
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-      }
-    }
+
     .scale-up {
       transform: scale(0);
       animation: scaleUp 0.5s forwards;
     }
+
     @keyframes scaleUp {
       to {
         transform: scale(1);
       }
+    }
+
+    .rounded-img {
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
     }
   </style>
 </head>
@@ -102,7 +130,7 @@
     <section id="about" class="container text-center fade-in">
       <h1>About</h1>
       <br>
-      <img src="images/SMT.png" alt="An image of SMT's menu" class="img-fluid scale-up" style="max-width: 50%; height: 50%;">
+      <img src="images/SMT.png" alt="An image of SMT's menu" class="img-fluid rounded-img" style="max-width: 50%; height: auto;">
       <br><br>
       <h3>
         SMT (a.k.a. Schooi's Multitool) is a tool created by <a href="https://github.com/SchooiCodes/">me</a> that
@@ -172,7 +200,7 @@
     window.addEventListener('scroll', () => {
       document.querySelectorAll('.fade-in').forEach(el => {
         if (el.getBoundingClientRect().top < window.innerHeight - 100) {
-          el.style.opacity = 1;
+          el.classList.add('visible');
         }
       });
     });
