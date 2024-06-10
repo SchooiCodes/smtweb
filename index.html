@@ -7,94 +7,118 @@
   <title>Schooi's Multitool</title>
   <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+    }
+    header {
+      background: linear-gradient(135deg, #0078d4, #0063b1);
+      color: #fff;
+    }
+    header .navbar-brand {
+      font-size: 2rem;
+      font-weight: bold;
+    }
+    header a {
+      color: #fff;
+      text-decoration: none;
+    }
+    header a:hover {
+      text-decoration: underline;
+    }
+    .btn-custom {
+      background-color: #0063b1;
+      border: none;
+      border-radius: 50px;
+    }
+    .btn-custom:hover {
+      background-color: #004a8c;
+    }
+    main {
+      background-color: #f8f9fa;
+    }
+    section {
+      padding: 60px 0;
+    }
+    footer {
+      background: linear-gradient(135deg, #0078d4, #0063b1);
+      color: #fff;
+    }
+  </style>
 </head>
 
 <body>
-  <header style="background: linear-gradient(135deg, #0078d4, #0063b1); color: #fff;">
+  <header>
     <div class="container py-3">
       <div class="row align-items-center">
         <div class="col-md-4">
           <ul class="list-inline mb-0">
-            <li class="list-inline-item"><a href="https://schooicodes.github.io/smtweb" style="color: #fff;">Home</a></li>
-            <li class="list-inline-item"><a href="#downloads" style="color: #fff;">Downloads</a></li>
+            <li class="list-inline-item"><a href="https://schooicodes.github.io/smtweb">Home</a></li>
+            <li class="list-inline-item"><a href="#downloads">Downloads</a></li>
           </ul>
         </div>
         <div class="col-md-4 text-center">
-          <a class="navbar-brand" href="https://github.com/SchooiCodes/smt" style="color: #fff;">SMT</a>
+          <a class="navbar-brand" href="https://github.com/SchooiCodes/smt">SMT</a>
         </div>
         <div class="col-md-4 text-end">
           <ul class="list-inline mb-0">
-            <li class="list-inline-item"><a href="#about" style="color: #fff;">About</a></li>
-            <li class="list-inline-item"><a href="#contact" style="color: #fff;">Contact</a></li>
+            <li class="list-inline-item"><a href="#about">About</a></li>
+            <li class="list-inline-item"><a href="#contact">Contact</a></li>
           </ul>
         </div>
       </div>
     </div>
     <div class="container text-center py-5">
       <h1 class="display-4">Welcome to SMT</h1>
-      <p class="lead">Here you can find all the information about my project.</p>
-      <a href="https://github.com/SchooiCodes/smt" class="btn btn-primary btn-lg rounded-pill">Learn More</a>
+      <p class="lead">Find all the information about my project here.</p>
+      <a href="https://github.com/SchooiCodes/smt" class="btn btn-custom btn-lg">Learn More</a>
     </div>
   </header>
 
   <main>
-    <section id="about" class="container py-5 text-center">
+    <section id="about" class="container text-center">
       <h1>About</h1>
-      <br>
-      <img src="images/SMT.png" alt="An image of SMT's menu" style="width:490px; height:256px;">
-      <br><br>
-      <h3>
-        SMT (a.k.a. Schooi's Multitool) is a tool created by <a href="https://github.com/SchooiCodes/">me</a> that
-        aims to provide several other tools that can help users (mainly developers) in their daily life.
-      </h3>
-      <br>
+      <img src="images/SMT.png" alt="An image of SMT's menu" class="img-fluid my-4" style="max-width: 100%; height: auto;">
+      <p class="lead">
+        SMT (Schooi's Multitool) is a tool created by <a href="https://github.com/SchooiCodes/">me</a> that aims to provide several tools to help users, mainly developers, in their daily tasks.
+      </p>
       <p>
-        It started as a small project I came up with to store my batch projects, but it quickly evolved into a
-        very powerful multitool. I have never seen a multitool created with Batch (the programming language) this big.
+        It started as a small project to store my batch projects but quickly evolved into a powerful multitool. I have never seen a multitool of this scale created with Batch.
       </p>
     </section>
 
-    <section class="container py-5">
-      <h1 class="text-center">Features</h1>
-      <br>
-      <h3 class="text-center">SMT has over 70 TOOLS!</h3>
-      <br>
+    <section class="container text-center">
+      <h1>Features</h1>
+      <h3 class="my-4">SMT has over 70 TOOLS!</h3>
       <p>Some important ones are:</p>
-      <ul>
-        <li>IP Geolocator</li>
-        <li>SMB Bruteforcer</li>
-        <li>Various App Installers</li>
-        <li>CLI Task Manager</li>
-        <li>Network Speedtest</li>
-        <li>Text to Speech</li>
-        <li>Website Blocker</li>
-        <li>.zip File Password Cracker</li>
-        <li>Windows User Manager</li>
-        <li>Password Generator</li>
+      <ul class="list-unstyled">
+        <li><i class="bi bi-geo-alt-fill"></i> IP Geolocator</li>
+        <li><i class="bi bi-shield-lock-fill"></i> SMB Bruteforcer</li>
+        <li><i class="bi bi-cloud-arrow-down-fill"></i> Various App Installers</li>
+        <li><i class="bi bi-terminal-fill"></i> CLI Task Manager</li>
+        <li><i class="bi bi-speedometer2"></i> Network Speedtest</li>
+        <li><i class="bi bi-megaphone-fill"></i> Text to Speech</li>
+        <li><i class="bi bi-shield-fill-x"></i> Website Blocker</li>
+        <li><i class="bi bi-file-earmark-zip-fill"></i> .zip File Password Cracker</li>
+        <li><i class="bi bi-person-fill"></i> Windows User Manager</li>
+        <li><i class="bi bi-key-fill"></i> Password Generator</li>
       </ul>
     </section>
 
-    <section id="downloads" class="container py-5 text-center">
+    <section id="downloads" class="container text-center">
       <h1>Downloads</h1>
-      <p>SMT is available for Windows 10 and 11, 64bit.<br>Current version is 2.2.</p>
-      <a href="https://github.com/SchooiCodes/smt/releases/latest" class="btn btn-primary btn-lg rounded-pill">Download</a>
+      <p>SMT is available for Windows 10 and 11, 64bit. Current version is 2.2.</p>
+      <a href="https://github.com/SchooiCodes/smt/releases/latest" class="btn btn-custom btn-lg">Download</a>
     </section>
 
-    <section id="contact" class="container py-5 text-center">
+    <section id="contact" class="container text-center">
       <h1>Contact</h1>
-      <br>
-      <p>
-        If you want to contact me for an issue, a feature idea, or to contribute, go to my GitHub 
-        <a href="https://github.com/SchooiCodes/smt/discussions">discussions page</a> or 
-        <a href="https://github.com/SchooiCodes/smt/issues">issues page</a>.
-        <br>
-        For business-related inquiries, contact me here: 
-        <a href="mailto:schooibusinessinquiries@gmail.com">schooibusinessinquiries@gmail.com</a>
-      </p>
+      <p>If you want to contact me for an issue, a feature idea, or to contribute, visit my GitHub <a href="https://github.com/SchooiCodes/smt/discussions">discussions page</a> or <a href="https://github.com/SchooiCodes/smt/issues">issues page</a>.</p>
+      <p>For business-related inquiries, contact me at <a href="mailto:schooibusinessinquiries@gmail.com">schooibusinessinquiries@gmail.com</a>.</p>
     </section>
   </main>
 
-  <footer style="background: linear-gradient(135deg, #0078d4, #0063b1); color: #fff;" class="text-center py-4">
+  <footer class="text-center py-4">
     <p>&copy; 2024 Schooi. All rights reserved.</p>
   </footer>
 
