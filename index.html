@@ -15,10 +15,6 @@
       background: linear-gradient(135deg, #0078d4, #0063b1);
       color: #fff;
     }
-    header .navbar-brand {
-      font-size: 2rem;
-      font-weight: bold;
-    }
     header a {
       color: #fff;
       text-decoration: none;
@@ -44,6 +40,14 @@
       background: linear-gradient(135deg, #0078d4, #0063b1);
       color: #fff;
     }
+    ul.list-unstyled li {
+      margin: 5px 0;
+    }
+    .feature-list li:before {
+      content: "✔️";
+      margin-right: 10px;
+      color: #0078d4;
+    }
   </style>
 </head>
 
@@ -58,7 +62,7 @@
           </ul>
         </div>
         <div class="col-md-4 text-center">
-          <a class="navbar-brand" href="https://github.com/SchooiCodes/smt">SMT</a>
+          <a class="navbar-brand" href="https://github.com/SchooiCodes/smt" style="font-size: 2rem; font-weight: bold;">SMT</a>
         </div>
         <div class="col-md-4 text-end">
           <ul class="list-inline mb-0">
@@ -91,17 +95,17 @@
       <h1>Features</h1>
       <h3 class="my-4">SMT has over 70 TOOLS!</h3>
       <p>Some important ones are:</p>
-      <ul class="list-unstyled">
-        <li><i class="bi bi-geo-alt-fill"></i> IP Geolocator</li>
-        <li><i class="bi bi-shield-lock-fill"></i> SMB Bruteforcer</li>
-        <li><i class="bi bi-cloud-arrow-down-fill"></i> Various App Installers</li>
-        <li><i class="bi bi-terminal-fill"></i> CLI Task Manager</li>
-        <li><i class="bi bi-speedometer2"></i> Network Speedtest</li>
-        <li><i class="bi bi-megaphone-fill"></i> Text to Speech</li>
-        <li><i class="bi bi-shield-fill-x"></i> Website Blocker</li>
-        <li><i class="bi bi-file-earmark-zip-fill"></i> .zip File Password Cracker</li>
-        <li><i class="bi bi-person-fill"></i> Windows User Manager</li>
-        <li><i class="bi bi-key-fill"></i> Password Generator</li>
+      <ul class="list-unstyled feature-list">
+        <li>IP Geolocator</li>
+        <li>SMB Bruteforcer</li>
+        <li>Various App Installers</li>
+        <li>CLI Task Manager</li>
+        <li>Network Speedtest</li>
+        <li>Text to Speech</li>
+        <li>Website Blocker</li>
+        <li>.zip File Password Cracker</li>
+        <li>Windows User Manager</li>
+        <li>Password Generator</li>
       </ul>
     </section>
 
