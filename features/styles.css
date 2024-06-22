@@ -16,9 +16,10 @@ body {
     .header-title {
       font-size: 2.5rem;
       font-weight: bold;
+      color: #ffffff;
     }
     .header-links a {
-      color: white;
+      color: #ffffff;
       font-size: 1.1rem;
       text-decoration: none;
       margin: 0 10px;
@@ -58,23 +59,13 @@ body {
       font-size: 1.2rem;
       margin-bottom: 0.5rem;
       font-weight: 500;
+      color: #333;
     }
     section {
       padding: 60px 0;
-      opacity: 0;
-      transition: opacity 1.5s ease-in-out;
     }
     section.bg-light {
       background-color: #f0f0f0;
-    }
-    .fade-in.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .fade-in {
-      opacity: 0;
-      transform: translateY(50px);
-      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
     }
     footer {
       background-color: #343a40;
@@ -107,3 +98,20 @@ body {
       max-width: 1000px;
       margin: auto;
     }
+
+.social-icons a {
+    background-color: #ffffff; /* Set background to white */
+    color: #0078d4; /* Default color */
+    margin: 0 10px;
+    font-size: 1.5rem;
+    padding: 10px; /* Add padding to create circular icons */
+    border-radius: 50%; /* Make the icons circular */
+    transition: color 0.3s, background-color 0.3s;
+    text-decoration: none; /* Remove underline */
+    display: inline-block; /* Ensure the icons are inline-block */
+}
+
+.social-icons a:hover {
+    background-color: #f1f1f1; /* Light grey on hover */
+    color: #ff0000; /* Red on hover */
+}
