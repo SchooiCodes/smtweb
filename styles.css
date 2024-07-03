@@ -7,7 +7,7 @@ body {
       overflow-x: hidden;
     }
     header {
-      background: linear-gradient(to right, #e600ff 0%, #2575fc 100%);
+      background: linear-gradient(to right, #e600ff 0%, #176ee8 100%);
       color: #ffffff;
       padding: 20px 0;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -32,7 +32,7 @@ body {
       border-radius: 50px;
       font-weight: 500;
       padding: 10px 20px;
-      background-color: #176ee8;
+      background-color: #4287f5;
       color: #ffffff;
       border: none;
       transition: background-color 0.3s ease;
