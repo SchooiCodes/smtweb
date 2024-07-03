@@ -1,4 +1,4 @@
-ebody {
+body {
       font-family: 'Arial', sans-serif;
       background-color: #f8f9fa;
       margin: 0;
@@ -22,7 +22,7 @@ ebody {
       color: #ffffff;
       font-size: 1.1rem;
       text-decoration: none;
-      margin: 0 10px;e
+      margin: 0 10px;
       font-weight: 500;
     }
     .header-links a:hover {
