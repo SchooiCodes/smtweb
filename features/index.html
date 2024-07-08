@@ -8,9 +8,9 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   
-</head>
 <body>
   <header class="text-center animate__animated animate__fadeInDown">
     <div class="container">
@@ -28,12 +28,19 @@
           <ul class="list-inline header-links mb-0">
             <li class="list-inline-item"><a href="#about">About</a></li>
             <li class="list-inline-item"><a href="#contact">Contact</a></li>
+            <li class="list-inline-item">
+              <button id="darkModeToggle" class="btn btn-outline-light">
+                <i class="fas fa-moon"></i>
+              </button>
+            </li>
           </ul>
         </div>
       </div>
       <div class="py-5">
         <h1 class="display-4 animate__animated animate__zoomIn">Welcome to SMT</h1>
-        <p class="lead">Here you can find all the information about my project.</p>
+        <div class="typed-container">
+			<p class="lead"></p>
+		</div>
         <a href="https://github.com/SchooiCodes/smt" class="btn btn-primary btn-lg btn-rounded animate__animated animate__fadeInUp">Learn More</a>
       </div>
       <div class="social-icons animate__animated animate__fadeInUp">
@@ -44,7 +51,7 @@
     </div>
   </header>
   
-  <section id="features" class="bg-light text-center animate__animated animate__fadeInUp">
+  <section id="features" class="bg-light text-center" data-aos="fade-up">
     <div class="container">
       <h1>Features</h1>
       <br>
@@ -132,7 +139,27 @@
       <p>&copy; 2024 Schooi. All rights reserved.</p>
     </div>
   </footer>
-
+  
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+	<script>
+    AOS.init();
+    var typed = new Typed('.lead', {
+      strings: ["Here you can find all the information about my project.", "Discover over 70 powerful tools for developers.", "Simplify your workflow with SMT."],
+      typeSpeed: 50,
+      backSpeed: 30,
+      showCursor: false,
+      loop: true,
+    });
+
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const body = document.body;
+    darkModeToggle.addEventListener('click', () => {
+      body.classList.toggle('dark-mode');
+      darkModeToggle.innerHTML = body.classList.contains('dark-mode') ? 
+        '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    });
+	</script>
 </body>
 </html>
