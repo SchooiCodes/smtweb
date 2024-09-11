@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Raw Script Fetcher</title>
+</head>
+<body>
+
+<pre id="script-content">Loading script...</pre>
+
+<script>
+  // Replace with the URL of the raw script from the main repository
+  const scriptUrl = 'https://raw.githubusercontent.com/SchooiCodes/smt/main/SchooiMultitool.bat';
+
+  fetch(scriptUrl)
+    .then(response => response.text())
+    .then(data => {
+      // Display the raw script content in the preformatted text block
+      document.getElementById('script-content').textContent = data;
+    })
+    .catch(error => {
+      console.error('Error fetching the script:', error);
+      document.getElementById('script-content').textContent = 'Failed to load the script';
+    });
+</script>
+
+</body>
+</html>
