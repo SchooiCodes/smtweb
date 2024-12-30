@@ -3,24 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Raw Script Fetcher</title>
+  <title>Get Schooi's Multitool</title>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
-<script>
-  // Replace with the URL of the raw script from the main repository
-  const scriptUrl = 'https://github.com/SchooiCodes/smt/raw/main/Schooi's%20Multitool%20Setup.exe';
+  <script>
+    (async () => {
+      const url = "https://schooicodes.github.io/smt/Schooi's%20Multitool%20Setup.exe";
 
-  fetch(scriptUrl)
-    .then(response => response.text())
-    .then(data => {
-      // Display the raw script content in the preformatted text block
-      document.getElementById('script-content').textContent = data;
-    })
-    .catch(error => {
-      console.error('Error fetching the script:', error);
-      document.getElementById('script-content').textContent = 'Failed to load the script';
-    });
-</script>
+      try {
+        const response = await axios.get(url, { responseType: 'arraybuffer' });
+        console.log('File fetched successfully:', response.data);
 
+        // Example: Download the file
+        const blob = new Blob([response.data]);
+        const link = document.createElement('a');
+        link.href = window.URL.createObjectURL(blob);
+        link.download = "Schooi's Multitool Setup.exe";
+        link.click();
+      } catch (error) {
+        console.error('Error fetching the file:', error);
+      }
+    })();
+  </script>
 </body>
 </html>
