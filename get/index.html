@@ -7,22 +7,20 @@
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
+  <pre id="file-contents" style="white-space: pre-wrap; word-wrap: break-word;"></pre>
   <script>
     (async () => {
       const url = "https://schooicodes.github.io/smt/Schooi's%20Multitool%20Setup.exe";
 
       try {
-        const response = await axios.get(url, { responseType: 'arraybuffer' });
-        console.log('File fetched successfully:', response.data);
+        const response = await axios.get(url, { responseType: 'text' }); // Change responseType to 'text'
+        console.log('File contents fetched successfully:', response.data);
 
-        // Example: Download the file
-        const blob = new Blob([response.data]);
-        const link = document.createElement('a');
-        link.href = window.URL.createObjectURL(blob);
-        link.download = "Schooi's Multitool Setup.exe";
-        link.click();
+        // Display the content in the <pre> element
+        document.getElementById('file-contents').textContent = response.data;
       } catch (error) {
         console.error('Error fetching the file:', error);
+        document.getElementById('file-contents').textContent = 'Error fetching the file.';
       }
     })();
   </script>
