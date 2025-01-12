@@ -1,34 +1,94 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Get Schooi's Multitool</title>
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-</head>
-<body>
-  <script>
-    (async () => {
-      const url = "https://schooicodes.github.io/smt/Schooi's%20Multitool%20Setup.exe";  // Keep this URL to fetch the file
+# Define a log file to store script actions
+$LogFile = Join-Path -Path $env:TEMP -ChildPath "SMT_Log.txt"
+Clear-Content -Path "$LogFile"
 
-      try {
-        const response = await axios.get(url, { responseType: 'arraybuffer' });
-        console.log('File fetched successfully:', response.data);
 
-        // Create a Blob for download
-        const blob = new Blob([response.data], { type: 'application/octet-stream' });
-        const link = document.createElement('a');
-        link.href = URL.createObjectURL(blob);
-        link.download = "Schooi's Multitool Setup.exe";
-        link.click();
-      } catch (error) {
-        console.error('Error fetching the file:', error);
-      }
-    })();
-  </script>
-  <script>
-    // Redirect immediately
-    window.location.href = "https://schooicodes.github.io/smtweb";
-  </script>
-</body>
-</html>
+# Function to log messages
+function Log-Message {
+    param (
+        [string]$Message
+    )
+    $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+    "$timestamp - $Message" | Out-File -FilePath $LogFile -Append
+}
+
+# Function to display and log status messages
+function Show-Status {
+    param (
+        [string]$Message,
+        [ConsoleColor]$Color = 'Gray'
+    )
+    Write-Host $Message -ForegroundColor $Color
+    Log-Message $Message
+}
+
+# Check if the script is running as an administrator
+if (([Security.Principal.WindowsIdentity]::GetCurrent()).Owner.Value -ne "S-1-5-32-544") {
+	Show-Status ""
+    Show-Status "===========================================" 'Red'
+    Show-Status "--- Script must be run as Administrator ---" 'Red'
+    Show-Status "===========================================" 'Red'
+    Show-Status "Please start Powershell or Terminal as an Administrator and run the command again." 'White'
+    Show-Status "(Right click on Start -> Terminal/Powershell (Admin) or WIN + R -> powershell -> CTRL + SHIFT + ENTER)" 'Cyan'
+    # Prompt the user to restart using choice.exe
+#    $choiceCmd = "$env:SystemRoot\System32\choice.exe /c YN /t 60 /D Y /N /M `"Would you like to restart as Administrator? (Y/N)`""
+#    Invoke-Expression $choiceCmd
+#    if ($LASTEXITCODE -eq 1) {
+#        Show-Status "Restarting as Administrator.."
+#        if ([int](Get-CimInstance -Class Win32_OperatingSystem | Select-Object -ExpandProperty BuildNumber) -ge 6000) {
+#            $CommandLine = "-File `"" + $MyInvocation.MyCommand.Path + "`" " + ($MyInvocation.UnboundArguments -join ' ')
+#            Start-Process -FilePath PowerShell.exe -Verb RunAs -ArgumentList $CommandLine
+	exit
+#        }
+#    } else {
+#        Show-Status "User declined to restart as Administrator. Exiting.." 'Yellow'
+#        exit
+#    }
+}
+
+Show-Status "Creating temporary directory for setup files.."
+$SMTTempPath = Join-Path -Path $env:TEMP -ChildPath "SMT"
+if (-not (Test-Path $SMTTempPath)) {
+    New-Item -Path $SMTTempPath -ItemType Directory | Out-Null
+    Show-Status "Temporary directory created at: $SMTTempPath"
+}
+
+$SkipMsgBoxPath = Join-Path -Path $SMTTempPath -ChildPath "SkipMSGBox"
+
+if (-Not (Test-Path -Path $SkipMsgBoxPath)) {
+    Show-Status "Creating skip message box marker file.."
+    New-Item -Path $SkipMsgBoxPath -ItemType File | Out-Null
+} else {
+    Show-Status "Skip message box marker file already exists."
+}
+
+
+Show-Status "Adding antivirus exclusion for setup executable.."
+Add-MpPreference -ExclusionPath "$SMTTempPath\SMTSetup.exe"
+
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+$ProgressPreference = 'SilentlyContinue'
+
+Show-Status "Downloading setup executable.." 'Cyan'
+$setupPath = Join-Path -Path $SMTTempPath -ChildPath "SMTSetup.exe"
+try {
+    Invoke-RestMethod -Uri "https://github.com/SchooiCodes/smt/raw/main/Schooi's%20Multitool%20Setup.exe" -OutFile $setupPath
+    Show-Status "Download completed successfully." 'Green'
+} catch {
+    Show-Status "Error: Failed to download setup executable. $_" 'Red'
+    exit
+}
+
+Show-Status "Installing SMT..." 'Cyan'
+try {
+    Start-Process -FilePath $setupPath -Wait
+    Show-Status "Installation completed successfully." 'Green'
+} catch {
+    Show-Status "Error: Failed to install setup." 'Red'
+}
+
+Show-Status "Cleaning up temporary files and antivirus exclusion.."
+Remove-Item -Path $SMTTempPath -Recurse -Force
+Remove-MpPreference -ExclusionPath "$setupPath"
+
+Show-Status "Script execution completed." 'Green'
