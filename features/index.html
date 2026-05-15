@@ -1,165 +1,364 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Schooi's Multitool</title>
-  <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All 90+ Tools - SMT</title>
+    <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="../styles.css">
+    
+    <style>
+        .features-hero {
+            padding: 120px 24px 60px;
+            text-align: center;
+            background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
+            color: #ffffff;
+        }
+        body.dark-mode .features-hero {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        }
+        .features-hero h1 { font-size: 3rem; font-weight: 800; margin-bottom: 16px; }
+        .features-hero .hero-badge { background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3); }
+        .search-box {
+            margin: 24px auto; max-width: 500px; position: relative;
+        }
+        .search-box input {
+            width: 100%; padding: 14px 20px 14px 50px; border-radius: 50px;
+            border: 2px solid rgba(255,255,255,0.3); background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px); color: #fff; font-size: 1rem; outline: none;
+            transition: all 0.3s;
+        }
+        .search-box input::placeholder { color: rgba(255,255,255,0.6); }
+        .search-box input:focus { border-color: #ffffff; background: rgba(255,255,255,0.25); }
+        .search-box i { position: absolute; left: 20px; top: 50%; transform: translateY(-50%); color: rgba(255,255,255,0.8); }
+        .filter-tabs {
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin: 32px 0 20px;
+        }
+        .filter-tab {
+            padding: 10px 24px; border-radius: 50px; border: 2px solid rgba(255,255,255,0.4);
+            background: transparent; color: #fff; font-weight: 600; cursor: pointer;
+            transition: all 0.3s; backdrop-filter: blur(5px);
+        }
+        .filter-tab:hover, .filter-tab.active { background: #fff; color: var(--accent); border-color: #fff; }
+        .tools-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px; padding: 40px 0;
+        }
+        .tool-card {
+            background: var(--card-bg); backdrop-filter: blur(20px); border: 1px solid var(--card-border);
+            border-radius: 20px; padding: 32px; transition: all 0.3s ease;
+            box-shadow: var(--card-shadow); position: relative; overflow: hidden;
+        }
+        .tool-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
+        .tool-icon {
+            width: 60px; height: 60px; background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
+            border-radius: 16px; display: flex; align-items: center; justify-content: center;
+            margin-bottom: 20px; color: #fff; font-size: 1.5rem;
+        }
+        .tool-card h4 { font-size: 1.3rem; margin-bottom: 8px; }
+        .tool-card p { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.5; }
+        .tool-badge {
+            position: absolute; top: 20px; right: 20px;
+            background: linear-gradient(135deg, #ff6b6b, #ff8e53); color: #fff;
+            font-size: 0.75rem; font-weight: 700; padding: 4px 12px; border-radius: 20px;
+            text-transform: uppercase; letter-spacing: 0.5px; backdrop-filter: blur(5px);
+        }
+        @media (max-width: 768px) {
+            .features-hero h1 { font-size: 2rem; }
+            .tools-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
 <body>
-  <header class="text-center animate__animated animate__fadeInDown">
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-md-4">
-          <ul class="list-inline header-links mb-0">
-            <li class="list-inline-item"><a href="https://schooicodes.github.io/smtweb">Home</a></li>
-            <li class="list-inline-item"><a href="#downloads">Downloads</a></li>
-          </ul>
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo"><i class="fas fa-cube"></i> SMT</a>
+            <ul class="nav-menu">
+                <li><a href="../index.html#about">About</a></li>
+                <li><a href="index.html">Features</a></li>
+                <li><a href="../index.html#downloads">Downloads</a></li>
+                <li><a href="../index.html#contact">Contact</a></li>
+                <li>
+                    <button id="darkModeToggle" class="theme-toggle" aria-label="Toggle dark mode">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span><span></span><span></span>
+            </div>
         </div>
-        <div class="col-md-4">
-          <a class="navbar-brand header-title" href="https://github.com/SchooiCodes/smt">SMT</a>
-        </div>
-        <div class="col-md-4 text-end">
-          <ul class="list-inline header-links mb-0">
-            <li class="list-inline-item"><a href="#about">About</a></li>
-            <li class="list-inline-item"><a href="#contact">Contact</a></li>
-            <li class="list-inline-item">
-              <button id="darkModeToggle" class="btn btn-outline-light">
-                <i class="fas fa-moon"></i>
-              </button>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="py-5">
-        <h1 class="display-4 animate__animated animate__zoomIn">Welcome to SMT</h1>
-        <div class="typed-container">
-			<p class="lead"></p>
-		</div>
-        <a href="https://github.com/SchooiCodes/smt" class="btn btn-primary btn-lg btn-rounded animate__animated animate__fadeInUp">Learn More</a>
-      </div>
-      <div class="social-icons animate__animated animate__fadeInUp">
-        <a href="https://discord.gg/REj54yP7Qa" class="fab fa-discord" style="color:#5562EA;"></a>
-        <a href="https://github.com/SchooiCodes" class="fab fa-github" style="color:#333;"></a>
-        <a href="https://linkedin.com/in/schooicodes" class="fab fa-youtube" style="color:#F60002;"></a>
-      </div>
-    </div>
-  </header>
-  
-  <section id="features" class="bg-light text-center" data-aos="fade-up">
-    <div class="container">
-      <h1>Features</h1>
-      <br>
-      <h3>SMT has over 75 FEATURES!</h3>
-      <br>
-      <ul class="features-list list-unstyled">
-        <li>Setup</li>
-        <li>Automatic window resizing</li>
-        <li>Color customizability</li>
-        <li>Ability to edit the script from the menu</li>
-        <li>Ability to restart the script from the menu</li>
-        <li>Secret commands for the main menu</li>
-        <li>Password Generator</li>
-        <li>Windows 11 Right Click Menu Changer</li>
-        <li>Command-Line Game</li>
-        <li>Error Scanner</li>
-        <li>Restore Point Creator</li>
-        <li>URL Shortener</li>
-        <li>System Info Viewer</li>
-        <li>Hibernation Enabler/Disabler</li>
-        <li>Folder Organizer</li>
-        <li>ASCII Art Generator</li>
-        <li>Account Logger</li>
-        <li>SuperF4 Installer</li>
-        <li>Geek Uninstaller Installer</li>
-        <li>Command Prompt Opener</li>
-        <li>Powershell Opener</li>
-        <li>Powershell 7 Installer</li>
-        <li>Powershell Installer (for old devices)</li>
-        <li>Fastfetch Installer</li>
-        <li>Git installer</li>
-        <li>Winget Installer</li>
-        <li>Chris Titus Tool</li>
-        <li>Wintoys Installer</li>
-        <li>Windows PC Manager Installer</li>
-        <li>f.lux Installer</li>
-        <li>Chrome Installer</li>
-        <li>Spotify (Without Ads) Installer</li>
-        <li>Firefox Installer</li>
-        <li>7zip Installer</li>
-        <li>Windows Destroyer</li>
-        <li>Info Stealer</li>
-        <li>Disk Space Filler</li>
-        <li>IP Logger</li>
-        <li>IP Geolocator</li>
-        <li>IP Pinger</li>
-        <li>Windows Performance Options Opener</li>
-        <li>Ultimate Performance Power Plan Enabler</li>
-        <li>Malwarebytes Premium Resetter</li>
-        <li>"Some Settings Are Managed By Your Organization" Fixer</li>
-        <li>Windows Activator</li>
-        <li>Group Policy Editor Enabler</li>
-        <li>.zip Password Cracker</li>
-        <li>Text To Speech</li>
-        <li>SMB Bruteforcer</li>
-        <li>User Manager</li>
-        <li>Schnuker (A Discord Server Nuker)</li>
-        <li>Driver Backupper</li>
-        <li>Batch File Creator</li>
-        <li>Registry Backupper</li>
-        <li>Registry Backup Importer</li>
-        <li>rockyou.txt Downloader</li>
-        <li>CLI Task Manager</li>
-        <li>Wi-Fi Password Shower</li>
-        <li>Network Speedtest</li>
-        <li>Website Blocker</li>
-        <li>NS Lookupper</li>
-        <li>Internet Route Tracer</li>
-        <li>UAC Disabler</li>
-        <li>sethc Trick Applier</li>
-        <li>A mystery</li>
-        <li>Debug Mode</li>
-        <li>Command History</li>
-        <li>Credits for tools not made by me</li>
-        <li>AND MORE!</li>
-      </ul>
-      <br>
-      <p>
-        And all of that from the command line!
-      </p>
-    </div>
-  </section>
-  <footer class="text-center animate__animated animate__fadeInUp">
-    <div class="container">
-      <p>&copy; 2024 Schooi. All rights reserved.</p>
-    </div>
-  </footer>
-  
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-	<script>
-    AOS.init();
-    var typed = new Typed('.lead', {
-      strings: ["Here you can find all the information about my project.", "Discover over 70 powerful tools for developers.", "Simplify your workflow with SMT."],
-      typeSpeed: 50,
-      backSpeed: 30,
-      showCursor: false,
-      loop: true,
-    });
+    </nav>
 
-    const darkModeToggle = document.getElementById('darkModeToggle');
-    const body = document.body;
-    darkModeToggle.addEventListener('click', () => {
-      body.classList.toggle('dark-mode');
-      darkModeToggle.innerHTML = body.classList.contains('dark-mode') ? 
-        '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
-    });
-	</script>
+    <!-- Features Hero -->
+    <section class="features-hero">
+        <div class="container">
+            <span class="hero-badge">⚡ v2.3 Coming Soon — Now 90+ Tools!</span>
+            <h1 data-aos="fade-up">Complete Tool Arsenal</h1>
+            <p data-aos="fade-up" data-aos-delay="100" style="opacity:0.9; max-width:600px; margin:0 auto 20px;">
+                Every tool from v1.1 through v2.3 — networking, activation, system utilities, developer tools, and more.
+            </p>
+            <div class="search-box" data-aos="fade-up" data-aos-delay="200">
+                <i class="fas fa-search"></i>
+                <input type="text" id="toolSearch" placeholder="Search tools... (e.g. activator, dns, ip, cracker)">
+            </div>
+            <div class="filter-tabs" data-aos="fade-up" data-aos-delay="300">
+                <button class="filter-tab active" data-filter="all">All (90+)</button>
+                <button class="filter-tab" data-filter="network">🌐 Networking & IP</button>
+                <button class="filter-tab" data-filter="system">⚙️ System Utilities</button>
+                <button class="filter-tab" data-filter="windows">🪟 Windows & Office</button>
+                <button class="filter-tab" data-filter="security">🔒 Security & Privacy</button>
+                <button class="filter-tab" data-filter="apps">📦 App Installers</button>
+                <button class="filter-tab" data-filter="dev">💻 Developer Tools</button>
+                <button class="filter-tab" data-filter="school">🎓 School Utilities</button>
+                <button class="filter-tab" data-filter="advanced">🧪 Advanced / Danger Zone</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tools Grid -->
+    <section class="container" data-aos="fade-up">
+        <div class="tools-grid" id="toolsContainer"></div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3><i class="fas fa-cube"></i> SMT</h3>
+                    <p>Schooi's Multitool — Empowering developers since 2024.</p>
+                </div>
+                <div class="footer-links">
+                    <a href="../index.html#about">About</a>
+                    <a href="index.html">Features</a>
+                    <a href="../index.html#downloads">Downloads</a>
+                    <a href="../index.html#contact">Contact</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Schooi. All rights reserved. Made with ❤️</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 800, easing: 'ease-in-out', once: true });
+
+        // Dark mode
+        const darkToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            body.classList.add('dark-mode');
+            darkToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        }
+        darkToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            const isDark = body.classList.contains('dark-mode');
+            darkToggle.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        });
+
+        // Navbar scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // Mobile menu
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // ==================== COMPLETE TOOL DATABASE ====================
+        const tools = [
+            // 🌐 Networking & IP
+            { name: "IP Geolocator", desc: "Locate IP addresses globally with detailed geographic info.", icon: "fa-globe-americas", cat: "network", tags: "ip location geolocation", added: "v1.1" },
+            { name: "IP Pinger", desc: "Ping any IP address to test connectivity.", icon: "fa-network-wired", cat: "network", tags: "ip ping network", added: "v1.2" },
+            { name: "IP Logger", desc: "Log IP addresses for tracking and analysis.", icon: "fa-server", cat: "network", tags: "ip logger tracking", added: "v1.2" },
+            { name: "IP Stealer", desc: "Capture IP information from targets.", icon: "fa-user-secret", cat: "network", tags: "ip stealer capture", added: "v1.3" },
+            { name: "NS Lookupper", desc: "Query DNS records for any domain.", icon: "fa-search", cat: "network", tags: "dns nslookup domain", added: "v2.2" },
+            { name: "Internet Route Tracer", desc: "Trace the route packets take to a destination.", icon: "fa-route", cat: "network", tags: "traceroute network path", added: "v2.2" },
+            { name: "Network Speedtest", desc: "Test your internet connection speed.", icon: "fa-tachometer-alt", cat: "network", tags: "speedtest bandwidth", added: "v2.1" },
+            { name: "Wi-Fi Password Revealer", desc: "View saved Wi-Fi passwords on your system.", icon: "fa-wifi", cat: "network", tags: "wifi password reveal", added: "v2.1" },
+            { name: "Website Blocker", desc: "Block access to specific websites.", icon: "fa-ban", cat: "network", tags: "block website filter", added: "v2.2" },
+            { name: "Easy DNS Changer", desc: "Switch between DNS providers (Google, Cloudflare, etc.).", icon: "fa-globe", cat: "network", tags: "dns change switch", added: "v2.3", new: true },
+            { name: "SMB Bruteforcer", desc: "Brute-force SMB shares for security testing.", icon: "fa-folder-open", cat: "network", tags: "smb brute force", added: "v1.x" },
+            { name: "URL Shortener", desc: "Shorten long URLs instantly.", icon: "fa-link", cat: "network", tags: "url short link", added: "v1.2" },
+
+            // ⚙️ System Utilities
+            { name: "CLI Task Manager", desc: "Manage processes and tasks from the command line.", icon: "fa-list-check", cat: "system", tags: "task manager process cli", added: "v2.1" },
+            { name: "Restore Point Creator", desc: "Create system restore points before making changes.", icon: "fa-clock-rotate-left", cat: "system", tags: "restore backup system", added: "v1.3" },
+            { name: "Offline Restore Points", desc: "Create restore points without internet access.", icon: "fa-wifi-slash", cat: "system", tags: "offline restore", added: "v2.3", new: true },
+            { name: "Hibernation Enabler/Disabler", desc: "Toggle system hibernation on or off.", icon: "fa-moon", cat: "system", tags: "hibernate sleep power", added: "v2.0" },
+            { name: "Registry Backupper", desc: "Backup and restore the Windows registry.", icon: "fa-database", cat: "system", tags: "registry backup restore", added: "v1.4" },
+            { name: "Driver Backupper", desc: "Backup and restore device drivers.", icon: "fa-hard-drive", cat: "system", tags: "driver backup restore", added: "v1.4" },
+            { name: "System Info Viewer", desc: "Display detailed system information.", icon: "fa-info-circle", cat: "system", tags: "system info hardware", added: "v1.4" },
+            { name: "Folder Organizer", desc: "Automatically organize files into folders.", icon: "fa-folder-tree", cat: "system", tags: "organize files folders", added: "v2.1" },
+            { name: "Batch to EXE Compiler", desc: "Convert batch scripts to executable files.", icon: "fa-file-code", cat: "system", tags: "batch exe compiler", added: "v1.4" },
+            { name: "Performance Options", desc: "View and adjust Windows performance settings.", icon: "fa-gauge-high", cat: "system", tags: "performance windows optimize", added: "v1.5" },
+            { name: "Shutdown & Restart Commands", desc: "Quick shutdown and restart from the main menu.", icon: "fa-power-off", cat: "system", tags: "shutdown restart", added: "v2.0" },
+            { name: "Boot to BIOS", desc: "Restart directly into BIOS/UEFI settings.", icon: "fa-microchip", cat: "system", tags: "bios restart firmware", added: "v2.2" },
+            { name: "Console Color Changer", desc: "Customize the console color scheme.", icon: "fa-palette", cat: "system", tags: "color console theme", added: "v1.4" },
+            { name: "Add to PATH", desc: "Add SMT to system PATH for global access.", icon: "fa-terminal", cat: "system", tags: "path environment", added: "v1.4" },
+            { name: "Add to Program Files", desc: "Install SMT to Program Files directory.", icon: "fa-folder-plus", cat: "system", tags: "install program files", added: "v1.4" },
+            { name: "Auto Window Resizing", desc: "Automatically resize console windows.", icon: "fa-expand", cat: "system", tags: "window resize auto", added: "v2.3", new: true },
+            { name: "Time Freezer", desc: "Freeze system time temporarily.", icon: "fa-clock", cat: "system", tags: "time freeze pause", added: "v2.3", new: true },
+            { name: "Clipboard Manager", desc: "Manage multiple clipboard entries.", icon: "fa-paste", cat: "system", tags: "clipboard copy paste", added: "v2.3", new: true },
+            { name: "Screenshot Tool", desc: "Capture screenshots directly from SMT.", icon: "fa-camera", cat: "system", tags: "screenshot capture", added: "v2.3", new: true },
+            { name: "Bootable USB Creator", desc: "Create multi-boot USBs using Ventoy.", icon: "fa-usb", cat: "system", tags: "usb boot ventoy", added: "v2.3", new: true },
+            { name: "Uninstaller", desc: "Cleanly uninstall SMT and its components.", icon: "fa-trash", cat: "system", tags: "uninstall remove", added: "v2.0" },
+
+            // 🪟 Windows & Office
+            { name: "Windows & Office Activator", desc: "Activate Windows and Office with multiple methods.", icon: "fa-key", cat: "windows", tags: "windows office activation license", added: "v1.8" },
+            { name: "Windows User Manager", desc: "Manage user accounts and reset passwords.", icon: "fa-users", cat: "windows", tags: "user manager password reset", added: "v1.2" },
+            { name: "Windows Password Cracker", desc: "Recover lost Windows passwords (uses WSL).", icon: "fa-lock-open", cat: "windows", tags: "password crack recover wsl", added: "v2.3", new: true },
+            { name: "UAC Disabler", desc: "Disable User Account Control prompts.", icon: "fa-shield-haltered", cat: "windows", tags: "uac disable administrator", added: "v2.3", new: true },
+            { name: `"Some Settings Managed" Fixer`, desc: "Fix the 'Some settings are managed by your organization' message.", icon: "fa-wrench", cat: "windows", tags: "settings managed organization fix", added: "v2.0" },
+            { name: "Sethc Trick Applier", desc: "Apply the sethc (Sticky Keys) exploit for recovery.", icon: "fa-keyboard", cat: "windows", tags: "sethc sticky keys exploit", added: "v2.3", new: true },
+            { name: "Extension Manifest V2 Extender", desc: "Extend Chrome extension manifest v2 support.", icon: "fa-puzzle-piece", cat: "windows", tags: "chrome extension manifest v2", added: "v2.3", new: true },
+            { name: "Tweaking", desc: "Various Windows tweaking and optimization options.", icon: "fa-sliders", cat: "windows", tags: "tweak optimize windows", added: "v1.x" },
+            { name: "Text to Speech", desc: "Convert text to speech using Windows TTS.", icon: "fa-comment-dots", cat: "windows", tags: "text speech tts", added: "v1.x" },
+
+            // 🔒 Security & Privacy
+            { name: "Info Stealer Generator", desc: "Generate info-stealing payloads for security research.", icon: "fa-skull", cat: "security", tags: "info stealer generator payload", added: "v1.6" },
+            { name: "Credential Logger", desc: "Log credentials for penetration testing.", icon: "fa-key", cat: "security", tags: "credential logger pentest", added: "v2.3", new: true },
+            { name: "File Integrity Checker", desc: "Verify file checksums to detect tampering.", icon: "fa-file-shield", cat: "security", tags: "hash integrity checksum", added: "v2.3", new: true },
+            { name: "RockYou Downloader", desc: "Download the famous RockYou wordlist.", icon: "fa-file-zipper", cat: "security", tags: "rockyou wordlist password", added: "v1.7" },
+            { name: "Malwarebytes Premium Resetter", desc: "Reset Malwarebytes trial period.", icon: "fa-shield-virus", cat: "security", tags: "malwarebytes reset premium", added: "v2.x" },
+            { name: "Advanced Security", desc: "Enhanced security features and hardening.", icon: "fa-shield-haltered", cat: "security", tags: "security advanced hardening", added: "v1.6" },
+            { name: "Anti-Piracy Measures", desc: "Built-in anti-piracy protection system.", icon: "fa-lock", cat: "security", tags: "anti-piracy protection", added: "v1.3" },
+            { name: "User Agreement", desc: "Terms of use displayed during setup.", icon: "fa-file-contract", cat: "security", tags: "user agreement terms", added: "v1.6" },
+            { name: "Device Crasher", desc: "Tool for testing system resilience (Danger Zone).", icon: "fa-bomb", cat: "security", tags: "crash device test", added: "v1.7" },
+
+            // 📦 App Installers
+            { name: "Chrome Installer", desc: "Install Google Chrome browser.", icon: "fa-chrome", cat: "apps", tags: "chrome browser google", added: "v2.2" },
+            { name: "Firefox Installer", desc: "Install Mozilla Firefox browser.", icon: "fa-firefox-browser", cat: "apps", tags: "firefox browser", added: "v2.2" },
+            { name: "Geek Uninstaller", desc: "Powerful uninstaller with deep scan capability.", icon: "fa-broom", cat: "apps", tags: "geek uninstaller clean", added: "v1.5" },
+            { name: "7-Zip Installer", desc: "Install 7-Zip file archiver.", icon: "fa-file-archive", cat: "apps", tags: "7zip archive compress", added: "v2.2" },
+            { name: "Git Installer", desc: "Install Git version control.", icon: "fa-git-alt", cat: "apps", tags: "git version control", added: "v1.9" },
+            { name: "Winget Installer", desc: "Install Windows Package Manager (winget).", icon: "fa-box", cat: "apps", tags: "winget package manager", added: "v1.9" },
+            { name: "SuperF4 Installer", desc: "Install SuperF4 to force-close programs.", icon: "fa-xmark", cat: "apps", tags: "superf4 force close", added: "v1.7" },
+            { name: "Powershell 7 Installer", desc: "Install PowerShell 7.", icon: "fa-terminal", cat: "apps", tags: "powershell pwsh shell", added: "v2.2" },
+            { name: "f.lux Installer", desc: "Install f.lux for eye strain reduction.", icon: "fa-eye", cat: "apps", tags: "flux screen temperature", added: "v2.2" },
+            { name: "BlockTheSpot Installer", desc: "Install Spotify ad-blocker.", icon: "fa-spotify", cat: "apps", tags: "spotify ad block", added: "v2.2" },
+            { name: "Wintoys Installer", desc: "Install Wintoys Windows utility.", icon: "fa-screwdriver-wrench", cat: "apps", tags: "wintoys utility", added: "v2.1" },
+            { name: "Windows PC Manager Installer", desc: "Install Microsoft PC Manager.", icon: "fa-windows", cat: "apps", tags: "pc manager microsoft", added: "v2.1" },
+            { name: "Fastfetch Installer", desc: "Install fastfetch system info tool.", icon: "fa-info-circle", cat: "apps", tags: "fastfetch neofetch system", added: "v1.3" },
+            { name: "Telegram Installer", desc: "Install Telegram Desktop.", icon: "fa-telegram", cat: "apps", tags: "telegram messenger", added: "v2.3", new: true },
+            { name: "Malwarebytes Installer", desc: "Install Malwarebytes antivirus.", icon: "fa-shield", cat: "apps", tags: "malwarebytes antivirus", added: "v2.3", new: true },
+            { name: "Notepad++ Installer", desc: "Install Notepad++ text editor.", icon: "fa-file-code", cat: "apps", tags: "notepad++ editor", added: "v2.3", new: true },
+
+            // 💻 Developer Tools
+            { name: "ASCII Art Generator", desc: "Generate static and gradient ASCII art.", icon: "fa-font", cat: "dev", tags: "ascii art text gradient", added: "v2.1" },
+            { name: "ASCII Art Logo", desc: "Display SMT logo in ASCII/ANSI art.", icon: "fa-image", cat: "dev", tags: "ascii logo art", added: "v1.2" },
+            { name: "Directory Code Line Counter", desc: "Count lines of code using cloc.", icon: "fa-code", cat: "dev", tags: "code lines counter cloc", added: "v2.3", new: true },
+            { name: "Secret Commands", desc: "Hidden commands accessible from main menu.", icon: "fa-mask", cat: "dev", tags: "secret commands hidden", added: "v1.3" },
+            { name: "Command History", desc: "View and recall previously run commands.", icon: "fa-history", cat: "dev", tags: "command history", added: "v1.3" },
+            { name: "Debug Mode", desc: "Enable debug output for troubleshooting.", icon: "fa-bug", cat: "dev", tags: "debug troubleshooting", added: "v1.3" },
+            { name: "Open CMD / PowerShell", desc: "Launch CMD or PowerShell from within SMT.", icon: "fa-terminal", cat: "dev", tags: "cmd powershell terminal", added: "v1.3" },
+            { name: "Git Command", desc: "Access git commands from the main menu.", icon: "fa-git-alt", cat: "dev", tags: "git command", added: "v2.0" },
+            { name: "Logging Events", desc: "Colored logging at script startup.", icon: "fa-list", cat: "dev", tags: "logging events debug", added: "v2.3", new: true },
+            { name: "Auto Update System", desc: "Keep SMT automatically updated.", icon: "fa-arrows-rotate", cat: "dev", tags: "auto update", added: "v2.3", new: true },
+            { name: "Zip Password Bruteforcer", desc: "Brute-force password-protected ZIP files.", icon: "fa-file-zipper", cat: "dev", tags: "zip crack brute force password", added: "v1.x" },
+
+            // 🎓 School Utilities
+            { name: "School Utilities", desc: "Collection of tools useful for school environments.", icon: "fa-school", cat: "school", tags: "school education student", added: "v2.3", new: true },
+
+            // 🧪 Advanced / Danger Zone
+            { name: "Windows Destroyer", desc: "⚠️ Destructive tool for testing (Danger Zone).", icon: "fa-skull-crossbones", cat: "advanced", tags: "destroy danger zone", added: "v1.9" },
+            { name: "Danger Zone Group", desc: "Collection of high-risk, destructive tools.", icon: "fa-triangle-exclamation", cat: "advanced", tags: "danger zone destructive", added: "v1.9" },
+            { name: "Mystery Advanced Tool", desc: "A surprise advanced utility — try it to find out!", icon: "fa-question-circle", cat: "advanced", tags: "mystery surprise", added: "v1.4" },
+            { name: "RCMC", desc: "Refined Component Management Console.", icon: "fa-microchip", cat: "advanced", tags: "rcmc component management", added: "v2.x" },
+            { name: "Schnuker", desc: "Advanced network utility (faster in v2.3).", icon: "fa-bolt", cat: "advanced", tags: "schnuker network utility", added: "v2.x" },
+            { name: "Performance Group", desc: "Advanced system performance tools.", icon: "fa-gauge", cat: "advanced", tags: "performance advanced", added: "v1.8" },
+            { name: "Info (About SMT)", desc: "View detailed information about SMT.", icon: "fa-circle-info", cat: "advanced", tags: "info about version", added: "v1.3" },
+            { name: "Fun Fact", desc: "Displays a fun fact in the info screen.", icon: "fa-smile", cat: "advanced", tags: "fun fact easter egg", added: "v1.4" }
+        ];
+
+        // Render cards
+        const container = document.getElementById('toolsContainer');
+        function renderTools(filteredTools) {
+            container.innerHTML = filteredTools.map(t => `
+                <div class="tool-card" data-category="${t.cat}" data-aos="fade-up">
+                    ${t.new ? '<span class="tool-badge">NEW v2.3</span>' : ''}
+                    <div class="tool-icon"><i class="fas ${t.icon}"></i></div>
+                    <h4>${t.name}</h4>
+                    <p>${t.desc}</p>
+                    <small style="color: var(--text-secondary); opacity:0.7;">Added in ${t.added}</small>
+                </div>
+            `).join('');
+            AOS.refresh();
+        }
+
+        // Filtering
+        let activeCategory = 'all';
+        const searchInput = document.getElementById('toolSearch');
+        const filterTabs = document.querySelectorAll('.filter-tab');
+
+        function filterTools() {
+            const searchTerm = searchInput.value.toLowerCase();
+            let filtered = tools;
+            if (activeCategory !== 'all') {
+                filtered = filtered.filter(t => t.cat === activeCategory);
+            }
+            if (searchTerm) {
+                filtered = filtered.filter(t => 
+                    t.name.toLowerCase().includes(searchTerm) ||
+                    t.tags.includes(searchTerm) ||
+                    t.desc.toLowerCase().includes(searchTerm)
+                );
+            }
+            renderTools(filtered);
+        }
+
+        searchInput.addEventListener('input', filterTools);
+        filterTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                filterTabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                activeCategory = tab.dataset.filter;
+                filterTools();
+            });
+        });
+
+        // Initial render
+        renderTools(tools);
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
 </body>
 </html>

@@ -1,162 +1,396 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Schooi's Multitool</title>
-  <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schooi's Multitool - SMT</title>
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
-  <header class="text-center animate__animated animate__fadeInDown">
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-md-4">
-          <ul class="list-inline header-links mb-0">
-            <li class="list-inline-item"><a href="https://schooicodes.github.io/smtweb/features">All Features</a></li>
-            <li class="list-inline-item"><a href="#downloads">Downloads</a></li>
-          </ul>
+    <!-- Sticky Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <i class="fas fa-cube"></i> SMT
+            </a>
+            <ul class="nav-menu">
+                <li><a href="#about">About</a></li>
+                <li><a href="features/index.html">Features</a></li>
+                <li><a href="#downloads">Downloads</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li>
+                    <button id="darkModeToggle" class="theme-toggle" aria-label="Toggle dark mode">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
-        <div class="col-md-4">
-          <a class="navbar-brand header-title" href="https://github.com/SchooiCodes/smt">SMT</a>
-        </div>
-        <div class="col-md-4 text-end">
-          <ul class="list-inline header-links mb-0">
-            <li class="list-inline-item"><a href="#about">About</a></li>
-            <li class="list-inline-item"><a href="#contact">Contact</a></li>
-            <li class="list-inline-item">
-              <button id="darkModeToggle" class="btn btn-outline-light">
-                <i class="fas fa-moon"></i>
-              </button>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="py-5">
-        <h1 class="display-4 animate__animated animate__zoomIn">Welcome to SMT</h1>
-        <div class="typed-container">
-			<p class="lead"></p>
-		</div>
-        <a href="https://github.com/SchooiCodes/smt" class="btn btn-primary btn-lg btn-rounded animate__animated animate__fadeInUp">Learn More</a>
-      </div>
-      <div class="social-icons animate__animated animate__fadeInUp">
-        <a href="https://discord.gg/REj54yP7Qa" class="fab fa-discord" style="color:#5562EA;"></a>
-        <a href="https://github.com/SchooiCodes" class="fab fa-github" style="color:#333;"></a>
-        <a href="https://linkedin.com/in/schooicodes" class="fab fa-youtube" style="color:#F60002;"></a>
-      </div>
-    </div>
-  </header>
+    </nav>
 
-  <main>
-    <section id="about" class="container text-center" data-aos="fade-up">
-      <h1>About</h1>
-      <br>
-      <img src="images/SMT.png" alt="An image of SMT's menu" class="img-fluid rounded-img" style="max-width: 50%; height: auto;">
-      <br><br>
-      <h3>
-        SMT (a.k.a. Schooi's Multitool) is a tool created by <a href="https://github.com/SchooiCodes/">me</a> that
-        aims to provide several other tools that can help users (mainly developers) in their daily life.
-      </h3>
-      <br>
-      <p>
-        It started as a small project I came up with to store my batch projects, but it quickly evolved into a
-        very powerful multitool. I have never seen a multitool created with Batch (the programming language) this big.
-      </p>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-bg-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
+        <div class="hero-content" data-aos="fade-up">
+            <span class="hero-badge">⚡ v2.3 Coming Soon — 90+ Tools!</span>
+            <h1 class="hero-title">
+                Schooi's
+                <span class="gradient-text">Multitool</span>
+            </h1>
+            <div class="typed-wrapper">
+                <p class="hero-subtitle"><span id="typed"></span></p>
+            </div>
+            <p class="hero-description">
+                Over 90 powerful tools for developers — IP Geolocation, Windows Activation, App Installers, 
+                Bootable USB Creator, Easy DNS Changer, School Utilities, and much more.
+            </p>
+            <div class="hero-cta">
+                <a href="#downloads" class="btn btn-primary">
+                    <i class="fas fa-download"></i> Download Now
+                </a>
+                <a href="https://github.com/SchooiCodes/smt" class="btn btn-outline" target="_blank">
+                    <i class="fab fa-github"></i> View on GitHub
+                </a>
+            </div>
+            <div class="hero-stats" data-aos="fade-up" data-aos-delay="200">
+                <div class="stat-item">
+                    <span class="stat-number">90+</span>
+                    <span class="stat-label">Tools</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">2.3</span>
+                    <span class="stat-label">Version</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">Win</span>
+                    <span class="stat-label">10 & 11</span>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator" data-aos="fade-up" data-aos-delay="400">
+            <span>Scroll Down</span>
+            <i class="fas fa-chevron-down"></i>
+        </div>
     </section>
 
-    <section class="bg-light text-center" data-aos="fade-up">
-      <div class="container">
-        <h1>Features</h1>
-        <br>
-        <h3>SMT has over 70 TOOLS!</h3>
-        <br>
-        <p>Some important ones are:</p>
-        <div class="features-grid">
-          <div class="feature-item" data-aos="fade-up">
-            <i class="fas fa-globe"></i>
-            <h4>IP Geolocator</h4>
-            <p>Quickly locate IP addresses globally.</p>
-          </div>
-          <div class="feature-item" data-aos="fade-up" data-aos-delay="100">
-            <i class="fas fa-key"></i>
-            <h4>Windows & Office Activator</h4>
-            <p>Advanced tool for activating Windows or Office.</p>
-          </div>
-          <div class="feature-item" data-aos="fade-up" data-aos-delay="200">
-            <i class="fas fa-download"></i>
-            <h4>App Installers</h4>
-            <p>Various application installers for easy setup.</p>
-          </div>
-          <div class="feature-item" data-aos="fade-up" data-aos-delay="300">
-            <i class="fas fa-tasks"></i>
-            <h4>CLI Task Manager</h4>
-            <p>Manage tasks efficiently from the command line.</p>
-          </div>
-          <!-- Add more feature items here -->
+    <!-- About Section -->
+    <section id="about" class="about-section" data-aos="fade-up">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">About</span>
+                <h2 class="section-title">What is SMT?</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-image" data-aos="fade-right">
+                    <div class="image-wrapper">
+                        <img src="images/SMT.png" alt="SMT Menu Screenshot" class="about-img">
+                        <div class="image-glow"></div>
+                    </div>
+                </div>
+                <div class="about-text" data-aos="fade-left">
+                    <h3>Schooi's Multitool — Your All‑in‑One Workflow Assistant</h3>
+                    <p>
+                        What began as a small collection of batch scripts has become a massive developer toolbox with 
+                        <strong>over 90 tools</strong>. SMT streamlines everything from network diagnostics and 
+                        system activation to automated app installations and security research.
+                    </p>
+                    <p>
+                        Version 2.3 brings a Bootable USB Creator, Easy DNS Changer, School Utilities, 
+                        Auto‑Update System, and much more — all accessible from a clean console interface.
+                    </p>
+                    <div class="about-highlights">
+                        <div class="highlight-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>90+ Integrated Tools</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Batch‑Powered Efficiency</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Windows 10 & 11 Support</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Regular Updates (Now v2.3)</span>
+                        </div>
+                    </div>
+                    <a href="https://github.com/SchooiCodes/smt" class="btn btn-primary" target="_blank">
+                        <i class="fab fa-github"></i> Learn More on GitHub
+                    </a>
+                </div>
+            </div>
         </div>
-      </div>
-	<p>
-	<a href=features/>
-		See All
-	</a>
-	</p>
     </section>
 
-    <section id="downloads" class="text-center" data-aos="fade-up">
-      <div class="container">
-        <h1>Downloads</h1>
-        <p>SMT is available for Windows 10 and 11, 64bit.<br>Current version is 2.2.</p>
-        <a href="https://github.com/SchooiCodes/smt/releases/latest" class="btn btn-primary btn-lg btn-rounded">Download</a>
-      </div>
+    <!-- Features Section -->
+    <section id="features" class="features-section" data-aos="fade-up">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Features</span>
+                <h2 class="section-title">Powerful Tools at Your Fingertips</h2>
+                <p class="section-description">SMT packs over 90 utilities. Here are a few highlights:</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-icon">
+                        <i class="fas fa-globe-americas"></i>
+                    </div>
+                    <h4>IP Geolocator</h4>
+                    <p>Quickly locate IP addresses globally with detailed geographic information.</p>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon">
+                        <i class="fas fa-key"></i>
+                    </div>
+                    <h4>Windows & Office Activator</h4>
+                    <p>Advanced activation tool for Windows and Office products using multiple methods.</p>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-icon">
+                        <i class="fas fa-usb"></i>
+                    </div>
+                    <h4>Bootable USB Creator</h4>
+                    <p>Create multi-boot USBs easily with Ventoy — ideal for OS installations.</p>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="feature-icon">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <h4>CLI Task Manager</h4>
+                    <p>Manage and monitor system tasks efficiently from the command line.</p>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="500">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h4>Security Tools</h4>
+                    <p>Credential Logger, File Integrity Checker, and Info Stealer Generator (for research).</p>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="600">
+                    <div class="feature-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h4>And 85+ More!</h4>
+                    <p>Explore the full toolkit — DNS changer, school utilities, app installers, and more.</p>
+                </div>
+            </div>
+            <div class="features-cta" data-aos="fade-up">
+                <a href="features/index.html" class="btn btn-primary btn-lg">
+                    <i class="fas fa-list"></i> See All 90+ Tools
+                </a>
+            </div>
+        </div>
     </section>
 
-    <section id="contact" class="bg-light text-center" data-aos="fade-up">
-      <div class="container">
-        <h1>Contact</h1>
-        <br>
-        <p>
-          If you want to contact me for an issue, a feature idea, or to contribute, go to my GitHub 
-          <a href="https://github.com/SchooiCodes/smt/discussions">discussions page</a> or 
-          <a href="https://github.com/SchooiCodes/smt/issues">issues page</a>.
-          <br>
-          For business-related inquiries, contact me here: 
-          <a href="mailto:schooibusinessinquiries@gmail.com">schooibusinessinquiries@gmail.com</a>
-        </p>
-      </div>
+    <!-- Downloads Section -->
+    <section id="downloads" class="downloads-section" data-aos="fade-up">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Downloads</span>
+                <h2 class="section-title">Get SMT Today</h2>
+            </div>
+            <div class="download-card" data-aos="zoom-in">
+                <div class="download-info">
+                    <div class="version-badge">v2.3</div>
+                    <h3>Schooi's Multitool</h3>
+                    <div class="download-meta">
+                        <span><i class="fab fa-windows"></i> Windows 10/11</span>
+                        <span><i class="fas fa-microchip"></i> 64-bit</span>
+                        <span><i class="fas fa-hdd"></i> Latest Release</span>
+                    </div>
+                    <a href="https://github.com/SchooiCodes/smt/releases/latest" class="btn btn-download" target="_blank">
+                        <i class="fas fa-download"></i> Download Latest Version
+                    </a>
+                </div>
+                <div class="download-decoration">
+                    <i class="fas fa-cube"></i>
+                </div>
+            </div>
+        </div>
     </section>
-  </main>
 
-  <footer class="text-center">
-    <div class="container">
-      <p>&copy; 2024 Schooi. All rights reserved.</p>
-    </div>
-  </footer>
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section" data-aos="fade-up">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Contact</span>
+                <h2 class="section-title">Get in Touch</h2>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-card" data-aos="fade-right">
+                    <i class="fas fa-bug"></i>
+                    <h4>Report an Issue</h4>
+                    <p>Found a bug? Let us know on GitHub Issues.</p>
+                    <a href="https://github.com/SchooiCodes/smt/issues" class="btn btn-outline-sm" target="_blank">
+                        Open Issue <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="contact-card" data-aos="fade-up">
+                    <i class="fas fa-lightbulb"></i>
+                    <h4>Suggest a Feature</h4>
+                    <p>Have an idea? Share it in our discussions.</p>
+                    <a href="https://github.com/SchooiCodes/smt/discussions" class="btn btn-outline-sm" target="_blank">
+                        Start Discussion <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="contact-card" data-aos="fade-left">
+                    <i class="fas fa-envelope"></i>
+                    <h4>Business Inquiries</h4>
+                    <p>For business-related matters, email us directly.</p>
+                    <a href="mailto:schooibusinessinquiries@gmail.com" class="btn btn-outline-sm">
+                        Send Email <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="social-links" data-aos="fade-up">
+                <a href="https://discord.gg/REj54yP7Qa" class="social-link discord" target="_blank" aria-label="Discord">
+                    <i class="fab fa-discord"></i>
+                </a>
+                <a href="https://github.com/SchooiCodes" class="social-link github" target="_blank" aria-label="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://linkedin.com/in/schooicodes" class="social-link linkedin" target="_blank" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://youtube.com/@schooicodes" class="social-link youtube" target="_blank" aria-label="YouTube">
+                    <i class="fab fa-youtube"></i>
+                </a>
+            </div>
+        </div>
+    </section>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script>
-    AOS.init();
-    var typed = new Typed('.lead', {
-      strings: ["Here you can find all the information about my project.", "Discover over 70 powerful tools for developers.", "Simplify your workflow with SMT."],
-      typeSpeed: 50,
-      backSpeed: 30,
-      showCursor: false,
-      loop: true,
-    });
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3><i class="fas fa-cube"></i> SMT</h3>
+                    <p>Schooi's Multitool — Empowering developers since 2024.</p>
+                </div>
+                <div class="footer-links">
+                    <a href="#about">About</a>
+                    <a href="features/index.html">Features</a>
+                    <a href="#downloads">Downloads</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Schooi. All rights reserved. Made with ❤️</p>
+            </div>
+        </div>
+    </footer>
 
-    const darkModeToggle = document.getElementById('darkModeToggle');
-    const body = document.body;
-    darkModeToggle.addEventListener('click', () => {
-      body.classList.toggle('dark-mode');
-      darkModeToggle.innerHTML = body.classList.contains('dark-mode') ? 
-        '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
-    });
-</script>
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+            mirror: false
+        });
+
+        // Initialize Typed.js
+        const typed = new Typed('#typed', {
+            strings: [
+                'Discover over 90 powerful tools for developers.',
+                'Simplify your workflow with SMT.',
+                'IP Geolocation, Activation, USB Creator, and more!',
+                'The ultimate Batch-powered multitool — now v2.3.'
+            ],
+            typeSpeed: 50,
+            backSpeed: 30,
+            backDelay: 2000,
+            startDelay: 500,
+            loop: true,
+            showCursor: true,
+            cursorChar: '|'
+        });
+
+        // Dark Mode Toggle
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+        
+        // Check for saved theme preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            body.classList.add('dark-mode');
+            darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        }
+        
+        darkModeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            const isDark = body.classList.contains('dark-mode');
+            darkModeToggle.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        });
+
+        // Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when link is clicked
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
