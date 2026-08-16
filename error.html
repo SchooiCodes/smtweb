@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com https://unpkg.com; font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com; script-src 'self' 'unsafe-inline' https://unpkg.com https://cdnjs.cloudflare.com; base-uri 'self'; form-action 'self'; object-src 'none'; connect-src 'self'">
+    <title>Error - Schooi's Multitool</title>
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="images/SMT.png">
+    <link rel="canonical" href="https://schooicodes.github.io/smtweb/error.html">
+    <meta name="robots" content="noindex">
+    <meta name="description" content="Something went wrong while loading this page.">
+    <meta name="theme-color" content="#667eea">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .errorpage {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 24px 80px;
+            background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
+            color: #ffffff;
+        }
+        .errorpage .code { font-size: 6rem; font-weight: 900; line-height: 1; margin-bottom: 8px; }
+        .errorpage h1 { font-size: 2rem; margin-bottom: 16px; }
+        .errorpage p { opacity: 0.9; margin-bottom: 32px; max-width: 480px; }
+        .errorpage .links { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+        .errorpage .btn-outline { color: #fff; border-color: rgba(255,255,255,0.5); }
+    </style>
+</head>
+<body>
+    <main class="errorpage">
+        <div class="code">500</div>
+        <h1>Something Went Wrong</h1>
+        <p>We hit an unexpected error while loading this page. Please try again, or head back to the homepage.</p>
+        <div class="links">
+            <a href="index.html" class="btn btn-primary"><i class="fas fa-home"></i> Back to Home</a>
+            <button onclick="location.reload()" class="btn btn-outline"><i class="fas fa-rotate"></i> Try Again</button>
+        </div>
+    </main>
+</body>
+</html>

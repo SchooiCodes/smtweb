@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com https://unpkg.com; font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com; script-src 'self' 'unsafe-inline' https://unpkg.com https://cdnjs.cloudflare.com; base-uri 'self'; form-action 'self'; object-src 'none'; connect-src 'self'">
+    <title>License | Schooi's Multitool</title>
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="images/SMT.png">
+    <link rel="canonical" href="https://schooicodes.github.io/smtweb/license.html">
+    <meta name="description" content="License for Schooi's Multitool (SMT) - released under the MIT License.">
+    <meta name="theme-color" content="#667eea">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .legal-hero { padding: 140px 24px 40px; text-align: center; background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2)); color: #fff; }
+        .legal-hero h1 { font-size: 2.8rem; font-weight: 800; margin-bottom: 8px; }
+        .legal-hero p { opacity: 0.9; }
+        .legal-content { max-width: 800px; margin: 0 auto; padding: 60px 24px 80px; }
+        .legal-content h2 { font-size: 1.6rem; margin: 40px 0 12px; color: var(--text-primary); }
+        .legal-content h2:first-child { margin-top: 0; }
+        .legal-content p, .legal-content li { color: var(--text-secondary); line-height: 1.7; margin-bottom: 12px; }
+        .legal-content ul { padding-left: 22px; margin-bottom: 12px; }
+        .legal-content a { color: var(--accent); }
+        .updated { font-size: 0.9rem; opacity: 0.7; }
+        .license-text { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 24px; font-family: ui-monospace, 'Courier New', monospace; font-size: 0.9rem; white-space: pre-wrap; line-height: 1.6; }
+    </style>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://schooicodes.github.io/smtweb/"},
+        {"@type": "ListItem", "position": 2, "name": "License", "item": "https://schooicodes.github.io/smtweb/license.html"}
+      ]
+    }
+    </script>
+</head>
+<body>
+    <a href="#main" class="skip-link">Skip to content</a>
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo"><img src="images/smt.ico" alt="SMT" class="nav-logo-img"></a>
+            <ul class="nav-menu">
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="features/index.html">Features</a></li>
+                <li><a href="index.html#install">Install</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+                <li><button id="darkModeToggle" class="theme-toggle" aria-label="Toggle dark mode"><i class="fas fa-moon"></i></button></li>
+            </ul>
+            <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+
+    <div id="offlineBanner" class="offline-banner" hidden role="status">
+        <i class="fas fa-wifi"></i> You appear to be offline - some features may not load.
+    </div>
+
+    <main id="main" tabindex="-1">
+        <section class="legal-hero">
+            <h1>License</h1>
+            <p class="updated">Schooi's Multitool &mdash; MIT License</p>
+        </section>
+        <section class="legal-content">
+            <p>Schooi's Multitool ("SMT") is open-source software released under the MIT License. The full text of the license is reproduced below.</p>
+
+            <h2>MIT License</h2>
+            <div class="license-text">Copyright (c) 2026 Schooi
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.</div>
+
+            <h2>Third-party components</h2>
+            <p>SMT bundles or references third-party utilities. Each bundled tool retains its own license, and you are responsible for complying with the terms of any software you choose to run through SMT.</p>
+
+            <h2>Source</h2>
+            <p>The full source and license history are available on <a href="https://github.com/SchooiCodes/smt" target="_blank" rel="noopener">GitHub</a>.</p>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3><i class="fas fa-cube"></i> SMT</h3>
+                    <p>Schooi's Multitool - Empowering developers since 2026.</p>
+                </div>
+                <div class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="features/index.html">Features</a>
+                    <a href="privacy.html">Privacy</a>
+                    <a href="terms.html">Terms</a>
+                    <a href="accessibility.html">Accessibility</a>
+                    <a href="license.html">License</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Schooi. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const dmt = document.getElementById('darkModeToggle'), b = document.body;
+        const st = localStorage.getItem('theme');
+        if (st === 'light') { b.classList.add('light-mode'); dmt.innerHTML = '<i class="fas fa-sun"></i>'; }
+        dmt.addEventListener('click', () => { const l = b.classList.toggle('light-mode'); dmt.innerHTML = l ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>'; localStorage.setItem('theme', l ? 'light' : 'dark'); });
+        const hb = document.getElementById('hamburger'), nm = document.querySelector('.nav-menu');
+        hb.addEventListener('click', () => { hb.classList.toggle('active'); nm.classList.toggle('active'); });
+        document.querySelectorAll('.nav-menu a').forEach(l => l.addEventListener('click', () => { hb.classList.remove('active'); nm.classList.remove('active'); }));
+        const ob = document.getElementById('offlineBanner'); function uo() { ob.hidden = navigator.onLine; } window.addEventListener('online', uo); window.addEventListener('offline', uo); uo();
+        window.addEventListener('error', (e) => { if (e.target && e.target !== window) return; console.error('[SMT error]', e.message); });
+    </script>
+</body>
+</html>

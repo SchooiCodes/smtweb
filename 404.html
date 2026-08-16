@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com https://unpkg.com; font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com; script-src 'self' 'unsafe-inline' https://unpkg.com https://cdnjs.cloudflare.com; base-uri 'self'; form-action 'self'; object-src 'none'; connect-src 'self'">
+    <title>404 - Page Not Found | Schooi's Multitool</title>
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="images/SMT.png">
+    <link rel="canonical" href="https://schooicodes.github.io/smtweb/404.html">
+    <meta name="robots" content="noindex">
+    <meta name="description" content="404 - the page you're looking for doesn't exist.">
+    <meta name="theme-color" content="#667eea">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .notfound {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 24px 80px;
+            background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
+            color: #ffffff;
+        }
+        .notfound .code { font-size: 8rem; font-weight: 900; line-height: 1; margin-bottom: 8px; }
+        .notfound h1 { font-size: 2rem; margin-bottom: 16px; }
+        .notfound p { opacity: 0.9; margin-bottom: 32px; max-width: 480px; }
+        .notfound .links { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+        .notfound .btn-outline { color: #fff; border-color: rgba(255,255,255,0.5); }
+    </style>
+</head>
+<body>
+    <main class="notfound">
+        <div class="code">404</div>
+        <h1>Page Not Found</h1>
+        <p>The page you're looking for doesn't exist or may have been moved. Let's get you back on track.</p>
+        <div class="links">
+            <a href="index.html" class="btn btn-primary"><i class="fas fa-home"></i> Back to Home</a>
+            <a href="features/index.html" class="btn btn-outline"><i class="fas fa-list"></i> Browse Tools</a>
+        </div>
+    </main>
+</body>
+</html>
