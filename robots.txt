@@ -1,5 +1,7 @@
 User-agent: *
 Allow: /
+
+# Block installer endpoint (PowerShell payload) from indexing
 Disallow: /get/
 
-Sitemap: https://schooicodes.github.io/smtweb/sitemap.xml
+Sitemap: https://smtweb.gleeze.com/sitemap.xml
