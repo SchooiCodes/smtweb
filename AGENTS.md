@@ -52,5 +52,16 @@ Visible counts update themselves from the data - do NOT hardcode new numbers int
 - No animation libraries. AOS was removed - do NOT add `data-aos` attributes, scroll libraries, or keyframe entrance animations. Hover transitions and smooth anchor scrolling are fine.
 - CSP is strict (`default-src 'none'`). External hosts allowed: `fonts.googleapis.com` + `fonts.gstatic.com` (fonts), `cdnjs.cloudflare.com` (Font Awesome 6.4.0). Do not add other CDNs (unpkg was removed on purpose) - update the CSP `<meta>` if you ever must.
 - Fonts in use: Bricolage Grotesque (display), Inter (body), JetBrains Mono (terminal/code). `features/index.html` loads its own font subset - extend that `<link>` if a new face is needed.
+- Use clean directory URLs in hrefs (`features/`, `./`, `../`, `features/#tool-x`) - never link to `index.html` directly, it looks bad in the address bar.
 - Every page duplicates its nav/footer/scripts. A nav or footer change means editing `index.html`, `features/index.html`, and all four legal pages.
 - `node --check tools-search.js` passes; keep it that way (it's plain data, no modules).
+
+## Release checklist (version bump / new installer)
+
+- Displayed version lives in `version.js` (`window.SMT_VERSION`) - bump it once, `index.html` picks it up. `<title>`/meta/JSON-LD tags stay manual (SEO snapshots).
+- Installer hash and changelog are RUNTIME data, never hardcoded: `index.html` fetches `Setup.exe` from GitHub main and SHA-256s it in-browser (`liveHash`), and renders `updatelogs.txt` (`liveChangelog`, newest first, max 8). Both need `raw.githubusercontent.com` in the CSP `connect-src` - keep it. If the fetch fails (offline/old browser) each block shows a manual-check fallback.
+- Write release notes as one change per line in `../smt/updatelogs.txt` - the site renders them as-is.
+
+## Catalog deep links
+
+- Tool cards render as `#tool-<slug>` (slug = lowercase name, non-alphanumerics become `-`). These are shareable: `features/#tool-dns-changer` clears filters and scrolls to the card. Keep names unique so slugs stay unique.
