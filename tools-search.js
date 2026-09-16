@@ -136,5 +136,13 @@ window.SMT_TOOLS = [
   { n: "utilman Trick Applier", t: "utilman accessibility trick" },
   { n: "Info Stealer (OLD)", t: "info stealer legacy research" },
   { n: "Disk Space Filler", t: "disk fill danger test" },
-  { n: "FGRDown", t: "fitgirl repack downloader" }
+  { n: "FGRDown", t: "fitgirl repack downloader" },
+  { n: "Spotify", t: "spotify music" },
+  { n: "Spicetify", t: "spicetify spotify ads enhancements" },
+  { n: "WakaTime", t: "wakatime coding time tracker" },
+  { n: "Windhawk", t: "windhawk windows customize mods" },
+  { n: "pnpm", t: "pnpm package manager node" },
+  { n: "Scoop", t: "scoop package manager" },
+  { n: "Stacher7", t: "stacher7 download manager" },
+  { n: "Update Every App", t: "update upgrade all apps" }
 ];
