@@ -59,7 +59,7 @@ Visible counts update themselves from the data - do NOT hardcode new numbers int
 ## Release checklist (version bump / new installer)
 
 - Displayed version lives in `version.js` (`window.SMT_VERSION`) - bump it once, `index.html` picks it up. `<title>`/meta/JSON-LD tags stay manual (SEO snapshots).
-- Installer hash and changelog are RUNTIME data, never hardcoded: `index.html` fetches from GitHub main with mirror fallbacks (`raw.githubusercontent.com` -> `api.github.com` for the exe, `-> cdn.jsdelivr.net` for the changelog) and shows a manual-check fallback when all sources fail. Keep all three hosts in the CSP `connect-src`. Wrap any new `localStorage` access in try/catch - private-mode browsers throw on access and one throw kills the whole inline script.
+- Installer hash and changelog are RUNTIME data, never hardcoded: `index.html` fetches from GitHub main with mirror fallbacks (`raw.githubusercontent.com` -> `api.github.com` for the exe, `-> cdn.jsdelivr.net` for the changelog) and shows a manual-check fallback when all sources fail. Keep all three hosts in the CSP `connect-src`, NEVER quoted (`https://host`, not `'https://host'` - a stray quote silently kills that source). Wrap any new `localStorage` access in try/catch - private-mode browsers throw on access and one throw kills the whole inline script.
 - Write release notes as one change per line in `../smt/updatelogs.txt` - the site renders them as-is.
 
 ## Catalog deep links
