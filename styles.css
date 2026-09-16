@@ -30,6 +30,7 @@
     --navbar-bg: rgba(7, 7, 13, 0.72);
     --footer-bg: #07070d;
     --footer-text: #f4f4fa;
+    --text-dim: #7a7a92;
 }
 
 body.light-mode {
@@ -50,6 +51,7 @@ body.light-mode {
     --border: rgba(20, 20, 42, 0.12);
     --border-hover: rgba(124, 58, 237, 0.5);
     --footer-text: #ffffff;
+    --text-dim: #5a5a72;
 }
 
 /* ===== Global Reset & Base ===== */
@@ -371,6 +373,11 @@ body:not(.light-mode) .navbar {
     display: flex;
     justify-content: center;
     gap: 60px;
+    margin-bottom: 36px;
+}
+
+.hero-cta {
+    margin-top: 0;
 }
 
 .stat-item {
@@ -1068,11 +1075,11 @@ section {
 .mirror-list code {
     font-family: ui-monospace, 'Courier New', monospace;
     font-size: 0.82rem;
-    color: var(--text-secondary);
-    background: rgba(102, 126, 234, 0.1);
-    padding: 8px 10px;
-    border-radius: 8px;
-    display: block;
+    color: inherit;
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
+    display: inline;
     overflow-x: auto;
 }
 .option-tag {
@@ -1303,4 +1310,44 @@ section {
     .tool-card h4, .tool-card p, .feature-card h4, .feature-card p,
     .install-option h3, .install-option p { color: #000000 !important; }
     .option-tag { color: #000000 !important; border-color: #999999 !important; }
+}
+
+/* ===== Tidy: click-to-copy mirror commands ===== */
+.mirror-list { list-style: none; display: grid; gap: 8px; margin-bottom: 12px; padding: 0; }
+.mirror-pick {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    font-family: ui-monospace, 'Courier New', monospace;
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    background: rgba(102, 126, 234, 0.1);
+    padding: 8px 10px;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    text-align: left;
+    transition: border-color 0.15s ease, color 0.15s ease;
+}
+.mirror-pick code { font-family: inherit; overflow-x: auto; }
+.mirror-pick i { color: var(--accent); flex-shrink: 0; }
+.mirror-pick:hover { border-color: var(--border-hover); color: var(--text-primary); }
+.mirror-pick.copied { border-color: var(--accent); color: var(--text-primary); }
+
+/* ===== Tidy: standout Install button in the nav ===== */
+.nav-menu a.nav-install {
+    background: var(--grad);
+    color: #ffffff !important;
+    padding: 10px 22px;
+    border-radius: 50px;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+.nav-menu a.nav-install::after { display: none; }
+.nav-menu a.nav-install:hover {
+    transform: translateY(-2px);
+    color: #ffffff !important;
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
 }

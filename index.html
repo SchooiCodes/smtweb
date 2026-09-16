@@ -121,13 +121,13 @@
     <!-- Sticky Navigation -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
-            <a href="#" class="nav-logo" aria-label="Schooi's Multitool SMT Windows multitool home">
+            <a href="#home" class="nav-logo" aria-label="Schooi's Multitool SMT Windows multitool home">
                 <img src="images/smt.ico" alt="Schooi's Multitool SMT Windows multitool logo" class="nav-logo-img">
             </a>
             <ul class="nav-menu">
                 <li><a href="#about">About</a></li>
-                <li><a href="features/index.html">Features</a></li>
-                <li><a href="#install">Install</a></li>
+                <li><a href="features/index.html">Tools</a></li>
+                <li><a href="#install" class="nav-install">Install</a></li>
                 <li><a href="#contact">Contact</a></li>
                 <li>
                     <button id="darkModeToggle" class="theme-toggle" aria-label="Toggle light mode">
@@ -145,7 +145,7 @@
 
     <!-- Offline indicator -->
     <div id="offlineBanner" class="offline-banner" hidden role="status">
-        <i class="fas fa-wifi"></i> You appear to be offline - some features may not load.
+        <i class="fas fa-wifi"></i> You're offline - some things may not load.
     </div>
 
     <!-- Hero Section -->
@@ -162,9 +162,8 @@
                 <span class="gradient-text">Multitool</span>
             </h1>
             <p class="hero-tagline">
-                The free, open-source <strong>Windows multitool</strong> &amp; <strong>Windows toolkit</strong> for Windows 10 &amp; 11 - <strong>137 Windows tools</strong> in one console: networking &amp; IP tools, Windows &amp; Office activation, bootable USB creator, DNS changer, app installers &amp; more. The ultimate <strong>Windows tool</strong> by Schooi.
+                137 free tools for Windows 10 and 11, in one console. Networking, system repair, app installers, and more.
             </p>
-            <p class="visually-hidden" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;">Schooi's Multitool (SMT) is a Windows multitool, Windows toolkit and Windows toolbox with 137 Windows utilities for developers and sysadmins. Search schooi's multitool, smt windows tool, windows multitool.</p>
 
             <div class="terminal" aria-hidden="false">
                 <div class="terminal-bar">
@@ -176,14 +175,14 @@
                 <div class="terminal-body">
                     <div class="term-line boot" style="animation-delay:.05s"><span class="ok">PS C:\&gt;</span> irm "https://smt.gleeze.com/" | iex</div>
                     <div class="term-line boot dim" style="animation-delay:.35s">&gt; Fetching Schooi's Multitool v2.3 ...</div>
-                    <div class="term-line boot dim" style="animation-delay:.6s">&gt; <span class="ok">136 modules loaded.</span> Ready.</div>
+                    <div class="term-line boot dim" style="animation-delay:.6s">&gt; <span class="ok">137 modules loaded.</span> Ready.</div>
                     <div class="term-search boot" style="animation-delay:.9s">
                         <span class="prompt">PS C:\&gt; smt --find</span>
-                        <input id="heroSearch" class="term-input" type="text" placeholder="type a tool..." aria-label="Search all 136 tools" autocomplete="off">
+                        <input id="heroSearch" class="term-input" type="text" placeholder="type a tool..." aria-label="Search all 137 tools" autocomplete="off">
                     </div>
                     <div class="term-count boot" style="animation-delay:1.05s">
-                        <span><span id="heroCount">136</span> <span id="heroCountLabel">tools</span></span>
-                        <a href="features/index.html" id="browseAll">browse all 136 &rarr;</a>
+                        <span><span id="heroCount">137</span> <span id="heroCountLabel">tools</span></span>
+                        <a href="features/index.html" id="browseAll">browse all 137 &rarr;</a>
                     </div>
                     <div class="term-results" id="heroResults" hidden aria-live="polite"></div>
                 </div>
@@ -191,7 +190,7 @@
 
             <div class="hero-stats" data-aos="fade-up" data-aos-delay="200">
                 <div class="stat-item">
-                    <span class="stat-number">136</span>
+                    <span class="stat-number">137</span>
                     <span class="stat-label">Tools</span>
                 </div>
                 <div class="stat-item">
@@ -199,13 +198,17 @@
                     <span class="stat-label">Version</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-number">Win</span>
-                    <span class="stat-label">10 &amp; 11</span>
+                    <span class="stat-number">10 &amp; 11</span>
+                    <span class="stat-label">Windows</span>
                 </div>
+            </div>
+            <div class="hero-cta" data-aos="fade-up" data-aos-delay="300">
+                <a href="#install" class="btn btn-primary btn-lg"><i class="fas fa-download"></i> Install now</a>
+                <a href="features/index.html" class="btn btn-outline-sm btn-lg"><i class="fas fa-list"></i> Browse tools</a>
             </div>
         </div>
         <div class="scroll-indicator" data-aos="fade-up" data-aos-delay="400">
-            <span>Scroll Down</span>
+            <span>Scroll</span>
             <i class="fas fa-chevron-down"></i>
         </div>
     </section>
@@ -214,8 +217,8 @@
     <section id="about" class="about-section" data-aos="fade-up">
         <div class="container">
             <div class="section-header">
-                <span class="section-badge">About Schooi's Multitool</span>
-                <h2 class="section-title">What is Schooi's Multitool (SMT) - The Windows Multitool?</h2>
+                <span class="section-badge">About</span>
+                <h2 class="section-title">What is Schooi's Multitool?</h2>
             </div>
             <div class="about-content">
                 <div class="about-image" data-aos="fade-right">
@@ -225,135 +228,73 @@
                     </div>
                 </div>
                 <div class="about-text" data-aos="fade-left">
-                    <h3>Schooi's Multitool - Your All‑in‑One Windows Toolkit</h3>
+                    <h3>One console, 137 tools</h3>
                     <p>
-                        What began as a small collection of batch scripts has become the ultimate <strong>Windows multitool</strong> &amp;
-                        <strong>Windows toolbox</strong> with <strong>137 Windows tools</strong>. <strong>Schooi's Multitool (SMT)</strong> streamlines everything from network diagnostics and
-                        Windows &amp; Office activation to automated app installations, system repair, and security research - every <strong>Windows utility</strong> you need, behind one console.
+                        SMT started as a personal project made to organize my batchfile creations, but grew into a full toolkit:
+                        network checks, system repair, app installs, and tweaks - all in one menu.
                     </p>
-                    <p>
-                        Version 2.3 brings a Bootable USB Creator (Ventoy), Easy DNS Changer, School Utilities,
-                        Auto‑Update System, and much more - the most complete <strong>Windows toolkit for Windows 10 &amp; 11</strong>, all accessible from a clean console interface.
-                    </p>
-                    <div class="about-highlights">
-                        <div class="highlight-item">
-                            <i class="fas fa-check-circle"></i>
-                            <span>100+ Integrated Tools</span>
-                        </div>
-                        <div class="highlight-item">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Batch‑Powered Efficiency</span>
-                        </div>
-                        <div class="highlight-item">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Windows 10 &amp; 11 Support</span>
-                        </div>
-                        <div class="highlight-item">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Regular Updates (Now v2.3)</span>
-                        </div>
-                    </div>
+                    <!-- <div class="about-highlights"> -->
+                        <!-- <div class="highlight-item"> -->
+                            <!-- <i class="fas fa-check-circle"></i> -->
+                            <!-- <span>137 tools in one place</span> -->
+                        <!-- </div> -->
+                        <!-- <div class="highlight-item"> -->
+                            <!-- <i class="fas fa-check-circle"></i> -->
+                            <!-- <span>Free and open-source</span> -->
+                        <!-- </div> -->
+                        <!-- <div class="highlight-item"> -->
+                            <!-- <i class="fas fa-check-circle"></i> -->
+                            <!-- <span>Windows 10 &amp; 11</span> -->
+                        <!-- </div> -->
+                        <!-- <div class="highlight-item"> -->
+                            <!-- <i class="fas fa-check-circle"></i> -->
+                            <!-- <span>Updated to v2.3</span> -->
+                        <!-- </div> -->
+                    <!-- </div> -->
                     <a href="https://github.com/SchooiCodes/smt" class="btn btn-primary" target="_blank">
-                        <i class="fab fa-github"></i> Learn More on GitHub
+                        <i class="fab fa-github"></i> View on GitHub
                     </a>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- Features Section -->
-    <section id="features" class="features-section" data-aos="fade-up">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-badge">Windows Tools Inside</span>
-                <h2 class="section-title">137 Windows Tools Inside This Windows Multitool</h2>
-                <p class="section-description">SMT packs 137 Windows utilities &amp; Windows tools. Here are a few highlights from this Windows toolkit:</p>
-            </div>
-            <div class="features-grid">
-                <div class="feature-card" data-aos="fade-up" data-aos-delay="100" data-tags="ip geolocation network lookup">
-                    <div class="feature-icon">
-                        <i class="fas fa-globe-americas"></i>
-                    </div>
-                    <h4>IP Geolocator</h4>
-                    <p>Quickly locate IP addresses globally with detailed geographic information.</p>
-                </div>
-                <div class="feature-card" data-aos="fade-up" data-aos-delay="200" data-tags="windows office activation kms">
-                    <div class="feature-icon">
-                        <i class="fas fa-key"></i>
-                    </div>
-                    <h4>Windows &amp; Office Activator</h4>
-                    <p>Advanced activation tool for Windows and Office products using multiple methods.</p>
-                </div>
-                <div class="feature-card" data-aos="fade-up" data-aos-delay="300" data-tags="usb ventoy bootable iso">
-                    <div class="feature-icon">
-                        <i class="fas fa-usb"></i>
-                    </div>
-                    <h4>Bootable USB Creator</h4>
-                    <p>Create multi-boot USBs easily with Ventoy - ideal for OS installations.</p>
-                </div>
-                <div class="feature-card" data-aos="fade-up" data-aos-delay="400" data-tags="cli task manager process">
-                    <div class="feature-icon">
-                        <i class="fas fa-tasks"></i>
-                    </div>
-                    <h4>CLI Task Manager</h4>
-                    <p>Manage and monitor system tasks efficiently from the command line.</p>
-                </div>
-                <div class="feature-card" data-aos="fade-up" data-aos-delay="500" data-tags="security credentials research">
-                    <div class="feature-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h4>Security Tools</h4>
-                    <p>Credential Logger, File Integrity Checker, and Info Stealer Generator (for research).</p>
-                </div>
-                <a href="features/index.html" class="feature-card cta-tile" data-aos="fade-up" data-aos-delay="600">
-                    <div class="feature-icon">
-                        <i class="fas fa-layer-group"></i>
-                    </div>
-                    <h4>And 132+ More!</h4>
-                    <p>Explore the full toolkit - DNS changer, school utilities, app installers, and more.</p>
-                </a>
-            </div>
-            <div class="features-cta" data-aos="fade-up">
-                <a href="features/index.html" class="btn btn-primary btn-lg">
-                    <i class="fas fa-list"></i> See All 137 Tools
-                </a>
-            </div>
-        </div>
-    </section>
+	
 
     <!-- Install Section -->
     <section id="install" class="downloads-section" data-aos="fade-up">
         <div class="container">
             <div class="section-header">
-                <span class="section-badge">Install Windows Multitool</span>
-                <h2 class="section-title">Install Schooi's Multitool - Windows Multitool Download</h2>
-                <p class="section-subtitle">One command to install this Windows toolkit. No install wizard. Windows 10/11 (64-bit).</p>
+                <span class="section-badge">Install</span>
+                <h2 class="section-title">Install in one command</h2>
+                <p class="section-subtitle">No setup wizard. Needs Windows 10 or 11 (64-bit), run as admin.</p>
             </div>
 
             <div class="install-block" data-aos="zoom-in">
-                <div class="install-label"><i class="fab fa-windows"></i> PowerShell &mdash; run as Administrator</div>
+                <div class="install-label"><i class="fab fa-windows"></i> Run this in PowerShell as admin</div>
                 <div class="install-cmd"><code id="installCmd">irm "https://smt.gleeze.com/" | iex</code></div>
                 <button class="copy-btn" type="button"><i class="fas fa-copy"></i> Copy</button>
-                <p class="install-note"><i class="fas fa-shield-alt"></i> Windows Defender or SmartScreen may flag the script because it downloads and runs an executable. SMT is open-source &mdash; review the <a href="https://github.com/SchooiCodes/smt" target="_blank" rel="noopener">source</a> if unsure.</p>
+                <p class="install-note"><i class="fas fa-shield-alt"></i> Windows may flag the download. The code is public &mdash; check the <a href="https://github.com/SchooiCodes/smt" target="_blank" rel="noopener">source</a> if unsure.</p>
             </div>
 
             <div class="install-grid">
                 <div class="install-option">
-                    <h3><i class="fas fa-link"></i> Mirror commands</h3>
+                    <h3><i class="fas fa-link"></i> Mirrors</h3>
+                    <p>Same installer, different address. Tap to copy.</p>
                     <ul class="mirror-list">
-                        <li><code>irm "https://smt.farted.net/" | iex</code></li>
-                        <li><code>irm "https://getsmt.ftp.sh/" | iex</code></li>
-                        <li><code>irm "https://getsmt.us.to/" | iex</code></li>
+                        <li><button type="button" class="mirror-pick" data-cmd="irm &quot;https://smt.farted.net/&quot; | iex"><code>irm "https://smt.farted.net/" | iex</code><i class="fas fa-copy"></i></button></li>
+                        <li><button type="button" class="mirror-pick" data-cmd="irm &quot;https://getsmt.ftp.sh/&quot; | iex"><code>irm "https://getsmt.ftp.sh/" | iex</code><i class="fas fa-copy"></i></button></li>
+                        <li><button type="button" class="mirror-pick" data-cmd="irm &quot;https://getsmt.us.to/&quot; | iex"><code>irm "https://getsmt.us.to/" | iex</code><i class="fas fa-copy"></i></button></li>
                     </ul>
-                    <span class="option-tag">Recommended</span>
+                    <span class="option-tag">Fallbacks - same installer</span>
                 </div>
                 <div class="install-option">
-                    <h3><i class="fas fa-download"></i> Installer EXE</h3>
-                    <p>Download and run the setup executable.</p>
+                    <h3><i class="fas fa-download"></i> Setup file</h3>
+                    <p>Prefer a file? Download and run the setup.</p>
                     <a href="https://github.com/SchooiCodes/smt/raw/refs/heads/main/Schooi's%20Multitool%20Setup.exe" class="btn btn-outline-sm" target="_blank"><i class="fas fa-download"></i> Schooi's Multitool Setup.exe</a>
                 </div>
                 <div class="install-option">
-                    <h3><i class="fas fa-code-branch"></i> Build from source</h3>
+                    <h3><i class="fas fa-code-branch"></i> Source code</h3>
+                    <p>Or clone the repo and run it yourself.</p>
                     <div class="install-cmd small"><code id="cloneCmd">git clone https://github.com/SchooiCodes/smt</code></div>
                     <button class="copy-btn small" type="button"><i class="fas fa-copy"></i></button>
                     <a href="https://github.com/SchooiCodes/smt" class="btn btn-outline-sm" target="_blank">View on GitHub</a>
@@ -362,55 +303,114 @@
         </div>
     </section>
 
-    <!-- SEO / FAQ Section -->
-    <section id="faq" class="faq-section" data-aos="fade-up" style="padding:72px 0;background:var(--bg);border-top:1px solid var(--card-border)">
-        <div class="container" style="max-width:880px">
-            <div class="section-header">
-                <span class="section-badge">FAQ</span>
-                <h2 class="section-title">Schooi's Multitool FAQ - Windows Multitool &amp; Toolkit</h2>
-                <p class="section-description">Answers to the most asked questions about SMT, the Windows multitool for Windows 10 &amp; 11.</p>
-            </div>
-            <div style="display:grid;gap:18px;text-align:left">
-                <details style="background:var(--card-bg);border:1px solid var(--card-border);border-radius:14px;padding:18px 20px"><summary style="font-weight:700;cursor:pointer;color:var(--text-primary)">What is Schooi's Multitool (SMT)?</summary><p style="margin:10px 0 0;color:var(--text-secondary);line-height:1.7"><strong>Schooi's Multitool (SMT)</strong> is a free, open-source <strong>Windows multitool</strong> and <strong>Windows toolkit</strong> for Windows 10 and Windows 11. One console bundles <strong>137 Windows tools</strong> - IP &amp; networking utilities, Windows &amp; Office activator, bootable USB creator (Ventoy), Easy DNS changer, CLI task manager, security &amp; privacy tools, 40+ app installers and more.</p></details>
-                <details style="background:var(--card-bg);border:1px solid var(--card-border);border-radius:14px;padding:18px 20px"><summary style="font-weight:700;cursor:pointer;color:var(--text-primary)">Is Schooi's Multitool free and safe?</summary><p style="margin:10px 0 0;color:var(--text-secondary);line-height:1.7">Yes - SMT is <strong>100% free and open-source (MIT)</strong>. The <strong>Windows tool</strong> source is on GitHub for review. Run it only on PCs you own and use <em>security research</em> tools only with authorization.</p></details>
-                <details style="background:var(--card-bg);border:1px solid var(--card-border);border-radius:14px;padding:18px 20px"><summary style="font-weight:700;cursor:pointer;color:var(--text-primary)">How do I install SMT on Windows 10 or Windows 11?</summary><p style="margin:10px 0 0;color:var(--text-secondary);line-height:1.7">Open <strong>PowerShell as Administrator</strong> and run: <code>irm &quot;https://smt.gleeze.com/&quot; | iex</code> . Mirrors <code>smt.farted.net</code> and <code>getsmt.ftp.sh</code> also work. Or download <em>Schooi's Multitool Setup.exe</em> from GitHub and run it.</p></details>
-                <details style="background:var(--card-bg);border:1px solid var(--card-border);border-radius:14px;padding:18px 20px"><summary style="font-weight:700;cursor:pointer;color:var(--text-primary)">Why is SMT the best Windows multitool / Windows toolkit?</summary><p style="margin:10px 0 0;color:var(--text-secondary);line-height:1.7">Unlike one-off Windows tools, SMT gives you <strong>137 Windows utilities in one Windows toolbox</strong> - no hunting for scattered scripts. Network tools like <a href="features/index.html?q=ip" style="color:var(--accent)">IP Geolocator</a>, system tools like <a href="features/index.html?q=usb" style="color:var(--accent)">Bootable USB Creator</a> and <a href="features/index.html?q=dns" style="color:var(--accent)">DNS Changer</a>, plus app installers - all updated to v2.3 and searchable from the homepage terminal.</p></details>
-                <details style="background:var(--card-bg);border:1px solid var(--card-border);border-radius:14px;padding:18px 20px"><summary style="font-weight:700;cursor:pointer;color:var(--text-primary)">What Windows versions does SMT support?</summary><p style="margin:10px 0 0;color:var(--text-secondary);line-height:1.7">Schooi's Multitool supports <strong>Windows 10 and Windows 11 (64-bit)</strong>. A few tools also run on Windows 7. The Windows multitool auto-detects your OS and enables console colors on Windows 10+.</p></details>
-            </div>
-            <p style="text-align:center;margin-top:18px;color:var(--text-secondary);font-size:.95rem">Looking for a specific Windows tool? <a href="features/index.html" style="color:var(--accent);font-weight:600">Browse all 137 Windows tools</a> or search &quot;windows activator&quot;, &quot;dns&quot;, &quot;ip&quot; above.</p>
-        </div>
-    </section>
+    <!-- <!-- Features Section -->
+    <!-- <section id="features" class="features-section" data-aos="fade-up"> -->
+        <!-- <div class="container"> -->
+            <!-- <div class="section-header"> -->
+                <!-- <span class="section-badge">Highlights</span> -->
+                <!-- <h2 class="section-title">137 tools inside</h2> -->
+                <!-- <p class="section-description">A few favorites. Search them above, or browse the full list.</p> -->
+            <!-- </div> -->
+            <!-- <div class="features-grid"> -->
+                <!-- <div class="feature-card" data-aos="fade-up" data-aos-delay="100" data-tags="ip geolocation network lookup"> -->
+                    <!-- <div class="feature-icon"> -->
+                        <!-- <i class="fas fa-globe-americas"></i> -->
+                    <!-- </div> -->
+                    <!-- <h4>IP Geolocator</h4> -->
+                    <!-- <p>Look up where any IP address is located.</p> -->
+                <!-- </div> -->
+                <!-- <div class="feature-card" data-aos="fade-up" data-aos-delay="200" data-tags="windows office activation kms"> -->
+                    <!-- <div class="feature-icon"> -->
+                        <!-- <i class="fas fa-key"></i> -->
+                    <!-- </div> -->
+                    <!-- <h4>Windows &amp; Office Activator</h4> -->
+                    <!-- <p>Activation helper for Windows and Office. Use a valid license.</p> -->
+                <!-- </div> -->
+                <!-- <div class="feature-card" data-aos="fade-up" data-aos-delay="300" data-tags="usb ventoy bootable iso"> -->
+                    <!-- <div class="feature-icon"> -->
+                        <!-- <i class="fas fa-usb"></i> -->
+                    <!-- </div> -->
+                    <!-- <h4>Bootable USB Creator</h4> -->
+                    <!-- <p>Make multi-boot USB drives with Ventoy.</p> -->
+                <!-- </div> -->
+                <!-- <div class="feature-card" data-aos="fade-up" data-aos-delay="400" data-tags="cli task manager process"> -->
+                    <!-- <div class="feature-icon"> -->
+                        <!-- <i class="fas fa-tasks"></i> -->
+                    <!-- </div> -->
+                    <!-- <h4>CLI Task Manager</h4> -->
+                    <!-- <p>Manage running processes from the console.</p> -->
+                <!-- </div> -->
+                <!-- <div class="feature-card" data-aos="fade-up" data-aos-delay="500" data-tags="security credentials research"> -->
+                    <!-- <div class="feature-icon"> -->
+                        <!-- <i class="fas fa-shield-alt"></i> -->
+                    <!-- </div> -->
+                    <!-- <h4>Security Tools</h4> -->
+                    <!-- <p>Checksum verifier, credential tools, and lab research utilities.</p> -->
+                <!-- </div> -->
+                <!-- <a href="features/index.html" class="feature-card cta-tile" data-aos="fade-up" data-aos-delay="600"> -->
+                    <!-- <div class="feature-icon"> -->
+                        <!-- <i class="fas fa-layer-group"></i> -->
+                    <!-- </div> -->
+                    <!-- <h4>132 more</h4> -->
+                    <!-- <p>DNS changer, app installers, school tools, and the rest.</p> -->
+                <!-- </a> -->
+            <!-- </div> -->
+            <!-- <div class="features-cta" data-aos="fade-up"> -->
+                <!-- <a href="features/index.html" class="btn btn-primary btn-lg"> -->
+                    <!-- <i class="fas fa-list"></i> Browse all 137 tools -->
+                <!-- </a> -->
+            <!-- </div> -->
+        <!-- </div> -->
+    <!-- </section> -->
+
+    <!-- <!-- SEO / FAQ Section -->
+    <!-- <section id="faq" class="faq-section" data-aos="fade-up" style="padding:72px 0;background:var(--bg);border-top:1px solid var(--card-border)"> -->
+        <!-- <div class="container" style="max-width:880px"> -->
+            <!-- <div class="section-header"> -->
+                <!-- <span class="section-badge">FAQ</span> -->
+                <!-- <h2 class="section-title">FAQ</h2> -->
+                <!-- <p class="section-description">Answers to the most asked questions about SMT for Windows 10 &amp; 11.</p> -->
+            <!-- </div> -->
+            <!-- <div style="display:grid;gap:18px;text-align:left"> -->
+                <!-- <details style="background:var(--card-bg);border:1px solid var(--card-border);border-radius:14px;padding:18px 20px"><summary style="font-weight:700;cursor:pointer;color:var(--text-primary)">What is SMT?</summary><p style="margin:10px 0 0;color:var(--text-secondary);line-height:1.7">A free, open-source toolkit for Windows 10 and 11. One console with 137 tools: networking, system repair, app installers, and more.</p></details> -->
+                <!-- <details style="background:var(--card-bg);border:1px solid var(--card-border);border-radius:14px;padding:18px 20px"><summary style="font-weight:700;cursor:pointer;color:var(--text-primary)">Is it free?</summary><p style="margin:10px 0 0;color:var(--text-secondary);line-height:1.7">Yes - 100% free under the MIT license. The source is on GitHub. Only run it on PCs you own, and only use research tools with permission.</p></details> -->
+                <!-- <details style="background:var(--card-bg);border:1px solid var(--card-border);border-radius:14px;padding:18px 20px"><summary style="font-weight:700;cursor:pointer;color:var(--text-primary)">How do I install it?</summary><p style="margin:10px 0 0;color:var(--text-secondary);line-height:1.7">Open PowerShell as admin and run: <code>irm &quot;https://smt.gleeze.com/&quot; | iex</code>. Or grab <em>Schooi's Multitool Setup.exe</em> from GitHub.</p></details> -->
+                <!-- <details style="background:var(--card-bg);border:1px solid var(--card-border);border-radius:14px;padding:18px 20px"><summary style="font-weight:700;cursor:pointer;color:var(--text-primary)">Which Windows versions work?</summary><p style="margin:10px 0 0;color:var(--text-secondary);line-height:1.7">Windows 10 and 11 (64-bit). A few tools also run on Windows 7.</p></details> -->
+            <!-- </div> -->
+            <!-- <p style="text-align:center;margin-top:18px;color:var(--text-secondary);font-size:.95rem">Looking for something specific? <a href="features/index.html" style="color:var(--accent);font-weight:600">Browse all 137 tools</a> or search above.</p> -->
+        <!-- </div> -->
+    <!-- </section> -->
 
     <!-- Contact Section -->
     <section id="contact" class="contact-section" data-aos="fade-up">
         <div class="container">
             <div class="section-header">
                 <span class="section-badge">Contact</span>
-                <h2 class="section-title">Get in Touch</h2>
+                <h2 class="section-title">Contact</h2>
             </div>
             <div class="contact-grid">
                 <div class="contact-card" data-aos="fade-right">
                     <i class="fas fa-bug"></i>
-                    <h4>Report an Issue</h4>
-                    <p>Found a bug? Let us know on GitHub Issues.</p>
+                    <h4>Report a bug</h4>
+                    <p>Something broken? Tell us on GitHub.</p>
                     <a href="https://github.com/SchooiCodes/smt/issues" class="btn btn-outline-sm" target="_blank">
-                        Open Issue <i class="fas fa-arrow-right"></i>
+                        Open issue <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
                 <div class="contact-card" data-aos="fade-up">
                     <i class="fas fa-lightbulb"></i>
-                    <h4>Suggest a Feature</h4>
-                    <p>Have an idea? Share it in our discussions.</p>
+                    <h4>Suggest a feature</h4>
+                    <p>Have an idea? Share it with us.</p>
                     <a href="https://github.com/SchooiCodes/smt/discussions" class="btn btn-outline-sm" target="_blank">
-                        Start Discussion <i class="fas fa-arrow-right"></i>
+                        Suggest <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
                 <div class="contact-card" data-aos="fade-left">
                     <i class="fas fa-envelope"></i>
-                    <h4>Business Inquiries</h4>
-                    <p>For business-related matters, email us directly.</p>
+                    <h4>Email us</h4>
+                    <p>For anything else, send an email.</p>
                     <a href="mailto:schooibusinessinquiries@gmail.com" class="btn btn-outline-sm">
-                        Send Email <i class="fas fa-arrow-right"></i>
+                        Send email <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
             </div>
@@ -434,11 +434,11 @@
             <div class="footer-content">
                 <div class="footer-brand">
                     <h3><i class="fas fa-cube"></i> SMT</h3>
-                    <p>Schooi's Multitool (SMT) - Free Windows multitool &amp; Windows toolkit for Windows 10 &amp; 11. 137 Windows tools &amp; utilities.</p>
+                    <p>Schooi's Multitool (SMT) - free, open-source toolkit for Windows 10 &amp; 11. 137 tools in one console.</p>
                 </div>
                 <div class="footer-links">
                     <a href="#about">About</a>
-                    <a href="features/index.html">Features</a>
+                    <a href="features/index.html">Tools</a>
                     <a href="#install">Install</a>
                     <a href="#contact">Contact</a>
                     <a href="privacy.html">Privacy</a>
@@ -542,7 +542,7 @@
         const browseAll = document.getElementById('browseAll');
         const featuredCards = Array.from(document.querySelectorAll('.features-grid .feature-card:not(.cta-tile)'));
         const ALL_TOOLS = window.SMT_TOOLS || [];
-        const TOTAL = ALL_TOOLS.length || 136;
+        const TOTAL = ALL_TOOLS.length || 137;
         function esc(s) { return s.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c])); }
         function runHeroFind() {
             const q = (heroSearch.value || '').trim().toLowerCase();
@@ -585,6 +585,20 @@
                     var orig = btn.innerHTML;
                     btn.innerHTML = '<i class="fas fa-check"></i> Copied';
                     setTimeout(function() { btn.innerHTML = orig; }, 1500);
+                });
+            });
+        });
+
+        // Click-to-copy for mirror command buttons
+        document.querySelectorAll('.mirror-pick').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var cmd = btn.getAttribute('data-cmd');
+                if (!cmd) return;
+                navigator.clipboard.writeText(cmd).then(function() {
+                    var orig = btn.innerHTML;
+                    btn.classList.add('copied');
+                    btn.innerHTML = '<code>Copied to clipboard</code><i class="fas fa-check"></i>';
+                    setTimeout(function() { btn.innerHTML = orig; btn.classList.remove('copied'); }, 1500);
                 });
             });
         });
