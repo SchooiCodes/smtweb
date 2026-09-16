@@ -49,6 +49,7 @@ window.SMT_TOOLS = [
   { n: "UAC Disabler", t: "uac disable administrator" },
   { n: "Sethc Trick Applier", t: "sethc sticky keys exploit" },
   { n: "Extension Manifest V2 Extender", t: "chrome extension manifest v2" },
+  { n: "Some Settings Managed Fixer", t: "settings managed organization fix" },
   { n: "Tweaking", t: "tweak optimize windows" },
   { n: "Text to Speech", t: "text speech tts" },
   { n: "Info Stealer Generator", t: "info stealer generator payload" },
