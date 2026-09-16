@@ -138,8 +138,8 @@
             <a href="../index.html" class="nav-logo"><img src="../images/smt.ico" alt="SMT" class="nav-logo-img"></a>
             <ul class="nav-menu">
                 <li><a href="../index.html#about">About</a></li>
-                <li><a href="index.html">Features</a></li>
-                <li><a href="../index.html#install">Install</a></li>
+                <li><a href="index.html">Tools</a></li>
+                <li><a href="../index.html#install" class="nav-install">Install</a></li>
                 <li><a href="../index.html#contact">Contact</a></li>
                 <li>
                     <button id="darkModeToggle" class="theme-toggle" aria-label="Toggle light mode">
@@ -156,38 +156,38 @@
     <!-- Features Hero -->
     <section class="features-hero" id="main" tabindex="-1">
         <div class="container">
-            <span class="hero-badge">Schooi's Multitool v2.3 - 137 Windows Tools</span>
-            <h1 data-aos="fade-up">137 Windows Tools - Schooi's Multitool (SMT) Windows Multitool</h1>
+            <span class="hero-badge">v2.3 . 137 tools</span>
+            <h1 data-aos="fade-up">All 137 tools</h1>
             <p data-aos="fade-up" data-aos-delay="100" style="opacity:0.9; max-width:640px; margin:0 auto 20px;">
-                Every <strong>Windows tool</strong> from v1.1 through v2.3 - the complete <strong>Windows toolkit &amp; Windows toolbox</strong> inside this <strong>Windows multitool</strong> for Windows 10 &amp; 11. Networking, Windows &amp; Office activation, system utilities, app installers, security &amp; developer tools.
+                Search or filter everything in the toolkit.
             </p>
             <div class="search-box" role="search" data-aos="fade-up" data-aos-delay="200">
                 <i class="fas fa-search"></i>
-                <input type="text" id="toolSearch" aria-label="Search tools" placeholder="Search tools... (e.g. activator, dns, ip, cracker)">
+                <input type="text" id="toolSearch" aria-label="Search tools" placeholder="Search tools... try &quot;dns&quot;, &quot;usb&quot;, &quot;password&quot;">
             </div>
             <div class="filter-tabs" data-aos="fade-up" data-aos-delay="300">
-                <button class="filter-tab active" data-filter="all" aria-pressed="true">All (100+)</button>
-                <button class="filter-tab" data-filter="network" aria-pressed="false">Networking & IP</button>
-                <button class="filter-tab" data-filter="system" aria-pressed="false">System Utilities</button>
-                <button class="filter-tab" data-filter="windows" aria-pressed="false">Windows & Office</button>
-                <button class="filter-tab" data-filter="security" aria-pressed="false">Security & Privacy</button>
-                <button class="filter-tab" data-filter="apps" aria-pressed="false">App Installers</button>
-                <button class="filter-tab" data-filter="dev" aria-pressed="false">Developer Tools</button>
-                <button class="filter-tab" data-filter="school" aria-pressed="false">School Utilities</button>
-                <button class="filter-tab" data-filter="advanced" aria-pressed="false">Advanced / Danger Zone</button>
+                <button class="filter-tab active" data-filter="all" aria-pressed="true">All (137)</button>
+                <button class="filter-tab" data-filter="network" aria-pressed="false">Network</button>
+                <button class="filter-tab" data-filter="system" aria-pressed="false">System</button>
+                <button class="filter-tab" data-filter="windows" aria-pressed="false">Windows</button>
+                <button class="filter-tab" data-filter="security" aria-pressed="false">Security</button>
+                <button class="filter-tab" data-filter="apps" aria-pressed="false">Apps</button>
+                <button class="filter-tab" data-filter="dev" aria-pressed="false">Developer</button>
+                <button class="filter-tab" data-filter="school" aria-pressed="false">School</button>
+                <button class="filter-tab" data-filter="advanced" aria-pressed="false">Advanced</button>
             </div>
         </div>
     </section>
 
     <!-- Offline indicator -->
     <div id="offlineBanner" class="offline-banner" hidden role="status">
-        <i class="fas fa-wifi"></i> You appear to be offline - some features may not load.
+        <i class="fas fa-wifi"></i> You're offline - some things may not load.
     </div>
 
     <!-- Policy notice -->
     <div class="container" style="max-width:900px;margin:0 auto;padding:0 24px">
-        <div style="background:#fff3cd;border:1px solid #ffc107;color:#664d03;border-radius:12px;padding:14px 18px;font-size:.92rem;line-height:1.6;text-align:center" role="note">
-            <strong>Responsible use:</strong> Some SMT tools are security-research / system-administration utilities for use only on devices you own or have explicit permission to test. See <a href="../terms.html" style="color:#664d03;text-decoration:underline;font-weight:700">Terms</a> &amp; <a href="https://github.com/SchooiCodes/smt" target="_blank" rel="noopener" style="color:#664d03;text-decoration:underline;font-weight:700">GitHub</a> for details. No pirated content is hosted on this site.
+        <div style="background:var(--card-bg);border:1px solid var(--card-border);color:var(--text-secondary);border-radius:12px;padding:14px 18px;font-size:.92rem;line-height:1.6;text-align:center" role="note">
+            <strong style="color:var(--text-primary)">Use responsibly:</strong> only use these on PCs you own or are allowed to test. Details in <a href="../terms.html" style="color:var(--accent);text-decoration:underline;font-weight:700">Terms</a> and on <a href="https://github.com/SchooiCodes/smt" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline;font-weight:700">GitHub</a>.
         </div>
     </div>
 
@@ -196,7 +196,7 @@
         <div class="tools-grid" id="toolsContainer"></div>
         <p id="noResults" class="no-results" hidden aria-live="polite">
             <i class="fas fa-search"></i>
-            No tools match your search. Try a different keyword or category.
+            No matches. Try another word or category.
         </p>
     </section>
 
@@ -206,11 +206,11 @@
             <div class="footer-content">
                 <div class="footer-brand">
                     <h3><i class="fas fa-cube"></i> SMT</h3>
-                    <p>Schooi's Multitool — Empowering developers since 2026.</p>
+                    <p>Schooi's Multitool - free, open-source toolkit for Windows 10 &amp; 11. 137 tools in one console.</p>
                 </div>
                 <div class="footer-links">
                     <a href="../index.html#about">About</a>
-                    <a href="index.html">Features</a>
+                    <a href="index.html">Tools</a>
                     <a href="../index.html#install">Install</a>
                     <a href="../index.html#contact">Contact</a>
                     <a href="../privacy.html">Privacy</a>
@@ -270,27 +270,27 @@
             { name: "IP Geolocator", desc: "Locate IP addresses globally with detailed geographic info.", icon: "fa-globe-americas", cat: "network", tags: "ip location geolocation", added: "v1.1" },
             { name: "IP Pinger", desc: "Ping any IP address to test connectivity.", icon: "fa-network-wired", cat: "network", tags: "ip ping network", added: "v1.2" },
             { name: "IP Logger", desc: "Log IP addresses for tracking and analysis.", icon: "fa-server", cat: "network", tags: "ip logger tracking", added: "v1.2" },
-            { name: "IP Stealer", desc: "Capture IP information from targets - educational demo, use only on your own systems.", icon: "fa-user-secret", cat: "network", tags: "ip stealer capture", added: "v1.3" },
+            { name: "IP Stealer", desc: "Log IP info on your own network.", icon: "fa-user-secret", cat: "network", tags: "ip stealer capture", added: "v1.3" },
             { name: "NS Lookupper", desc: "Query DNS records for any domain.", icon: "fa-search", cat: "network", tags: "dns nslookup domain", added: "v2.2" },
             { name: "Internet Route Tracer", desc: "Trace the route packets take to a destination.", icon: "fa-route", cat: "network", tags: "traceroute network path", added: "v2.2" },
             { name: "Network Speedtest", desc: "Test your internet connection speed.", icon: "fa-tachometer-alt", cat: "network", tags: "speedtest bandwidth", added: "v2.1" },
             { name: "Wi-Fi Password Revealer", desc: "View saved Wi-Fi passwords on your system.", icon: "fa-wifi", cat: "network", tags: "wifi password reveal", added: "v2.1" },
             { name: "Website Blocker", desc: "Block access to specific websites.", icon: "fa-ban", cat: "network", tags: "block website filter", added: "v2.2" },
             { name: "Easy DNS Changer", desc: "Switch between DNS providers (Google, Cloudflare, etc.).", icon: "fa-globe", cat: "network", tags: "dns change switch", added: "v2.3", new: true },
-            { name: "SMB Bruteforcer", desc: "Brute-force SMB shares for authorized security testing only.", icon: "fa-folder-open", cat: "network", tags: "smb brute force", added: "v1.x" },
+            { name: "SMB Bruteforcer", desc: "Test SMB shares you own.", icon: "fa-folder-open", cat: "network", tags: "smb brute force", added: "v1.x" },
             { name: "URL Shortener", desc: "Shorten long URLs instantly.", icon: "fa-link", cat: "network", tags: "url short link", added: "v1.2" },
             { name: "IPv6 Disabler", desc: "Disable IPv6 networking across the system.", icon: "fa-network-wired", cat: "network", tags: "ipv6 disable network", added: "v2.x" },
             { name: "IPv6 Re-enabler", desc: "Re-enable IPv6 networking after disabling it.", icon: "fa-network-wired", cat: "network", tags: "ipv6 enable network", added: "v2.x" },
 
             // System Utilities
             { name: "CLI Task Manager", desc: "Manage processes and tasks from the command line.", icon: "fa-list-check", cat: "system", tags: "task manager process cli", added: "v2.1" },
-            { name: "Restore Point Creator", desc: "Create system restore points before making changes.", icon: "fa-clock-rotate-left", cat: "system", tags: "restore backup system", added: "v1.3" },
+            { name: "Restore Point Creator", desc: "Save a restore point before making changes.", icon: "fa-clock-rotate-left", cat: "system", tags: "restore backup system", added: "v1.3" },
             { name: "Offline Restore Points", desc: "Create restore points without internet access.", icon: "fa-wifi-slash", cat: "system", tags: "offline restore", added: "v2.3", new: true },
             { name: "Hibernation Enabler/Disabler", desc: "Toggle system hibernation on or off.", icon: "fa-moon", cat: "system", tags: "hibernate sleep power", added: "v2.0" },
             { name: "Registry Backupper", desc: "Backup and restore the Windows registry.", icon: "fa-database", cat: "system", tags: "registry backup restore", added: "v1.4" },
             { name: "Driver Backupper", desc: "Backup and restore device drivers.", icon: "fa-hard-drive", cat: "system", tags: "driver backup restore", added: "v1.4" },
             { name: "System Info Viewer", desc: "Display detailed system information.", icon: "fa-info-circle", cat: "system", tags: "system info hardware", added: "v1.4" },
-            { name: "Create A System Restore Point", desc: "Create a system restore point for safe rollbacks.", icon: "fa-rotate-left", cat: "system", tags: "system restore point rollback", added: "v2.x" },
+            { name: "Create A System Restore Point", desc: "One-click restore point.", icon: "fa-rotate-left", cat: "system", tags: "system restore point rollback", added: "v2.x" },
             { name: "Folder Organizer", desc: "Automatically organize files into folders.", icon: "fa-folder-tree", cat: "system", tags: "organize files folders", added: "v2.1" },
             { name: "Batch to EXE Compiler", desc: "Convert batch scripts to executable files.", icon: "fa-file-code", cat: "system", tags: "batch exe compiler", added: "v1.4" },
             { name: "Performance Options", desc: "View and adjust Windows performance settings.", icon: "fa-gauge-high", cat: "system", tags: "performance windows optimize", added: "v1.5" },
@@ -305,8 +305,8 @@
             { name: "Screenshot Tool", desc: "Capture screenshots directly from SMT.", icon: "fa-camera", cat: "system", tags: "screenshot capture", added: "v2.3", new: true },
             { name: "Bootable USB Creator", desc: "Create multi-boot USBs using Ventoy.", icon: "fa-usb", cat: "system", tags: "usb boot ventoy", added: "v2.3", new: true },
             { name: "Uninstaller", desc: "Cleanly uninstall SMT and its components.", icon: "fa-trash", cat: "system", tags: "uninstall remove", added: "v2.0" },
-            { name: "Any App (winget) Installer", desc: "Install any app available through winget from the menu.", icon: "fa-box", cat: "system", tags: "winget any app installer", added: "v2.x" },
-            { name: "App Installer Generator", desc: "Generate a custom app installer script for any program.", icon: "fa-cog", cat: "system", tags: "installer generator app", added: "v2.x" },
+            { name: "Any App (winget) Installer", desc: "Install any winget app.", icon: "fa-box", cat: "system", tags: "winget any app installer", added: "v2.x" },
+            { name: "App Installer Generator", desc: "Make an installer for any app.", icon: "fa-cog", cat: "system", tags: "installer generator app", added: "v2.x" },
             { name: "Right Click Menu Changer", desc: "Customize the Windows right-click context menu.", icon: "fa-mouse-pointer", cat: "system", tags: "right click context menu", added: "v2.x" },
             { name: "Scan Computer for Errors", desc: "Scan the system for errors and file corruption (SFC/DISM).", icon: "fa-stethoscope", cat: "system", tags: "scan sfc dism errors", added: "v2.x" },
             { name: "Windows 11 Tweaker", desc: "Apply Windows 11-specific tweaks and optimizations.", icon: "fa-sliders", cat: "system", tags: "windows 11 tweak", added: "v2.x" },
@@ -314,24 +314,24 @@
             { name: "Group Policy Editor Enabler", desc: "Enable the Group Policy Editor on all Windows editions.", icon: "fa-sitemap", cat: "system", tags: "gpedit group policy", added: "v2.x" },
 
             // Windows & Office
-            { name: "Windows & Office Activator", desc: "Windows & Office activation helper - educational reference only, use valid licenses.", icon: "fa-key", cat: "windows", tags: "windows office activation license", added: "v1.8" },
+            { name: "Windows & Office Activator", desc: "Activation helper. Use a valid license.", icon: "fa-key", cat: "windows", tags: "windows office activation license", added: "v1.8" },
             { name: "Windows User Manager", desc: "Manage user accounts and reset passwords.", icon: "fa-users", cat: "windows", tags: "user manager password reset", added: "v1.2" },
-            { name: "Windows Password Cracker", desc: "Recover lost Windows passwords on your own devices only (uses WSL).", icon: "fa-lock-open", cat: "windows", tags: "password crack recover wsl", added: "v2.3", new: true },
+            { name: "Windows Password Cracker", desc: "Recover passwords on your own PC.", icon: "fa-lock-open", cat: "windows", tags: "password crack recover wsl", added: "v2.3", new: true },
             { name: "UAC Disabler", desc: "Disable User Account Control prompts.", icon: "fa-shield-haltered", cat: "windows", tags: "uac disable administrator", added: "v2.3", new: true },
             { name: `"Some Settings Managed" Fixer`, desc: "Fix the 'Some settings are managed by your organization' message.", icon: "fa-wrench", cat: "windows", tags: "settings managed organization fix", added: "v2.0" },
-            { name: "Sethc Trick Applier", desc: "Apply the sethc (Sticky Keys) exploit for recovery.", icon: "fa-keyboard", cat: "windows", tags: "sethc sticky keys exploit", added: "v2.3", new: true },
+            { name: "Sethc Trick Applier", desc: "Sticky Keys recovery trick.", icon: "fa-keyboard", cat: "windows", tags: "sethc sticky keys exploit", added: "v2.3", new: true },
             { name: "Extension Manifest V2 Extender", desc: "Extend Chrome extension manifest v2 support.", icon: "fa-puzzle-piece", cat: "windows", tags: "chrome extension manifest v2", added: "v2.3", new: true },
             { name: "Tweaking", desc: "Various Windows tweaking and optimization options.", icon: "fa-sliders", cat: "windows", tags: "tweak optimize windows", added: "v1.x" },
             { name: "Text to Speech", desc: "Convert text to speech using Windows TTS.", icon: "fa-comment-dots", cat: "windows", tags: "text speech tts", added: "v1.x" },
 
             // Security & Privacy
-            { name: "Info Stealer Generator", desc: "Generate info-stealing payloads for authorized security research in lab environments only.", icon: "fa-skull", cat: "security", tags: "info stealer generator payload", added: "v1.6" },
-            { name: "Credential Logger", desc: "Log credentials for authorized penetration testing in lab environments.", icon: "fa-key", cat: "security", tags: "credential logger pentest", added: "v2.3", new: true },
+            { name: "Info Stealer Generator", desc: "Build test payloads for lab research only.", icon: "fa-skull", cat: "security", tags: "info stealer generator payload", added: "v1.6" },
+            { name: "Credential Logger", desc: "Log test credentials in the lab.", icon: "fa-key", cat: "security", tags: "credential logger pentest", added: "v2.3", new: true },
             { name: "File Integrity Checker", desc: "Verify file checksums to detect tampering.", icon: "fa-file-shield", cat: "security", tags: "hash integrity checksum", added: "v2.3", new: true },
             { name: "RockYou Downloader", desc: "Download the famous RockYou wordlist.", icon: "fa-file-zipper", cat: "security", tags: "rockyou wordlist password", added: "v1.7" },
-            { name: ".zip Password Cracker", desc: "Recover passwords from your own protected zip archives.", icon: "fa-key", cat: "security", tags: "zip password crack recover", added: "v2.x" },
+            { name: ".zip Password Cracker", desc: "Recover passwords from your own zip files.", icon: "fa-key", cat: "security", tags: "zip password crack recover", added: "v2.x" },
             { name: "Credentials Storer", desc: "Securely store and recall saved credentials locally.", icon: "fa-vault", cat: "security", tags: "credentials store vault", added: "v2.x" },
-            { name: "Malwarebytes Premium Resetter", desc: "Malwarebytes trial helper - educational demo only.", icon: "fa-shield-virus", cat: "security", tags: "malwarebytes reset premium", added: "v2.x" },
+            { name: "Malwarebytes Premium Resetter", desc: "Trial reset demo.", icon: "fa-shield-virus", cat: "security", tags: "malwarebytes reset premium", added: "v2.x" },
             { name: "Advanced Security", desc: "Enhanced security features and hardening.", icon: "fa-shield-haltered", cat: "security", tags: "security advanced hardening", added: "v1.6" },
             { name: "Anti-Piracy Measures", desc: "Built-in anti-piracy protection system.", icon: "fa-lock", cat: "security", tags: "anti-piracy protection", added: "v1.3" },
             { name: "User Agreement", desc: "Terms of use displayed during setup.", icon: "fa-file-contract", cat: "security", tags: "user agreement terms", added: "v1.6" },
@@ -406,18 +406,18 @@
             { name: "Command-Line Game", desc: "Play a small game right in the command line.", icon: "fa-gamepad", cat: "school", tags: "game cli fun", added: "v2.x" },
 
             // Advanced / Danger Zone
-            { name: "Windows Destroyer", desc: "Destructive lab tool - do not run on production systems.", icon: "fa-skull-crossbones", cat: "advanced", tags: "destroy danger zone", added: "v1.9" },
-            { name: "Danger Zone Group", desc: "Collection of high-risk lab tools for isolated VMs only.", icon: "fa-triangle-exclamation", cat: "advanced", tags: "danger zone destructive", added: "v1.9" },
+            { name: "Windows Destroyer", desc: "Wipes data. Lab use only.", icon: "fa-skull-crossbones", cat: "advanced", tags: "destroy danger zone", added: "v1.9" },
+            { name: "Danger Zone Group", desc: "High-risk tools. Isolated VMs only.", icon: "fa-triangle-exclamation", cat: "advanced", tags: "danger zone destructive", added: "v1.9" },
             { name: "Mystery Advanced Tool", desc: "A surprise advanced utility — try it to find out!", icon: "fa-question-circle", cat: "advanced", tags: "mystery surprise", added: "v1.4" },
             { name: "RCMC", desc: "Refined Component Management Console.", icon: "fa-microchip", cat: "advanced", tags: "rcmc component management", added: "v2.x" },
             { name: "Schnuker", desc: "Advanced network utility (faster in v2.3).", icon: "fa-bolt", cat: "advanced", tags: "schnuker network utility", added: "v2.x" },
             { name: "Performance Group", desc: "Advanced system performance tools.", icon: "fa-gauge", cat: "advanced", tags: "performance advanced", added: "v1.8" },
             { name: "Info (About SMT)", desc: "View detailed information about SMT.", icon: "fa-circle-info", cat: "advanced", tags: "info about version", added: "v1.3" },
             { name: "Fun Fact", desc: "Displays a fun fact in the info screen.", icon: "fa-smile", cat: "advanced", tags: "fun fact easter egg", added: "v1.4" },
-            { name: "utilman Trick Applier", desc: "Apply the utilman accessibility trick for recovery scenarios.", icon: "fa-user-secret", cat: "advanced", tags: "utilman accessibility trick", added: "v2.x" },
-            { name: "Info Stealer (OLD)", desc: "Legacy info stealer payload kept for security research.", icon: "fa-skull", cat: "advanced", tags: "info stealer legacy research", added: "v1.x" },
-            { name: "Disk Space Filler", desc: "Fill disk space to test limits in isolated VMs only.", icon: "fa-hard-drive", cat: "advanced", tags: "disk fill danger test", added: "v2.x" },
-            { name: "FGRDown", desc: "FitGirl Repacks helper - educational reference, no content hosted here.", icon: "fa-download", cat: "advanced", tags: "fitgirl repack downloader", added: "v2.x" }
+            { name: "utilman Trick Applier", desc: "Accessibility recovery trick.", icon: "fa-user-secret", cat: "advanced", tags: "utilman accessibility trick", added: "v2.x" },
+            { name: "Info Stealer (OLD)", desc: "Old research payload, kept for reference.", icon: "fa-skull", cat: "advanced", tags: "info stealer legacy research", added: "v1.x" },
+            { name: "Disk Space Filler", desc: "Fills disk space. Lab use only.", icon: "fa-hard-drive", cat: "advanced", tags: "disk fill danger test", added: "v2.x" },
+            { name: "FGRDown", desc: "Game repack helper. Nothing hosted here.", icon: "fa-download", cat: "advanced", tags: "fitgirl repack downloader", added: "v2.x" }
         ];
 
         // Render cards
