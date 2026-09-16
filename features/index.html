@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com https://unpkg.com; font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com; script-src 'self' 'unsafe-inline' https://unpkg.com https://cdnjs.cloudflare.com; base-uri 'self'; form-action 'self'; object-src 'none'; connect-src 'self'">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; base-uri 'self'; form-action 'self'; object-src 'none'; connect-src 'self'">
     <title>All 137 Windows Tools - Schooi's Multitool (SMT) | Windows Multitool &amp; Toolkit Features</title>
     <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="../images/SMT.png">
@@ -31,13 +31,10 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;600;700;800&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- AOS Animation Library -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="../styles.css">
@@ -92,12 +89,10 @@
         }
         .tool-card h4 { font-size: 1.3rem; margin-bottom: 8px; }
         .tool-card p { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.5; }
-        .tool-badge {
-            position: absolute; top: 20px; right: 20px;
-            background: linear-gradient(135deg, #ff6b6b, #ff8e53); color: #fff;
-            font-size: 0.75rem; font-weight: 700; padding: 4px 12px; border-radius: 20px;
-            text-transform: uppercase; letter-spacing: 0.5px; backdrop-filter: blur(5px);
+        .features-hero h1, .filter-tab, .tool-card h4 {
+            font-family: 'Bricolage Grotesque', 'Inter', sans-serif;
         }
+        .filter-tab { font-weight: 700; letter-spacing: 0.02em; }
         @media (max-width: 768px) {
             .features-hero h1 { font-size: 2rem; }
             .tools-grid { grid-template-columns: 1fr; }
@@ -156,17 +151,25 @@
     <!-- Features Hero -->
     <section class="features-hero" id="main" tabindex="-1">
         <div class="container">
-            <span class="hero-badge">v2.3 . 137 tools</span>
-            <h1 data-aos="fade-up">All 137 tools</h1>
-            <p data-aos="fade-up" data-aos-delay="100" style="opacity:0.9; max-width:640px; margin:0 auto 20px;">
+            
+            <h1 id="toolsTitle">All 137 tools</h1>
+            <p style="opacity:0.9; max-width:640px; margin:0 auto 20px;">
                 Search or filter everything in the toolkit.
             </p>
-            <div class="search-box" role="search" data-aos="fade-up" data-aos-delay="200">
+            <div class="search-box" role="search">
                 <i class="fas fa-search"></i>
                 <input type="text" id="toolSearch" aria-label="Search tools" placeholder="Search tools... try &quot;dns&quot;, &quot;usb&quot;, &quot;password&quot;">
             </div>
-            <div class="filter-tabs" data-aos="fade-up" data-aos-delay="300">
-                <button class="filter-tab active" data-filter="all" aria-pressed="true">All (137)</button>
+			
+
+			<!-- Policy notice -->
+			<div class="container" style="max-width:900px;margin:0 auto;padding:0 24px">
+				<div style="background:var(--card-bg);border:1px solid var(--card-border);color:var(--text-secondary);border-radius:12px;padding:14px 18px;font-size:.92rem;line-height:1.6;text-align:center" role="note">
+            <strong style="color:var(--text-primary)">Use responsibly:</strong> only use these on PCs you own or have explicit permission to test. Unauthorized access, malware distribution, and piracy are prohibited and may be illegal. Details in <a href="../terms.html" style="color:var(--accent);text-decoration:underline;font-weight:700">Terms</a> and on <a href="https://github.com/SchooiCodes/smt" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline;font-weight:700">GitHub</a>.
+				</div>
+			</div>
+            <div class="filter-tabs">
+                <button class="filter-tab active" data-filter="all" aria-pressed="true" id="allTab">All (137)</button>
                 <button class="filter-tab" data-filter="network" aria-pressed="false">Network</button>
                 <button class="filter-tab" data-filter="system" aria-pressed="false">System</button>
                 <button class="filter-tab" data-filter="windows" aria-pressed="false">Windows</button>
@@ -184,15 +187,8 @@
         <i class="fas fa-wifi"></i> You're offline - some things may not load.
     </div>
 
-    <!-- Policy notice -->
-    <div class="container" style="max-width:900px;margin:0 auto;padding:0 24px">
-        <div style="background:var(--card-bg);border:1px solid var(--card-border);color:var(--text-secondary);border-radius:12px;padding:14px 18px;font-size:.92rem;line-height:1.6;text-align:center" role="note">
-            <strong style="color:var(--text-primary)">Use responsibly:</strong> only use these on PCs you own or are allowed to test. Details in <a href="../terms.html" style="color:var(--accent);text-decoration:underline;font-weight:700">Terms</a> and on <a href="https://github.com/SchooiCodes/smt" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline;font-weight:700">GitHub</a>.
-        </div>
-    </div>
-
     <!-- Tools Grid -->
-    <section class="container" data-aos="fade-up">
+    <section class="container">
         <div class="tools-grid" id="toolsContainer"></div>
         <p id="noResults" class="no-results" hidden aria-live="polite">
             <i class="fas fa-search"></i>
@@ -206,7 +202,7 @@
             <div class="footer-content">
                 <div class="footer-brand">
                     <h3><i class="fas fa-cube"></i> SMT</h3>
-                    <p>Schooi's Multitool - free, open-source toolkit for Windows 10 &amp; 11. 137 tools in one console.</p>
+                    <p id="footerTag">Schooi's Multitool - free, open-source toolkit for Windows 10 &amp; 11. 137 tools in one console.</p>
                 </div>
                 <div class="footer-links">
                     <a href="../index.html#about">About</a>
@@ -226,10 +222,7 @@
     </footer>
 
     <!-- Scripts -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({ duration: 800, easing: 'ease-in-out', once: true });
-
         // Dark is the default theme; toggle adds .light-mode.
         const darkToggle = document.getElementById('darkModeToggle');
         const body = document.body;
@@ -270,13 +263,13 @@
             { name: "IP Geolocator", desc: "Locate IP addresses globally with detailed geographic info.", icon: "fa-globe-americas", cat: "network", tags: "ip location geolocation", added: "v1.1" },
             { name: "IP Pinger", desc: "Ping any IP address to test connectivity.", icon: "fa-network-wired", cat: "network", tags: "ip ping network", added: "v1.2" },
             { name: "IP Logger", desc: "Log IP addresses for tracking and analysis.", icon: "fa-server", cat: "network", tags: "ip logger tracking", added: "v1.2" },
-            { name: "IP Stealer", desc: "Log IP info on your own network.", icon: "fa-user-secret", cat: "network", tags: "ip stealer capture", added: "v1.3" },
+            { name: "IP Stealer", desc: "Saves your own IP info to a file.", icon: "fa-user-secret", cat: "network", tags: "ip stealer capture", added: "v1.3" },
             { name: "NS Lookupper", desc: "Query DNS records for any domain.", icon: "fa-search", cat: "network", tags: "dns nslookup domain", added: "v2.2" },
             { name: "Internet Route Tracer", desc: "Trace the route packets take to a destination.", icon: "fa-route", cat: "network", tags: "traceroute network path", added: "v2.2" },
             { name: "Network Speedtest", desc: "Test your internet connection speed.", icon: "fa-tachometer-alt", cat: "network", tags: "speedtest bandwidth", added: "v2.1" },
             { name: "Wi-Fi Password Revealer", desc: "View saved Wi-Fi passwords on your system.", icon: "fa-wifi", cat: "network", tags: "wifi password reveal", added: "v2.1" },
             { name: "Website Blocker", desc: "Block access to specific websites.", icon: "fa-ban", cat: "network", tags: "block website filter", added: "v2.2" },
-            { name: "Easy DNS Changer", desc: "Switch between DNS providers (Google, Cloudflare, etc.).", icon: "fa-globe", cat: "network", tags: "dns change switch", added: "v2.3", new: true },
+            { name: "Easy DNS Changer", desc: "Switch between DNS providers (Google, Cloudflare, etc.).", icon: "fa-globe", cat: "network", tags: "dns change switch", added: "v2.3" },
             { name: "SMB Bruteforcer", desc: "Test SMB shares you own.", icon: "fa-folder-open", cat: "network", tags: "smb brute force", added: "v1.x" },
             { name: "URL Shortener", desc: "Shorten long URLs instantly.", icon: "fa-link", cat: "network", tags: "url short link", added: "v1.2" },
             { name: "IPv6 Disabler", desc: "Disable IPv6 networking across the system.", icon: "fa-network-wired", cat: "network", tags: "ipv6 disable network", added: "v2.x" },
@@ -284,26 +277,26 @@
 
             // System Utilities
             { name: "CLI Task Manager", desc: "Manage processes and tasks from the command line.", icon: "fa-list-check", cat: "system", tags: "task manager process cli", added: "v2.1" },
-            { name: "Restore Point Creator", desc: "Save a restore point before making changes.", icon: "fa-clock-rotate-left", cat: "system", tags: "restore backup system", added: "v1.3" },
-            { name: "Offline Restore Points", desc: "Create restore points without internet access.", icon: "fa-wifi-slash", cat: "system", tags: "offline restore", added: "v2.3", new: true },
+            { name: "Tron", desc: "Runs Tron to deep-clean the PC. Takes hours and restarts.", icon: "fa-broom", cat: "system", tags: "tron clean disinfect repair", added: "v2.x" },
+            { name: "U* Miner Remover", desc: "Removes the XMRig USB-miner infection.", icon: "fa-shield-virus", cat: "system", tags: "xmrig miner virus usb remover", added: "v2.x" },
             { name: "Hibernation Enabler/Disabler", desc: "Toggle system hibernation on or off.", icon: "fa-moon", cat: "system", tags: "hibernate sleep power", added: "v2.0" },
             { name: "Registry Backupper", desc: "Backup and restore the Windows registry.", icon: "fa-database", cat: "system", tags: "registry backup restore", added: "v1.4" },
             { name: "Driver Backupper", desc: "Backup and restore device drivers.", icon: "fa-hard-drive", cat: "system", tags: "driver backup restore", added: "v1.4" },
             { name: "System Info Viewer", desc: "Display detailed system information.", icon: "fa-info-circle", cat: "system", tags: "system info hardware", added: "v1.4" },
             { name: "Create A System Restore Point", desc: "One-click restore point.", icon: "fa-rotate-left", cat: "system", tags: "system restore point rollback", added: "v2.x" },
             { name: "Folder Organizer", desc: "Automatically organize files into folders.", icon: "fa-folder-tree", cat: "system", tags: "organize files folders", added: "v2.1" },
-            { name: "Batch to EXE Compiler", desc: "Convert batch scripts to executable files.", icon: "fa-file-code", cat: "system", tags: "batch exe compiler", added: "v1.4" },
+            { name: "Hydra Launcher", desc: "Install Hydra game launcher.", icon: "fa-gamepad", cat: "apps", tags: "hydra games launcher", added: "v2.x" },
             { name: "Performance Options", desc: "View and adjust Windows performance settings.", icon: "fa-gauge-high", cat: "system", tags: "performance windows optimize", added: "v1.5" },
             { name: "Shutdown & Restart Commands", desc: "Quick shutdown and restart from the main menu.", icon: "fa-power-off", cat: "system", tags: "shutdown restart", added: "v2.0" },
             { name: "Boot to BIOS", desc: "Restart directly into BIOS/UEFI settings.", icon: "fa-microchip", cat: "system", tags: "bios restart firmware", added: "v2.2" },
             { name: "Console Color Changer", desc: "Customize the console color scheme.", icon: "fa-palette", cat: "system", tags: "color console theme", added: "v1.4" },
             { name: "Add to PATH", desc: "Add SMT to system PATH for global access.", icon: "fa-terminal", cat: "system", tags: "path environment", added: "v1.4" },
             { name: "Add to Program Files", desc: "Install SMT to Program Files directory.", icon: "fa-folder-plus", cat: "system", tags: "install program files", added: "v1.4" },
-            { name: "Auto Window Resizing", desc: "Automatically resize console windows.", icon: "fa-expand", cat: "system", tags: "window resize auto", added: "v2.3", new: true },
-            { name: "Time Freezer", desc: "Freeze system time temporarily.", icon: "fa-clock", cat: "system", tags: "time freeze pause", added: "v2.3", new: true },
-            { name: "Clipboard Manager", desc: "Manage multiple clipboard entries.", icon: "fa-paste", cat: "system", tags: "clipboard copy paste", added: "v2.3", new: true },
-            { name: "Screenshot Tool", desc: "Capture screenshots directly from SMT.", icon: "fa-camera", cat: "system", tags: "screenshot capture", added: "v2.3", new: true },
-            { name: "Bootable USB Creator", desc: "Create multi-boot USBs using Ventoy.", icon: "fa-usb", cat: "system", tags: "usb boot ventoy", added: "v2.3", new: true },
+            { name: "Auto Window Resizing", desc: "Automatically resize console windows.", icon: "fa-expand", cat: "system", tags: "window resize auto", added: "v2.3" },
+            { name: "Time Freezer", desc: "Freeze system time temporarily.", icon: "fa-clock", cat: "system", tags: "time freeze pause", added: "v2.3" },
+            { name: "Clipboard Manager", desc: "Manage multiple clipboard entries.", icon: "fa-paste", cat: "system", tags: "clipboard copy paste", added: "v2.3" },
+            { name: "Screenshot Tool", desc: "Capture screenshots directly from SMT.", icon: "fa-camera", cat: "system", tags: "screenshot capture", added: "v2.3" },
+            { name: "Bootable USB Creator", desc: "Create multi-boot USBs using Ventoy.", icon: "fa-usb", cat: "system", tags: "usb boot ventoy", added: "v2.3" },
             { name: "Uninstaller", desc: "Cleanly uninstall SMT and its components.", icon: "fa-trash", cat: "system", tags: "uninstall remove", added: "v2.0" },
             { name: "Any App (winget) Installer", desc: "Install any winget app.", icon: "fa-box", cat: "system", tags: "winget any app installer", added: "v2.x" },
             { name: "App Installer Generator", desc: "Make an installer for any app.", icon: "fa-cog", cat: "system", tags: "installer generator app", added: "v2.x" },
@@ -316,26 +309,26 @@
             // Windows & Office
             { name: "Windows & Office Activator", desc: "Activation helper. Use a valid license.", icon: "fa-key", cat: "windows", tags: "windows office activation license", added: "v1.8" },
             { name: "Windows User Manager", desc: "Manage user accounts and reset passwords.", icon: "fa-users", cat: "windows", tags: "user manager password reset", added: "v1.2" },
-            { name: "Windows Password Cracker", desc: "Recover passwords on your own PC.", icon: "fa-lock-open", cat: "windows", tags: "password crack recover wsl", added: "v2.3", new: true },
-            { name: "UAC Disabler", desc: "Disable User Account Control prompts.", icon: "fa-shield-haltered", cat: "windows", tags: "uac disable administrator", added: "v2.3", new: true },
+            { name: "Windows Password Cracker", desc: "Recover passwords on your own PC.", icon: "fa-lock-open", cat: "windows", tags: "password crack recover wsl", added: "v2.3" },
+            { name: "UAC Disabler", desc: "Disable User Account Control prompts on PCs you own.", icon: "fa-shield-haltered", cat: "windows", tags: "uac disable administrator", added: "v2.3" },
             { name: `"Some Settings Managed" Fixer`, desc: "Fix the 'Some settings are managed by your organization' message.", icon: "fa-wrench", cat: "windows", tags: "settings managed organization fix", added: "v2.0" },
-            { name: "Sethc Trick Applier", desc: "Sticky Keys recovery trick.", icon: "fa-keyboard", cat: "windows", tags: "sethc sticky keys exploit", added: "v2.3", new: true },
-            { name: "Extension Manifest V2 Extender", desc: "Extend Chrome extension manifest v2 support.", icon: "fa-puzzle-piece", cat: "windows", tags: "chrome extension manifest v2", added: "v2.3", new: true },
-            { name: "Tweaking", desc: "Various Windows tweaking and optimization options.", icon: "fa-sliders", cat: "windows", tags: "tweak optimize windows", added: "v1.x" },
+            { name: "Proton VPN", desc: "Install Proton VPN.", icon: "fa-shield-halved", cat: "apps", tags: "proton vpn privacy", added: "v2.x" },
+            { name: "Extension Manifest V2 Extender", desc: "Extend Chrome extension manifest v2 support.", icon: "fa-puzzle-piece", cat: "windows", tags: "chrome extension manifest v2", added: "v2.3" },
+            { name: "Audacity", desc: "Install Audacity audio editor.", icon: "fa-music", cat: "apps", tags: "audacity audio editor", added: "v2.x" },
             { name: "Text to Speech", desc: "Convert text to speech using Windows TTS.", icon: "fa-comment-dots", cat: "windows", tags: "text speech tts", added: "v1.x" },
 
             // Security & Privacy
             { name: "Info Stealer Generator", desc: "Build test payloads for lab research only.", icon: "fa-skull", cat: "security", tags: "info stealer generator payload", added: "v1.6" },
-            { name: "Credential Logger", desc: "Log test credentials in the lab.", icon: "fa-key", cat: "security", tags: "credential logger pentest", added: "v2.3", new: true },
-            { name: "File Integrity Checker", desc: "Verify file checksums to detect tampering.", icon: "fa-file-shield", cat: "security", tags: "hash integrity checksum", added: "v2.3", new: true },
-            { name: "RockYou Downloader", desc: "Download the famous RockYou wordlist.", icon: "fa-file-zipper", cat: "security", tags: "rockyou wordlist password", added: "v1.7" },
+            { name: "Node.js", desc: "Install Node.js.", icon: "fa-node-js", cat: "apps", tags: "node nodejs javascript", added: "v2.x" },
+            { name: "File Integrity Checker", desc: "Verify file checksums to detect tampering.", icon: "fa-file-shield", cat: "security", tags: "hash integrity checksum", added: "v2.3" },
+            { name: "RockYou Downloader", desc: "Download the RockYou wordlist for authorized testing.", icon: "fa-file-zipper", cat: "security", tags: "rockyou wordlist password", added: "v1.7" },
             { name: ".zip Password Cracker", desc: "Recover passwords from your own zip files.", icon: "fa-key", cat: "security", tags: "zip password crack recover", added: "v2.x" },
             { name: "Credentials Storer", desc: "Securely store and recall saved credentials locally.", icon: "fa-vault", cat: "security", tags: "credentials store vault", added: "v2.x" },
             { name: "Malwarebytes Premium Resetter", desc: "Trial reset demo.", icon: "fa-shield-virus", cat: "security", tags: "malwarebytes reset premium", added: "v2.x" },
-            { name: "Advanced Security", desc: "Enhanced security features and hardening.", icon: "fa-shield-haltered", cat: "security", tags: "security advanced hardening", added: "v1.6" },
+            { name: "Bitdefender Free", desc: "Install Bitdefender Free antivirus.", icon: "fa-shield", cat: "apps", tags: "bitdefender antivirus free", added: "v2.x" },
             { name: "Anti-Piracy Measures", desc: "Built-in anti-piracy protection system.", icon: "fa-lock", cat: "security", tags: "anti-piracy protection", added: "v1.3" },
             { name: "User Agreement", desc: "Terms of use displayed during setup.", icon: "fa-file-contract", cat: "security", tags: "user agreement terms", added: "v1.6" },
-            { name: "Device Crasher", desc: "Tool for testing system resilience (Danger Zone).", icon: "fa-bomb", cat: "security", tags: "crash device test", added: "v1.7" },
+            { name: "Logitech G HUB", desc: "Install Logitech G HUB.", icon: "fa-keyboard", cat: "apps", tags: "logitech hub peripherals", added: "v2.x" },
 
             // App Installers
             { name: "Chrome Installer", desc: "Install Google Chrome browser.", icon: "fa-chrome", cat: "apps", tags: "chrome browser google", added: "v2.2" },
@@ -347,13 +340,13 @@
             { name: "SuperF4 Installer", desc: "Install SuperF4 to force-close programs.", icon: "fa-xmark", cat: "apps", tags: "superf4 force close", added: "v1.7" },
             { name: "Powershell 7 Installer", desc: "Install PowerShell 7.", icon: "fa-terminal", cat: "apps", tags: "powershell pwsh shell", added: "v2.2" },
             { name: "f.lux Installer", desc: "Install f.lux for eye strain reduction.", icon: "fa-eye", cat: "apps", tags: "flux screen temperature", added: "v2.2" },
-            { name: "BlockTheSpot Installer", desc: "Install Spotify ad-blocker.", icon: "fa-spotify", cat: "apps", tags: "spotify ad block", added: "v2.2" },
+            { name: "OBS Studio", desc: "Install OBS Studio.", icon: "fa-video", cat: "apps", tags: "obs studio stream record", added: "v2.x" },
             { name: "Wintoys Installer", desc: "Install Wintoys Windows utility.", icon: "fa-screwdriver-wrench", cat: "apps", tags: "wintoys utility", added: "v2.1" },
             { name: "Windows PC Manager Installer", desc: "Install Microsoft PC Manager.", icon: "fa-windows", cat: "apps", tags: "pc manager microsoft", added: "v2.1" },
             { name: "Fastfetch Installer", desc: "Install fastfetch system info tool.", icon: "fa-info-circle", cat: "apps", tags: "fastfetch neofetch system", added: "v1.3" },
-            { name: "Telegram Installer", desc: "Install Telegram Desktop.", icon: "fa-telegram", cat: "apps", tags: "telegram messenger", added: "v2.3", new: true },
-            { name: "Malwarebytes Installer", desc: "Install Malwarebytes antivirus.", icon: "fa-shield", cat: "apps", tags: "malwarebytes antivirus", added: "v2.3", new: true },
-            { name: "Notepad++ Installer", desc: "Install Notepad++ text editor.", icon: "fa-file-code", cat: "apps", tags: "notepad++ editor", added: "v2.3", new: true },
+            { name: "Telegram Installer", desc: "Install Telegram Desktop.", icon: "fa-telegram", cat: "apps", tags: "telegram messenger", added: "v2.3" },
+            { name: "Malwarebytes Installer", desc: "Install Malwarebytes antivirus.", icon: "fa-shield", cat: "apps", tags: "malwarebytes antivirus", added: "v2.3" },
+            { name: "Notepad++ Installer", desc: "Install Notepad++ text editor.", icon: "fa-file-code", cat: "apps", tags: "notepad++ editor", added: "v2.3" },
             { name: "Command Prompt", desc: "Launch Command Prompt directly from the menu.", icon: "fa-terminal", cat: "apps", tags: "cmd command prompt", added: "v2.x" },
             { name: "Powershell", desc: "Launch PowerShell directly from the menu.", icon: "fa-terminal", cat: "apps", tags: "powershell shell", added: "v2.x" },
             { name: "Powershell (Installer)", desc: "Install PowerShell for devices that don't have it.", icon: "fa-download", cat: "apps", tags: "powershell installer pwsh", added: "v2.x" },
@@ -368,13 +361,13 @@
             { name: "Process Hacker", desc: "Install Process Hacker advanced task manager.", icon: "fa-microchip", cat: "apps", tags: "process hacker taskmanager", added: "v2.x" },
             { name: "Winaero Tweaker", desc: "Install Winaero Tweaker customization tool.", icon: "fa-sliders", cat: "apps", tags: "winaero tweaker", added: "v2.x" },
             { name: "Discord", desc: "Install Discord chat client.", icon: "fa-discord", cat: "apps", tags: "discord chat", added: "v2.x" },
-            { name: "Vencord", desc: "Install Vencord Discord client mod.", icon: "fa-discord", cat: "apps", tags: "vencord discord mod", added: "v2.x" },
+            { name: "Vencord", desc: "Install Vencord Discord client mod. Against Discord's ToS.", icon: "fa-discord", cat: "apps", tags: "vencord discord mod", added: "v2.x" },
             { name: "IrfanView", desc: "Install IrfanView image viewer.", icon: "fa-image", cat: "apps", tags: "irfanview image viewer", added: "v2.x" },
             { name: "Playit.gg", desc: "Install Playit.gg tunneling tool.", icon: "fa-gamepad", cat: "apps", tags: "playit.gg tunnel", added: "v2.x" },
             { name: "Prism Launcher", desc: "Install Prism Launcher for Minecraft.", icon: "fa-cube", cat: "apps", tags: "prism launcher minecraft", added: "v2.x" },
             { name: "SKLauncher", desc: "Install SKLauncher for Minecraft.", icon: "fa-cube", cat: "apps", tags: "sklauncher minecraft", added: "v2.x" },
             { name: "Blip", desc: "Install Blip GitHub release downloader.", icon: "fa-bolt", cat: "apps", tags: "blip github downloader", added: "v2.x" },
-            { name: "CapCut Pro", desc: "Install CapCut Pro (free, guide included).", icon: "fa-film", cat: "apps", tags: "capcut video editor", added: "v2.x" },
+            { name: "CapCut Pro", desc: "Install CapCut video editor.", icon: "fa-film", cat: "apps", tags: "capcut video editor", added: "v2.x" },
             { name: "RustDesk", desc: "Install RustDesk remote desktop.", icon: "fa-desktop", cat: "apps", tags: "rustdesk remote desktop", added: "v2.x" },
             { name: "AnyDesk", desc: "Install AnyDesk remote desktop.", icon: "fa-desktop", cat: "apps", tags: "anydesk remote desktop", added: "v2.x" },
             { name: "Win10 Widgets + Rainmeter 4.0", desc: "Install Win10 Widgets with Rainmeter 4.0.", icon: "fa-table-columns", cat: "apps", tags: "rainmeter widgets desktop", added: "v2.x" },
@@ -382,17 +375,17 @@
             { name: "Spotify (No Ads)", desc: "Install Spotify with BlockTheSpot ad-blocking.", icon: "fa-spotify", cat: "apps", tags: "spotify adblock", added: "v2.x" },
 
             // Developer Tools
-            { name: "ASCII Art Generator", desc: "Generate static and gradient ASCII art.", icon: "fa-font", cat: "dev", tags: "ascii art text gradient", added: "v2.1" },
+            { name: "ASCII Art Generator", desc: "Opens an ASCII art site.", icon: "fa-font", cat: "dev", tags: "ascii art text gradient", added: "v2.1" },
             { name: "ASCII Art Logo", desc: "Display SMT logo in ASCII/ANSI art.", icon: "fa-image", cat: "dev", tags: "ascii logo art", added: "v1.2" },
-            { name: "Directory Code Line Counter", desc: "Count lines of code using cloc.", icon: "fa-code", cat: "dev", tags: "code lines counter cloc", added: "v2.3", new: true },
+            { name: "Portable Creator", desc: "Packs SMT into a portable zip.", icon: "fa-box-open", cat: "system", tags: "portable zip package", added: "v2.x" },
             { name: "Secret Commands", desc: "Hidden commands accessible from main menu.", icon: "fa-mask", cat: "dev", tags: "secret commands hidden", added: "v1.3" },
             { name: "Command History", desc: "View and recall previously run commands.", icon: "fa-history", cat: "dev", tags: "command history", added: "v1.3" },
             { name: "Debug Mode", desc: "Enable debug output for troubleshooting.", icon: "fa-bug", cat: "dev", tags: "debug troubleshooting", added: "v1.3" },
             { name: "Open CMD / PowerShell", desc: "Launch CMD or PowerShell from within SMT.", icon: "fa-terminal", cat: "dev", tags: "cmd powershell terminal", added: "v1.3" },
             { name: "Git Command", desc: "Access git commands from the main menu.", icon: "fa-git-alt", cat: "dev", tags: "git command", added: "v2.0" },
-            { name: "Logging Events", desc: "Colored logging at script startup.", icon: "fa-list", cat: "dev", tags: "logging events debug", added: "v2.3", new: true },
-            { name: "Auto Update System", desc: "Keep SMT automatically updated.", icon: "fa-arrows-rotate", cat: "dev", tags: "auto update", added: "v2.3", new: true },
-            { name: "Zip Password Bruteforcer", desc: "Brute-force your own password-protected ZIP files.", icon: "fa-file-zipper", cat: "dev", tags: "zip crack brute force password", added: "v1.x" },
+            { name: "Chocolatey", desc: "Install Chocolatey package manager.", icon: "fa-box", cat: "apps", tags: "chocolatey package manager", added: "v2.x" },
+            { name: "Auto Update System", desc: "Keep SMT automatically updated.", icon: "fa-arrows-rotate", cat: "dev", tags: "auto update", added: "v2.3" },
+            { name: "Steam", desc: "Install Steam.", icon: "fa-steam", cat: "apps", tags: "steam games", added: "v2.x" },
             { name: "Password Generator", desc: "Generate secure random passwords.", icon: "fa-key", cat: "dev", tags: "password generator secure", added: "v2.x" },
             { name: "ASCII Art Gradient Generator", desc: "Generate gradient ASCII/ANSI art from text.", icon: "fa-font", cat: "dev", tags: "ascii gradient art", added: "v2.x" },
             { name: "Directory File Line Counter", desc: "Count lines and files across a directory tree.", icon: "fa-hashtag", cat: "dev", tags: "directory line counter files", added: "v2.x" },
@@ -402,20 +395,20 @@
             { name: "Private Folder Manager", desc: "Create and manage locked private folders.", icon: "fa-lock", cat: "dev", tags: "private folder lock", added: "v2.x" },
 
             // School Utilities
-            { name: "School Utilities", desc: "Collection of tools useful for school environments.", icon: "fa-school", cat: "school", tags: "school education student", added: "v2.3", new: true },
+            { name: "School Utilities", desc: "Collection of tools useful for school environments.", icon: "fa-school", cat: "school", tags: "school education student", added: "v2.3" },
             { name: "Command-Line Game", desc: "Play a small game right in the command line.", icon: "fa-gamepad", cat: "school", tags: "game cli fun", added: "v2.x" },
 
             // Advanced / Danger Zone
             { name: "Windows Destroyer", desc: "Wipes data. Lab use only.", icon: "fa-skull-crossbones", cat: "advanced", tags: "destroy danger zone", added: "v1.9" },
             { name: "Danger Zone Group", desc: "High-risk tools. Isolated VMs only.", icon: "fa-triangle-exclamation", cat: "advanced", tags: "danger zone destructive", added: "v1.9" },
             { name: "Mystery Advanced Tool", desc: "A surprise advanced utility — try it to find out!", icon: "fa-question-circle", cat: "advanced", tags: "mystery surprise", added: "v1.4" },
-            { name: "RCMC", desc: "Refined Component Management Console.", icon: "fa-microchip", cat: "advanced", tags: "rcmc component management", added: "v2.x" },
-            { name: "Schnuker", desc: "Advanced network utility (faster in v2.3).", icon: "fa-bolt", cat: "advanced", tags: "schnuker network utility", added: "v2.x" },
-            { name: "Performance Group", desc: "Advanced system performance tools.", icon: "fa-gauge", cat: "advanced", tags: "performance advanced", added: "v1.8" },
+            { name: "ExifCleaner", desc: "Install ExifCleaner metadata remover.", icon: "fa-eraser", cat: "apps", tags: "exif metadata cleaner", added: "v2.x" },
+            { name: "Schnuker", desc: "Installs and runs Schnuker (needs Python).", icon: "fa-bolt", cat: "advanced", tags: "schnuker network utility", added: "v2.x" },
+            { name: "Keyviz", desc: "Install Keyviz keystroke visualizer.", icon: "fa-eye", cat: "apps", tags: "keyviz keystrokes", added: "v2.x" },
             { name: "Info (About SMT)", desc: "View detailed information about SMT.", icon: "fa-circle-info", cat: "advanced", tags: "info about version", added: "v1.3" },
-            { name: "Fun Fact", desc: "Displays a fun fact in the info screen.", icon: "fa-smile", cat: "advanced", tags: "fun fact easter egg", added: "v1.4" },
-            { name: "utilman Trick Applier", desc: "Accessibility recovery trick.", icon: "fa-user-secret", cat: "advanced", tags: "utilman accessibility trick", added: "v2.x" },
-            { name: "Info Stealer (OLD)", desc: "Old research payload, kept for reference.", icon: "fa-skull", cat: "advanced", tags: "info stealer legacy research", added: "v1.x" },
+            { name: "Python Install Manager", desc: "Install Python Install Manager.", icon: "fa-python", cat: "apps", tags: "python", added: "v2.x" },
+            { name: "utilman Trick Applier", desc: "Accessibility recovery trick for your own PC.", icon: "fa-user-secret", cat: "advanced", tags: "utilman accessibility trick", added: "v2.x" },
+            { name: "Info Stealer (OLD)", desc: "Old local recon dump (Info Grabber). Your own PCs only.", icon: "fa-skull", cat: "advanced", tags: "info stealer legacy research", added: "v1.x" },
             { name: "Disk Space Filler", desc: "Fills disk space. Lab use only.", icon: "fa-hard-drive", cat: "advanced", tags: "disk fill danger test", added: "v2.x" },
             { name: "FGRDown", desc: "Game repack helper. Nothing hosted here.", icon: "fa-download", cat: "advanced", tags: "fitgirl repack downloader", added: "v2.x" }
         ];
@@ -430,8 +423,7 @@
             } else {
                 noResults.hidden = true;
                 container.innerHTML = filteredTools.map(t => `
-                    <div class="tool-card" data-category="${t.cat}" data-aos="fade-up">
-                        ${t.new ? '<span class="tool-badge">NEW v2.3</span>' : ''}
+                    <div class="tool-card" data-category="${t.cat}">
                         <div class="tool-icon"><i class="fas ${t.icon}"></i></div>
                         <h4>${t.name}</h4>
                         <p>${t.desc}</p>
@@ -439,7 +431,6 @@
                     </div>
                 `).join('');
             }
-            AOS.refresh();
         }
 
         // Filtering
@@ -476,6 +467,17 @@
 
         // Initial render
         renderTools(tools);
+
+        // Single source of truth: the tools array drives every visible count.
+        // Static HTML keeps the last-known number as a no-JS fallback.
+        (function applyToolCount() {
+            const n = tools.length;
+            if (!n) return;
+            const set = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
+            set('toolsTitle', 'All ' + n + ' tools');
+            set('allTab', 'All (' + n + ')');
+            set('footerTag', "Schooi's Multitool - free, open-source toolkit for Windows 10 & 11. " + n + ' tools in one console.');
+        })();
 
         // Deep-link: pre-filter from ?q= (used by the terminal hero search)
         const _params = new URLSearchParams(window.location.search);
