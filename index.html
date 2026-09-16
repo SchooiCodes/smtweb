@@ -367,10 +367,16 @@
     <script src="version.js"></script>
     <script>
         // Dark is the default theme; toggle adds .light-mode.
+        // Storage is wrapped: private-mode browsers throw on localStorage access,
+        // and an uncaught throw here would kill every script below this block.
+        const store = {
+            get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+            set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+        };
         const darkModeToggle = document.getElementById('darkModeToggle');
         const body = document.body;
 
-        const savedTheme = localStorage.getItem('theme');
+        const savedTheme = store.get('theme');
         if (savedTheme === 'light') {
             body.classList.add('light-mode');
             darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
@@ -379,7 +385,7 @@
         darkModeToggle.addEventListener('click', () => {
             const isLight = body.classList.toggle('light-mode');
             darkModeToggle.innerHTML = isLight ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
-            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+            store.set('theme', isLight ? 'light' : 'dark');
         });
 
         // Navbar Scroll Effect

@@ -122,10 +122,12 @@ SOFTWARE.</div>
     </footer>
 
     <script>
+        const storeGet = (k) => { try { return localStorage.getItem(k); } catch (e) { return null; } };
+        const storeSet = (k, v) => { try { localStorage.setItem(k, v); } catch (e) {} };
         const dmt = document.getElementById('darkModeToggle'), b = document.body;
-        const st = localStorage.getItem('theme');
+        const st = storeGet('theme');
         if (st === 'light') { b.classList.add('light-mode'); dmt.innerHTML = '<i class="fas fa-sun"></i>'; }
-        dmt.addEventListener('click', () => { const l = b.classList.toggle('light-mode'); dmt.innerHTML = l ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>'; localStorage.setItem('theme', l ? 'light' : 'dark'); });
+        dmt.addEventListener('click', () => { const l = b.classList.toggle('light-mode'); dmt.innerHTML = l ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>'; storeSet('theme', l ? 'light' : 'dark'); });
         const hb = document.getElementById('hamburger'), nm = document.querySelector('.nav-menu');
         hb.addEventListener('click', () => { hb.classList.toggle('active'); nm.classList.toggle('active'); });
         document.querySelectorAll('.nav-menu a').forEach(l => l.addEventListener('click', () => { hb.classList.remove('active'); nm.classList.remove('active'); }));
