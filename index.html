@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; base-uri 'self'; form-action 'self'; object-src 'none'; connect-src 'self' https://raw.githubusercontent.com'">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; base-uri 'self'; form-action 'self'; object-src 'none'; connect-src 'self' https://raw.githubusercontent.com https://cdn.jsdelivr.net https://api.github.com'">
     <title>Schooi's Multitool (SMT) - Free Windows Multitool | 145 Windows Tools for Windows 10 &amp; 11</title>
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="images/SMT.png">
@@ -476,8 +476,32 @@
             setV('statVersion', v);
         })();
 
+        // Live data helpers: try each mirror in order, warn and move on on failure.
+        // Never hardcode a hash or changelog here - both are derived at runtime.
+        function bufFrom(url) {
+            return fetch(url, { cache: 'no-store' }).then(r => {
+                if (!r.ok) throw new Error('HTTP ' + r.status + ' ' + url);
+                const ct = r.headers.get('content-type') || '';
+                if (ct.indexOf('application/json') !== -1) {
+                    return r.json().then(j => {
+                        const bin = atob((j.content || '').replace(/\s/g, ''));
+                        const bytes = new Uint8Array(bin.length);
+                        for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+                        return bytes.buffer;
+                    });
+                }
+                return r.arrayBuffer();
+            });
+        }
+        function fetchFirst(urls) {
+            return urls.reduce(
+                (p, u) => p.catch(err => { console.warn('[SMT] live source failed, trying next:', u, err && err.message); return bufFrom(u); }),
+                Promise.reject(new Error('no live sources'))
+            );
+        }
+
         // Live installer hash: downloads Setup.exe from GitHub main and checksums it in-browser,
-        // so the displayed hash is always the current release. Never hardcode a hash here.
+        // so the displayed hash is always the current release.
         (function liveHash() {
             const hashEl = document.getElementById('setupHash');
             const vtEl = document.getElementById('vtLink');
@@ -486,8 +510,10 @@
                 if (hashEl) hashEl.textContent = 'unavailable - check manually on GitHub';
                 return;
             }
-            fetch('https://raw.githubusercontent.com/SchooiCodes/smt/refs/heads/main/Schooi%27s%20Multitool%20Setup.exe', { cache: 'no-store' })
-                .then(r => { if (!r.ok) throw new Error('fetch failed'); return r.arrayBuffer(); })
+            fetchFirst([
+                'https://raw.githubusercontent.com/SchooiCodes/smt/refs/heads/main/Schooi%27s%20Multitool%20Setup.exe',
+                'https://api.github.com/repos/SchooiCodes/smt/contents/Schooi%27s%20Multitool%20Setup.exe?ref=main'
+            ])
                 .then(b => crypto.subtle.digest('SHA-256', b))
                 .then(d => Array.from(new Uint8Array(d)).map(x => x.toString(16).padStart(2, '0')).join('').toUpperCase())
                 .then(hex => {
@@ -495,15 +521,21 @@
                     if (vtEl) vtEl.href = 'https://www.virustotal.com/gui/file/' + hex + '/detection';
                     if (copyBtn) copyBtn.disabled = false;
                 })
-                .catch(() => { hashEl.textContent = 'offline - check manually on GitHub'; });
+                .catch(err => {
+                    console.warn('[SMT] live hash failed:', err && err.message);
+                    hashEl.textContent = 'offline - check manually on GitHub';
+                });
         })();
 
         // Live changelog: renders updatelogs.txt from GitHub main, newest entries first.
         (function liveChangelog() {
             const list = document.getElementById('changelogList');
             if (!list || !window.fetch) return;
-            fetch('https://raw.githubusercontent.com/SchooiCodes/smt/refs/heads/main/updatelogs.txt', { cache: 'no-store' })
-                .then(r => { if (!r.ok) throw new Error('fetch failed'); return r.text(); })
+            fetchFirst([
+                'https://raw.githubusercontent.com/SchooiCodes/smt/refs/heads/main/updatelogs.txt',
+                'https://cdn.jsdelivr.net/gh/SchooiCodes/smt@main/updatelogs.txt'
+            ])
+                .then(b => new TextDecoder().decode(b))
                 .then(t => {
                     const lines = t.split(/\r?\n/).map(s => s.trim()).filter(Boolean);
                     if (!lines.length) throw new Error('empty');
@@ -514,7 +546,10 @@
                         list.appendChild(li);
                     });
                 })
-                .catch(() => { list.innerHTML = '<li>Couldn\'t load the latest changes - see the full history on GitHub below.</li>'; });
+                .catch(err => {
+                    console.warn('[SMT] live changelog failed:', err && err.message);
+                    list.innerHTML = '<li>Couldn\'t load the latest changes - see the full history on GitHub below.</li>';
+                });
         })();
         function esc(s) { return s.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c])); }
         function runHeroFind() {
