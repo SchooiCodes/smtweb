@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com https://unpkg.com; font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com; script-src 'self' 'unsafe-inline' https://unpkg.com https://cdnjs.cloudflare.com; base-uri 'self'; form-action 'self'; object-src 'none'; connect-src 'self'">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; base-uri 'self'; form-action 'self'; object-src 'none'; connect-src 'self'">
     <title>Schooi's Multitool (SMT) - Free Windows Multitool | 137 Windows Tools for Windows 10 &amp; 11</title>
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="images/SMT.png">
@@ -20,7 +20,7 @@
     <meta property="og:site_name" content="Schooi's Multitool">
     <meta property="og:locale" content="en_US">
     <meta property="og:title" content="Schooi's Multitool (SMT) - Free Windows Multitool | 137 Windows Tools">
-    <meta property="og:description" content="The free, open-source Windows multitool &amp; toolkit for Windows 10 &amp; 11. 137 Windows tools in one console - networking, activation, bootable USB, DNS changer &amp; more. Open-source v2.3.">
+    <meta property="og:description" content="The free, open-source Windows multitool &amp; toolkit for Windows 10+. 137 CLI tools in one program - networking, tweaks, apps, games &amp; more.">
     <meta property="og:url" content="https://smtweb.gleeze.com/">
     <meta property="og:image" content="https://smtweb.gleeze.com/images/SMT.png">
     <meta property="og:image:alt" content="Schooi's Multitool SMT Windows multitool console menu">
@@ -40,9 +40,6 @@
     
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- AOS Animation Library -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="styles.css">
@@ -156,13 +153,13 @@
             <div class="shape shape-3"></div>
         </div>
         <div class="hero-inner">
-            <span class="hero-badge">v2.3 . 137 tools . open-source</span>
+            
             <h1 class="hero-title">
                 Schooi's
                 <span class="gradient-text">Multitool</span>
             </h1>
-            <p class="hero-tagline">
-                137 free tools for Windows 10 and 11, in one console. Networking, system repair, app installers, and more.
+            <p class="hero-tagline" id="heroTagline">
+                The free, open-source Windows multitool for Windows 10+. 137 CLI tools in one program - networking, tweaks, apps, games &amp; more.
             </p>
 
             <div class="terminal" aria-hidden="false">
@@ -173,14 +170,14 @@
                     <span class="terminal-title">smt - PowerShell (Admin)</span>
                 </div>
                 <div class="terminal-body">
-                    <div class="term-line boot" style="animation-delay:.05s"><span class="ok">PS C:\&gt;</span> irm "https://smt.gleeze.com/" | iex</div>
-                    <div class="term-line boot dim" style="animation-delay:.35s">&gt; Fetching Schooi's Multitool v2.3 ...</div>
-                    <div class="term-line boot dim" style="animation-delay:.6s">&gt; <span class="ok">137 modules loaded.</span> Ready.</div>
-                    <div class="term-search boot" style="animation-delay:.9s">
+                    <div class="term-line"><span class="ok">PS C:\&gt;</span> irm "https://smt.gleeze.com/" | iex</div>
+                    <div class="term-line dim">&gt; Fetching Schooi's Multitool v2.3 ...</div>
+                    <div class="term-line dim">&gt; <span class="ok"><span id="bootCount">137</span> modules loaded.</span> Ready.</div>
+                    <div class="term-search">
                         <span class="prompt">PS C:\&gt; smt --find</span>
                         <input id="heroSearch" class="term-input" type="text" placeholder="type a tool..." aria-label="Search all 137 tools" autocomplete="off">
                     </div>
-                    <div class="term-count boot" style="animation-delay:1.05s">
+                    <div class="term-count">
                         <span><span id="heroCount">137</span> <span id="heroCountLabel">tools</span></span>
                         <a href="features/index.html" id="browseAll">browse all 137 &rarr;</a>
                     </div>
@@ -188,9 +185,9 @@
                 </div>
             </div>
 
-            <div class="hero-stats" data-aos="fade-up" data-aos-delay="200">
+            <div class="hero-stats">
                 <div class="stat-item">
-                    <span class="stat-number">137</span>
+                    <span class="stat-number" id="statTools">137</span>
                     <span class="stat-label">Tools</span>
                 </div>
                 <div class="stat-item">
@@ -202,33 +199,20 @@
                     <span class="stat-label">Windows</span>
                 </div>
             </div>
-            <div class="hero-cta" data-aos="fade-up" data-aos-delay="300">
+            <div class="hero-cta">
                 <a href="#install" class="btn btn-primary btn-lg"><i class="fas fa-download"></i> Install now</a>
                 <a href="features/index.html" class="btn btn-outline-sm btn-lg"><i class="fas fa-list"></i> Browse tools</a>
+                <a href="https://github.com/SchooiCodes/smt" class="btn btn-outline-sm btn-lg" target="_blank"><i class="fab fa-github"></i> View on GitHub</a>
             </div>
-        </div>
-        <div class="scroll-indicator" data-aos="fade-up" data-aos-delay="400">
-            <span>Scroll</span>
-            <i class="fas fa-chevron-down"></i>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="about-section" data-aos="fade-up">
+    <section id="about" class="about-section">
         <div class="container">
-            <div class="section-header">
-                <span class="section-badge">About</span>
-                <h2 class="section-title">What is Schooi's Multitool?</h2>
-            </div>
-            <div class="about-content">
-                <div class="about-image" data-aos="fade-right">
-                    <div class="image-wrapper">
-                        <img src="images/SMT_v2.3.png" alt="Schooi's Multitool SMT Windows multitool console menu v2.3 - 137 Windows tools overview" class="about-img" loading="lazy" decoding="async" width="800" height="450">
-                        <div class="image-glow"></div>
-                    </div>
-                </div>
-                <div class="about-text" data-aos="fade-left">
-                    <h3>One console, 137 tools</h3>
+            <div class="about-content about-stacked">
+                <div class="about-text">
+                    <h3>One console, <span class="gradient-text" id="aboutCount">137 tools</span></h3>
                     <p>
                         SMT started as a personal project made to organize my batchfile creations, but grew into a full toolkit:
                         network checks, system repair, app installs, and tweaks - all in one menu.
@@ -251,9 +235,12 @@
                             <!-- <span>Updated to v2.3</span> -->
                         <!-- </div> -->
                     <!-- </div> -->
-                    <a href="https://github.com/SchooiCodes/smt" class="btn btn-primary" target="_blank">
-                        <i class="fab fa-github"></i> View on GitHub
-                    </a>
+                </div>
+                <div class="about-image">
+                    <div class="image-wrapper">
+                        <img src="images/SMT_v2.3.png" alt="Schooi's Multitool SMT Windows multitool console menu v2.3 - 137 Windows tools overview" class="about-img" loading="lazy" decoding="async" width="800" height="450">
+                        <div class="image-glow"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -261,15 +248,14 @@
 	
 
     <!-- Install Section -->
-    <section id="install" class="downloads-section" data-aos="fade-up">
+    <section id="install" class="downloads-section">
         <div class="container">
             <div class="section-header">
-                <span class="section-badge">Install</span>
                 <h2 class="section-title">Install in one command</h2>
                 <p class="section-subtitle">No setup wizard. Needs Windows 10 or 11 (64-bit), run as admin.</p>
             </div>
 
-            <div class="install-block" data-aos="zoom-in">
+            <div class="install-block">
                 <div class="install-label"><i class="fab fa-windows"></i> Run this in PowerShell as admin</div>
                 <div class="install-cmd"><code id="installCmd">irm "https://smt.gleeze.com/" | iex</code></div>
                 <button class="copy-btn" type="button"><i class="fas fa-copy"></i> Copy</button>
@@ -304,7 +290,7 @@
     </section>
 
     <!-- <!-- Features Section -->
-    <!-- <section id="features" class="features-section" data-aos="fade-up"> -->
+    <!-- <section id="features" class="features-section"> -->
         <!-- <div class="container"> -->
             <!-- <div class="section-header"> -->
                 <!-- <span class="section-badge">Highlights</span> -->
@@ -312,42 +298,42 @@
                 <!-- <p class="section-description">A few favorites. Search them above, or browse the full list.</p> -->
             <!-- </div> -->
             <!-- <div class="features-grid"> -->
-                <!-- <div class="feature-card" data-aos="fade-up" data-aos-delay="100" data-tags="ip geolocation network lookup"> -->
+                <!-- <div class="feature-card" data-tags="ip geolocation network lookup"> -->
                     <!-- <div class="feature-icon"> -->
                         <!-- <i class="fas fa-globe-americas"></i> -->
                     <!-- </div> -->
                     <!-- <h4>IP Geolocator</h4> -->
                     <!-- <p>Look up where any IP address is located.</p> -->
                 <!-- </div> -->
-                <!-- <div class="feature-card" data-aos="fade-up" data-aos-delay="200" data-tags="windows office activation kms"> -->
+                <!-- <div class="feature-card" data-tags="windows office activation kms"> -->
                     <!-- <div class="feature-icon"> -->
                         <!-- <i class="fas fa-key"></i> -->
                     <!-- </div> -->
                     <!-- <h4>Windows &amp; Office Activator</h4> -->
                     <!-- <p>Activation helper for Windows and Office. Use a valid license.</p> -->
                 <!-- </div> -->
-                <!-- <div class="feature-card" data-aos="fade-up" data-aos-delay="300" data-tags="usb ventoy bootable iso"> -->
+                <!-- <div class="feature-card" data-tags="usb ventoy bootable iso"> -->
                     <!-- <div class="feature-icon"> -->
                         <!-- <i class="fas fa-usb"></i> -->
                     <!-- </div> -->
                     <!-- <h4>Bootable USB Creator</h4> -->
                     <!-- <p>Make multi-boot USB drives with Ventoy.</p> -->
                 <!-- </div> -->
-                <!-- <div class="feature-card" data-aos="fade-up" data-aos-delay="400" data-tags="cli task manager process"> -->
+                <!-- <div class="feature-card" data-tags="cli task manager process"> -->
                     <!-- <div class="feature-icon"> -->
                         <!-- <i class="fas fa-tasks"></i> -->
                     <!-- </div> -->
                     <!-- <h4>CLI Task Manager</h4> -->
                     <!-- <p>Manage running processes from the console.</p> -->
                 <!-- </div> -->
-                <!-- <div class="feature-card" data-aos="fade-up" data-aos-delay="500" data-tags="security credentials research"> -->
+                <!-- <div class="feature-card" data-tags="security credentials research"> -->
                     <!-- <div class="feature-icon"> -->
                         <!-- <i class="fas fa-shield-alt"></i> -->
                     <!-- </div> -->
                     <!-- <h4>Security Tools</h4> -->
                     <!-- <p>Checksum verifier, credential tools, and lab research utilities.</p> -->
                 <!-- </div> -->
-                <!-- <a href="features/index.html" class="feature-card cta-tile" data-aos="fade-up" data-aos-delay="600"> -->
+                <!-- <a href="features/index.html" class="feature-card cta-tile"> -->
                     <!-- <div class="feature-icon"> -->
                         <!-- <i class="fas fa-layer-group"></i> -->
                     <!-- </div> -->
@@ -355,7 +341,7 @@
                     <!-- <p>DNS changer, app installers, school tools, and the rest.</p> -->
                 <!-- </a> -->
             <!-- </div> -->
-            <!-- <div class="features-cta" data-aos="fade-up"> -->
+            <!-- <div class="features-cta"> -->
                 <!-- <a href="features/index.html" class="btn btn-primary btn-lg"> -->
                     <!-- <i class="fas fa-list"></i> Browse all 137 tools -->
                 <!-- </a> -->
@@ -364,7 +350,7 @@
     <!-- </section> -->
 
     <!-- <!-- SEO / FAQ Section -->
-    <!-- <section id="faq" class="faq-section" data-aos="fade-up" style="padding:72px 0;background:var(--bg);border-top:1px solid var(--card-border)"> -->
+    <!-- <section id="faq" class="faq-section" style="padding:72px 0;background:var(--bg);border-top:1px solid var(--card-border)"> -->
         <!-- <div class="container" style="max-width:880px"> -->
             <!-- <div class="section-header"> -->
                 <!-- <span class="section-badge">FAQ</span> -->
@@ -382,14 +368,13 @@
     <!-- </section> -->
 
     <!-- Contact Section -->
-    <section id="contact" class="contact-section" data-aos="fade-up">
+    <section id="contact" class="contact-section">
         <div class="container">
             <div class="section-header">
-                <span class="section-badge">Contact</span>
                 <h2 class="section-title">Contact</h2>
             </div>
             <div class="contact-grid">
-                <div class="contact-card" data-aos="fade-right">
+                <div class="contact-card">
                     <i class="fas fa-bug"></i>
                     <h4>Report a bug</h4>
                     <p>Something broken? Tell us on GitHub.</p>
@@ -397,7 +382,7 @@
                         Open issue <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
-                <div class="contact-card" data-aos="fade-up">
+                <div class="contact-card">
                     <i class="fas fa-lightbulb"></i>
                     <h4>Suggest a feature</h4>
                     <p>Have an idea? Share it with us.</p>
@@ -405,7 +390,7 @@
                         Suggest <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
-                <div class="contact-card" data-aos="fade-left">
+                <div class="contact-card">
                     <i class="fas fa-envelope"></i>
                     <h4>Email us</h4>
                     <p>For anything else, send an email.</p>
@@ -414,7 +399,7 @@
                     </a>
                 </div>
             </div>
-            <div class="social-links" data-aos="fade-up">
+            <div class="social-links">
                 <a href="https://discord.gg/REj54yP7Qa" class="social-link discord" target="_blank" aria-label="Discord">
                     <i class="fab fa-discord"></i>
                 </a>
@@ -434,7 +419,7 @@
             <div class="footer-content">
                 <div class="footer-brand">
                     <h3><i class="fas fa-cube"></i> SMT</h3>
-                    <p>Schooi's Multitool (SMT) - free, open-source toolkit for Windows 10 &amp; 11. 137 tools in one console.</p>
+                    <p id="footerTag">Schooi's Multitool (SMT) - free, open-source toolkit for Windows 10 &amp; 11. 137 tools in one console.</p>
                 </div>
                 <div class="footer-links">
                     <a href="#about">About</a>
@@ -448,23 +433,14 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 Schooi. All rights reserved. Made with <i class="fas fa-heart" style="color: var(--i3);"></i></p>
+                <p>&copy; 2026 Schooi. All rights reserved. Made with <i class="fas fa-heart" style="color: #ef4444;"></i></p>
             </div>
         </div>
     </footer>
 
     <!-- Scripts -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="tools-search.js"></script>
     <script>
-        // Initialize AOS
-        AOS.init({
-            duration: 800,
-            easing: 'ease-in-out',
-            once: true,
-            mirror: false
-        });
-
         // Dark is the default theme; toggle adds .light-mode.
         const darkModeToggle = document.getElementById('darkModeToggle');
         const body = document.body;
@@ -542,7 +518,24 @@
         const browseAll = document.getElementById('browseAll');
         const featuredCards = Array.from(document.querySelectorAll('.features-grid .feature-card:not(.cta-tile)'));
         const ALL_TOOLS = window.SMT_TOOLS || [];
-        const TOTAL = ALL_TOOLS.length || 137;
+        const TOTAL = ALL_TOOLS.length || 0;
+        // Single source of truth: the search index drives every visible count.
+        // Static HTML keeps the last-known number as a no-JS fallback; this overwrites it when data loads.
+        // Number-only swaps (tagline/footer) so page copy stays untouched.
+        function applyToolCount(n) {
+            if (!n) return;
+            const set = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
+            const sub = (id, re, v) => { const el = document.getElementById(id); if (el) el.textContent = el.textContent.replace(re, v); };
+            set('heroCount', n);
+            set('statTools', n);
+            set('bootCount', n);
+            set('aboutCount', n + ' tools');
+            sub('heroTagline', /\d+ CLI tools/, n + ' CLI tools');
+            sub('footerTag', /\d+ tools in one console/, n + ' tools in one console');
+            if (browseAll) browseAll.textContent = 'browse all ' + n + ' \u2192';
+            if (heroSearch) heroSearch.setAttribute('aria-label', 'Search all ' + n + ' tools');
+        }
+        applyToolCount(TOTAL);
         function esc(s) { return s.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c])); }
         function runHeroFind() {
             const q = (heroSearch.value || '').trim().toLowerCase();
