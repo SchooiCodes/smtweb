@@ -1001,6 +1001,7 @@ section {
 }
 .copy-btn.small { padding: 10px 12px; }
 .copy-btn:hover { background: var(--accent-hover); }
+.copy-btn:disabled { opacity: 0.55; cursor: wait; }
 .install-note {
     color: var(--text-secondary);
     font-size: 0.9rem;
@@ -1307,6 +1308,16 @@ section {
     transform: translateY(-2px);
     color: #ffffff !important;
     box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+}
+
+/* ===== Tidy: changelog list ===== */
+.changelog-list { list-style: none; display: grid; gap: 12px; text-align: left; padding: 0; }
+.changelog-list li {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 14px 18px;
+    color: var(--text-secondary);
 }
 
 /* ===== Tidy: stacked About layout (text above screenshot) ===== */
