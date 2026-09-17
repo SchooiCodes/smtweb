@@ -220,7 +220,9 @@
                 </div>
                 <div class="about-image">
                     <div class="image-wrapper">
-                        <img src="images/SMT_v2.3.png" alt="Schooi's Multitool SMT Windows multitool console menu v2.3 - 145 Windows tools overview" class="about-img" loading="lazy" decoding="async" width="800" height="450">
+                        <button type="button" class="shot-open" id="shotOpen" aria-label="Expand screenshot">
+                            <img src="images/SMT_v2.3.png" alt="Schooi's Multitool SMT Windows multitool console menu v2.3 - 145 Windows tools overview" class="about-img" loading="lazy" decoding="async" width="1919" height="1040">
+                        </button>
                         <div class="image-glow"></div>
                     </div>
                 </div>
@@ -237,7 +239,8 @@
                 <p class="section-subtitle">No setup wizard. Needs Windows 10 or 11 (64-bit), run as admin.</p>
             </div>
 
-            <div class="install-block">
+            <div class="install-block recommended">
+                <span class="recommended-tag"><i class="fas fa-star"></i> Recommended</span>
                 <div class="install-label"><i class="fab fa-windows"></i> Run this in PowerShell as admin</div>
                 <div class="install-cmd"><code id="installCmd">irm "https://smt.gleeze.com/" | iex</code></div>
                 <button class="copy-btn" type="button"><i class="fas fa-copy"></i> Copy</button>
@@ -361,6 +364,18 @@
             </div>
         </div>
     </footer>
+
+    <!-- Screenshot lightbox -->
+    <div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Expanded screenshot">
+        <img src="images/SMT_v2.3.png" alt="">
+        <button type="button" class="lightbox-close" aria-label="Close">&times;</button>
+    </div>
+
+    <!-- Mobile quick-action bar (mobile only, see .mobile-bar) -->
+    <nav class="mobile-bar" aria-label="Quick actions">
+        <a href="#install" class="btn btn-primary"><i class="fas fa-download"></i> Install</a>
+        <a href="features/" class="btn btn-outline-sm"><i class="fas fa-list"></i> Tools</a>
+    </nav>
 
     <!-- Scripts -->
     <script src="tools-search.js"></script>
@@ -612,6 +627,29 @@
                     setTimeout(function() { btn.innerHTML = orig; btn.classList.remove('copied'); }, 1500);
                 });
             });
+        // Screenshot lightbox: expand the About screenshot.
+        (function lightbox() {
+            const openBtn = document.getElementById('shotOpen');
+            const box = document.getElementById('lightbox');
+            if (!openBtn || !box) return;
+            const closeBtn = box.querySelector('.lightbox-close');
+            let lastFocus = null;
+            function open() {
+                lastFocus = document.activeElement;
+                box.hidden = false;
+                document.body.style.overflow = 'hidden';
+                if (closeBtn) closeBtn.focus();
+            }
+            function close() {
+                box.hidden = true;
+                document.body.style.overflow = '';
+                if (lastFocus && lastFocus.focus) lastFocus.focus();
+            }
+            openBtn.addEventListener('click', open);
+            if (closeBtn) closeBtn.addEventListener('click', close);
+            box.addEventListener('click', e => { if (e.target === box) close(); });
+            document.addEventListener('keydown', e => { if (e.key === 'Escape' && !box.hidden) close(); });
+        })();
         });
     </script>
 </body>

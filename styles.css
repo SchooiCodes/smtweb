@@ -511,11 +511,15 @@ section {
 
 .image-wrapper {
     position: relative;
+    max-width: 760px;
+    margin: 0 auto;
+    width: 100%;
 }
 
 .about-img {
     max-width: 100%;
-    border-radius: 20px;
+    height: auto;
+    border-radius: 0;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
     transition: transform 0.3s ease;
 }
@@ -531,7 +535,7 @@ section {
     right: 20px;
     bottom: 20px;
     background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
-    border-radius: 20px;
+    border-radius: 0;
     z-index: -1;
     filter: blur(30px);
     opacity: 0.3;
@@ -975,6 +979,28 @@ section {
     font-weight: 600;
 }
 .install-label i { color: var(--accent); margin-right: 6px; }
+.install-block.recommended {
+    position: relative;
+    border: 1px solid var(--accent);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.22), 0 20px 60px rgba(99, 102, 241, 0.25);
+}
+.recommended-tag {
+    position: absolute;
+    top: -15px;
+    left: 24px;
+    background: var(--grad);
+    color: #ffffff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 5px 16px;
+    border-radius: 999px;
+    box-shadow: 0 4px 14px rgba(99, 102, 241, 0.45);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
 .install-cmd {
     flex: 1 1 320px;
     font-family: ui-monospace, 'Courier New', monospace;
@@ -1237,7 +1263,7 @@ section {
     text-overflow: ellipsis;
     white-space: nowrap;
 }
-.tool-card p {
+.tool-card > p {
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
@@ -1254,7 +1280,7 @@ section {
 @media print {
     .navbar, .footer, .offline-banner, .skip-link, .theme-toggle,
     .social-links, .terminal, .hero-cta, .hero-search, .contact-cta,
-    .copy-btn, .filter-tabs, .term-results, .no-results, .btn { display: none !important; }
+    .copy-btn, .filter-tabs, .term-results, .no-results, .mobile-bar, .btn { display: none !important; }
     html, body { background: #ffffff !important; color: #000000 !important; }
     *, *::before, *::after { box-shadow: none !important; text-shadow: none !important; }
     .hero, .features-section, .downloads-section, .legal-hero, .legal-content, .contact-section {
@@ -1320,6 +1346,48 @@ section {
     color: var(--text-secondary);
 }
 
+/* ===== Tidy: screenshot lightbox ===== */
+.shot-open {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: zoom-in;
+}
+.lightbox[hidden] { display: none !important; }
+.lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 2500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: rgba(4, 4, 10, 0.9);
+    cursor: zoom-out;
+}
+.lightbox img {
+    max-width: min(1100px, 94vw);
+    max-height: 86vh;
+    border-radius: 8px;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+}
+.lightbox-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid var(--card-border);
+    background: var(--card-bg);
+    color: var(--text-primary);
+    font-size: 1.4rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
 /* ===== Tidy: stacked About layout (text above screenshot) ===== */
 .about-content.about-stacked {
     grid-template-columns: 1fr;
@@ -1351,4 +1419,73 @@ section {
 }
 @media (max-width: 640px) {
     .container, .nav-container { max-width: 100%; }
+}
+
+/* ===== Custom mobile UI ===== */
+.mobile-bar { display: none; }
+@media (max-width: 640px) {
+    html, body { overflow-x: clip; }
+    section, .container, .hero-inner, .terminal, .terminal-body, .term-search,
+    .term-count, .install-block, .install-cmd, .mirror-list, .mirror-pick,
+    .features-hero .container, .search-box, .filter-tabs, .tools-grid, .tool-card,
+    .contact-grid, .contact-card, .install-grid, .install-option, .footer-content {
+        min-width: 0;
+        max-width: 100%;
+    }
+    img { max-width: 100%; }
+    .term-search .prompt { white-space: normal; }
+    .hero-stats { flex-wrap: wrap; }
+    .hero { padding: 110px 16px 60px; }
+    .hero-inner { min-width: 0; }
+    .hero-title {
+        font-size: 2.4rem;
+        text-wrap: balance;
+        overflow-wrap: break-word;
+        word-break: break-word;
+    }
+    .hero-tagline { font-size: 1rem; }
+    .terminal { max-width: 100%; min-width: 0; }
+    .terminal-body { font-size: 0.8rem; padding: 14px 12px 16px; }
+    .term-line, .term-search .prompt, .term-input, .term-count { overflow-wrap: anywhere; }
+    .term-search { flex-wrap: wrap; row-gap: 4px; }
+    .hero-stats { gap: 20px; margin-bottom: 28px; }
+    .stat-number { font-size: 1.8rem; }
+    .stat-label { font-size: 0.7rem; letter-spacing: 1px; }
+    .hero-cta { flex-direction: column; align-items: stretch; }
+    .hero-cta .btn { justify-content: center; }
+    .install-block, .install-cmd { min-width: 0; }
+    .install-cmd code { overflow-wrap: anywhere; white-space: pre-wrap; word-break: break-all; }
+    .mirror-pick code { overflow-wrap: anywhere; }
+    .tool-card { padding: 24px 20px; }
+    .contact-card { padding: 32px 24px; }
+    .footer-content { flex-direction: column; text-align: center; }
+    .footer-links { justify-content: center; flex-wrap: wrap; }
+
+    /* Sticky bottom quick-action bar (mobile only) */
+    body { padding-bottom: 84px; }
+    .mobile-bar {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1500;
+        padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+        background: var(--navbar-bg);
+        -webkit-backdrop-filter: blur(12px);
+        backdrop-filter: blur(12px);
+        border-top: 1px solid var(--card-border);
+    }
+    .mobile-bar .btn {
+        flex: 1 1 0;
+        min-width: 0;
+        justify-content: center;
+        padding: 12px 10px;
+        font-size: 0.95rem;
+        white-space: nowrap;
+    }
+    .offline-banner { bottom: 84px; }
 }
