@@ -112,7 +112,7 @@ window.SMT_TOOLS = [
   { n: "Command History", t: "command history" },
   { n: "Debug Mode", t: "debug troubleshooting" },
   { n: "Open CMD / PowerShell", t: "cmd powershell terminal" },
-  { n: "Git Command", t: "git command" },
+  { n: "Open GitHub Repo", t: "github repo" },
   { n: "Chocolatey", t: "chocolatey package manager" },
   { n: "Auto Update System", t: "auto update" },
   { n: "Steam", t: "steam games" },

@@ -51,27 +51,50 @@
         }
         .features-hero h1 { font-size: 3rem; font-weight: 800; margin-bottom: 16px; }
         .features-hero .hero-badge { background: var(--card-bg); border: 1px solid var(--card-border); }
+        .toolbar {
+            display: flex; align-items: center; justify-content: space-between;
+            gap: 16px 28px; flex-wrap: wrap;
+            padding-top: 30px;
+        }
+        .toolbar-controls { display: flex; align-items: center; gap: 14px 20px; flex-wrap: wrap; }
+        .category-select {
+            appearance: none; -webkit-appearance: none;
+            background-color: var(--card-bg);
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="%239494a6" stroke-width="3" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>');
+            background-repeat: no-repeat; background-position: right 16px center;
+            border: 1px solid var(--card-border); color: var(--text-primary);
+            border-radius: 50px; padding: 11px 42px 11px 20px;
+            font-family: 'Bricolage Grotesque', 'Inter', sans-serif; font-weight: 700; font-size: 0.92rem; letter-spacing: 0.02em;
+            cursor: pointer;
+        }
+        .category-select:hover { border-color: var(--accent); }
+        .category-select:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+        .category-select option { background: var(--bg-secondary); color: var(--text-primary); }
+        @media (max-width: 640px) {
+            .toolbar { flex-direction: column; align-items: stretch; }
+            .toolbar .search-box { max-width: none; }
+            .toolbar-controls { justify-content: center; }
+        }
         .search-box {
-            margin: 24px auto; max-width: 500px; position: relative;
+            flex: 1 1 300px; max-width: 480px; position: relative;
+            margin: 0;
         }
         .search-box input {
-            width: 100%; padding: 14px 20px 14px 50px; border-radius: 50px;
-            border: 2px solid var(--card-border); background: var(--card-bg);
+            width: 100%; padding: 15px 22px 15px 52px; border-radius: 50px;
+            border: 1px solid var(--card-border);
+            background: rgba(255, 255, 255, 0.04);
+            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(12px);
             color: var(--text-primary); font-size: 1rem; outline: none;
-            transition: all 0.3s;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
         }
         .search-box input::placeholder { color: var(--text-secondary); }
-        .search-box input:focus { border-color: var(--accent); background: var(--card-bg); }
-        .search-box i { position: absolute; left: 20px; top: 50%; transform: translateY(-50%); color: var(--text-secondary); }
-        .filter-tabs {
-            display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin: 32px 0 20px;
+        .search-box input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.28);
         }
-        .filter-tab {
-            padding: 10px 24px; border-radius: 50px; border: 2px solid var(--card-border);
-            background: transparent; color: var(--text-primary); font-weight: 600; cursor: pointer;
-            transition: all 0.3s;
-        }
-        .filter-tab:hover, .filter-tab.active { background: var(--accent); color: #ffffff; border-color: var(--accent); }
+        .search-box .search-icon { position: absolute; left: 22px; top: 0; bottom: 0; margin-top: auto; margin-bottom: auto; color: var(--accent); flex-shrink: 0; z-index: 1; pointer-events: none; }
         .tools-grid {
             display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 24px; padding: 40px 0;
@@ -89,11 +112,47 @@
         }
         .tool-card h4 { font-size: 1.3rem; margin-bottom: 8px; }
         .tool-card p { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.5; }
-        .features-hero h1, .filter-tab, .tool-card h4 {
+        .features-hero h1, .tool-card h4 {
             font-family: 'Bricolage Grotesque', 'Inter', sans-serif;
         }
-        .filter-tab { font-weight: 700; letter-spacing: 0.02em; }
         .tool-card:target { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.35); }
+        .tool-card.is-dangerous { border-color: rgba(239, 68, 68, 0.55); }
+        .tool-card.is-dangerous .tool-icon { background: linear-gradient(135deg, #ef4444, #b91c1c); }
+        .danger-tag {
+            position: absolute; top: 20px; right: 20px;
+            background: linear-gradient(135deg, #ef4444, #b91c1c); color: #fff;
+            font-size: 0.7rem; font-weight: 700; padding: 4px 12px; border-radius: 20px;
+            text-transform: uppercase; letter-spacing: 0.5px;
+        }
+        .details-switch .danger-track { border-color: rgba(239, 68, 68, 0.5); }
+        .details-switch input:checked + .danger-track { background: #ef4444; border-color: #ef4444; }
+        .gate-overlay[hidden] { display: none !important; }
+        .gate-overlay {
+            position: fixed; inset: 0; z-index: 2500;
+            display: flex; align-items: center; justify-content: center;
+            padding: 24px; background: rgba(4, 4, 10, 0.85);
+        }
+        .gate-box {
+            max-width: 520px; background: var(--card-bg);
+            border: 1px solid rgba(239, 68, 68, 0.5); border-radius: 20px;
+            padding: 32px; text-align: center; box-shadow: var(--card-shadow);
+        }
+        .gate-box h3 { font-size: 1.5rem; margin-bottom: 12px; color: var(--text-primary); font-family: 'Bricolage Grotesque', 'Inter', sans-serif; }
+        .gate-box p { color: var(--text-secondary); line-height: 1.7; margin-bottom: 24px; }
+        .gate-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+        .details-switch { display: inline-flex; align-items: center; gap: 10px; margin: 0; white-space: nowrap; color: var(--text-secondary); font-weight: 600; font-size: 0.92rem; font-family: 'Bricolage Grotesque', 'Inter', sans-serif; cursor: pointer; }
+        .details-switch input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+        .details-switch .switch-track { width: 42px; height: 24px; border-radius: 999px; background: var(--card-bg); border: 1px solid var(--card-border); position: relative; transition: background 0.2s ease, border-color 0.2s ease; flex-shrink: 0; }
+        .details-switch .switch-track::after { content: ''; position: absolute; top: 2px; left: 2px; width: 18px; height: 18px; border-radius: 50%; background: var(--text-secondary); transition: transform 0.2s ease, background 0.2s ease; }
+        .details-switch input:checked + .switch-track { background: var(--accent); border-color: var(--accent); }
+        .details-switch input:checked + .switch-track::after { transform: translateX(18px); background: #fff; }
+        .details-switch input:focus-visible + .switch-track { outline: 3px solid var(--accent); outline-offset: 2px; }
+        .tool-detail { margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--card-border); font-size: 0.9rem; color: var(--text-secondary); text-align: left; }
+        .tool-detail p { margin-bottom: 10px; line-height: 1.6; }
+        .tool-meta { display: grid; gap: 4px; font-size: 0.82rem; margin-bottom: 10px; }
+        .tool-meta b { color: var(--text-primary); font-weight: 600; }
+        .tool-meta code { font-family: ui-monospace, monospace; font-size: 0.78rem; }
+        .tool-src { color: var(--accent); font-weight: 600; font-size: 0.85rem; }
         @media (max-width: 768px) {
             .features-hero h1 { font-size: 2rem; }
             .tools-grid { grid-template-columns: 1fr; }
@@ -153,39 +212,39 @@
     <section class="features-hero" id="main" tabindex="-1">
         <div class="container">
             
-            <h1 id="toolsTitle">All 145 tools</h1>
+            <h1 id="toolsTitle">All <span class="gradient-text" id="toolsCountNum">145</span> tools</h1>
             <p style="opacity:0.9; max-width:640px; margin:0 auto 20px;">
                 Search or filter everything in the toolkit.
             </p>
-            <div class="search-box" role="search">
-                <i class="fas fa-search"></i>
-                <input type="text" id="toolSearch" aria-label="Search tools" placeholder="Search tools... try &quot;dns&quot;, &quot;usb&quot;, &quot;password&quot;">
-            </div>
-			
-
-			<!-- Policy notice -->
-			<div class="container" style="max-width:900px;margin:0 auto;padding:0 24px">
-				<div style="background:var(--card-bg);border:1px solid var(--card-border);color:var(--text-secondary);border-radius:12px;padding:14px 18px;font-size:.92rem;line-height:1.6;text-align:center" role="note">
-            <strong style="color:var(--text-primary)">Use responsibly:</strong> only use these on PCs you own or have explicit permission to test. Unauthorized access, malware distribution, and piracy are prohibited and may be illegal. Details in <a href="../terms.html" style="color:var(--accent);text-decoration:underline;font-weight:700">Terms</a> and on <a href="https://github.com/SchooiCodes/smt" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline;font-weight:700">GitHub</a>.
-				</div>
-			</div>
-            <div class="filter-tabs">
-                <button class="filter-tab active" data-filter="all" aria-pressed="true" id="allTab">All (145)</button>
-                <button class="filter-tab" data-filter="network" aria-pressed="false">Network</button>
-                <button class="filter-tab" data-filter="system" aria-pressed="false">System</button>
-                <button class="filter-tab" data-filter="windows" aria-pressed="false">Windows</button>
-                <button class="filter-tab" data-filter="security" aria-pressed="false">Security</button>
-                <button class="filter-tab" data-filter="apps" aria-pressed="false">Apps</button>
-                <button class="filter-tab" data-filter="dev" aria-pressed="false">Developer</button>
-                <button class="filter-tab" data-filter="school" aria-pressed="false">School</button>
-                <button class="filter-tab" data-filter="advanced" aria-pressed="false">Advanced</button>
-            </div>
         </div>
     </section>
 
     <!-- Offline indicator -->
     <div id="offlineBanner" class="offline-banner" hidden role="status">
         <i class="fas fa-wifi"></i> You're offline - some things may not load.
+    </div>
+
+    <!-- Toolbar: search left, switches + category right -->
+    <div class="toolbar container">
+        <div class="search-box" role="search">
+            <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/></svg>
+            <input type="text" id="toolSearch" aria-label="Search tools" placeholder="Search tools... try &quot;dns&quot;, &quot;usb&quot;, &quot;password&quot;">
+        </div>
+        <div class="toolbar-controls">
+            <label class="details-switch"><input type="checkbox" id="detailsToggle"><span class="switch-track" aria-hidden="true"></span> Show details</label>
+            <label class="details-switch"><input type="checkbox" id="dangerToggle"><span class="switch-track danger-track" aria-hidden="true"></span> Show dangerous</label>
+            <select id="categorySelect" class="category-select" aria-label="Filter by category">
+                <option value="all" id="allOption">All tools (145)</option>
+                <option value="network">Network</option>
+                <option value="system">System</option>
+                <option value="windows">Windows</option>
+                <option value="security">Security</option>
+                <option value="apps">Apps</option>
+                <option value="dev">Developer</option>
+                <option value="school">School</option>
+                <option value="advanced">Advanced</option>
+            </select>
+        </div>
     </div>
 
     <!-- Tools Grid -->
@@ -196,6 +255,18 @@
             No matches. Try another word or category.
         </p>
     </section>
+
+    <!-- Dangerous tools gate -->
+    <div class="gate-overlay" id="dangerGate" hidden role="alertdialog" aria-modal="true" aria-labelledby="dangerGateTitle" aria-describedby="dangerGateDesc">
+        <div class="gate-box">
+            <h3 id="dangerGateTitle">Restricted tools</h3>
+            <p id="dangerGateDesc">These tools can damage systems, bypass protections, or break the law if misused. Only use them on PCs you own or have explicit permission to test. Unauthorized access, malware distribution, and piracy are prohibited and may be illegal.</p>
+            <div class="gate-actions">
+                <button type="button" class="btn btn-primary" id="dangerAccept">I understand - show them</button>
+                <button type="button" class="btn btn-outline-sm" id="dangerDecline">Keep them hidden</button>
+            </div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer class="footer">
@@ -221,6 +292,12 @@
             </div>
         </div>
     </footer>
+
+    <!-- Mobile quick-action bar (mobile only, see .mobile-bar) -->
+    <nav class="mobile-bar" aria-label="Quick actions">
+        <a href="../#install" class="btn btn-primary"><i class="fas fa-download"></i> Install</a>
+        <a href="./" class="btn btn-outline-sm"><i class="fas fa-list"></i> Tools</a>
+    </nav>
 
     <!-- Scripts -->
     <script>
@@ -261,183 +338,195 @@
         // ==================== COMPLETE TOOL DATABASE ====================
         const tools = [
             // Networking & IP
-            { name: "IP Geolocator", desc: "Locate IP addresses globally with detailed geographic info.", icon: "fa-globe-americas", cat: "network", tags: "ip location geolocation", added: "v1.1" },
-            { name: "IP Pinger", desc: "Ping any IP address to test connectivity.", icon: "fa-network-wired", cat: "network", tags: "ip ping network", added: "v1.2" },
-            { name: "IP Logger", desc: "Log IP addresses for tracking and analysis.", icon: "fa-server", cat: "network", tags: "ip logger tracking", added: "v1.2" },
-            { name: "IP Stealer", desc: "Saves your own IP info to a file.", icon: "fa-user-secret", cat: "network", tags: "ip stealer capture", added: "v1.3" },
-            { name: "NS Lookupper", desc: "Query DNS records for any domain.", icon: "fa-search", cat: "network", tags: "dns nslookup domain", added: "v2.2" },
-            { name: "Internet Route Tracer", desc: "Trace the route packets take to a destination.", icon: "fa-route", cat: "network", tags: "traceroute network path", added: "v2.2" },
-            { name: "Network Speedtest", desc: "Test your internet connection speed.", icon: "fa-tachometer-alt", cat: "network", tags: "speedtest bandwidth", added: "v2.1" },
-            { name: "Wi-Fi Password Revealer", desc: "View saved Wi-Fi passwords on your system.", icon: "fa-wifi", cat: "network", tags: "wifi password reveal", added: "v2.1" },
-            { name: "Website Blocker", desc: "Block access to specific websites.", icon: "fa-ban", cat: "network", tags: "block website filter", added: "v2.2" },
-            { name: "Easy DNS Changer", desc: "Switch between DNS providers (Google, Cloudflare, etc.).", icon: "fa-globe", cat: "network", tags: "dns change switch", added: "v2.3" },
-            { name: "SMB Bruteforcer", desc: "Test SMB shares you own.", icon: "fa-folder-open", cat: "network", tags: "smb brute force", added: "v1.x" },
-            { name: "URL Shortener", desc: "Shorten long URLs instantly.", icon: "fa-link", cat: "network", tags: "url short link", added: "v1.2" },
-            { name: "IPv6 Disabler", desc: "Disable IPv6 networking across the system.", icon: "fa-network-wired", cat: "network", tags: "ipv6 disable network", added: "v2.x" },
-            { name: "IPv6 Re-enabler", desc: "Re-enable IPv6 networking after disabling it.", icon: "fa-network-wired", cat: "network", tags: "ipv6 enable network", added: "v2.x" },
+            { name: "IP Geolocator", desc: "Look up any IP's location.", info: "Downloads the IPGeolocator tool plus its library, runs it, then deletes the files so nothing is left behind.", menu: "Tools > Network > 2", file: "Files/IPGeolocatorDL.bat", icon: "fa-globe-americas", cat: "network", tags: "ip location geolocation", added: "v1.1" },
+            { name: "IP Pinger", desc: "Ping an IP to test it.", icon: "fa-network-wired", cat: "network", tags: "ip ping network", added: "v1.2", info: "Pings an address once to check it, then offers continuous pinging.", menu: "Tools > Network > 3", file: "Files/pinger.bat" },
+            { name: "IP Logger", desc: "Log IPs with names and dates.", icon: "fa-server", cat: "network", tags: "ip logger tracking", added: "v1.2", info: "Appends a name, IP, and timestamp to a local logbook file.", menu: "Tools > Network > 1", file: "Files/iplog.bat" },
+            { name: "IP Stealer", desc: "Saves your own IP info to a file.", icon: "fa-user-secret", cat: "network", tags: "ip stealer capture", added: "v1.3", info: "Dumps this PC's full ipconfig output into a text file inside an IPs folder.", file: "Files/IPStealer.bat" },
+            { name: "NS Lookupper", desc: "Query DNS records for any domain.", icon: "fa-search", cat: "network", tags: "dns nslookup domain", added: "v2.2", info: "Runs nslookup queries in a loop until you close it.", menu: "Tools > Network > 11", file: "Files/nsl.bat" },
+            { name: "Internet Route Tracer", desc: "Trace packets to a destination.", icon: "fa-route", cat: "network", tags: "traceroute network path", added: "v2.2", info: "Runs traceroute in a loop until you close it.", menu: "Tools > Network > 12", file: "Files/trt.bat" },
+            { name: "Network Speedtest", desc: "Test connection speed.", icon: "fa-tachometer-alt", cat: "network", tags: "speedtest bandwidth", added: "v2.1", info: "Downloads the Ookla Speedtest CLI, runs it once, then deletes the files.", menu: "Tools > Network > 9", file: "Files/stcli.bat" },
+            { name: "Wi-Fi Password Revealer", desc: "Show your saved Wi-Fi passwords.", icon: "fa-wifi", cat: "network", tags: "wifi password reveal", added: "v2.1", info: "Prints saved Wi-Fi profiles with their clear-text keys via netsh.", menu: "Tools > Network > 8", file: "Files/wifipasses.bat" },
+            { name: "Website Blocker", desc: "Block websites via HOSTS.", icon: "fa-ban", cat: "network", tags: "block website filter", added: "v2.2", info: "Maps domains to 127.0.0.1 in the HOSTS file and flushes DNS. Needs admin rights.", menu: "Tools > Network > 10", file: "Files/hfb.bat" },
+            { name: "Easy DNS Changer", desc: "Switch DNS providers.", info: "Switches your active adapter between Google, Cloudflare, OpenDNS, Quad9, AdGuard, and NextDNS (with DoH), or a custom server. Needs admin rights.", menu: "Tools > Network > 6", file: "Files/ednsc.bat", icon: "fa-globe", cat: "network", tags: "dns change switch", added: "v2.3" },
+            { name: "SMB Bruteforcer", desc: "Test SMB shares you own.", danger: true, info: "Tries username and password combos against an SMB share from a wordlist. Lab and own-systems only.", menu: "Tools > Network > 7", file: "Files/SMBBruteforcer.bat", icon: "fa-folder-open", cat: "network", tags: "smb brute force", added: "v1.x" },
+            { name: "URL Shortener", desc: "Shorten URLs via TinyURL.", icon: "fa-link", cat: "network", tags: "url short link", added: "v1.2", info: "Shortens a link through the TinyURL API and shows the result.", menu: "Tools > Utilities > 2", file: "Files/URLShortener.bat" },
+            { name: "IPv6 Disabler", desc: "Disable IPv6.", icon: "fa-network-wired", cat: "network", tags: "ipv6 disable network", added: "v2.x", info: "Disables IPv6 via netsh and adapter bindings. Needs admin rights.", menu: "Tools > Network > 4", file: "Files/ipv6.bat" },
+            { name: "IPv6 Re-enabler", desc: "Re-enable IPv6.", icon: "fa-network-wired", cat: "network", tags: "ipv6 enable network", added: "v2.x", info: "Re-enables IPv6 with the revert flag. Needs admin rights.", menu: "Tools > Network > 5", file: "Files/ipv6.bat" },
 
             // System Utilities
-            { name: "CLI Task Manager", desc: "Manage processes and tasks from the command line.", icon: "fa-list-check", cat: "system", tags: "task manager process cli", added: "v2.1" },
-            { name: "Tron", desc: "Runs Tron to deep-clean the PC. Takes hours and restarts.", icon: "fa-broom", cat: "system", tags: "tron clean disinfect repair", added: "v2.x" },
-            { name: "U* Miner Remover", desc: "Removes the XMRig USB-miner infection.", icon: "fa-shield-virus", cat: "system", tags: "xmrig miner virus usb remover", added: "v2.x" },
-            { name: "Hibernation Enabler/Disabler", desc: "Toggle system hibernation on or off.", icon: "fa-moon", cat: "system", tags: "hibernate sleep power", added: "v2.0" },
-            { name: "Registry Backupper", desc: "Backup and restore the Windows registry.", icon: "fa-database", cat: "system", tags: "registry backup restore", added: "v1.4" },
-            { name: "Driver Backupper", desc: "Backup and restore device drivers.", icon: "fa-hard-drive", cat: "system", tags: "driver backup restore", added: "v1.4" },
-            { name: "System Info Viewer", desc: "Display detailed system information.", icon: "fa-info-circle", cat: "system", tags: "system info hardware", added: "v1.4" },
-            { name: "Create A System Restore Point", desc: "One-click restore point.", icon: "fa-rotate-left", cat: "system", tags: "system restore point rollback", added: "v2.x" },
-            { name: "Folder Organizer", desc: "Automatically organize files into folders.", icon: "fa-folder-tree", cat: "system", tags: "organize files folders", added: "v2.1" },
-            { name: "Hydra Launcher", desc: "Install Hydra game launcher.", icon: "fa-gamepad", cat: "apps", tags: "hydra games launcher", added: "v2.x" },
-            { name: "Performance Options", desc: "View and adjust Windows performance settings.", icon: "fa-gauge-high", cat: "system", tags: "performance windows optimize", added: "v1.5" },
-            { name: "Shutdown & Restart Commands", desc: "Quick shutdown and restart from the main menu.", icon: "fa-power-off", cat: "system", tags: "shutdown restart", added: "v2.0" },
-            { name: "Boot to BIOS", desc: "Restart directly into BIOS/UEFI settings.", icon: "fa-microchip", cat: "system", tags: "bios restart firmware", added: "v2.2" },
-            { name: "Console Color Changer", desc: "Customize the console color scheme.", icon: "fa-palette", cat: "system", tags: "color console theme", added: "v1.4" },
-            { name: "Add to PATH", desc: "Add SMT to system PATH for global access.", icon: "fa-terminal", cat: "system", tags: "path environment", added: "v1.4" },
-            { name: "Add to Program Files", desc: "Install SMT to Program Files directory.", icon: "fa-folder-plus", cat: "system", tags: "install program files", added: "v1.4" },
-            { name: "Auto Window Resizing", desc: "Automatically resize console windows.", icon: "fa-expand", cat: "system", tags: "window resize auto", added: "v2.3" },
-            { name: "Time Freezer", desc: "Freeze system time temporarily.", icon: "fa-clock", cat: "system", tags: "time freeze pause", added: "v2.3" },
-            { name: "Clipboard Manager", desc: "Manage multiple clipboard entries.", icon: "fa-paste", cat: "system", tags: "clipboard copy paste", added: "v2.3" },
-            { name: "Screenshot Tool", desc: "Capture screenshots directly from SMT.", icon: "fa-camera", cat: "system", tags: "screenshot capture", added: "v2.3" },
-            { name: "Bootable USB Creator", desc: "Create multi-boot USBs using Ventoy.", icon: "fa-usb", cat: "system", tags: "usb boot ventoy", added: "v2.3" },
-            { name: "Uninstaller", desc: "Cleanly uninstall SMT and its components.", icon: "fa-trash", cat: "system", tags: "uninstall remove", added: "v2.0" },
-            { name: "Any App (winget) Installer", desc: "Install any winget app.", icon: "fa-box", cat: "system", tags: "winget any app installer", added: "v2.x" },
-            { name: "App Installer Generator", desc: "Make an installer for any app.", icon: "fa-cog", cat: "system", tags: "installer generator app", added: "v2.x" },
-            { name: "Right Click Menu Changer", desc: "Customize the Windows right-click context menu.", icon: "fa-mouse-pointer", cat: "system", tags: "right click context menu", added: "v2.x" },
-            { name: "Scan Computer for Errors", desc: "Scan the system for errors and file corruption (SFC/DISM).", icon: "fa-stethoscope", cat: "system", tags: "scan sfc dism errors", added: "v2.x" },
-            { name: "Windows 11 Tweaker", desc: "Apply Windows 11-specific tweaks and optimizations.", icon: "fa-sliders", cat: "system", tags: "windows 11 tweak", added: "v2.x" },
-            { name: "Ultimate Performance Power Plan Enabler", desc: "Enable the Ultimate Performance power plan.", icon: "fa-bolt", cat: "system", tags: "power plan performance", added: "v2.x" },
-            { name: "Group Policy Editor Enabler", desc: "Enable the Group Policy Editor on all Windows editions.", icon: "fa-sitemap", cat: "system", tags: "gpedit group policy", added: "v2.x" },
-            { name: "Update Every App", desc: "Update every installed app at once.", icon: "fa-arrows-rotate", cat: "system", tags: "update upgrade all apps", added: "v2.3" },
+            { name: "CLI Task Manager", desc: "Manage processes from the console.", icon: "fa-list-check", cat: "system", tags: "task manager process cli", added: "v2.1", info: "Lists processes and force-kills by image name from the console.", menu: "Tools > System Administration > 2", file: "Files/taskmanager.bat" },
+            { name: "Tron", desc: "Runs Tron to deep-clean the PC. Takes hours and restarts.", info: "Downloads and runs TronScript, the community PC cleaner and disinfector. Takes 3-10 hours and restarts the PC - close everything first.", menu: "Tools > System Administration > 15", file: "Files/tron.bat", icon: "fa-broom", cat: "system", tags: "tron clean disinfect repair", added: "v2.x" },
+            { name: "U* Miner Remover", desc: "Removes the XMRig USB-miner infection.", info: "Hunts the XMRig USB-miner infection (a hidden sysvolume folder plus shortcut remnants) across removable drives and removes it.", menu: "Tools > Fixes > 6", file: "Files/UXM_R.bat", icon: "fa-shield-virus", cat: "system", tags: "xmrig miner virus usb remover", added: "v2.x" },
+            { name: "Hibernation Enabler/Disabler", desc: "Toggle hibernation.", icon: "fa-moon", cat: "system", tags: "hibernate sleep power", added: "v2.0", info: "Toggles hibernation (and the hiberfil.sys file) via powercfg.", menu: "Tools > System Administration > 10", file: "Files/hibern.bat" },
+            { name: "Registry Backupper", desc: "Back up the registry.", icon: "fa-database", cat: "system", tags: "registry backup restore", added: "v1.4", info: "Exports registry hives to backup files for later restore.", menu: "Tools > Fixes > 3", file: "Files/BR.bat" },
+            { name: "Driver Backupper", desc: "Export device drivers.", info: "Exports all third-party drivers with DISM to a folder you choose, so you can reinstall them after a reset. Needs admin rights.", menu: "Tools > Fixes > 5", file: "Files/db.bat", icon: "fa-hard-drive", cat: "system", tags: "driver backup restore", added: "v1.4" },
+            { name: "System Info Viewer", desc: "Show system information.", icon: "fa-info-circle", cat: "system", tags: "system info hardware", added: "v1.4", info: "Prints full Windows systeminfo output.", menu: "Tools > System Administration > 9", file: "Files/sysinfo.bat" },
+            { name: "Create A System Restore Point", desc: "One-click restore point.", icon: "fa-rotate-left", cat: "system", tags: "system restore point rollback", added: "v2.x", info: "Creates a Windows system restore point. Needs admin rights.", menu: "Tools > System Administration > 8", file: "Files/autorespo.bat" },
+            { name: "Folder Organizer", desc: "Sort files into folders.", icon: "fa-folder-tree", cat: "system", tags: "organize files folders", added: "v2.1", info: "Sorts files into subfolders by extension, on repeat.", menu: "Tools > Utilities > 3", file: "Files/fo.bat" },
+            { name: "Hydra Launcher", desc: "Install Hydra game launcher.", icon: "fa-gamepad", cat: "apps", tags: "hydra games launcher", added: "v2.x", info: "Installs Hydra via direct download (not on winget).", menu: "Tools > Apps > 52", file: "Files/Apps/hyd.bat" },
+            { name: "Performance Options", desc: "Open performance settings.", icon: "fa-gauge-high", cat: "system", tags: "performance windows optimize", added: "v1.5", info: "Opens Windows' own performance settings dialog.", menu: "Tools > System Administration > 12" },
+            { name: "Shutdown & Restart Commands", desc: "Shut down or restart fast.", icon: "fa-power-off", cat: "system", tags: "shutdown restart", added: "v2.0", info: "Shuts down or restarts the PC immediately from the main menu.", menu: 'Type "shutdown" or "restart" on the main menu' },
+            { name: "Boot to BIOS", desc: "Reboot into BIOS/UEFI.", icon: "fa-microchip", cat: "system", tags: "bios restart firmware", added: "v2.2", info: "Restarts straight into UEFI/BIOS settings.", menu: 'Type "bios" on the main menu' },
+            { name: "Console Color Changer", desc: "Change console colors.", icon: "fa-palette", cat: "system", tags: "color console theme", added: "v1.4", info: "Sets the console color scheme via the classic color command.", menu: 'Type "cl" on the main menu' },
+            { name: "Add to PATH", desc: "Add SMT to PATH.", icon: "fa-terminal", cat: "system", tags: "path environment", added: "v1.4", info: "Adds SMT to the system PATH automatically on launch.", menu: "Automatic on launch" },
+            { name: "Add to Program Files", desc: "Install SMT to Program Files.", icon: "fa-folder-plus", cat: "system", tags: "install program files", added: "v1.4", info: "Copies SMT into Program Files and drops a Desktop shortcut.", menu: 'Type "pf" on the main menu', file: "Files/pf.bat" },
+            { name: "Auto Window Resizing", desc: "Auto-resize console windows.", icon: "fa-expand", cat: "system", tags: "window resize auto", added: "v2.3", info: "Auto-resizes the console window per menu. Toggle any time.", menu: 'Type "mdon" / "mdoff" on the main menu' },
+            { name: "Time Freezer", desc: "Freeze system time.", danger: true, icon: "fa-clock", cat: "system", tags: "time freeze pause", added: "v2.3", info: "Holds the clock by resetting date and time in a loop until closed.", menu: "Tools > Danger Zone > 5", file: "Files/tf.bat" },
+            { name: "Clipboard Manager", desc: "Track clipboard history.", icon: "fa-paste", cat: "system", tags: "clipboard copy paste", added: "v2.3", info: "Saves clipboard contents into a local history text file.", menu: "Tools > Utilities > 14", file: "Files/cm.bat" },
+            { name: "Screenshot Tool", desc: "Capture the screen.", icon: "fa-camera", cat: "system", tags: "screenshot capture", added: "v2.3", info: "Captures the primary monitor to a PNG via PowerShell.", menu: "Tools > Utilities > 16", file: "Files/ss.bat" },
+            { name: "Bootable USB Creator", desc: "Make multi-boot USBs with Ventoy.", info: "Downloads Ventoy, unpacks it, and writes it to the USB drive you pick. Everything on the drive is wiped, so double-check the letter.", menu: "Tools > System Administration > 3", file: "Files/busbc.bat", icon: "fa-usb", cat: "system", tags: "usb boot ventoy", added: "v2.3" },
+            { name: "Uninstaller", desc: "Uninstall SMT cleanly.", icon: "fa-trash", cat: "system", tags: "uninstall remove", added: "v2.0", info: "Removes installed copies and the setup marker, then deletes itself.", menu: "Run Uninstaller.bat from the SMT folder", file: "Uninstaller.bat" },
+            { name: "Any App (winget) Installer", desc: "Install any winget app.", icon: "fa-box", cat: "system", tags: "winget any app installer", added: "v2.x", info: "Installs any winget package ID you type, in a loop.", menu: "Tools > System Administration > 4", file: "Files/aap.bat" },
+            { name: "App Installer Generator", desc: "Make an installer for any app.", icon: "fa-cog", cat: "system", tags: "installer generator app", added: "v2.x", info: "Generates a one-click installer batch file into Downloads.", menu: "Tools > System Administration > 5", file: "Files/aig.bat" },
+            { name: "Right Click Menu Changer", desc: "Switch old/new right-click menu.", icon: "fa-mouse-pointer", cat: "system", tags: "right click context menu", added: "v2.x", info: "Switches between the classic and Windows 11 context menus, then restarts Explorer.", menu: "Tools > System Administration > 6", file: "Files/rcmc.bat" },
+            { name: "Scan Computer for Errors", desc: "Check system files (SFC/DISM).", icon: "fa-stethoscope", cat: "system", tags: "scan sfc dism errors", added: "v2.x", info: "Runs SFC, DISM image repair, and chkdsk. Needs admin rights; may schedule a reboot.", menu: "Tools > System Administration > 7", file: "Files/suc.bat" },
+            { name: "Windows 11 Tweaker", desc: "Apply Windows 11 tweaks.", info: "Applies registry tweaks (old context menu, ribbon, taskbar options and more) with a revert option, then restarts Explorer. Needs admin rights.", menu: "Tools > System Administration > 11", file: "Files/w11.bat", icon: "fa-sliders", cat: "system", tags: "windows 11 tweak", added: "v2.x" },
+            { name: "Ultimate Performance Power Plan Enabler", desc: "Enable the Ultimate Performance power plan.", icon: "fa-bolt", cat: "system", tags: "power plan performance", added: "v2.x", info: "Duplicates the hidden Ultimate Performance power plan.", menu: "Tools > System Administration > 13", file: "Files/UPPPE.bat" },
+            { name: "Group Policy Editor Enabler", desc: "Enable the Group Policy Editor on all Windows editions.", icon: "fa-sitemap", cat: "system", tags: "gpedit group policy", added: "v2.x", info: "Installs gpedit on editions that lack it, like Home.", menu: "Tools > Fixes > 2", file: "Files/GPEE.bat" },
+            { name: "Update Every App", desc: "Update every installed app at once.", icon: "fa-arrows-rotate", cat: "system", tags: "update upgrade all apps", added: "v2.3", info: "Updates every installed app in one go. Needs admin rights.", menu: "Tools > System Administration > 16", file: "Files/updall.bat" },
 
             // Windows & Office
-            { name: "Windows & Office Activator", desc: "Activation helper. Use a valid license.", icon: "fa-key", cat: "windows", tags: "windows office activation license", added: "v1.8" },
-            { name: "Windows User Manager", desc: "Manage user accounts and reset passwords.", icon: "fa-users", cat: "windows", tags: "user manager password reset", added: "v1.2" },
-            { name: "Windows Password Cracker", desc: "Recover passwords on your own PC.", icon: "fa-lock-open", cat: "windows", tags: "password crack recover wsl", added: "v2.3" },
-            { name: "UAC Disabler", desc: "Disable User Account Control prompts on PCs you own.", icon: "fa-shield-haltered", cat: "windows", tags: "uac disable administrator", added: "v2.3" },
-            { name: `"Some Settings Managed" Fixer`, desc: "Fix the 'Some settings are managed by your organization' message.", icon: "fa-wrench", cat: "windows", tags: "settings managed organization fix", added: "v2.0" },
-            { name: "Proton VPN", desc: "Install Proton VPN.", icon: "fa-shield-halved", cat: "apps", tags: "proton vpn privacy", added: "v2.x" },
-            { name: "Extension Manifest V2 Extender", desc: "Extend Chrome extension manifest v2 support.", icon: "fa-puzzle-piece", cat: "windows", tags: "chrome extension manifest v2", added: "v2.3" },
-            { name: "Audacity", desc: "Install Audacity audio editor.", icon: "fa-music", cat: "apps", tags: "audacity audio editor", added: "v2.x" },
-            { name: "Text to Speech", desc: "Convert text to speech using Windows TTS.", icon: "fa-comment-dots", cat: "windows", tags: "text speech tts", added: "v1.x" },
+            { name: "Windows & Office Activator", desc: "Activation helper. Use a valid license.", danger: true, icon: "fa-key", cat: "windows", tags: "windows office activation license", added: "v1.8", info: "Runs the MassGrave activation script for Windows and Office. Use a valid license.", menu: "Tools > Cracks > 2", file: "Files/WA.bat" },
+            { name: "Windows User Manager", desc: "Manage users, reset passwords.", icon: "fa-users", cat: "windows", tags: "user manager password reset", added: "v1.2", info: "Lists users, resets passwords without the old one, and renames accounts. Needs admin rights.", menu: "Tools > System Administration > 1", file: "Files/RAUP.bat" },
+            { name: "Windows Password Cracker", desc: "Recover passwords on your own PC.", danger: true, icon: "fa-lock-open", cat: "windows", tags: "password crack recover wsl", added: "v2.3", info: "Dumps SAM hashes on your own PC, then cracks them with hashcat under Kali WSL. Own devices only.", menu: "Tools > Cracks > 5", file: "Files/pc.bat" },
+            { name: "UAC Disabler", desc: "Disable User Account Control prompts on PCs you own.", danger: true, icon: "fa-shield-haltered", cat: "windows", tags: "uac disable administrator", added: "v2.3", info: "Sets UAC prompts to never-notify via registry. Needs admin rights.", menu: "Tools > Danger Zone > 6", file: "Files/uacd.bat" },
+            { name: `"Some Settings Managed" Fixer`, desc: "Fix the 'Some settings are managed by your organization' message.", icon: "fa-wrench", cat: "windows", tags: "settings managed organization fix", added: "v2.0", info: "Clears the policies that trigger the managed-by-organization message.", menu: "Tools > Fixes > 1", file: "Files/SSAMBYO.bat" },
+            { name: "Proton VPN", desc: "Install Proton VPN.", icon: "fa-shield-halved", cat: "apps", tags: "proton vpn privacy", added: "v2.x", info: "Installs Proton VPN via winget.", menu: "Tools > Apps > 47", file: "Files/Apps/pvpn.bat" },
+            { name: "Extension Manifest V2 Extender", desc: "Keep Chrome MV2 extensions working.", icon: "fa-puzzle-piece", cat: "windows", tags: "chrome extension manifest v2", added: "v2.3", info: "Forces Chrome to keep Manifest V2 extensions working via enterprise policy. Needs admin rights.", menu: "Tools > Utilities > 7", file: "Files/emv2ae.bat" },
+            { name: "Audacity", desc: "Install Audacity audio editor.", icon: "fa-music", cat: "apps", tags: "audacity audio editor", added: "v2.x", info: "Installs Audacity via winget.", menu: "Tools > Apps > 56", file: "Files/Apps/aud.bat" },
+            { name: "Text to Speech", desc: "Read text aloud.", icon: "fa-comment-dots", cat: "windows", tags: "text speech tts", added: "v1.x", info: "Reads typed text aloud with Windows text-to-speech.", menu: "Tools > Fun > 1", file: "Files/speak.bat" },
 
             // Security & Privacy
-            { name: "Info Stealer Generator", desc: "Build test payloads for lab research only.", icon: "fa-skull", cat: "security", tags: "info stealer generator payload", added: "v1.6" },
-            { name: "Node.js", desc: "Install Node.js.", icon: "fa-node-js", cat: "apps", tags: "node nodejs javascript", added: "v2.x" },
-            { name: "File Integrity Checker", desc: "Verify file checksums to detect tampering.", icon: "fa-file-shield", cat: "security", tags: "hash integrity checksum", added: "v2.3" },
-            { name: "RockYou Downloader", desc: "Download the RockYou wordlist for authorized testing.", icon: "fa-file-zipper", cat: "security", tags: "rockyou wordlist password", added: "v1.7" },
-            { name: ".zip Password Cracker", desc: "Recover passwords from your own zip files.", icon: "fa-key", cat: "security", tags: "zip password crack recover", added: "v2.x" },
-            { name: "Credentials Storer", desc: "Securely store and recall saved credentials locally.", icon: "fa-vault", cat: "security", tags: "credentials store vault", added: "v2.x" },
-            { name: "Malwarebytes Premium Resetter", desc: "Trial reset demo.", icon: "fa-shield-virus", cat: "security", tags: "malwarebytes reset premium", added: "v2.x" },
-            { name: "Bitdefender Free", desc: "Install Bitdefender Free antivirus.", icon: "fa-shield", cat: "apps", tags: "bitdefender antivirus free", added: "v2.x" },
-            { name: "Anti-Piracy Measures", desc: "Built-in anti-piracy protection system.", icon: "fa-lock", cat: "security", tags: "anti-piracy protection", added: "v1.3" },
-            { name: "User Agreement", desc: "Terms of use displayed during setup.", icon: "fa-file-contract", cat: "security", tags: "user agreement terms", added: "v1.6" },
-            { name: "Logitech G HUB", desc: "Install Logitech G HUB.", icon: "fa-keyboard", cat: "apps", tags: "logitech hub peripherals", added: "v2.x" },
+            { name: "Info Stealer Generator", desc: "Build test payloads for lab research only.", danger: true, icon: "fa-skull", cat: "security", tags: "info stealer generator payload", added: "v1.6", info: "Builds an obfuscated credential-collecting payload into Downloads. Lab research only, never deploy.", menu: "Tools > Danger Zone > 3", file: "Files/isg.bat" },
+            { name: "Node.js", desc: "Install Node.js.", icon: "fa-node-js", cat: "apps", tags: "node nodejs javascript", added: "v2.x", info: "Installs Node.js via winget.", menu: "Tools > Apps > 42", file: "Files/Apps/njs.bat" },
+            { name: "File Integrity Checker", desc: "Check file hashes.", icon: "fa-file-shield", cat: "security", tags: "hash integrity checksum", added: "v2.3", info: "Generates and verifies MD5, SHA1, and SHA256 checksums via certutil.", menu: "Tools > Utilities > 15", file: "Files/fic.bat" },
+            { name: "RockYou Downloader", desc: "Download the RockYou wordlist for authorized testing.", icon: "fa-file-zipper", cat: "security", tags: "rockyou wordlist password", added: "v1.7", info: "Downloads the RockYou password wordlist for authorized testing.", menu: "Tools > Utilities > 9", file: "Files/rockyou.bat" },
+            { name: ".zip Password Cracker", desc: "Recover passwords from your own zip files.", danger: true, info: "Tries passwords from a wordlist against your own protected archives using 7-Zip. Needs 7-Zip installed.", menu: "Tools > Cracks > 4", file: "Files/zicrack.bat", icon: "fa-key", cat: "security", tags: "zip password crack recover", added: "v2.x" },
+            { name: "Credentials Storer", desc: "Store account credentials locally.", icon: "fa-vault", cat: "security", tags: "credentials store vault", added: "v2.x", info: "Stores account credentials in a local plaintext file. Not encrypted.", menu: "Tools > Utilities > 6", file: "Files/creds.bat" },
+            { name: "Malwarebytes Premium Resetter", desc: "Trial reset demo.", danger: true, icon: "fa-shield-virus", cat: "security", tags: "malwarebytes reset premium", added: "v2.x", info: "Spoofs the machine GUID and schedules a weekly re-spoof to reset the trial. Demo only.", menu: "Tools > Cracks > 1", file: "Files/Malwarebytes-Premium-Reset.bat" },
+            { name: "Bitdefender Free", desc: "Install Bitdefender Free antivirus.", icon: "fa-shield", cat: "apps", tags: "bitdefender antivirus free", added: "v2.x", info: "Installs Bitdefender Free via direct download (not on winget).", menu: "Tools > Apps > 49", file: "Files/Apps/bit.bat" },
+            { name: "Anti-Piracy Measures", desc: "Setup marker that blocks copies.", icon: "fa-lock", cat: "security", tags: "anti-piracy protection", added: "v1.3", info: "Checks for the setup marker file before launching.", menu: "Automatic on launch" },
+            { name: "User Agreement", desc: "Terms of use displayed during setup.", icon: "fa-file-contract", cat: "security", tags: "user agreement terms", added: "v1.6", info: "Shows the I AGREE disclaimer on first run.", menu: "First launch only", file: "Files/setup.bat" },
+            { name: "Logitech G HUB", desc: "Install Logitech G HUB.", icon: "fa-keyboard", cat: "apps", tags: "logitech hub peripherals", added: "v2.x", info: "Installs Logitech G HUB via winget.", menu: "Tools > Apps > 50", file: "Files/Apps/lgh.bat" },
 
             // App Installers
-            { name: "Chrome Installer", desc: "Install Google Chrome browser.", icon: "fa-chrome", cat: "apps", tags: "chrome browser google", added: "v2.2" },
-            { name: "Firefox Installer", desc: "Install Mozilla Firefox browser.", icon: "fa-firefox-browser", cat: "apps", tags: "firefox browser", added: "v2.2" },
-            { name: "Geek Uninstaller", desc: "Powerful uninstaller with deep scan capability.", icon: "fa-broom", cat: "apps", tags: "geek uninstaller clean", added: "v1.5" },
-            { name: "7-Zip Installer", desc: "Install 7-Zip file archiver.", icon: "fa-file-archive", cat: "apps", tags: "7zip archive compress", added: "v2.2" },
-            { name: "Git Installer", desc: "Install Git version control.", icon: "fa-git-alt", cat: "apps", tags: "git version control", added: "v1.9" },
-            { name: "Winget Installer", desc: "Install Windows Package Manager (winget).", icon: "fa-box", cat: "apps", tags: "winget package manager", added: "v1.9" },
-            { name: "SuperF4 Installer", desc: "Install SuperF4 to force-close programs.", icon: "fa-xmark", cat: "apps", tags: "superf4 force close", added: "v1.7" },
-            { name: "Powershell 7 Installer", desc: "Install PowerShell 7.", icon: "fa-terminal", cat: "apps", tags: "powershell pwsh shell", added: "v2.2" },
-            { name: "f.lux Installer", desc: "Install f.lux for eye strain reduction.", icon: "fa-eye", cat: "apps", tags: "flux screen temperature", added: "v2.2" },
-            { name: "OBS Studio", desc: "Install OBS Studio.", icon: "fa-video", cat: "apps", tags: "obs studio stream record", added: "v2.x" },
-            { name: "Wintoys Installer", desc: "Install Wintoys Windows utility.", icon: "fa-screwdriver-wrench", cat: "apps", tags: "wintoys utility", added: "v2.1" },
-            { name: "Windows PC Manager Installer", desc: "Install Microsoft PC Manager.", icon: "fa-windows", cat: "apps", tags: "pc manager microsoft", added: "v2.1" },
-            { name: "Fastfetch Installer", desc: "Install fastfetch system info tool.", icon: "fa-info-circle", cat: "apps", tags: "fastfetch neofetch system", added: "v1.3" },
-            { name: "Telegram Installer", desc: "Install Telegram Desktop.", icon: "fa-telegram", cat: "apps", tags: "telegram messenger", added: "v2.3" },
-            { name: "Malwarebytes Installer", desc: "Install Malwarebytes antivirus.", icon: "fa-shield", cat: "apps", tags: "malwarebytes antivirus", added: "v2.3" },
-            { name: "Notepad++ Installer", desc: "Install Notepad++ text editor.", icon: "fa-file-code", cat: "apps", tags: "notepad++ editor", added: "v2.3" },
-            { name: "Command Prompt", desc: "Launch Command Prompt directly from the menu.", icon: "fa-terminal", cat: "apps", tags: "cmd command prompt", added: "v2.x" },
-            { name: "Powershell", desc: "Launch PowerShell directly from the menu.", icon: "fa-terminal", cat: "apps", tags: "powershell shell", added: "v2.x" },
-            { name: "Powershell (Installer)", desc: "Install PowerShell for devices that don't have it.", icon: "fa-download", cat: "apps", tags: "powershell installer pwsh", added: "v2.x" },
-            { name: "Chris Titus Tool", desc: "Install Chris Titus' Windows toolbox utility.", icon: "fa-screwdriver-wrench", cat: "apps", tags: "chris titus toolbox", added: "v2.x" },
-            { name: "ShareX", desc: "Install ShareX screenshot and screen recorder.", icon: "fa-camera-retro", cat: "apps", tags: "sharex screenshot recorder", added: "v2.x" },
-            { name: "qBittorrent", desc: "Install qBittorrent torrent client.", icon: "fa-magnet", cat: "apps", tags: "qbittorrent torrent", added: "v2.x" },
-            { name: "Paint.NET", desc: "Install Paint.NET image editor.", icon: "fa-paint-brush", cat: "apps", tags: "paint.net image editor", added: "v2.x" },
-            { name: "Everything", desc: "Install Everything fast file search.", icon: "fa-magnifying-glass", cat: "apps", tags: "everything file search", added: "v2.x" },
-            { name: "Github Desktop", desc: "Install GitHub Desktop client.", icon: "fa-github", cat: "apps", tags: "github desktop git", added: "v2.x" },
-            { name: "Ultimate Windows Tweaker", desc: "Install Ultimate Windows Tweaker.", icon: "fa-sliders", cat: "apps", tags: "ultimate windows tweaker", added: "v2.x" },
-            { name: "Recuva", desc: "Install Recuva file recovery tool.", icon: "fa-trash-can", cat: "apps", tags: "recuva recovery", added: "v2.x" },
-            { name: "Process Hacker", desc: "Install Process Hacker advanced task manager.", icon: "fa-microchip", cat: "apps", tags: "process hacker taskmanager", added: "v2.x" },
-            { name: "Winaero Tweaker", desc: "Install Winaero Tweaker customization tool.", icon: "fa-sliders", cat: "apps", tags: "winaero tweaker", added: "v2.x" },
-            { name: "Discord", desc: "Install Discord chat client.", icon: "fa-discord", cat: "apps", tags: "discord chat", added: "v2.x" },
-            { name: "Vencord", desc: "Install Vencord Discord client mod. Against Discord's ToS.", icon: "fa-discord", cat: "apps", tags: "vencord discord mod", added: "v2.x" },
-            { name: "IrfanView", desc: "Install IrfanView image viewer.", icon: "fa-image", cat: "apps", tags: "irfanview image viewer", added: "v2.x" },
-            { name: "Playit.gg", desc: "Install Playit.gg tunneling tool.", icon: "fa-gamepad", cat: "apps", tags: "playit.gg tunnel", added: "v2.x" },
-            { name: "Prism Launcher", desc: "Install Prism Launcher for Minecraft.", icon: "fa-cube", cat: "apps", tags: "prism launcher minecraft", added: "v2.x" },
-            { name: "SKLauncher", desc: "Install SKLauncher for Minecraft.", icon: "fa-cube", cat: "apps", tags: "sklauncher minecraft", added: "v2.x" },
-            { name: "Blip", desc: "Install Blip GitHub release downloader.", icon: "fa-bolt", cat: "apps", tags: "blip github downloader", added: "v2.x" },
-            { name: "CapCut Pro", desc: "Install CapCut video editor.", icon: "fa-film", cat: "apps", tags: "capcut video editor", added: "v2.x" },
-            { name: "RustDesk", desc: "Install RustDesk remote desktop.", icon: "fa-desktop", cat: "apps", tags: "rustdesk remote desktop", added: "v2.x" },
-            { name: "AnyDesk", desc: "Install AnyDesk remote desktop.", icon: "fa-desktop", cat: "apps", tags: "anydesk remote desktop", added: "v2.x" },
-            { name: "Win10 Widgets + Rainmeter 4.0", desc: "Install Win10 Widgets with Rainmeter 4.0.", icon: "fa-table-columns", cat: "apps", tags: "rainmeter widgets desktop", added: "v2.x" },
-            { name: "Rainmeter", desc: "Install Rainmeter desktop customization.", icon: "fa-table-columns", cat: "apps", tags: "rainmeter desktop", added: "v2.x" },
-            { name: "Spotify (No Ads)", desc: "Old Spotify ad-block. Use Spicetify instead.", icon: "fa-spotify", cat: "apps", tags: "spotify adblock", added: "v2.x" },
-            { name: "Spotify", desc: "Install Spotify.", icon: "fa-spotify", cat: "apps", tags: "spotify music", added: "v2.3" },
-            { name: "Spicetify", desc: "Spotify without ads, plus enhancements.", icon: "fa-wand-magic-sparkles", cat: "apps", tags: "spicetify spotify ads enhancements", added: "v2.3" },
-            { name: "WakaTime", desc: "Install WakaTime coding time tracker.", icon: "fa-clock", cat: "apps", tags: "wakatime coding time tracker", added: "v2.3" },
-            { name: "Windhawk", desc: "Install Windhawk Windows customizer.", icon: "fa-puzzle-piece", cat: "apps", tags: "windhawk windows customize mods", added: "v2.3" },
-            { name: "pnpm", desc: "Install pnpm package manager.", icon: "fa-box", cat: "apps", tags: "pnpm package manager node", added: "v2.x" },
-            { name: "Scoop", desc: "Install Scoop package manager.", icon: "fa-basket-shopping", cat: "apps", tags: "scoop package manager", added: "v2.x" },
-            { name: "Stacher7", desc: "Install Stacher download manager.", icon: "fa-download", cat: "apps", tags: "stacher7 download manager", added: "v2.x" },
+            { name: "Chrome Installer", desc: "Install Google Chrome browser.", icon: "fa-chrome", cat: "apps", tags: "chrome browser google", added: "v2.2", info: "Installs via winget, with a direct-download fallback.", menu: "Tools > Apps > 14", file: "Files/Apps/chrome.bat" },
+            { name: "Firefox Installer", desc: "Install Mozilla Firefox browser.", icon: "fa-firefox-browser", cat: "apps", tags: "firefox browser", added: "v2.2", info: "Fetches a second-stage installer, runs it, then deletes it.", menu: "Tools > Apps > 16", file: "Files/Apps/firefox.bat" },
+            { name: "Geek Uninstaller", desc: "Uninstall apps with deep scan.", icon: "fa-broom", cat: "apps", tags: "geek uninstaller clean", added: "v1.5", info: "Installs Geek Uninstaller (may trip Defender).", menu: "Tools > Apps > 2", file: "Files/Apps/geek.bat" },
+            { name: "7-Zip Installer", desc: "Install 7-Zip file archiver.", icon: "fa-file-archive", cat: "apps", tags: "7zip archive compress", added: "v2.2", info: "Installs via winget, with a direct-download fallback.", menu: "Tools > Apps > 17", file: "Files/Apps/7z.bat" },
+            { name: "Git Installer", desc: "Install Git version control.", icon: "fa-git-alt", cat: "apps", tags: "git version control", added: "v1.9", info: "Installs via winget, with a direct-download fallback.", menu: "Tools > Apps > 8", file: "Files/Apps/git.bat" },
+            { name: "Winget Installer", desc: "Install winget.", icon: "fa-box", cat: "apps", tags: "winget package manager", added: "v1.9", info: "Bootstraps winget via the official aka.ms installer.", menu: "Tools > Apps > 9", file: "Files/Apps/wg.bat" },
+            { name: "SuperF4 Installer", desc: "Install SuperF4.", icon: "fa-xmark", cat: "apps", tags: "superf4 force close", added: "v1.7", info: "Installs via winget, with a direct-download fallback.", menu: "Tools > Apps > 1", file: "Files/Apps/SuperF4.bat" },
+            { name: "Powershell 7 Installer", desc: "Install PowerShell 7.", icon: "fa-terminal", cat: "apps", tags: "powershell pwsh shell", added: "v2.2", info: "Installs PowerShell 7, bootstrapping winget first if needed.", menu: "Tools > Apps > 5", file: "Files/Apps/ps7.bat" },
+            { name: "f.lux Installer", desc: "Install f.lux.", icon: "fa-eye", cat: "apps", tags: "flux screen temperature", added: "v2.2", info: "Installs via winget, with a direct-download fallback.", menu: "Tools > Apps > 13", file: "Files/Apps/flux.bat" },
+            { name: "OBS Studio", desc: "Install OBS Studio.", icon: "fa-video", cat: "apps", tags: "obs studio stream record", added: "v2.x", info: "Installs OBS Studio via winget.", menu: "Tools > Apps > 55", file: "Files/Apps/obs.bat" },
+            { name: "Wintoys Installer", desc: "Install Wintoys.", icon: "fa-screwdriver-wrench", cat: "apps", tags: "wintoys utility", added: "v2.1", info: "Installs via winget, with a direct-download fallback.", menu: "Tools > Apps > 11", file: "Files/Apps/wintoys.bat" },
+            { name: "Windows PC Manager Installer", desc: "Install Microsoft PC Manager.", icon: "fa-windows", cat: "apps", tags: "pc manager microsoft", added: "v2.1", info: "Installs PC Manager from a self-hosted package.", menu: "Tools > Apps > 12", file: "Files/Apps/pcm.bat" },
+            { name: "Fastfetch Installer", desc: "Install fastfetch.", icon: "fa-info-circle", cat: "apps", tags: "fastfetch neofetch system", added: "v1.3", info: "Installs Scoop first, then fastfetch, running de-elevated.", menu: "Tools > Apps > 7", file: "Files/Apps/fastfetch.bat" },
+            { name: "Telegram Installer", desc: "Install Telegram Desktop.", icon: "fa-telegram", cat: "apps", tags: "telegram messenger", added: "v2.3", info: "Installs Telegram Desktop (always the latest build).", menu: "Tools > Apps > 18", file: "Files/Apps/telegram.bat" },
+            { name: "Malwarebytes Installer", desc: "Install Malwarebytes antivirus.", icon: "fa-shield", cat: "apps", tags: "malwarebytes antivirus", added: "v2.3", info: "Installs via winget, with a direct-download fallback.", menu: "Tools > Apps > 19", file: "Files/Apps/mbam.bat" },
+            { name: "Notepad++ Installer", desc: "Install Notepad++ text editor.", icon: "fa-file-code", cat: "apps", tags: "notepad++ editor", added: "v2.3", info: "Installs via winget, with a direct-download fallback.", menu: "Tools > Apps > 20", file: "Files/Apps/npp.bat" },
+            { name: "Command Prompt", desc: "Open Command Prompt.", icon: "fa-terminal", cat: "apps", tags: "cmd command prompt", added: "v2.x", info: "Opens a Command Prompt window.", menu: "Tools > Apps > 3" },
+            { name: "Powershell", desc: "Open PowerShell.", icon: "fa-terminal", cat: "apps", tags: "powershell shell", added: "v2.x", info: "Opens a PowerShell window.", menu: "Tools > Apps > 4" },
+            { name: "Powershell (Installer)", desc: "PowerShell for older devices.", icon: "fa-download", cat: "apps", tags: "powershell installer pwsh", added: "v2.x", info: "Installs WMF 5.1 PowerShell for Windows 7.", menu: "Tools > Apps > 6", file: "Files/Apps/pswin7.bat" },
+            { name: "Chris Titus Tool", desc: "Install Chris Titus WinUtil.", icon: "fa-screwdriver-wrench", cat: "apps", tags: "chris titus toolbox", added: "v2.x", info: "Runs the Chris Titus WinUtil straight from christitus.com.", menu: "Tools > Apps > 10", file: "Files/Apps/ctt.bat" },
+            { name: "ShareX", desc: "Install ShareX.", icon: "fa-camera-retro", cat: "apps", tags: "sharex screenshot recorder", added: "v2.x", info: "Installs via winget, with a direct-download fallback.", menu: "Tools > Apps > 21", file: "Files/Apps/sharex.bat" },
+            { name: "qBittorrent", desc: "Install qBittorrent.", icon: "fa-magnet", cat: "apps", tags: "qbittorrent torrent", added: "v2.x", info: "Installs via winget, with a direct-download fallback.", menu: "Tools > Apps > 22", file: "Files/Apps/qbt.bat" },
+            { name: "Paint.NET", desc: "Install Paint.NET.", icon: "fa-paint-brush", cat: "apps", tags: "paint.net image editor", added: "v2.x", info: "Installs via winget, with a direct-download fallback.", menu: "Tools > Apps > 23", file: "Files/Apps/pdn.bat" },
+            { name: "Everything", desc: "Install Everything.", icon: "fa-magnifying-glass", cat: "apps", tags: "everything file search", added: "v2.x", info: "Installs a pinned older Everything release.", menu: "Tools > Apps > 24", file: "Files/Apps/evt.bat" },
+            { name: "Github Desktop", desc: "Install GitHub Desktop.", icon: "fa-github", cat: "apps", tags: "github desktop git", added: "v2.x", info: "Installs via winget, with a direct-download fallback.", menu: "Tools > Apps > 25", file: "Files/Apps/gitd.bat" },
+            { name: "Ultimate Windows Tweaker", desc: "Install Ultimate Windows Tweaker.", icon: "fa-sliders", cat: "apps", tags: "ultimate windows tweaker", added: "v2.x", info: "Downloads the Tweaker zip for your build, extracts it to the Desktop, and runs it.", menu: "Tools > Apps > 26", file: "Files/Apps/uwt.bat" },
+            { name: "Recuva", desc: "Install Recuva.", icon: "fa-trash-can", cat: "apps", tags: "recuva recovery", added: "v2.x", info: "Installs via winget, with a direct-download fallback.", menu: "Tools > Apps > 27", file: "Files/Apps/rcv.bat" },
+            { name: "Process Hacker", desc: "Install Process Hacker.", icon: "fa-microchip", cat: "apps", tags: "process hacker taskmanager", added: "v2.x", info: "Installs Process Hacker 2 from SourceForge.", menu: "Tools > Apps > 28", file: "Files/Apps/pch.bat" },
+            { name: "Winaero Tweaker", desc: "Install Winaero Tweaker.", icon: "fa-sliders", cat: "apps", tags: "winaero tweaker", added: "v2.x", info: "Downloads Winaero Tweaker and runs it silently.", menu: "Tools > Apps > 29", file: "Files/Apps/wat.bat" },
+            { name: "Discord", desc: "Install Discord.", icon: "fa-discord", cat: "apps", tags: "discord chat", added: "v2.x", info: "Installs via winget, with a direct-download fallback.", menu: "Tools > Apps > 30", file: "Files/Apps/dc.bat" },
+            { name: "Vencord", desc: "Install Vencord Discord client mod. Against Discord's ToS.", icon: "fa-discord", cat: "apps", tags: "vencord discord mod", added: "v2.x", info: "Installs the Vencord Discord client mod.", menu: "Tools > Apps > 31", file: "Files/Apps/vc.bat" },
+            { name: "IrfanView", desc: "Install IrfanView.", icon: "fa-image", cat: "apps", tags: "irfanview image viewer", added: "v2.x", info: "Installs via winget, with a direct-download fallback.", menu: "Tools > Apps > 32", file: "Files/Apps/ifv.bat" },
+            { name: "Playit.gg", desc: "Install Playit.gg.", icon: "fa-gamepad", cat: "apps", tags: "playit.gg tunnel", added: "v2.x", info: "Installs via winget, with a direct-download fallback.", menu: "Tools > Apps > 33", file: "Files/Apps/plt.bat" },
+            { name: "Prism Launcher", desc: "Install Prism Launcher.", icon: "fa-cube", cat: "apps", tags: "prism launcher minecraft", added: "v2.x", info: "Installs via winget, with a direct-download fallback.", menu: "Tools > Apps > 34", file: "Files/Apps/psm.bat" },
+            { name: "SKLauncher", desc: "Install SKLauncher.", icon: "fa-cube", cat: "apps", tags: "sklauncher minecraft", added: "v2.x", info: "Installs SKLauncher from GitHub (no winget package).", menu: "Tools > Apps > 35", file: "Files/Apps/skl.bat" },
+            { name: "Blip", desc: "Install Blip.", icon: "fa-bolt", cat: "apps", tags: "blip github downloader", added: "v2.x", info: "Installs Blip from the Microsoft Store.", menu: "Tools > Apps > 36", file: "Files/Apps/blip.bat" },
+            { name: "CapCut Pro", desc: "Install CapCut video editor.", icon: "fa-film", cat: "apps", tags: "capcut video editor", added: "v2.x", info: "Installs CapCut via winget.", menu: "Tools > Apps > 37", file: "Files/Apps/cc.bat" },
+            { name: "RustDesk", desc: "Install RustDesk.", icon: "fa-desktop", cat: "apps", tags: "rustdesk remote desktop", added: "v2.x", info: "Installs RustDesk from GitHub releases (no winget package).", menu: "Tools > Apps > 38", file: "Files/Apps/rdk.bat" },
+            { name: "AnyDesk", desc: "Install AnyDesk.", icon: "fa-desktop", cat: "apps", tags: "anydesk remote desktop", added: "v2.x", info: "Installs via winget, with a direct-download fallback.", menu: "Tools > Apps > 39", file: "Files/Apps/adk.bat" },
+            { name: "Win10 Widgets + Rainmeter 4.0", desc: "Install Win10 Widgets.", icon: "fa-table-columns", cat: "apps", tags: "rainmeter widgets desktop", added: "v2.x", info: "Installs Win10 Widgets with Rainmeter 4.0.", menu: "Tools > Apps > 40", file: "Files/Apps/w10wr4.bat" },
+            { name: "Rainmeter", desc: "Install Rainmeter.", icon: "fa-table-columns", cat: "apps", tags: "rainmeter desktop", added: "v2.x", info: "Installs via winget, with a direct-download fallback.", menu: "Tools > Apps > 41", file: "Files/Apps/rmt.bat" },
+            { name: "Spotify (No Ads)", desc: "Old Spotify ad-block. Use Spicetify instead.", icon: "fa-spotify", cat: "apps", tags: "spotify adblock", added: "v2.x", info: "The old BlockTheSpot-based installer, kept for reference.", menu: "Tools > Apps > 15", file: "Files/Apps/bts.bat" },
+            { name: "Spotify", desc: "Install Spotify.", info: "Installs the stock Spotify client via winget. For ad-blocking plus extras, see Spicetify instead.", menu: "Tools > Apps > 57", file: "Files/Apps/spt.bat", icon: "fa-spotify", cat: "apps", tags: "spotify music", added: "v2.3" },
+            { name: "Spicetify", desc: "Spotify without ads, plus enhancements.", icon: "fa-wand-magic-sparkles", cat: "apps", tags: "spicetify spotify ads enhancements", added: "v2.3", info: "Installs Spicetify (Spotify without ads, plus enhancements). Runs de-elevated.", menu: "Tools > Apps > 58", file: "Files/Apps/spct.bat" },
+            { name: "WakaTime", desc: "Install WakaTime coding time tracker.", icon: "fa-clock", cat: "apps", tags: "wakatime coding time tracker", added: "v2.3", info: "Installs WakaTime via direct download (not on winget).", menu: "Tools > Apps > 59", file: "Files/Apps/wkt.bat" },
+            { name: "Windhawk", desc: "Install Windhawk Windows customizer.", icon: "fa-puzzle-piece", cat: "apps", tags: "windhawk windows customize mods", added: "v2.3", info: "Installs Windhawk via winget.", menu: "Tools > Apps > 60", file: "Files/Apps/whk.bat" },
+            { name: "pnpm", desc: "Install pnpm package manager.", icon: "fa-box", cat: "apps", tags: "pnpm package manager node", added: "v2.x", info: "Installs pnpm via winget.", menu: "Tools > Apps > 43", file: "Files/Apps/pnpm.bat" },
+            { name: "Scoop", desc: "Install Scoop package manager.", icon: "fa-basket-shopping", cat: "apps", tags: "scoop package manager", added: "v2.x", info: "Installs the Scoop package manager.", menu: "Tools > Apps > 46", file: "Files/Apps/getscoop.bat" },
+            { name: "Stacher7", desc: "Install Stacher download manager.", icon: "fa-download", cat: "apps", tags: "stacher7 download manager", added: "v2.x", info: "Installs Stacher via winget.", menu: "Tools > Apps > 48", file: "Files/Apps/st7.bat" },
 
             // Developer Tools
-            { name: "ASCII Art Generator", desc: "Opens an ASCII art site.", icon: "fa-font", cat: "dev", tags: "ascii art text gradient", added: "v2.1" },
-            { name: "ASCII Art Logo", desc: "Display SMT logo in ASCII/ANSI art.", icon: "fa-image", cat: "dev", tags: "ascii logo art", added: "v1.2" },
-            { name: "Portable Creator", desc: "Packs SMT into a portable zip.", icon: "fa-box-open", cat: "system", tags: "portable zip package", added: "v2.x" },
-            { name: "Secret Commands", desc: "Hidden commands accessible from main menu.", icon: "fa-mask", cat: "dev", tags: "secret commands hidden", added: "v1.3" },
-            { name: "Command History", desc: "View and recall previously run commands.", icon: "fa-history", cat: "dev", tags: "command history", added: "v1.3" },
-            { name: "Debug Mode", desc: "Enable debug output for troubleshooting.", icon: "fa-bug", cat: "dev", tags: "debug troubleshooting", added: "v1.3" },
-            { name: "Open CMD / PowerShell", desc: "Launch CMD or PowerShell from within SMT.", icon: "fa-terminal", cat: "dev", tags: "cmd powershell terminal", added: "v1.3" },
-            { name: "Git Command", desc: "Access git commands from the main menu.", icon: "fa-git-alt", cat: "dev", tags: "git command", added: "v2.0" },
-            { name: "Chocolatey", desc: "Install Chocolatey package manager.", icon: "fa-box", cat: "apps", tags: "chocolatey package manager", added: "v2.x" },
-            { name: "Auto Update System", desc: "Keep SMT automatically updated.", icon: "fa-arrows-rotate", cat: "dev", tags: "auto update", added: "v2.3" },
-            { name: "Steam", desc: "Install Steam.", icon: "fa-steam", cat: "apps", tags: "steam games", added: "v2.x" },
-            { name: "Password Generator", desc: "Generate secure random passwords.", icon: "fa-key", cat: "dev", tags: "password generator secure", added: "v2.x" },
-            { name: "ASCII Art Gradient Generator", desc: "Generate gradient ASCII/ANSI art from text.", icon: "fa-font", cat: "dev", tags: "ascii gradient art", added: "v2.x" },
-            { name: "Directory File Line Counter", desc: "Count lines and files across a directory tree.", icon: "fa-hashtag", cat: "dev", tags: "directory line counter files", added: "v2.x" },
-            { name: "Batch File Creator", desc: "Create batch files from a simple interface.", icon: "fa-file-code", cat: "dev", tags: "batch file creator", added: "v2.x" },
-            { name: "Minecraft Server Creator", desc: "Quickly set up a Minecraft server.", icon: "fa-cube", cat: "dev", tags: "minecraft server", added: "v2.x" },
-            { name: "MegaTemp", desc: "Mega mass account manager for bulk operations.", icon: "fa-users", cat: "dev", tags: "mega account manager", added: "v2.x" },
-            { name: "Private Folder Manager", desc: "Create and manage locked private folders.", icon: "fa-lock", cat: "dev", tags: "private folder lock", added: "v2.x" },
+            { name: "ASCII Art Generator", desc: "Opens an ASCII art site.", icon: "fa-font", cat: "dev", tags: "ascii art text gradient", added: "v2.1", info: "Opens an ASCII art website in your browser.", menu: "Tools > Utilities > 4", file: "Files/ascii.bat" },
+            { name: "ASCII Art Logo", desc: "Show the SMT logo as ASCII art.", icon: "fa-image", cat: "dev", tags: "ascii logo art", added: "v1.2", info: "Prints the SMT banner (UTF-8 art on Windows 10+, ASCII fallback).", file: "Files/logo.bat" },
+            { name: "Portable Creator", desc: "Packs SMT into a portable zip.", icon: "fa-box-open", cat: "system", tags: "portable zip package", added: "v2.x", info: "Packs the launcher plus a portable config into Downloads as a zip-ready folder.", menu: 'Type "port" on the main menu', file: "Files/createportable.bat" },
+            { name: "Secret Commands", desc: "Hidden main-menu commands.", icon: "fa-mask", cat: "dev", tags: "secret commands hidden", added: "v1.3", info: "Unlocks hidden commands on the main menu.", menu: 'Type "sc" on the main menu' },
+            { name: "Command History", desc: "Recall past commands.", icon: "fa-history", cat: "dev", tags: "command history", added: "v1.3", info: "Shows commands run in this session (doskey history).", menu: 'Type "99" on the main menu' },
+            { name: "Debug Mode", desc: "Troubleshoot with debug output.", icon: "fa-bug", cat: "dev", tags: "debug troubleshooting", added: "v1.3", info: "Enables debug output via the flag or a secret command.", menu: "The --debug flag" },
+            { name: "Open CMD / PowerShell", desc: "Open CMD or PowerShell.", icon: "fa-terminal", cat: "dev", tags: "cmd powershell terminal", added: "v1.3", info: "Opens a Command Prompt or PowerShell window.", menu: "Tools > Apps > 3-4" },
+            { name: "Open GitHub Repo", desc: "Opens the SMT repo in a browser.", info: "Opens the SMT GitHub page in your browser.", menu: 'Type "git" on the main menu', icon: "fa-git-alt", cat: "dev", tags: "git command", added: "v2.0" },
+            { name: "Chocolatey", desc: "Install Chocolatey package manager.", icon: "fa-box", cat: "apps", tags: "chocolatey package manager", added: "v2.x", info: "Installs the Chocolatey package manager.", menu: "Tools > Apps > 45", file: "Files/Apps/getchoco.bat" },
+            { name: "Auto Update System", desc: "Auto-update SMT.", icon: "fa-arrows-rotate", cat: "dev", tags: "auto update", added: "v2.3", info: "Checks GitHub for updates on launch; force one any time.", menu: 'Type "forceupd" on the main menu' },
+            { name: "Steam", desc: "Install Steam.", icon: "fa-steam", cat: "apps", tags: "steam games", added: "v2.x", info: "Installs Steam via winget.", menu: "Tools > Apps > 51", file: "Files/Apps/stm.bat" },
+            { name: "Password Generator", desc: "Generate random passwords.", icon: "fa-key", cat: "dev", tags: "password generator secure", added: "v2.x", info: "Generates passwords from batch random numbers (not cryptographic).", menu: "Tools > Utilities > 1", file: "Files/PasswordGenerator.bat" },
+            { name: "ASCII Art Gradient Generator", desc: "Make gradient ASCII art.", icon: "fa-font", cat: "dev", tags: "ascii gradient art", added: "v2.x", info: "Builds batch-file templates wrapping text in ANSI gradients.", menu: "Tools > Utilities > 5", file: "Files/gradients.bat" },
+            { name: "Directory File Line Counter", desc: "Count lines in a folder tree.", icon: "fa-hashtag", cat: "dev", tags: "directory line counter files", added: "v2.x", info: "Counts code lines with the external cloc tool.", menu: "Tools > Utilities > 10", file: "Files/dflc.bat" },
+            { name: "Batch File Creator", desc: "Scaffold a batch file.", icon: "fa-file-code", cat: "dev", tags: "batch file creator", added: "v2.x", info: "Writes a batch scaffold and opens it in Notepad.", menu: "Tools > Utilities > 8", file: "Files/bfc.bat" },
+            { name: "Minecraft Server Creator", desc: "Set up a Minecraft server.", info: "Installs Java and Playit.gg, downloads the server jar (Vanilla, Paper, or Fabric), then writes configs, startup scripts, and shortcuts.", menu: "Tools > Utilities > 11", file: "Files/mcs.bat", icon: "fa-cube", cat: "dev", tags: "minecraft server", added: "v2.x" },
+            { name: "MegaTemp", desc: "Bulk Mega account manager.", icon: "fa-users", cat: "dev", tags: "mega account manager", added: "v2.x", info: "Downloads and runs the MegaTemp release build.", menu: "Tools > Utilities > 12", file: "Files/megatemp.bat" },
+            { name: "Private Folder Manager", desc: "Lock folders away.", icon: "fa-lock", cat: "dev", tags: "private folder lock", added: "v2.x", info: "Hides a folder as a Control Panel item (password stored in plaintext).", menu: "Tools > Utilities > 13", file: "Files/PrivateFolderManager.bat" },
 
             // School Utilities
-            { name: "School Utilities", desc: "Collection of tools useful for school environments.", icon: "fa-school", cat: "school", tags: "school education student", added: "v2.3" },
-            { name: "Command-Line Game", desc: "Play a small game right in the command line.", icon: "fa-gamepad", cat: "school", tags: "game cli fun", added: "v2.x" },
+            { name: "School Utilities", desc: "Tools for school use.", icon: "fa-school", cat: "school", tags: "school education student", added: "v2.3", info: "Opens unblocked game and prank sites for school use.", menu: "Tools > Fun > 3", file: "Files/sut.bat" },
+            { name: "Command-Line Game", desc: "Play a command-line game.", icon: "fa-gamepad", cat: "school", tags: "game cli fun", added: "v2.x", info: "A small built-in command-line game.", menu: "Tools > Fun > 2", file: "Files/CommandLineGame.bat" },
 
             // Advanced / Danger Zone
-            { name: "Windows Destroyer", desc: "Wipes data. Lab use only.", icon: "fa-skull-crossbones", cat: "advanced", tags: "destroy danger zone", added: "v1.9" },
-            { name: "Danger Zone Group", desc: "High-risk tools. Isolated VMs only.", icon: "fa-triangle-exclamation", cat: "advanced", tags: "danger zone destructive", added: "v1.9" },
-            { name: "Mystery Advanced Tool", desc: "A surprise advanced utility — try it to find out!", icon: "fa-question-circle", cat: "advanced", tags: "mystery surprise", added: "v1.4" },
-            { name: "ExifCleaner", desc: "Install ExifCleaner metadata remover.", icon: "fa-eraser", cat: "apps", tags: "exif metadata cleaner", added: "v2.x" },
-            { name: "Schnuker", desc: "Installs and runs Schnuker (needs Python).", icon: "fa-bolt", cat: "advanced", tags: "schnuker network utility", added: "v2.x" },
-            { name: "Keyviz", desc: "Install Keyviz keystroke visualizer.", icon: "fa-eye", cat: "apps", tags: "keyviz keystrokes", added: "v2.x" },
-            { name: "Info (About SMT)", desc: "View detailed information about SMT.", icon: "fa-circle-info", cat: "advanced", tags: "info about version", added: "v1.3" },
-            { name: "Python Install Manager", desc: "Install Python Install Manager.", icon: "fa-python", cat: "apps", tags: "python", added: "v2.x" },
-            { name: "utilman Trick Applier", desc: "Accessibility recovery trick for your own PC.", icon: "fa-user-secret", cat: "advanced", tags: "utilman accessibility trick", added: "v2.x" },
-            { name: "Info Stealer (OLD)", desc: "Old local recon dump (Info Grabber). Your own PCs only.", icon: "fa-skull", cat: "advanced", tags: "info stealer legacy research", added: "v1.x" },
-            { name: "Disk Space Filler", desc: "Fills disk space. Lab use only.", icon: "fa-hard-drive", cat: "advanced", tags: "disk fill danger test", added: "v2.x" },
-            { name: "FGRDown", desc: "Game repack helper. Nothing hosted here.", icon: "fa-download", cat: "advanced", tags: "fitgirl repack downloader", added: "v2.x" }
+            { name: "Windows Destroyer", desc: "Wipes data. Lab use only.", danger: true, icon: "fa-skull-crossbones", cat: "advanced", tags: "destroy danger zone", added: "v1.9", info: "Fetches and runs a destructive payload, then deletes the evidence. Lab only.", menu: "Tools > Danger Zone > 1", file: "Files/WDDL.bat" },
+            { name: "Danger Zone Group", desc: "High-risk tools. Isolated VMs only.", icon: "fa-triangle-exclamation", cat: "advanced", tags: "danger zone destructive", added: "v1.9", info: "The high-risk collection, for isolated VMs only.", menu: "Main menu > Tools > Danger Zone" },
+            { name: "Mystery Advanced Tool", desc: "A surprise advanced utility — try it to find out!", icon: "fa-question-circle", cat: "advanced", tags: "mystery surprise", added: "v1.4", info: "Plays a tune and streams ASCII art. Try it to find out.", menu: "Tools menu > ?", file: "Files/mystery.bat" },
+            { name: "ExifCleaner", desc: "Install ExifCleaner metadata remover.", icon: "fa-eraser", cat: "apps", tags: "exif metadata cleaner", added: "v2.x", info: "Installs ExifCleaner via winget.", menu: "Tools > Apps > 53", file: "Files/Apps/exf.bat" },
+            { name: "Schnuker", desc: "Installs and runs Schnuker (needs Python).", icon: "fa-bolt", cat: "advanced", tags: "schnuker network utility", added: "v2.x", info: "Installs Python if missing, then installs and runs the Schnuker tool.", menu: "Tools > Danger Zone > 8", file: "Files/Schnuker/install.bat" },
+            { name: "Keyviz", desc: "Install Keyviz keystroke visualizer.", icon: "fa-eye", cat: "apps", tags: "keyviz keystrokes", added: "v2.x", info: "Installs Keyviz via winget.", menu: "Tools > Apps > 54", file: "Files/Apps/kvz.bat" },
+            { name: "Info (About SMT)", desc: "About this toolkit.", icon: "fa-circle-info", cat: "advanced", tags: "info about version", added: "v1.3", info: "Shows version, OS, activation, tool count, and update status.", menu: "Main menu > 2" },
+            { name: "Python Install Manager", desc: "Install Python Install Manager.", icon: "fa-python", cat: "apps", tags: "python", added: "v2.x", info: "Installs Python Install Manager via winget.", menu: "Tools > Apps > 44", file: "Files/Apps/pim.bat" },
+            { name: "utilman Trick Applier", desc: "Accessibility recovery trick for your own PC.", danger: true, icon: "fa-user-secret", cat: "advanced", tags: "utilman accessibility trick", added: "v2.x", info: "Replaces utilman.exe with cmd.exe for a logon-screen system shell. Recovery use only.", menu: "Tools > Danger Zone > 7", file: "Files/uta.bat" },
+            { name: "Info Stealer (OLD)", desc: "Old local recon dump (Info Grabber). Your own PCs only.", danger: true, icon: "fa-skull", cat: "advanced", tags: "info stealer legacy research", added: "v1.x", info: "An older local recon dump without exfiltration. Your own PCs only.", menu: "Tools > Danger Zone > 2", file: "Files/InfoFinder.bat" },
+            { name: "Disk Space Filler", desc: "Fills disk space. Lab use only.", danger: true, icon: "fa-hard-drive", cat: "advanced", tags: "disk fill danger test", added: "v2.x", info: "Floods the disk with filler files up to a size you set. Lab only.", menu: "Tools > Danger Zone > 4", file: "Files/dsf.bat" },
+            { name: "FGRDown", desc: "Game repack helper. Nothing hosted here.", danger: true, icon: "fa-download", cat: "advanced", tags: "fitgirl repack downloader", added: "v2.x", info: "Scrapes the repack list and drives the download for you. Nothing hosted here.", menu: "Tools > Cracks > 3", file: "Files/fgrdown.bat" }
         ];
 
         // Render cards
         const container = document.getElementById('toolsContainer');
         const noResults = document.getElementById('noResults');
         function renderTools(filteredTools) {
+            filteredTools = filteredTools.filter(t => showDangerous || !t.danger);
             if (filteredTools.length === 0) {
                 container.innerHTML = '';
                 noResults.hidden = false;
             } else {
                 noResults.hidden = true;
                 const slug = s => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+                const CATLABEL = { network: 'Network', system: 'System', windows: 'Windows', security: 'Security', apps: 'Apps', dev: 'Developer', school: 'School', advanced: 'Advanced' };
                 container.innerHTML = filteredTools.map(t => `
-                    <div class="tool-card" id="tool-${slug(t.name)}" data-category="${t.cat}">
+                    <div class="tool-card${t.danger ? ' is-dangerous' : ''}" id="tool-${slug(t.name)}" data-category="${t.cat}">
+                        ${t.danger ? '<span class="danger-tag">Danger</span>' : ''}
                         <div class="tool-icon"><i class="fas ${t.icon}"></i></div>
                         <h4>${t.name}</h4>
                         <p>${t.desc}</p>
-                        <small style="color: var(--text-secondary); opacity:0.7;">Added in ${t.added}</small>
+                        <div class="tool-detail"${showDetails ? '' : ' hidden'}>
+                            <p>${t.info}</p>
+                            <div class="tool-meta">
+                                ${t.menu ? `<div><b>Menu:</b> ${t.menu}</div>` : ''}
+                                ${t.file ? `<div><b>Script:</b> <code>${t.file}</code></div>` : ''}
+                                <div><b>Category:</b> ${CATLABEL[t.cat] || t.cat}</div>
+                                <div><b>Added in:</b> ${t.added}</div>
+                            </div>
+                            ${t.file ? `<a class="tool-src" href="https://github.com/SchooiCodes/smt/blob/main/${t.file}" target="_blank" rel="noopener">View source on GitHub -></a>` : ''}
+                        </div>
                     </div>
                 `).join('');
             }
@@ -445,8 +534,11 @@
 
         // Filtering
         let activeCategory = 'all';
+        let showDetails = false;
+        let showDangerous = false;
         const searchInput = document.getElementById('toolSearch');
-        const filterTabs = document.querySelectorAll('.filter-tab');
+        const categorySelect = document.getElementById('categorySelect');
+        const detailsToggle = document.getElementById('detailsToggle');
 
         function filterTools() {
             const searchTerm = searchInput.value.toLowerCase();
@@ -465,14 +557,51 @@
         }
 
         searchInput.addEventListener('input', filterTools);
-        filterTabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                filterTabs.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-pressed', 'false'); });
-                tab.classList.add('active');
-                tab.setAttribute('aria-pressed', 'true');
-                activeCategory = tab.dataset.filter;
+        detailsToggle.addEventListener('change', () => {
+            showDetails = detailsToggle.checked;
+            document.querySelectorAll('.tool-detail').forEach(p => { p.hidden = !showDetails; });
+        });
+
+        // Dangerous gate: hidden until the user accepts the disclaimer modal.
+        const dangerToggle = document.getElementById('dangerToggle');
+        const dangerGate = document.getElementById('dangerGate');
+        const dangerAccept = document.getElementById('dangerAccept');
+        const dangerDecline = document.getElementById('dangerDecline');
+        let gateReturnFocus = null;
+        function openGate() {
+            gateReturnFocus = document.activeElement;
+            dangerGate.hidden = false;
+            document.body.style.overflow = 'hidden';
+            dangerAccept.focus();
+        }
+        function closeGate(accepted) {
+            dangerGate.hidden = true;
+            document.body.style.overflow = '';
+            if (accepted) {
+                showDangerous = true;
+                dangerToggle.checked = true;
                 filterTools();
-            });
+            } else {
+                dangerToggle.checked = false;
+                dangerToggle.focus();
+            }
+        }
+        dangerToggle.addEventListener('change', () => {
+            if (dangerToggle.checked) {
+                dangerToggle.checked = false;
+                openGate();
+            } else {
+                showDangerous = false;
+                filterTools();
+            }
+        });
+        dangerAccept.addEventListener('click', () => closeGate(true));
+        dangerDecline.addEventListener('click', () => closeGate(false));
+        dangerGate.addEventListener('click', e => { if (e.target === dangerGate) closeGate(false); });
+        document.addEventListener('keydown', e => { if (e.key === 'Escape' && !dangerGate.hidden) closeGate(false); });
+        categorySelect.addEventListener('change', () => {
+            activeCategory = categorySelect.value;
+            filterTools();
         });
 
         // Initial render
@@ -484,8 +613,8 @@
             const n = tools.length;
             if (!n) return;
             const set = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
-            set('toolsTitle', 'All ' + n + ' tools');
-            set('allTab', 'All (' + n + ')');
+            set('toolsCountNum', n);
+            set('allOption', 'All tools (' + n + ')');
             set('footerTag', "Schooi's Multitool - free, open-source toolkit for Windows 10 & 11. " + n + ' tools in one console.');
         })();
 
@@ -495,11 +624,7 @@
             if (!h || h.indexOf('#tool-') !== 0) return;
             searchInput.value = '';
             activeCategory = 'all';
-            filterTabs.forEach(t => {
-                const on = t.dataset.filter === 'all';
-                t.classList.toggle('active', on);
-                t.setAttribute('aria-pressed', on ? 'true' : 'false');
-            });
+            categorySelect.value = 'all';
             filterTools();
             const card = document.getElementById(h.slice(1));
             if (card) card.scrollIntoView({ block: 'center' });
