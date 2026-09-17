@@ -18,10 +18,12 @@ There are two sources of truth for the tool list. Every tool must exist in BOTH 
 1. `features/index.html` -> `const tools = [...]`, objects shaped:
    `{ name, desc, icon, cat, tags, added }`
    - `cat` must be one of: `network`, `system`, `windows`, `security`, `apps`, `dev`, `school`, `advanced`.
-     Each value needs a matching filter tab (`data-filter`) - if you add a new category, add a tab too.
+     Each value needs a matching `<option>` in `#categorySelect` - if you add a new category, add an option too.
    - `icon` is a Font Awesome 6 Free class suffix (rendered as `fas ${icon}`). Only use icons that exist in FA 6.4 free.
    - `tags` is lowercase space-separated search keywords.
    - `added` is a version label like `v1.x` / `v2.x` / `v2.3`. Do NOT add `new` flags or badges - NEW badges were deliberately removed.
+   - Optional enrichment for the global Details toggle: `info` (1-2 factual sentences), `menu` (launcher path like `Tools > Network > 6`), `file` (repo path like `Files/ednsc.bat`, linked to GitHub automatically). Only cards with `info` render a details panel.
+   - Destructive/offensive entries also get `danger: true`. They stay hidden until the visitor accepts the `#dangerGate` disclaimer modal (wired to `#dangerToggle`), and render with red `.is-dangerous` styling plus a `Danger` tag. Never list a dangerous tool without the flag.
    - Keep entries grouped by category (network -> system -> windows -> security -> apps -> dev -> school -> advanced).
 2. `tools-search.js` -> `window.SMT_TOOLS`, objects shaped `{ n, t }` (`n` = exact same name, `t` = same keywords as `tags`).
 
