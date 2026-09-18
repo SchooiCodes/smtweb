@@ -59,15 +59,17 @@
         .toolbar-controls { display: flex; align-items: center; gap: 14px 20px; flex-wrap: wrap; }
         .category-select {
             appearance: none; -webkit-appearance: none;
-            background-color: var(--card-bg);
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="%239494a6" stroke-width="3" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>');
+            background-color: rgba(255, 255, 255, 0.04);
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="%236366f1" stroke-width="3" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>');
             background-repeat: no-repeat; background-position: right 16px center;
             border: 1px solid var(--card-border); color: var(--text-primary);
-            border-radius: 50px; padding: 11px 42px 11px 20px;
-            font-family: 'Bricolage Grotesque', 'Inter', sans-serif; font-weight: 700; font-size: 0.92rem; letter-spacing: 0.02em;
+            border-radius: 50px; padding: 12px 44px 12px 22px;
+            font-family: 'Bricolage Grotesque', 'Inter', sans-serif; font-weight: 700; font-size: 0.95rem; letter-spacing: 0.02em;
             cursor: pointer;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
         }
-        .category-select:hover { border-color: var(--accent); }
+        .category-select:hover { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.18); }
         .category-select:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
         .category-select option { background: var(--bg-secondary); color: var(--text-primary); }
         @media (max-width: 640px) {
@@ -293,10 +295,12 @@
         </div>
     </footer>
 
-    <!-- Mobile quick-action bar (mobile only, see .mobile-bar) -->
-    <nav class="mobile-bar" aria-label="Quick actions">
-        <a href="../#install" class="btn btn-primary"><i class="fas fa-download"></i> Install</a>
-        <a href="./" class="btn btn-outline-sm"><i class="fas fa-list"></i> Tools</a>
+    <!-- Mobile bottom tab bar (mobile only, see .tabbar) -->
+    <nav class="tabbar" aria-label="Primary">
+        <a href="../" class="tab" data-tab="home"><i class="fas fa-house"></i><span>Home</span></a>
+        <a href="./" class="tab active" data-tab="tools"><i class="fas fa-layer-group"></i><span>Tools</span></a>
+        <a href="../#install" class="tab tab-highlight" data-tab="install"><i class="fas fa-download"></i><span>Install</span></a>
+        <a href="../#contact" class="tab" data-tab="contact"><i class="fas fa-envelope"></i><span>Contact</span></a>
     </nav>
 
     <!-- Scripts -->
