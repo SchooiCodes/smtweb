@@ -8,7 +8,7 @@
     <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="../images/SMT.png">
 
-    <link rel="canonical" href="https://smtweb.gleeze.com/features/">
+    <link rel="canonical" href="https://smt.xubi.org/features/">
     <meta name="description" content="Browse all 145 Windows tools inside Schooi's Multitool (SMT) - the Windows multitool &amp; Windows toolkit for Windows 10/11. Networking, Windows &amp; Office activation, system utilities, app installers &amp; more. Search instantly.">
     <meta name="keywords" content="schooi's multitool tools, smt tools, windows multitool tools, windows toolkit tools, windows tools list, windows utilities, schooi multitool features">
     <meta name="robots" content="index, follow, max-image-preview:large">
@@ -19,14 +19,14 @@
     <meta property="og:locale" content="en_US">
     <meta property="og:title" content="All 145 Windows Tools - Schooi's Multitool (SMT) Windows Multitool">
     <meta property="og:description" content="Every Windows tool in SMT - 145 Windows utilities across networking, system, Windows &amp; Office, security, app installers &amp; more. Search the Windows toolkit.">
-    <meta property="og:url" content="https://smtweb.gleeze.com/features/">
-    <meta property="og:image" content="https://smtweb.gleeze.com/images/SMT.png">
+    <meta property="og:url" content="https://smt.xubi.org/features/">
+    <meta property="og:image" content="https://smt.xubi.org/images/SMT.png">
     <meta property="og:image:alt" content="Schooi's Multitool Windows multitool - all 145 Windows tools">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="All 145 Windows Tools - Schooi's Multitool Windows Multitool">
     <meta name="twitter:description" content="Browse 145 Windows tools in SMT - Windows multitool toolkit for Windows 10/11. Search &amp; filter by category.">
-    <meta name="twitter:image" content="https://smtweb.gleeze.com/images/SMT.png">
+    <meta name="twitter:image" content="https://smt.xubi.org/images/SMT.png">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -53,17 +53,17 @@
         .features-hero .hero-badge { background: var(--card-bg); border: 1px solid var(--card-border); }
         .toolbar {
             display: flex; align-items: center; justify-content: space-between;
-            gap: 16px 28px; flex-wrap: wrap;
+            gap: 14px 20px; flex-wrap: wrap;
             padding-top: 30px;
         }
-        .toolbar-controls { display: flex; align-items: center; gap: 14px 20px; flex-wrap: wrap; }
+        .toolbar-controls { display: flex; align-items: center; gap: 12px 16px; flex-wrap: wrap; margin-left: auto; }
+        .cat-drop { position: relative; }
         .category-select {
-            appearance: none; -webkit-appearance: none;
-            background-color: rgba(255, 255, 255, 0.04);
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="%236366f1" stroke-width="3" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>');
-            background-repeat: no-repeat; background-position: right 16px center;
+            display: inline-flex; align-items: center; gap: 12px;
+            white-space: nowrap;
+            background: rgba(255, 255, 255, 0.04);
             border: 1px solid var(--card-border); color: var(--text-primary);
-            border-radius: 50px; padding: 12px 44px 12px 22px;
+            border-radius: 50px; padding: 12px 22px;
             font-family: 'Bricolage Grotesque', 'Inter', sans-serif; font-weight: 700; font-size: 0.95rem; letter-spacing: 0.02em;
             cursor: pointer;
             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.05);
@@ -71,32 +71,54 @@
         }
         .category-select:hover { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.18); }
         .category-select:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
-        .category-select option { background: var(--bg-secondary); color: var(--text-primary); }
+        .category-select svg { color: var(--accent); flex-shrink: 0; transition: transform 0.2s ease; }
+        .category-select[aria-expanded="true"] svg { transform: rotate(180deg); }
+        .cat-list[hidden] { display: none; }
+        .cat-list {
+            position: absolute; top: calc(100% + 8px); right: 0; min-width: 100%;
+            list-style: none; margin: 0; padding: 8px;
+            background: var(--panel-2, #16162a);
+            border: 1px solid var(--card-border); border-radius: 16px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            z-index: 1200;
+        }
+        .cat-list [role="option"] {
+            padding: 10px 16px; border-radius: 10px;
+            color: var(--text-secondary); font-weight: 600; font-size: 0.9rem;
+            cursor: pointer; white-space: nowrap;
+        }
+        .cat-list [role="option"]:hover { background: rgba(99, 102, 241, 0.14); color: var(--text-primary); }
+        .cat-list [role="option"][aria-selected="true"] { background: var(--grad); color: #ffffff; }
         @media (max-width: 640px) {
             .toolbar { flex-direction: column; align-items: stretch; }
-            .toolbar .search-box { max-width: none; }
+            .toolbar .search-box { max-width: none; flex: 0 0 auto; width: 100%; }
             .toolbar-controls { justify-content: center; }
         }
         .search-box {
-            flex: 1 1 300px; max-width: 480px; position: relative;
+            display: flex; align-items: center; gap: 12px;
+            flex: 1 1 260px; max-width: 420px;
             margin: 0;
-        }
-        .search-box input {
-            width: 100%; padding: 15px 22px 15px 52px; border-radius: 50px;
-            border: 1px solid var(--card-border);
             background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--card-border);
+            border-radius: 50px;
+            padding: 0 22px 0 20px;
             -webkit-backdrop-filter: blur(12px);
             backdrop-filter: blur(12px);
-            color: var(--text-primary); font-size: 1rem; outline: none;
             box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
             transition: border-color 0.2s ease, box-shadow 0.2s ease;
         }
-        .search-box input::placeholder { color: var(--text-secondary); }
-        .search-box input:focus {
+        .search-box:focus-within {
             border-color: var(--accent);
             box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.28);
         }
-        .search-box .search-icon { position: absolute; left: 22px; top: 0; bottom: 0; margin-top: auto; margin-bottom: auto; color: var(--accent); flex-shrink: 0; z-index: 1; pointer-events: none; }
+        .search-box input {
+            flex: 1; min-width: 0;
+            background: transparent; border: none; box-shadow: none;
+            color: var(--text-primary); font-size: 1rem; outline: none;
+            padding: 15px 0;
+        }
+        .search-box input::placeholder { color: var(--text-secondary); }
+        .search-box .search-icon { flex-shrink: 0; margin-left: 20px; color: var(--accent); }
         .tools-grid {
             display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 24px; padding: 40px 0;
@@ -170,8 +192,8 @@
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
       "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://smtweb.gleeze.com/"},
-        {"@type": "ListItem", "position": 2, "name": "Windows Tools", "item": "https://smtweb.gleeze.com/features/"}
+        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://smt.xubi.org/"},
+        {"@type": "ListItem", "position": 2, "name": "Windows Tools", "item": "https://smt.xubi.org/features/"}
       ]
     }
     </script>
@@ -181,8 +203,8 @@
       "@type": "CollectionPage",
       "name": "All 145 Windows Tools - Schooi's Multitool Windows Multitool",
       "description": "Complete list of 145 Windows tools inside Schooi's Multitool (SMT) Windows multitool and Windows toolkit for Windows 10/11.",
-      "url": "https://smtweb.gleeze.com/features/",
-      "isPartOf": {"@type": "WebSite", "name": "Schooi's Multitool", "url": "https://smtweb.gleeze.com/"},
+      "url": "https://smt.xubi.org/features/",
+      "isPartOf": {"@type": "WebSite", "name": "Schooi's Multitool", "url": "https://smt.xubi.org/"},
       "about": {"@type": "SoftwareApplication", "name": "Schooi's Multitool", "operatingSystem": "Windows 10, Windows 11"}
     }
     </script>
@@ -235,17 +257,23 @@
         <div class="toolbar-controls">
             <label class="details-switch"><input type="checkbox" id="detailsToggle"><span class="switch-track" aria-hidden="true"></span> Show details</label>
             <label class="details-switch"><input type="checkbox" id="dangerToggle"><span class="switch-track danger-track" aria-hidden="true"></span> Show dangerous</label>
-            <select id="categorySelect" class="category-select" aria-label="Filter by category">
-                <option value="all" id="allOption">All tools (145)</option>
-                <option value="network">Network</option>
-                <option value="system">System</option>
-                <option value="windows">Windows</option>
-                <option value="security">Security</option>
-                <option value="apps">Apps</option>
-                <option value="dev">Developer</option>
-                <option value="school">School</option>
-                <option value="advanced">Advanced</option>
-            </select>
+            <div class="cat-drop" id="catDrop">
+                <button type="button" class="category-select" id="categoryButton" aria-haspopup="listbox" aria-expanded="false">
+                    <span id="categoryLabel">All tools (145)</span>
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+                </button>
+                <ul class="cat-list" id="categoryList" role="listbox" aria-label="Filter by category" hidden>
+                    <li role="option" data-value="all" aria-selected="true" id="allOption">All tools (145)</li>
+                    <li role="option" data-value="network" aria-selected="false">Network</li>
+                    <li role="option" data-value="system" aria-selected="false">System</li>
+                    <li role="option" data-value="windows" aria-selected="false">Windows</li>
+                    <li role="option" data-value="security" aria-selected="false">Security</li>
+                    <li role="option" data-value="apps" aria-selected="false">Apps</li>
+                    <li role="option" data-value="dev" aria-selected="false">Developer</li>
+                    <li role="option" data-value="school" aria-selected="false">School</li>
+                    <li role="option" data-value="advanced" aria-selected="false">Advanced</li>
+                </ul>
+            </div>
         </div>
     </div>
 
@@ -541,7 +569,9 @@
         let showDetails = false;
         let showDangerous = false;
         const searchInput = document.getElementById('toolSearch');
-        const categorySelect = document.getElementById('categorySelect');
+        const categoryButton = document.getElementById('categoryButton');
+        const categoryList = document.getElementById('categoryList');
+        const categoryLabel = document.getElementById('categoryLabel');
         const detailsToggle = document.getElementById('detailsToggle');
 
         function filterTools() {
@@ -603,9 +633,37 @@
         dangerDecline.addEventListener('click', () => closeGate(false));
         dangerGate.addEventListener('click', e => { if (e.target === dangerGate) closeGate(false); });
         document.addEventListener('keydown', e => { if (e.key === 'Escape' && !dangerGate.hidden) closeGate(false); });
-        categorySelect.addEventListener('change', () => {
-            activeCategory = categorySelect.value;
+        function applyCategory(value) {
+            activeCategory = value;
+            const current = categoryList.querySelector('[data-value="' + value + '"]');
+            categoryList.querySelectorAll('[role="option"]').forEach(o => {
+                o.setAttribute('aria-selected', o === current ? 'true' : 'false');
+            });
+            if (current) categoryLabel.textContent = current.textContent;
             filterTools();
+        }
+        function setListOpen(open) {
+            categoryList.hidden = !open;
+            categoryButton.setAttribute('aria-expanded', String(open));
+        }
+        categoryButton.addEventListener('click', () => {
+            setListOpen(categoryList.hidden);
+        });
+        categoryList.addEventListener('click', e => {
+            const opt = e.target.closest('[role="option"]');
+            if (!opt) return;
+            setListOpen(false);
+            categoryButton.focus();
+            applyCategory(opt.dataset.value);
+        });
+        document.addEventListener('click', e => {
+            if (!categoryList.hidden && !document.getElementById('catDrop').contains(e.target)) setListOpen(false);
+        });
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape' && !categoryList.hidden) {
+                setListOpen(false);
+                categoryButton.focus();
+            }
         });
 
         // Initial render
@@ -619,6 +677,8 @@
             const set = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
             set('toolsCountNum', n);
             set('allOption', 'All tools (' + n + ')');
+            const _lbl = document.getElementById('categoryLabel');
+            if (_lbl && activeCategory === 'all') _lbl.textContent = 'All tools (' + n + ')';
             set('footerTag', "Schooi's Multitool - free, open-source toolkit for Windows 10 & 11. " + n + ' tools in one console.');
         })();
 
@@ -627,9 +687,7 @@
             const h = location.hash;
             if (!h || h.indexOf('#tool-') !== 0) return;
             searchInput.value = '';
-            activeCategory = 'all';
-            categorySelect.value = 'all';
-            filterTools();
+            applyCategory('all');
             const card = document.getElementById(h.slice(1));
             if (card) card.scrollIntoView({ block: 'center' });
         })();
