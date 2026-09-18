@@ -1280,7 +1280,7 @@ section {
 @media print {
     .navbar, .footer, .offline-banner, .skip-link, .theme-toggle,
     .social-links, .terminal, .hero-cta, .hero-search, .contact-cta,
-    .copy-btn, .filter-tabs, .term-results, .no-results, .mobile-bar, .btn { display: none !important; }
+    .copy-btn, .filter-tabs, .term-results, .no-results, .mobile-bar, .tabbar, .btn { display: none !important; }
     html, body { background: #ffffff !important; color: #000000 !important; }
     *, *::before, *::after { box-shadow: none !important; text-shadow: none !important; }
     .hero, .features-section, .downloads-section, .legal-hero, .legal-content, .contact-section {
@@ -1423,6 +1423,7 @@ section {
 
 /* ===== Custom mobile UI ===== */
 .mobile-bar { display: none; }
+.tabbar { display: none; }
 @media (max-width: 640px) {
     html, body { overflow-x: clip; }
     section, .container, .hero-inner, .terminal, .terminal-body, .term-search,
@@ -1461,31 +1462,51 @@ section {
     .footer-content { flex-direction: column; text-align: center; }
     .footer-links { justify-content: center; flex-wrap: wrap; }
 
-    /* Sticky bottom quick-action bar (mobile only) */
-    body { padding-bottom: 84px; }
-    .mobile-bar {
+    /* Floating bottom tab bar (mobile only) */
+    body { padding-bottom: 100px; }
+    .tabbar {
         display: flex;
-        gap: 10px;
-        align-items: center;
-        justify-content: center;
+        align-items: flex-end;
+        justify-content: space-around;
         position: fixed;
-        left: 0;
-        right: 0;
-        bottom: 0;
+        left: 12px;
+        right: 12px;
+        bottom: calc(10px + env(safe-area-inset-bottom));
         z-index: 1500;
-        padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+        padding: 10px 8px;
         background: var(--navbar-bg);
-        -webkit-backdrop-filter: blur(12px);
-        backdrop-filter: blur(12px);
-        border-top: 1px solid var(--card-border);
+        -webkit-backdrop-filter: blur(16px);
+        backdrop-filter: blur(16px);
+        border: 1px solid var(--card-border);
+        border-radius: 24px;
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
     }
-    .mobile-bar .btn {
-        flex: 1 1 0;
-        min-width: 0;
-        justify-content: center;
-        padding: 12px 10px;
-        font-size: 0.95rem;
-        white-space: nowrap;
+    .tabbar .tab {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 3px;
+        color: var(--text-secondary);
+        text-decoration: none;
+        font-size: 0.68rem;
+        font-weight: 600;
+        padding: 6px 14px;
+        border-radius: 14px;
+        transition: color 0.2s ease, background 0.2s ease;
     }
-    .offline-banner { bottom: 84px; }
+    .tabbar .tab i { font-size: 1.15rem; line-height: 1; }
+    .tabbar .tab.active { color: var(--accent); background: rgba(99, 102, 241, 0.12); }
+    .tabbar .tab-highlight i { position: relative; }
+    .tabbar .tab-highlight i::after {
+        content: '';
+        position: absolute;
+        top: -3px;
+        right: -6px;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--grad);
+        box-shadow: 0 0 8px rgba(168, 85, 247, 0.9);
+    }
+    .offline-banner { bottom: 100px; }
 }
