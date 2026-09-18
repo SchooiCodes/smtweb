@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; base-uri 'self'; form-action 'self'; object-src 'none'; connect-src 'self'">
+    <title>SMT Field Guide - Flags, Secrets & Tips | Schooi's Multitool</title>
+    <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="../images/SMT.png">
+
+    <link rel="canonical" href="https://smt.xubi.org/guide/">
+    <meta name="description" content="Every Schooi's Multitool launch flag, secret main-menu command, and good-to-know behavior in one searchable reference.">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="theme-color" content="#6366f1">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Schooi's Multitool">
+    <meta property="og:title" content="SMT Field Guide - Flags, Secrets & Tips">
+    <meta property="og:description" content="Every launch flag, secret command, and hidden behavior in Schooi's Multitool. Searchable reference.">
+    <meta property="og:url" content="https://smt.xubi.org/guide/">
+    <meta property="og:image" content="https://smt.xubi.org/images/SMT.png">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="SMT Field Guide - Flags, Secrets & Tips">
+    <meta name="twitter:description" content="Every launch flag and secret command in Schooi's Multitool. Searchable reference.">
+    <meta name="twitter:image" content="https://smt.xubi.org/images/SMT.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;600;700;800&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../styles.css">
+
+    <style>
+        .guide-hero {
+            padding: 120px 24px 40px;
+            text-align: center;
+            background:
+                radial-gradient(800px 400px at 50% -10%, rgba(99, 102, 241, 0.18), transparent 70%),
+                var(--bg);
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--card-border);
+        }
+        .guide-hero h1 {
+            font-family: 'Bricolage Grotesque', 'Inter', sans-serif;
+            font-size: clamp(2rem, 6vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+        .guide-hero p { opacity: 0.9; max-width: 600px; margin: 0 auto 8px; }
+        .guide-search {
+            margin: 24px auto 0; max-width: 480px; position: relative;
+        }
+        .guide-search input {
+            width: 100%; padding: 14px 20px 14px 50px; border-radius: 50px;
+            border: 1px solid var(--card-border);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text-primary); font-size: 1rem; outline: none;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+        .guide-search input::placeholder { color: var(--text-secondary); }
+        .guide-search input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.28); }
+        .guide-search svg { position: absolute; left: 14px; top: 0; bottom: 0; margin-top: auto; margin-bottom: auto; color: var(--accent); }
+        .guide-group { padding: 36px 0 0; }
+        .guide-group h2 {
+            font-family: 'Bricolage Grotesque', 'Inter', sans-serif;
+            font-size: 1.5rem; margin-bottom: 16px; color: var(--text-primary);
+        }
+        .ref-row {
+            display: grid; grid-template-columns: 220px 1fr; gap: 8px 20px;
+            background: var(--card-bg); border: 1px solid var(--card-border);
+            border-radius: 14px; padding: 16px 20px; margin-bottom: 10px;
+        }
+        .ref-cmd { font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; color: #7ee787; overflow-wrap: anywhere; }
+        .ref-aka { display: block; font-size: 0.78rem; color: var(--text-secondary); margin-top: 4px; }
+        .ref-what { color: var(--text-secondary); line-height: 1.6; }
+        .guide-empty { text-align: center; color: var(--text-secondary); padding: 40px 20px; }
+        @media (max-width: 640px) {
+            .ref-row { grid-template-columns: 1fr; }
+        }
+    </style>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://smt.xubi.org/"},
+        {"@type": "ListItem", "position": 2, "name": "Field Guide", "item": "https://smt.xubi.org/guide/"}
+      ]
+    }
+    </script>
+</head>
+<body>
+    <a href="#main" class="skip-link">Skip to content</a>
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="../" class="nav-logo"><img src="../images/smt.ico" alt="SMT" class="nav-logo-img"></a>
+            <ul class="nav-menu">
+                <li><a href="../#about">About</a></li>
+                <li><a href="../features/">Tools</a></li>
+                <li><a href="../#install" class="nav-install">Install</a></li>
+                <li><a href="../#contact">Contact</a></li>
+                <li>
+                    <button id="darkModeToggle" class="theme-toggle" aria-label="Toggle light mode">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <div id="offlineBanner" class="offline-banner" hidden role="status">
+        <i class="fas fa-wifi"></i> You're offline - some things may not load.
+    </div>
+
+    <section class="guide-hero" id="main" tabindex="-1">
+        <div class="container">
+            <span class="hero-badge">field guide</span>
+            <h1>SMT <span class="gradient-text">field guide</span></h1>
+            <p>Every launch flag, secret main-menu command, and good-to-know behavior.</p>
+            <div class="guide-search" role="search">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/></svg>
+                <input type="text" id="guideSearch" aria-label="Search flags and secrets" placeholder="Filter... try &quot;portable&quot;, &quot;debug&quot;, &quot;bios&quot;">
+            </div>
+        </div>
+    </section>
+
+    <section class="container" style="padding-bottom:60px">
+        <div id="guideGroups"></div>
+        <p id="guideEmpty" class="guide-empty" hidden>No matches. Try another word.</p>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3><i class="fas fa-cube"></i> SMT</h3>
+                    <p>Schooi's Multitool - free, open-source toolkit for Windows 10 &amp; 11. 145 tools in one console.</p>
+                </div>
+                <div class="footer-links">
+                    <a href="../#about">About</a>
+                    <a href="../features/">Tools</a>
+                    <a href="./">Guide</a>
+                    <a href="../#install">Install</a>
+                    <a href="../#contact">Contact</a>
+                    <a href="../privacy.html">Privacy</a>
+                    <a href="../terms.html">Terms</a>
+                    <a href="../accessibility.html">Accessibility</a>
+                    <a href="../license.html">License</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Schooi. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const darkToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+        const storeGet = (k) => { try { return localStorage.getItem(k); } catch (e) { return null; } };
+        const storeSet = (k, v) => { try { localStorage.setItem(k, v); } catch (e) {} };
+        if (storeGet('theme') === 'light') {
+            body.classList.add('light-mode');
+            darkToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        }
+        darkToggle.addEventListener('click', () => {
+            const isLight = body.classList.toggle('light-mode');
+            darkToggle.innerHTML = isLight ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+            storeSet('theme', isLight ? 'light' : 'dark');
+        });
+
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        const offlineBanner = document.getElementById('offlineBanner');
+        function updateOnline() { offlineBanner.hidden = navigator.onLine; }
+        window.addEventListener('online', updateOnline);
+        window.addEventListener('offline', updateOnline);
+        updateOnline();
+
+        window.addEventListener('error', (e) => {
+            if (e.target && e.target !== window) return;
+            console.error('[SMT error]', e.message, e.filename, e.lineno);
+        });
+
+        // ==================== FIELD GUIDE DATA (verified against SchooiMultitool.bat) ====================
+        const GUIDE = [
+            { sec: 'flags', cmd: 'SchooiMultitool.bat -d', aka: '/d, --debug, /debug', what: 'Turns command echo on (debug mode).' },
+            { sec: 'flags', cmd: 'SchooiMultitool.bat -rp', aka: '/rp, --restore-point, /restore-point', what: 'Creates a system restore point, then exits.' },
+            { sec: 'flags', cmd: 'SchooiMultitool.bat -s', aka: '/s, --sync, /sync', what: 'Syncs SMT files, then exits.' },
+            { sec: 'flags', cmd: 'SchooiMultitool.bat -p', aka: '/p, --portable, /portable', what: 'Builds a portable SMT zip, then exits.' },
+            { sec: 'flags', cmd: 'SchooiMultitool.bat -f', aka: '/f, --feedback, /feedback', what: 'Opens the feedback form, then exits.' },
+            { sec: 'flags', cmd: 'SchooiMultitool.bat -i', aka: '/i, --install, /install', what: 'Runs the install routine, then exits.' },
+            { sec: 'flags', cmd: 'SchooiMultitool.bat -w', aka: '/w, --website, /website', what: 'Opens the project website, then exits.' },
+            { sec: 'flags', cmd: 'SchooiMultitool.bat -na', aka: '/na, --noadmin, /noadmin', what: 'Skips the admin-elevation prompt.' },
+            { sec: 'flags', cmd: 'SchooiMultitool.bat -32', aka: '/32, --system32, /system32', what: 'Installs SMT into System32.' },
+            { sec: 'flags', cmd: 'SchooiMultitool.bat -pf', aka: '/pf, --program-files, /program-files', what: 'Installs SMT into Program Files.' },
+            { sec: 'flags', cmd: 'SchooiMultitool.bat -h', aka: '/h, --help, /help', what: 'Shows the help screen.' },
+            { sec: 'secrets', cmd: 'sc', aka: 'secret commands list', what: 'Lists all secret commands on the main menu.' },
+            { sec: 'secrets', cmd: '99', aka: 'command history', what: 'Shows commands run in this session.' },
+            { sec: 'secrets', cmd: 'shutdown', aka: 'power', what: 'Shuts the PC down immediately.' },
+            { sec: 'secrets', cmd: 'restart', aka: 'power', what: 'Restarts the PC immediately.' },
+            { sec: 'secrets', cmd: 'bios', aka: 'power', what: 'Restarts straight into UEFI/BIOS settings.' },
+            { sec: 'secrets', cmd: 'git', aka: 'link', what: 'Opens the SMT repo on GitHub.' },
+            { sec: 'secrets', cmd: 'web', aka: 'link', what: 'Opens the project website.' },
+            { sec: 'secrets', cmd: 'pf', aka: 'install', what: 'Installs SMT into Program Files.' },
+            { sec: 'secrets', cmd: '32', aka: 'install', what: 'Installs SMT into System32.' },
+            { sec: 'secrets', cmd: 'cl', aka: 'appearance', what: 'Console color settings.' },
+            { sec: 'secrets', cmd: 'tcon / tcoff', aka: 'appearance', what: 'Terminal text coloring on / off.' },
+            { sec: 'secrets', cmd: 'mdon / mdoff', aka: 'appearance', what: 'Automatic window resizing on / off.' },
+            { sec: 'secrets', cmd: 'discon / discoff', aka: 'appearance', what: 'Disclaimer prompts on / off.' },
+            { sec: 'secrets', cmd: 'update', aka: 'changelog', what: 'Prints the changelog, then exits.' },
+            { sec: 'secrets', cmd: 'edit', aka: 'source', what: 'Opens the launcher in Notepad.' },
+            { sec: 'secrets', cmd: 'rs', aka: 'restart', what: 'Restarts SMT.' },
+            { sec: 'secrets', cmd: 'forceupd', aka: 'update', what: 'Forces an update check and restarts.' },
+            { sec: 'secrets', cmd: 'port', aka: 'portable', what: 'Builds a portable SMT zip.' },
+            { sec: 'secrets', cmd: '<you>On / <you>Off', aka: 'debug (use your Windows username)', what: 'Debug echo on / off.' },
+            { sec: 'secrets', cmd: '?', aka: 'mystery', what: 'Mystery tool (inside the Tools menu).' },
+            { sec: 'tips', cmd: 'First launch', aka: 'restore point + update check', what: 'SMT asks before creating a restore point, then checks for updates.' },
+            { sec: 'tips', cmd: 'Auto PATH', aka: 'no action needed', what: 'SMT adds itself to PATH on launch.' },
+            { sec: 'tips', cmd: 'Info screen', aka: 'main menu > 2', what: 'Shows version, OS, activation, tool count, and update status.' },
+            { sec: 'tips', cmd: 'Danger gate', aka: 'confirmation', what: 'Opening Danger Zone shows a disclaimer first.' },
+            { sec: 'tips', cmd: 'Feedback', aka: 'main menu > 4', what: 'Opens the feedback form.' },
+            { sec: 'tips', cmd: 'Settings file', aka: 'config\\settings.ini', what: 'Colors, PATH state, telemetry, portable mode, and visual toggles all live here.' },
+            { sec: 'tips', cmd: 'Portable mode', aka: '-p flag', what: 'A portable copy remembers it is portable and skips PATH changes.' },
+            { sec: 'tips', cmd: 'Credits', aka: 'main menu > 3', what: 'Shows who made SMT and the tools it bundles.' },
+            { sec: 'tips', cmd: 'Install location', aka: 'startup notice', what: 'SMT tells you whether it lives in an admin-owned or user-owned folder.' },
+            { sec: 'tips', cmd: 'Usage ping', aka: 'telemetry', what: 'One anonymous ping per install, never repeated.' },
+            { sec: 'tips', cmd: 'Offline mode', aka: 'no internet', what: 'Update checks skip quietly; everything local still works.' },
+            { sec: 'start', cmd: 'Admin check', aka: 'elevation', what: 'Restarts itself with admin rights when needed.' },
+            { sec: 'start', cmd: 'Execution policy', aka: 'powershell', what: 'Sets the CurrentUser policy to Unrestricted.' },
+            { sec: 'start', cmd: 'PATH setup', aka: 'environment', what: 'Adds SMT to PATH once, then remembers it.' },
+            { sec: 'start', cmd: 'Internet + usage ping', aka: 'telemetry', what: 'Checks connectivity and sends one anonymous usage ping.' },
+            { sec: 'start', cmd: 'Update check', aka: 'github', what: 'Compares the local version against GitHub.' },
+            { sec: 'start', cmd: 'Window + colors', aka: 'visuals', what: 'Applies resizing and text-coloring settings.' },
+            { sec: 'start', cmd: 'Restore point', aka: 'safety prompt', what: 'Asks about a restore point before the menu.' },
+        ];
+        const SECTIONS = [
+            ['flags', 'Launch flags', 'Run the launcher with one of these:'],
+            ['secrets', 'Secret commands', 'Type these on the main menu:'],
+            ['tips', 'Good to know', 'Behavior worth knowing:'],
+            ['start', 'Startup sequence', 'What happens before the menu appears, in order:'],
+        ];
+
+        const groupsEl = document.getElementById('guideGroups');
+        const emptyEl = document.getElementById('guideEmpty');
+        const searchEl = document.getElementById('guideSearch');
+        function esc(s) { return s.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c])); }
+        function renderGuide() {
+            const q = (searchEl.value || '').trim().toLowerCase();
+            let shown = 0;
+            groupsEl.innerHTML = SECTIONS.map(([key, title, sub]) => {
+                const rows = GUIDE.filter(g => g.sec === key && (
+                    !q || g.cmd.toLowerCase().includes(q) || g.aka.toLowerCase().includes(q) || g.what.toLowerCase().includes(q)
+                ));
+                if (!rows.length) return '';
+                shown += rows.length;
+                return '<div class="guide-group"><h2>' + title + '</h2><p style="color:var(--text-secondary);margin-bottom:16px">' + sub + '</p>' +
+                    rows.map(g =>
+                        '<div class="ref-row"><div class="ref-cmd">' + esc(g.cmd) +
+                        '<span class="ref-aka">' + esc(g.aka) + '</span></div>' +
+                        '<div class="ref-what">' + esc(g.what) + '</div></div>'
+                    ).join('') + '</div>';
+            }).join('');
+            emptyEl.hidden = shown !== 0;
+        }
+        searchEl.addEventListener('input', renderGuide);
+        renderGuide();
+    </script>
+</body>
+</html>
