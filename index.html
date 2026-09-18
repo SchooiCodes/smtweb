@@ -202,7 +202,7 @@
             <div class="hero-cta">
                 <a href="#install" class="btn btn-primary btn-lg"><i class="fas fa-download"></i> Install now</a>
                 <a href="features/" class="btn btn-outline-sm btn-lg"><i class="fas fa-list"></i> Browse tools</a>
-                <a href="https://github.com/SchooiCodes/smt" class="btn btn-outline-sm btn-lg" target="_blank"><i class="fab fa-github"></i> View on GitHub</a>
+                <a href="https://github.com/SchooiCodes/smt" class="btn btn-outline-sm btn-lg" target="_blank"><i class="fas fa-star"></i> Star on GitHub</a>
             </div>
         </div>
     </section>
@@ -268,7 +268,7 @@
                     <p>Or clone the repo and run it yourself.</p>
                     <div class="install-cmd small"><code id="cloneCmd">git clone https://github.com/SchooiCodes/smt</code></div>
                     <button class="copy-btn small" type="button"><i class="fas fa-copy"></i></button>
-                    <a href="https://github.com/SchooiCodes/smt" class="btn btn-outline-sm" target="_blank">View on GitHub</a>
+                    <a href="https://github.com/SchooiCodes/smt" class="btn btn-outline-sm" target="_blank"<i class="fas fa-star"></i> Star on GitHub</a>
                 </div>
             </div>
             <div class="install-block">
@@ -353,6 +353,7 @@
                     <a href="features/">Tools</a>
                     <a href="#install">Install</a>
                     <a href="#contact">Contact</a>
+                    <a href="guide/">Guide</a>
                     <a href="privacy.html">Privacy</a>
                     <a href="terms.html">Terms</a>
                     <a href="accessibility.html">Accessibility</a>
@@ -560,11 +561,10 @@
                     const lines = t.split(/\r?\n/).map(s => s.trim()).filter(Boolean);
                     if (!lines.length) throw new Error('empty');
                     list.innerHTML = '';
-                    lines.slice(0, 8).forEach(line => {
-                        const li = document.createElement('li');
-                        li.textContent = line;
-                        list.appendChild(li);
-                    });
+                    const li = document.createElement('li');
+                    li.style.whiteSpace = 'pre-line';
+                    li.textContent = lines.slice(0, 8).join('\n');
+                    list.appendChild(li);
                 })
                 .catch(err => {
                     console.warn('[SMT] live changelog failed:', err && err.message);

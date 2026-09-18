@@ -61,6 +61,14 @@ body.light-mode {
     box-sizing: border-box;
 }
 
+button, input, select, textarea, option {
+    font-family: inherit;
+}
+
+code {
+    font-family: ui-monospace, 'Courier New', monospace;
+}
+
 html {
     scroll-behavior: smooth;
 }
@@ -1322,15 +1330,18 @@ section {
 
 /* ===== Tidy: standout Install button in the nav ===== */
 .nav-menu a.nav-install {
-    background: var(--grad);
-    color: #ffffff !important;
-    padding: 10px 22px;
+    background: transparent;
+    color: var(--accent) !important;
+    padding: 8px 20px;
+    border: 2px solid var(--accent);
     border-radius: 50px;
-    font-weight: 600;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    font-weight: 700;
+    box-shadow: 0 0 16px rgba(99, 102, 241, 0.35);
 }
 .nav-menu a.nav-install::after { display: none; }
 .nav-menu a.nav-install:hover {
+    background: var(--grad);
+    border-color: transparent;
     transform: translateY(-2px);
     color: #ffffff !important;
     box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
