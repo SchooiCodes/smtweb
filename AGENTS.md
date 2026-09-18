@@ -6,6 +6,7 @@ Static site for Schooi's Multitool (SMT). No build step, no framework. Edit file
 
 - `index.html` - homepage (hero terminal with live tool search, install, about, contact, footer).
 - `features/index.html` - the tools catalog. Renders cards from an inline `tools` JS array. Has search + category filter tabs.
+- `guide/index.html` - the field guide (launch flags, secret commands, tips). Renders from the inline `GUIDE` array; verify entries against `../smt/SchooiMultitool.bat` (`%1` flag parsing, `%choice%` secrets).
 - `tools-search.js` - search index for the homepage hero (`window.SMT_TOOLS`, `{ n, t }` entries). Loaded by `index.html`.
 - `styles.css` - all shared styles, dark/light themes via CSS vars (`body.light-mode`).
 - `privacy.html`, `terms.html`, `accessibility.html`, `license.html`, `404.html`, `error.html` - standalone pages with duplicated nav/footer (no templating; update each file).
@@ -22,8 +23,9 @@ There are two sources of truth for the tool list. Every tool must exist in BOTH 
    - `icon` is a Font Awesome 6 Free class suffix (rendered as `fas ${icon}`). Only use icons that exist in FA 6.4 free.
    - `tags` is lowercase space-separated search keywords.
    - `added` is a version label like `v1.x` / `v2.x` / `v2.3`. Do NOT add `new` flags or badges - NEW badges were deliberately removed.
-   - Optional enrichment for the global Details toggle: `info` (1-2 factual sentences), `menu` (launcher path like `Tools > Network > 6`), `file` (repo path like `Files/ednsc.bat`, linked to GitHub automatically). Only cards with `info` render a details panel.
+   - Optional enrichment for the global Details toggle: `info` (1-2 factual sentences), `menu` (launcher path like `Tools > Network > 6`), `file` (repo path like `Files/ednsc.bat`, linked to GitHub automatically), `src` (full URL override when the real source lives in its own repo instead of `smt`). Only cards with `info` render a details panel.
    - Destructive/offensive entries also get `danger: true`. They stay hidden until the visitor accepts the `#dangerGate` disclaimer modal (wired to `#dangerToggle`), and render with red `.is-dangerous` styling plus a `Danger` tag. Never list a dangerous tool without the flag.
+   - Elevation is structured, not prose: tools needing admin get `admin: true` (renders a green check / red cross `Needs admin` row). Never write "needs admin" into descriptions.
    - Keep entries grouped by category (network -> system -> windows -> security -> apps -> dev -> school -> advanced).
 2. `tools-search.js` -> `window.SMT_TOOLS`, objects shaped `{ n, t }` (`n` = exact same name, `t` = same keywords as `tags`).
 
