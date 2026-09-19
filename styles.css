@@ -116,7 +116,6 @@ h1, h2, h3, h4, h5, h6 {
     right: 0;
     z-index: 1000;
     padding: 16px 0;
-    transition: all 0.3s ease;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     background: transparent;

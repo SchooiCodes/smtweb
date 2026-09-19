@@ -174,9 +174,11 @@
         });
 
         const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            navbar.classList.toggle('scrolled', window.scrollY > 50);
-        });
+        if (navbar && window.matchMedia('(min-width: 641px)').matches) {
+            window.addEventListener('scroll', () => {
+                navbar.classList.toggle('scrolled', window.scrollY > 50);
+            }, { passive: true });
+        }
 
         const hamburger = document.getElementById('hamburger');
         const navMenu = document.querySelector('.nav-menu');

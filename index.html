@@ -408,13 +408,11 @@
 
         // Navbar Scroll Effect
         const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
+        if (navbar && window.matchMedia('(min-width: 641px)').matches) {
+            window.addEventListener('scroll', () => {
+                navbar.classList.toggle('scrolled', window.scrollY > 50);
+            }, { passive: true });
+        }
 
         // Mobile Menu Toggle
         const hamburger = document.getElementById('hamburger');
