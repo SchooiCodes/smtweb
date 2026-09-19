@@ -249,6 +249,7 @@ body:not(.light-mode) .navbar {
 /* ===== Hero Section ===== */
 .hero {
     min-height: 100vh;
+    min-height: 100svh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1519,4 +1520,16 @@ section {
         box-shadow: 0 0 8px rgba(168, 85, 247, 0.9);
     }
     .offline-banner { bottom: 100px; }
+    /* Pin fixed bars to their own layer so mobile URL-bar
+       show/hide and momentum scroll can't nudge them. */
+    .navbar {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+    }
+    .tabbar {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+    }
 }
