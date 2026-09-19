@@ -372,14 +372,6 @@
         <button type="button" class="lightbox-close" aria-label="Close">&times;</button>
     </div>
 
-    <!-- Mobile bottom tab bar (mobile only, see .tabbar) -->
-    <nav class="tabbar" aria-label="Primary">
-        <a href="#home" class="tab" data-tab="home"><i class="fas fa-house"></i><span>Home</span></a>
-        <a href="features/" class="tab" data-tab="tools"><i class="fas fa-layer-group"></i><span>Tools</span></a>
-        <a href="#install" class="tab tab-highlight" data-tab="install"><i class="fas fa-download"></i><span>Install</span></a>
-        <a href="#contact" class="tab" data-tab="contact"><i class="fas fa-envelope"></i><span>Contact</span></a>
-    </nav>
-
     <!-- Scripts -->
     <script src="tools-search.js"></script>
     <script src="version.js"></script>
@@ -649,21 +641,6 @@
             if (closeBtn) closeBtn.addEventListener('click', close);
             box.addEventListener('click', e => { if (e.target === box) close(); });
             document.addEventListener('keydown', e => { if (e.key === 'Escape' && !box.hidden) close(); });
-        })();
-        // Bottom tab bar scroll-spy (mobile only; harmless on desktop).
-        (function tabSpy() {
-            const tabs = document.querySelectorAll('.tabbar .tab[data-tab]');
-            if (!tabs.length || !('IntersectionObserver' in window)) return;
-            const obs = new IntersectionObserver(entries => {
-                entries.forEach(en => {
-                    if (!en.isIntersecting) return;
-                    tabs.forEach(t => t.classList.toggle('active', t.dataset.tab === en.target.id));
-                });
-            }, { rootMargin: '-40% 0px -55% 0px' });
-            ['home', 'install', 'contact'].forEach(id => {
-                const s = document.getElementById(id);
-                if (s) obs.observe(s);
-            });
         })();
         });
     </script>
