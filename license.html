@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com https://unpkg.com; font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com; script-src 'self' 'unsafe-inline' https://unpkg.com https://cdnjs.cloudflare.com; base-uri 'self'; form-action 'self'; object-src 'none'; connect-src 'self'">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; base-uri 'self'; form-action 'self'; object-src 'none'; connect-src 'self'">
     <title>License | Schooi's Multitool</title>
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="images/SMT.png">
@@ -45,14 +45,14 @@
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <a href="./" class="nav-logo"><img src="images/smt.ico" alt="SMT" class="nav-logo-img"></a>
-            <ul class="nav-menu">
+            <ul class="nav-menu" id="navMenu">
                 <li><a href="./#about">About</a></li>
                 <li><a href="features/">Tools</a></li>
                 <li><a href="./#install" class="nav-install">Install</a></li>
                 <li><a href="./#contact">Contact</a></li>
                 <li><button id="darkModeToggle" class="theme-toggle" aria-label="Toggle dark mode"><i class="fas fa-moon"></i></button></li>
             </ul>
-            <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+            <div class="hamburger" id="hamburger" role="button" tabindex="0" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navMenu"><span></span><span></span><span></span></div>
         </div>
     </nav>
 
@@ -129,8 +129,10 @@ SOFTWARE.</div>
         if (st === 'light') { b.classList.add('light-mode'); dmt.innerHTML = '<i class="fas fa-sun"></i>'; }
         dmt.addEventListener('click', () => { const l = b.classList.toggle('light-mode'); dmt.innerHTML = l ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>'; storeSet('theme', l ? 'light' : 'dark'); });
         const hb = document.getElementById('hamburger'), nm = document.querySelector('.nav-menu');
-        hb.addEventListener('click', () => { hb.classList.toggle('active'); nm.classList.toggle('active'); });
-        document.querySelectorAll('.nav-menu a').forEach(l => l.addEventListener('click', () => { hb.classList.remove('active'); nm.classList.remove('active'); }));
+        function setMenu(open) { hb.classList.toggle('active', open); nm.classList.toggle('active', open); hb.setAttribute('aria-expanded', String(open)); }
+        hb.addEventListener('click', () => { setMenu(!nm.classList.contains('active')); });
+        hb.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setMenu(!nm.classList.contains('active')); } });
+        document.querySelectorAll('.nav-menu a').forEach(l => l.addEventListener('click', () => { setMenu(false); }));
         const ob = document.getElementById('offlineBanner'); function uo() { ob.hidden = navigator.onLine; } window.addEventListener('online', uo); window.addEventListener('offline', uo); uo();
         window.addEventListener('error', (e) => { if (e.target && e.target !== window) return; console.error('[SMT error]', e.message); });
     </script>

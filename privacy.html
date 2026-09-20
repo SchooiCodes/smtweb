@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com https://unpkg.com; font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com; script-src 'self' 'unsafe-inline' https://unpkg.com https://cdnjs.cloudflare.com; base-uri 'self'; form-action 'self'; object-src 'none'; connect-src 'self'">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; base-uri 'self'; form-action 'self'; object-src 'none'; connect-src 'self'">
     <title>Privacy Policy | Schooi's Multitool</title>
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="images/SMT.png">
@@ -44,14 +44,14 @@
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <a href="./" class="nav-logo"><img src="images/smt.ico" alt="SMT" class="nav-logo-img"></a>
-            <ul class="nav-menu">
+            <ul class="nav-menu" id="navMenu">
                 <li><a href="./#about">About</a></li>
                 <li><a href="features/">Tools</a></li>
                 <li><a href="./#install" class="nav-install">Install</a></li>
                 <li><a href="./#contact">Contact</a></li>
                 <li><button id="darkModeToggle" class="theme-toggle" aria-label="Toggle dark mode"><i class="fas fa-moon"></i></button></li>
             </ul>
-            <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+            <div class="hamburger" id="hamburger" role="button" tabindex="0" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navMenu"><span></span><span></span><span></span></div>
         </div>
     </nav>
 
@@ -71,7 +71,7 @@
             <p>Nothing. No cookies, no analytics, no accounts, no forms. This is a static site - nothing you do here is tracked or stored.</p>
 
             <h2>The SMT app &amp; installer</h2>
-            <p>The <code>get/</code> installer is a PowerShell script that downloads the official setup from GitHub and runs it. It needs admin rights. It collects nothing. For what the app itself does, see the <a href="https://github.com/SchooiCodes/smt" target="_blank" rel="noopener">source</a>.</p>
+            <p>The <code>get/</code> installer is a PowerShell script that downloads the official setup from GitHub and runs it. It needs admin rights. The installer itself collects nothing. Note: the SMT app sends one anonymous usage ping per install (never repeated) to count installs - see the <a href="guide/">field guide</a>. For what the app itself does, see the <a href="https://github.com/SchooiCodes/smt" target="_blank" rel="noopener">source</a>.</p>
 
             <h2>Third-party links</h2>
             <p>We link to GitHub, Discord, and YouTube. Once you leave, their privacy policies apply.</p>
@@ -119,8 +119,10 @@
         if (st === 'light') { b.classList.add('light-mode'); dmt.innerHTML = '<i class="fas fa-sun"></i>'; }
         dmt.addEventListener('click', () => { const l = b.classList.toggle('light-mode'); dmt.innerHTML = l ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>'; storeSet('theme', l ? 'light' : 'dark'); });
         const hb = document.getElementById('hamburger'), nm = document.querySelector('.nav-menu');
-        hb.addEventListener('click', () => { hb.classList.toggle('active'); nm.classList.toggle('active'); });
-        document.querySelectorAll('.nav-menu a').forEach(l => l.addEventListener('click', () => { hb.classList.remove('active'); nm.classList.remove('active'); }));
+        function setMenu(open) { hb.classList.toggle('active', open); nm.classList.toggle('active', open); hb.setAttribute('aria-expanded', String(open)); }
+        hb.addEventListener('click', () => { setMenu(!nm.classList.contains('active')); });
+        hb.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setMenu(!nm.classList.contains('active')); } });
+        document.querySelectorAll('.nav-menu a').forEach(l => l.addEventListener('click', () => { setMenu(false); }));
         const ob = document.getElementById('offlineBanner'); function uo() { ob.hidden = navigator.onLine; } window.addEventListener('online', uo); window.addEventListener('offline', uo); uo();
         window.addEventListener('error', (e) => { if (e.target && e.target !== window) return; console.error('[SMT error]', e.message); });
     </script>
