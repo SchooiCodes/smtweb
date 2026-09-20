@@ -1356,6 +1356,12 @@ section {
     padding: 14px 18px;
     color: var(--text-secondary);
 }
+.changelog-date {
+    color: var(--text-dim);
+    font-size: 0.8em;
+    white-space: nowrap;
+    margin-left: 4px;
+}
 
 /* ===== Tidy: screenshot lightbox ===== */
 .shot-open {

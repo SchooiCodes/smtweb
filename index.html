@@ -558,25 +558,57 @@
                 });
         })();
 
-        // Live changelog: renders updatelogs.txt from GitHub main, newest entries first.
+        // Live changelog: updatelogs.txt lines first, backfilled with recent
+        // commit subjects so the section never looks empty. Newest first, max 8.
         (function liveChangelog() {
             const list = document.getElementById('changelogList');
             if (!list || !window.fetch) return;
-            fetchFirst([
+            const fileReq = fetchFirst([
                 'https://raw.githubusercontent.com/SchooiCodes/smt/refs/heads/main/updatelogs.txt',
                 'https://cdn.jsdelivr.net/gh/SchooiCodes/smt@main/updatelogs.txt'
-            ])
-                .then(b => new TextDecoder().decode(b))
-                .then(t => {
-                    const lines = t.split(/\r?\n/).map(s => s.trim()).filter(Boolean);
-                    if (!lines.length) throw new Error('empty');
-                    list.innerHTML = '';
-                    lines.slice(0, 8).forEach(line => {
-                        const li = document.createElement('li');
-                        li.textContent = line;
-                        list.appendChild(li);
-                    });
-                })
+            ]).then(b => new TextDecoder().decode(b)).catch(() => '');
+            const commitsReq = fetch('https://api.github.com/SchooiCodes/smt/commits?per_page=20')
+                .then(r => { if (!r.ok) throw new Error('commits ' + r.status); return r.json(); })
+                .catch(() => []);
+            Promise.all([fileReq, commitsReq]).then(([t, commits]) => {
+                const seen = new Set();
+                const items = [];
+                // The notes file is written commit-message style (subject line
+                // plus body lines), so each blank-line-separated block is one
+                // entry - never one bullet per line.
+                t.split(/\r?\n\s*\r?\n/).map(b => b.split(/\r?\n/).map(s => s.trim()).filter(Boolean).join(' ')).filter(Boolean).slice(0, 8).forEach(entry => {
+                    seen.add(entry.toLowerCase());
+                    items.push({ text: entry });
+                });
+                (Array.isArray(commits) ? commits : []).forEach(c => {
+                    if (items.length >= 8) return;
+                    const msg = (c && c.commit && c.commit.message) || '';
+                    const subject = msg.split('\n')[0].trim();
+                    const stamp = (c && c.commit && c.commit.author && c.commit.author.date) || '';
+                    if (!subject) return;
+                    const sub = subject.toLowerCase();
+                    for (const s of seen) { if (s.includes(sub)) return; }
+                    seen.add(sub);
+                    let date = '';
+                    const d = new Date(stamp);
+                    if (!isNaN(d)) date = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+                    items.push({ text: subject, date: date });
+                });
+                if (!items.length) throw new Error('empty');
+                list.innerHTML = '';
+                items.forEach(it => {
+                    const li = document.createElement('li');
+                    li.appendChild(document.createTextNode(it.text));
+                    if (it.date) {
+                        li.appendChild(document.createTextNode(' '));
+                        const tm = document.createElement('span');
+                        tm.className = 'changelog-date';
+                        tm.textContent = it.date;
+                        li.appendChild(tm);
+                    }
+                    list.appendChild(li);
+                });
+            })
                 .catch(err => {
                     console.warn('[SMT] live changelog failed:', err && err.message);
                     list.innerHTML = '<li>Couldn\'t load the latest changes - see the full history on GitHub below.</li>';
