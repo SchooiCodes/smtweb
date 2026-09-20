@@ -95,7 +95,7 @@
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <a href="../" class="nav-logo"><img src="../images/smt.ico" alt="SMT" class="nav-logo-img"></a>
-            <ul class="nav-menu">
+            <ul class="nav-menu" id="navMenu">
                 <li><a href="../#about">About</a></li>
                 <li><a href="../features/">Tools</a></li>
                 <li><a href="../#install" class="nav-install">Install</a></li>
@@ -106,7 +106,7 @@
                     </button>
                 </li>
             </ul>
-            <div class="hamburger" id="hamburger">
+            <div class="hamburger" id="hamburger" role="button" tabindex="0" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navMenu">
                 <span></span><span></span><span></span>
             </div>
         </div>
@@ -174,22 +174,30 @@
         });
 
         const navbar = document.getElementById('navbar');
-        if (navbar && window.matchMedia('(min-width: 641px)').matches) {
-            window.addEventListener('scroll', () => {
+        if (navbar) {
+            const onScroll = () => {
                 navbar.classList.toggle('scrolled', window.scrollY > 50);
-            }, { passive: true });
+            };
+            window.addEventListener('scroll', onScroll, { passive: true });
+            onScroll();
         }
 
         const hamburger = document.getElementById('hamburger');
         const navMenu = document.querySelector('.nav-menu');
+        function setMenu(open) {
+            hamburger.classList.toggle('active', open);
+            navMenu.classList.toggle('active', open);
+            hamburger.setAttribute('aria-expanded', String(open));
+        }
         hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
+            setMenu(!navMenu.classList.contains('active'));
+        });
+        hamburger.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setMenu(!navMenu.classList.contains('active')); }
         });
         document.querySelectorAll('.nav-menu a').forEach(link => {
             link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
+                setMenu(false);
             });
         });
 
