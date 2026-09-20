@@ -1,0 +1,296 @@
+- generic [active] [ref=f1e1]:
+  - link "Skip to content" [ref=f1e2] [cursor=pointer]:
+    - /url: "#home"
+  - navigation [ref=f1e3]:
+    - generic [ref=f1e4]:
+      - link "Schooi's Multitool SMT Windows multitool home" [ref=f1e5] [cursor=pointer]:
+        - /url: "#home"
+        - img "Schooi's Multitool SMT Windows multitool logo" [ref=f1e6]
+      - list [ref=f1e7]:
+        - listitem [ref=f1e8]:
+          - link "About" [ref=f1e9] [cursor=pointer]:
+            - /url: "#about"
+        - listitem [ref=f1e10]:
+          - link "Tools" [ref=f1e11] [cursor=pointer]:
+            - /url: features/
+        - listitem [ref=f1e12]:
+          - link "Install" [ref=f1e13] [cursor=pointer]:
+            - /url: "#install"
+        - listitem [ref=f1e14]:
+          - link "Share" [ref=f1e15] [cursor=pointer]:
+            - /url: "#share"
+        - listitem [ref=f1e16]:
+          - link "Contact" [ref=f1e17] [cursor=pointer]:
+            - /url: "#contact"
+        - listitem [ref=f1e18]:
+          - button "Toggle light mode" [ref=f1e19] [cursor=pointer]:
+            - generic [ref=f1e20]: 
+  - text: 
+  - generic [ref=f1e26]:
+    - heading "Schooi's Multitool" [level=1] [ref=f1e27]
+    - paragraph [ref=f1e28]: The free, open-source Windows multitool for Windows 10+. 145 CLI tools in one program - networking, tweaks, apps, games & more.
+    - generic [ref=f1e29]:
+      - generic [ref=f1e30]:
+        - generic [ref=f1e31]: "145"
+        - generic [ref=f1e32]: Tools
+      - generic [ref=f1e33]:
+        - generic [ref=f1e34]: "2.3"
+        - generic [ref=f1e35]: Version
+      - generic [ref=f1e36]:
+        - generic [ref=f1e37]: 10 & 11
+        - generic [ref=f1e38]: Windows
+    - generic [ref=f1e39]:
+      - link " Install now" [ref=f1e40] [cursor=pointer]:
+        - /url: "#install"
+        - generic [ref=f1e41]: 
+        - text: Install now
+      - link " Browse tools" [ref=f1e42] [cursor=pointer]:
+        - /url: features/
+        - generic [ref=f1e43]: 
+        - text: Browse tools
+      - link " Star on GitHub" [ref=f1e44] [cursor=pointer]:
+        - /url: https://github.com/SchooiCodes/smt
+        - generic [ref=f1e45]: 
+        - text: Star on GitHub
+  - generic [ref=f1e48]:
+    - generic [ref=f1e49]:
+      - heading "One console, 145 tools" [level=3] [ref=f1e50]
+      - paragraph [ref=f1e51]: "SMT started as a personal project made to organize my batchfile creations, but grew into a full toolkit: network checks, system repair, app installs, and tweaks - all in one menu."
+    - button "Expand screenshot" [ref=f1e54]:
+      - img "Schooi's Multitool SMT Windows multitool console menu v2.3 - 145 Windows tools overview" [ref=f1e55]
+  - generic [ref=f1e58]:
+    - generic [ref=f1e59]:
+      - heading "Install in one command" [level=2] [ref=f1e60]
+      - paragraph [ref=f1e61]: No setup wizard. Needs Windows 10 or 11 (64-bit), run as admin.
+    - generic [ref=f1e62]:
+      - generic [ref=f1e63]:
+        - generic [ref=f1e64]: 
+        - text: Recommended
+      - generic [ref=f1e65]:
+        - generic [ref=f1e66]: 
+        - text: Run this in PowerShell as admin
+      - code [ref=f1e68]: irm "https://smt.gleeze.com/" | iex
+      - button " Copy" [ref=f1e69] [cursor=pointer]:
+        - generic [ref=f1e70]: 
+        - text: Copy
+      - paragraph [ref=f1e71]:
+        - generic [ref=f1e72]: 
+        - text: Windows may flag the download. The code is public — check the
+        - link "source" [ref=f1e73] [cursor=pointer]:
+          - /url: https://github.com/SchooiCodes/smt
+        - text: if unsure.
+    - generic [ref=f1e74]:
+      - generic [ref=f1e75]:
+        - heading " Mirrors" [level=3] [ref=f1e76]:
+          - generic [ref=f1e77]: 
+          - text: Mirrors
+        - paragraph [ref=f1e78]: Same installer, different address. Tap to copy.
+        - list [ref=f1e79]:
+          - listitem [ref=f1e80]:
+            - button "irm \"https://smt.farted.net/\" | iex " [ref=f1e81] [cursor=pointer]:
+              - code [ref=f1e82]: irm "https://smt.farted.net/" | iex
+              - generic [ref=f1e83]: 
+          - listitem [ref=f1e84]:
+            - button "irm \"https://getsmt.ftp.sh/\" | iex " [ref=f1e85] [cursor=pointer]:
+              - code [ref=f1e86]: irm "https://getsmt.ftp.sh/" | iex
+              - generic [ref=f1e87]: 
+          - listitem [ref=f1e88]:
+            - button "irm \"https://getsmt.us.to/\" | iex " [ref=f1e89] [cursor=pointer]:
+              - code [ref=f1e90]: irm "https://getsmt.us.to/" | iex
+              - generic [ref=f1e91]: 
+        - generic [ref=f1e92]: Fallbacks - same installer
+      - generic [ref=f1e93]:
+        - heading " Setup file" [level=3] [ref=f1e94]:
+          - generic [ref=f1e95]: 
+          - text: Setup file
+        - paragraph [ref=f1e96]: Prefer a file? Download and run the setup.
+        - link " Schooi's Multitool Setup.exe" [ref=f1e97] [cursor=pointer]:
+          - /url: https://github.com/SchooiCodes/smt/raw/refs/heads/main/Schooi's%20Multitool%20Setup.exe
+          - generic [ref=f1e98]: 
+          - text: Schooi's Multitool Setup.exe
+      - generic [ref=f1e99]:
+        - heading " Source code" [level=3] [ref=f1e100]:
+          - generic [ref=f1e101]: 
+          - text: Source code
+        - paragraph [ref=f1e102]: Or clone the repo and run it yourself.
+        - code [ref=f1e104]: git clone https://github.com/SchooiCodes/smt
+        - button "" [ref=f1e105] [cursor=pointer]
+        - link " Star on GitHub" [ref=f1e107] [cursor=pointer]:
+          - /url: https://github.com/SchooiCodes/smt
+          - generic [ref=f1e108]: 
+          - text: Star on GitHub
+    - generic [ref=f1e109]:
+      - generic [ref=f1e110]:
+        - generic [ref=f1e111]: 
+        - text: Verify before you run
+      - paragraph [ref=f1e112]:
+        - text: SMT isn't code-signed, so SmartScreen and Defender will warn on first run. That's expected - verify the download instead of allowing blindly. After downloading, run
+        - code [ref=f1e113]: Get-FileHash "Schooi's Multitool Setup.exe"
+        - text: "and compare the output with the live hash of the current release:"
+      - code [ref=f1e115]: E0D1E1C91598D8C8260E02034F329BF4B7A70D4121231DB6C41618A3EFFEB763
+      - button " Copy hash" [ref=f1e116] [cursor=pointer]:
+        - generic [ref=f1e117]: 
+        - text: Copy hash
+      - paragraph [ref=f1e118]:
+        - text: Also scanned on
+        - link "VirusTotal" [ref=f1e119] [cursor=pointer]:
+          - /url: https://www.virustotal.com/gui/file/E0D1E1C91598D8C8260E02034F329BF4B7A70D4121231DB6C41618A3EFFEB763/detection
+        - text: "(link points at this exact hash once loaded). First run:"
+        - strong [ref=f1e120]: "1."
+        - text: open PowerShell as admin and paste the command above.
+        - strong [ref=f1e121]: "2."
+        - text: when flagged, verify the hash, then allow.
+        - strong [ref=f1e122]: "3."
+        - text: pick a number in the console menu.
+  - generic [ref=f1e124]:
+    - generic [ref=f1e125]:
+      - generic [ref=f1e126]:
+        - generic [ref=f1e127]: 
+        - text: Changelog
+      - heading "Latest changes" [level=2] [ref=f1e128]
+      - paragraph [ref=f1e129]: Fresh out of the repo - releases first, then recent commits. Select any entry for details.
+    - list [ref=f1e130]:
+      - listitem [ref=f1e131]: Loading latest changes...
+    - paragraph [ref=f1e132]:
+      - link "Full history on GitHub" [ref=f1e133] [cursor=pointer]:
+        - /url: https://github.com/SchooiCodes/smt/commits/main
+  - generic [ref=f1e135]:
+    - generic [ref=f1e136]:
+      - heading "Share SMT" [level=2] [ref=f1e137]
+      - paragraph [ref=f1e138]: Know someone on Windows? Send them SMT in one tap.
+    - generic [ref=f1e139]:
+      - button " Share..." [ref=f1e140] [cursor=pointer]:
+        - generic [ref=f1e141]: 
+        - text: Share...
+      - link " Star on GitHub" [ref=f1e142] [cursor=pointer]:
+        - /url: https://github.com/SchooiCodes/smt
+        - generic [ref=f1e143]: 
+        - text: Star on GitHub
+    - generic [ref=f1e144]:
+      - generic [ref=f1e145]:
+        - generic [ref=f1e146]: 
+        - heading [level=4] [ref=f1e147]:
+          - link "Website" [ref=f1e148] [cursor=pointer]:
+            - /url: https://smt.xubi.org/
+        - paragraph [ref=f1e149]: Send the homepage.
+        - generic [ref=f1e150]:
+          - button " Share" [ref=f1e151] [cursor=pointer]:
+            - generic [ref=f1e152]: 
+            - text: Share
+          - button " Copy" [ref=f1e153] [cursor=pointer]:
+            - generic [ref=f1e154]: 
+            - text: Copy
+      - generic [ref=f1e155]:
+        - generic [ref=f1e156]: 
+        - heading [level=4] [ref=f1e157]:
+          - link "GitHub repo" [ref=f1e158] [cursor=pointer]:
+            - /url: https://github.com/SchooiCodes/smt
+        - paragraph [ref=f1e159]: Send the source code.
+        - generic [ref=f1e160]:
+          - button " Share" [ref=f1e161] [cursor=pointer]:
+            - generic [ref=f1e162]: 
+            - text: Share
+          - button " Copy" [ref=f1e163] [cursor=pointer]:
+            - generic [ref=f1e164]: 
+            - text: Copy
+      - generic [ref=f1e165]:
+        - generic [ref=f1e166]: 
+        - heading [level=4] [ref=f1e167]:
+          - link "Install invite" [ref=f1e168] [cursor=pointer]:
+            - /url: https://smt.xubi.org/
+        - paragraph [ref=f1e169]: Send a ready-made invite.
+        - paragraph [ref=f1e170]: Try Schooi's Multitool (SMT) - the free, open-source Windows toolkit for Windows 10 and 11. Details at https://smt.xubi.org/ - source at https://github.com/SchooiCodes/smt
+        - generic [ref=f1e171]:
+          - button " Share" [ref=f1e172] [cursor=pointer]:
+            - generic [ref=f1e173]: 
+            - text: Share
+          - button " Copy" [ref=f1e174] [cursor=pointer]:
+            - generic [ref=f1e175]: 
+            - text: Copy
+      - generic [ref=f1e176]:
+        - generic [ref=f1e177]: 
+        - heading [level=4] [ref=f1e178]:
+          - link "GitHub profile" [ref=f1e179] [cursor=pointer]:
+            - /url: https://github.com/SchooiCodes
+        - paragraph [ref=f1e180]: Send my profile.
+        - generic [ref=f1e181]:
+          - button " Share" [ref=f1e182] [cursor=pointer]:
+            - generic [ref=f1e183]: 
+            - text: Share
+          - button " Copy" [ref=f1e184] [cursor=pointer]:
+            - generic [ref=f1e185]: 
+            - text: Copy
+      - generic [ref=f1e186]:
+        - generic [ref=f1e187]: 
+        - heading "QR code" [level=4] [ref=f1e188]
+        - paragraph [ref=f1e189]: Scan to open the site.
+        - img "QR code linking to https://smt.xubi.org/" [ref=f1e190]
+  - generic [ref=f1e195]:
+    - heading "Contact" [level=2] [ref=f1e197]
+    - generic [ref=f1e198]:
+      - generic [ref=f1e199]:
+        - generic [ref=f1e200]: 
+        - heading "Report a bug" [level=4] [ref=f1e201]
+        - paragraph [ref=f1e202]: Something broken? Tell us on GitHub.
+        - link "Open issue " [ref=f1e203] [cursor=pointer]:
+          - /url: https://github.com/SchooiCodes/smt/issues
+          - text: Open issue
+          - generic [ref=f1e204]: 
+      - generic [ref=f1e205]:
+        - generic [ref=f1e206]: 
+        - heading "Suggest a feature" [level=4] [ref=f1e207]
+        - paragraph [ref=f1e208]: Have an idea? Share it with us.
+        - link "Suggest " [ref=f1e209] [cursor=pointer]:
+          - /url: https://github.com/SchooiCodes/smt/discussions
+          - text: Suggest
+          - generic [ref=f1e210]: 
+      - generic [ref=f1e211]:
+        - generic [ref=f1e212]: 
+        - heading "Email us" [level=4] [ref=f1e213]
+        - paragraph [ref=f1e214]: For anything else, send an email.
+        - link "Send email " [ref=f1e215] [cursor=pointer]:
+          - /url: mailto:schooibusinessinquiries@gmail.com
+          - text: Send email
+          - generic [ref=f1e216]: 
+    - generic [ref=f1e217]:
+      - link "Discord" [ref=f1e218] [cursor=pointer]:
+        - /url: https://discord.gg/REj54yP7Qa
+        - generic [ref=f1e219]: 
+      - link "GitHub" [ref=f1e220] [cursor=pointer]:
+        - /url: https://github.com/SchooiCodes
+        - generic [ref=f1e221]: 
+      - link "YouTube" [ref=f1e222] [cursor=pointer]:
+        - /url: https://youtube.com/@SchooiYT
+        - generic [ref=f1e223]: 
+  - contentinfo [ref=f1e224]:
+    - generic [ref=f1e225]:
+      - generic [ref=f1e226]:
+        - generic [ref=f1e227]:
+          - heading " SMT" [level=3] [ref=f1e228]:
+            - generic [ref=f1e229]: 
+            - text: SMT
+          - paragraph [ref=f1e230]: Schooi's Multitool (SMT) - free, open-source toolkit for Windows 10 & 11. 145 tools in one console.
+        - generic [ref=f1e231]:
+          - link "About" [ref=f1e232] [cursor=pointer]:
+            - /url: "#about"
+          - link "Tools" [ref=f1e233] [cursor=pointer]:
+            - /url: features/
+          - link "Install" [ref=f1e234] [cursor=pointer]:
+            - /url: "#install"
+          - link "Share" [ref=f1e235] [cursor=pointer]:
+            - /url: "#share"
+          - link "Contact" [ref=f1e236] [cursor=pointer]:
+            - /url: "#contact"
+          - link "Guide" [ref=f1e237] [cursor=pointer]:
+            - /url: guide/
+          - link "Privacy" [ref=f1e238] [cursor=pointer]:
+            - /url: privacy.html
+          - link "Terms" [ref=f1e239] [cursor=pointer]:
+            - /url: terms.html
+          - link "Accessibility" [ref=f1e240] [cursor=pointer]:
+            - /url: accessibility.html
+          - link "License" [ref=f1e241] [cursor=pointer]:
+            - /url: license.html
+      - paragraph [ref=f1e243]:
+        - text: © 2026 Schooi. All rights reserved. Made with
+        - generic [ref=f1e244]: 

@@ -1,0 +1,397 @@
+- generic [active] [ref=e1]:
+  - link "Skip to content" [ref=e2] [cursor=pointer]:
+    - /url: "#home"
+  - navigation [ref=e3]:
+    - generic [ref=e4]:
+      - link "Schooi's Multitool SMT Windows multitool home" [ref=e5] [cursor=pointer]:
+        - /url: "#home"
+        - img "Schooi's Multitool SMT Windows multitool logo" [ref=e6]
+      - list [ref=e7]:
+        - listitem [ref=e8]:
+          - link "About" [ref=e9] [cursor=pointer]:
+            - /url: "#about"
+        - listitem [ref=e10]:
+          - link "Tools" [ref=e11] [cursor=pointer]:
+            - /url: features/
+        - listitem [ref=e12]:
+          - link "Install" [ref=e13] [cursor=pointer]:
+            - /url: "#install"
+        - listitem [ref=e14]:
+          - link "Share" [ref=e15] [cursor=pointer]:
+            - /url: "#share"
+        - listitem [ref=e16]:
+          - link "Contact" [ref=e17] [cursor=pointer]:
+            - /url: "#contact"
+        - listitem [ref=e18]:
+          - button "Toggle light mode" [ref=e19] [cursor=pointer]:
+            - generic [ref=e20]: 
+  - text: 
+  - generic [ref=e26]:
+    - heading "Schooi's Multitool" [level=1] [ref=e27]
+    - paragraph [ref=e28]: The free, open-source Windows multitool for Windows 10+. 145 CLI tools in one program - networking, tweaks, apps, games & more.
+    - generic [ref=e29]:
+      - generic [ref=e30]:
+        - generic [ref=e31]: "145"
+        - generic [ref=e32]: Tools
+      - generic [ref=e33]:
+        - generic [ref=e34]: "2.3"
+        - generic [ref=e35]: Version
+      - generic [ref=e36]:
+        - generic [ref=e37]: 10 & 11
+        - generic [ref=e38]: Windows
+    - generic [ref=e39]:
+      - link " Install now" [ref=e40] [cursor=pointer]:
+        - /url: "#install"
+        - generic [ref=e41]: 
+        - text: Install now
+      - link " Browse tools" [ref=e42] [cursor=pointer]:
+        - /url: features/
+        - generic [ref=e43]: 
+        - text: Browse tools
+      - link " Star on GitHub" [ref=e44] [cursor=pointer]:
+        - /url: https://github.com/SchooiCodes/smt
+        - generic [ref=e45]: 
+        - text: Star on GitHub
+  - generic [ref=e48]:
+    - generic [ref=e49]:
+      - heading "One console, 145 tools" [level=3] [ref=e50]
+      - paragraph [ref=e51]: "SMT started as a personal project made to organize my batchfile creations, but grew into a full toolkit: network checks, system repair, app installs, and tweaks - all in one menu."
+    - button "Expand screenshot" [ref=e54]:
+      - img "Schooi's Multitool SMT Windows multitool console menu v2.3 - 145 Windows tools overview" [ref=e55]
+  - generic [ref=e58]:
+    - generic [ref=e59]:
+      - heading "Install in one command" [level=2] [ref=e60]
+      - paragraph [ref=e61]: No setup wizard. Needs Windows 10 or 11 (64-bit), run as admin.
+    - generic [ref=e62]:
+      - generic [ref=e63]:
+        - generic [ref=e64]: 
+        - text: Recommended
+      - generic [ref=e65]:
+        - generic [ref=e66]: 
+        - text: Run this in PowerShell as admin
+      - code [ref=e68]: irm "https://smt.gleeze.com/" | iex
+      - button " Copy" [ref=e69] [cursor=pointer]:
+        - generic [ref=e70]: 
+        - text: Copy
+      - paragraph [ref=e71]:
+        - generic [ref=e72]: 
+        - text: Windows may flag the download. The code is public — check the
+        - link "source" [ref=e73] [cursor=pointer]:
+          - /url: https://github.com/SchooiCodes/smt
+        - text: if unsure.
+    - generic [ref=e74]:
+      - generic [ref=e75]:
+        - heading " Mirrors" [level=3] [ref=e76]:
+          - generic [ref=e77]: 
+          - text: Mirrors
+        - paragraph [ref=e78]: Same installer, different address. Tap to copy.
+        - list [ref=e79]:
+          - listitem [ref=e80]:
+            - button "irm \"https://smt.farted.net/\" | iex " [ref=e81] [cursor=pointer]:
+              - code [ref=e82]: irm "https://smt.farted.net/" | iex
+              - generic [ref=e83]: 
+          - listitem [ref=e84]:
+            - button "irm \"https://getsmt.ftp.sh/\" | iex " [ref=e85] [cursor=pointer]:
+              - code [ref=e86]: irm "https://getsmt.ftp.sh/" | iex
+              - generic [ref=e87]: 
+          - listitem [ref=e88]:
+            - button "irm \"https://getsmt.us.to/\" | iex " [ref=e89] [cursor=pointer]:
+              - code [ref=e90]: irm "https://getsmt.us.to/" | iex
+              - generic [ref=e91]: 
+        - generic [ref=e92]: Fallbacks - same installer
+      - generic [ref=e93]:
+        - heading " Setup file" [level=3] [ref=e94]:
+          - generic [ref=e95]: 
+          - text: Setup file
+        - paragraph [ref=e96]: Prefer a file? Download and run the setup.
+        - link " Schooi's Multitool Setup.exe" [ref=e97] [cursor=pointer]:
+          - /url: https://github.com/SchooiCodes/smt/raw/refs/heads/main/Schooi's%20Multitool%20Setup.exe
+          - generic [ref=e98]: 
+          - text: Schooi's Multitool Setup.exe
+      - generic [ref=e99]:
+        - heading " Source code" [level=3] [ref=e100]:
+          - generic [ref=e101]: 
+          - text: Source code
+        - paragraph [ref=e102]: Or clone the repo and run it yourself.
+        - code [ref=e104]: git clone https://github.com/SchooiCodes/smt
+        - button "" [ref=e105] [cursor=pointer]
+        - link " Star on GitHub" [ref=e107] [cursor=pointer]:
+          - /url: https://github.com/SchooiCodes/smt
+          - generic [ref=e108]: 
+          - text: Star on GitHub
+    - generic [ref=e109]:
+      - generic [ref=e110]:
+        - generic [ref=e111]: 
+        - text: Verify before you run
+      - paragraph [ref=e112]:
+        - text: SMT isn't code-signed, so SmartScreen and Defender will warn on first run. That's expected - verify the download instead of allowing blindly. After downloading, run
+        - code [ref=e113]: Get-FileHash "Schooi's Multitool Setup.exe"
+        - text: "and compare the output with the live hash of the current release:"
+      - code [ref=e115]: E0D1E1C91598D8C8260E02034F329BF4B7A70D4121231DB6C41618A3EFFEB763
+      - button " Copy hash" [ref=e116] [cursor=pointer]:
+        - generic [ref=e117]: 
+        - text: Copy hash
+      - paragraph [ref=e118]:
+        - text: Also scanned on
+        - link "VirusTotal" [ref=e119] [cursor=pointer]:
+          - /url: https://www.virustotal.com/gui/file/E0D1E1C91598D8C8260E02034F329BF4B7A70D4121231DB6C41618A3EFFEB763/detection
+        - text: "(link points at this exact hash once loaded). First run:"
+        - strong [ref=e120]: "1."
+        - text: open PowerShell as admin and paste the command above.
+        - strong [ref=e121]: "2."
+        - text: when flagged, verify the hash, then allow.
+        - strong [ref=e122]: "3."
+        - text: pick a number in the console menu.
+  - generic [ref=e124]:
+    - generic [ref=e125]:
+      - generic [ref=e126]:
+        - generic [ref=e127]: 
+        - text: Changelog
+      - heading "Latest changes" [level=2] [ref=e128]
+      - paragraph [ref=e129]: Fresh out of the repo - releases first, then recent commits. Select any entry for details.
+    - list [ref=e130]:
+      - listitem [ref=e277]:
+        - button "Collapse details for Changed website URL" [expanded] [ref=e278] [cursor=pointer]:
+          - generic [aria-hidden] [ref=e280]: 
+          - generic [ref=e281]: Changed website URL
+          - generic [ref=e282]: v2.3
+          - generic [ref=e283]: Latest
+          - generic [aria-hidden] [ref=e285]: 
+        - generic [ref=e286]: welcome smt xubi!
+      - listitem [ref=e288]:
+        - 'button "Expand details for Added `-w/--website` and the `web` options that open the SMT website (smtweb.gleeze.com)" [ref=e289] [cursor=pointer]':
+          - generic [aria-hidden] [ref=e291]: 
+          - generic [ref=e292]: "Added `-w/--website` and the `web` options that open the SMT website (smtweb.gleeze.com)"
+          - generic [ref=e293]: Sep 17
+          - generic [aria-hidden] [ref=e295]: 
+      - listitem [ref=e296]:
+        - 'button "Expand details for Changed the link for the `git` option (releases are not used anymore)" [ref=e297] [cursor=pointer]':
+          - generic [aria-hidden] [ref=e299]: 
+          - generic [ref=e300]: "Changed the link for the `git` option (releases are not used anymore)"
+          - generic [ref=e301]: Sep 16
+          - generic [aria-hidden] [ref=e303]: 
+      - listitem [ref=e304]:
+        - button "Expand details for Added Windhawk" [ref=e305] [cursor=pointer]:
+          - generic [aria-hidden] [ref=e307]: 
+          - generic [ref=e308]: Added Windhawk
+          - generic [ref=e309]: Sep 11
+          - generic [aria-hidden] [ref=e311]: 
+      - listitem [ref=e312]:
+        - button "Expand details for Add configurable disclaimer gating" [ref=e313] [cursor=pointer]:
+          - generic [aria-hidden] [ref=e315]: 
+          - generic [ref=e316]: Add configurable disclaimer gating
+          - generic [ref=e317]: Sep 10
+          - generic [aria-hidden] [ref=e319]: 
+      - listitem [ref=e320]:
+        - button "Expand details for Fixed the installer to work properly with the new settings" [ref=e321] [cursor=pointer]:
+          - generic [aria-hidden] [ref=e323]: 
+          - generic [ref=e324]: Fixed the installer to work properly with the new settings
+          - generic [ref=e325]: Sep 9
+          - generic [aria-hidden] [ref=e327]: 
+      - listitem [ref=e328]:
+        - button "Expand details for Self-hosted the usage pings system, cleaned up settings names" [ref=e329] [cursor=pointer]:
+          - generic [aria-hidden] [ref=e331]: 
+          - generic [ref=e332]: Self-hosted the usage pings system, cleaned up settings names
+          - generic [ref=e333]: Sep 9
+          - generic [aria-hidden] [ref=e335]: 
+      - listitem [ref=e336]:
+        - button "Expand details for Small bugfixes in fastfetch installer and spct" [ref=e337] [cursor=pointer]:
+          - generic [aria-hidden] [ref=e339]: 
+          - generic [ref=e340]: Small bugfixes in fastfetch installer and spct
+          - generic [ref=e341]: Sep 9
+          - generic [aria-hidden] [ref=e343]: 
+    - paragraph [ref=e132]:
+      - link "Full history on GitHub" [ref=e133] [cursor=pointer]:
+        - /url: https://github.com/SchooiCodes/smt/commits/main
+  - generic [ref=e135]:
+    - generic [ref=e136]:
+      - heading "Share SMT" [level=2] [ref=e137]
+      - paragraph [ref=e138]: Know someone on Windows? Send them SMT in one tap.
+    - generic [ref=e139]:
+      - button " Share..." [ref=e140] [cursor=pointer]:
+        - generic [ref=e141]: 
+        - text: Share...
+      - link " Star on GitHub" [ref=e142] [cursor=pointer]:
+        - /url: https://github.com/SchooiCodes/smt
+        - generic [ref=e143]: 
+        - text: Star on GitHub
+    - generic [ref=e144]:
+      - generic [ref=e145]:
+        - generic [ref=e146]: 
+        - heading [level=4] [ref=e147]:
+          - link "Website" [ref=e148] [cursor=pointer]:
+            - /url: https://smt.xubi.org/
+        - paragraph [ref=e149]: Send the homepage.
+        - generic [ref=e150]:
+          - link "Share website on X":
+            - /url: https://twitter.com/intent/tweet?text=Schooi's%20Multitool%20(SMT)%20-%20free%2C%20open-source%20Windows%20toolkit%20for%20Windows%2010%20and%2011&url=https%3A%2F%2Fsmt.xubi.org%2F
+          - link "Share website on Facebook" [ref=e151] [cursor=pointer]:
+            - /url: https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fsmt.xubi.org%2F
+            - generic [ref=e152]: 
+          - link "Share website on WhatsApp" [ref=e153] [cursor=pointer]:
+            - /url: https://wa.me/?text=Schooi's%20Multitool%20(SMT)%20-%20free%2C%20open-source%20Windows%20toolkit%20for%20Windows%2010%20and%2011%20https%3A%2F%2Fsmt.xubi.org%2F
+            - generic [ref=e154]: 
+          - link "Share website on Telegram" [ref=e155] [cursor=pointer]:
+            - /url: https://t.me/share/url?url=https%3A%2F%2Fsmt.xubi.org%2F&text=Schooi's%20Multitool%20(SMT)%20-%20free%2C%20open-source%20Windows%20toolkit%20for%20Windows%2010%20and%2011
+            - generic [ref=e156]: 
+          - link "Share website on Reddit" [ref=e157] [cursor=pointer]:
+            - /url: https://www.reddit.com/submit?url=https%3A%2F%2Fsmt.xubi.org%2F&title=Schooi's%20Multitool%20(SMT)%20-%20free%2C%20open-source%20Windows%20toolkit%20for%20Windows%2010%20and%2011
+            - generic [ref=e158]: 
+          - link "Share website by email" [ref=e159] [cursor=pointer]:
+            - /url: mailto:?subject=Try%20Schooi's%20Multitool%20(SMT)&body=Schooi's%20Multitool%20(SMT)%20-%20free%2C%20open-source%20Windows%20toolkit%20for%20Windows%2010%20and%2011%0A%0Ahttps%3A%2F%2Fsmt.xubi.org%2F
+            - generic [ref=e160]: 
+          - button "Copy website link" [ref=e161] [cursor=pointer]:
+            - generic [ref=e162]: 
+      - generic [ref=e163]:
+        - generic [ref=e164]: 
+        - heading [level=4] [ref=e165]:
+          - link "GitHub repo" [ref=e166] [cursor=pointer]:
+            - /url: https://github.com/SchooiCodes/smt
+        - paragraph [ref=e167]: Send the source code.
+        - generic [ref=e168]:
+          - link "Share repo on X":
+            - /url: https://twitter.com/intent/tweet?text=Schooi's%20Multitool%20-%20free%2C%20open-source%20Windows%20toolkit.%20Source%20code%20on%20GitHub&url=https%3A%2F%2Fgithub.com%2FSchooiCodes%2Fsmt
+          - link "Share repo on Facebook" [ref=e169] [cursor=pointer]:
+            - /url: https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fgithub.com%2FSchooiCodes%2Fsmt
+            - generic [ref=e170]: 
+          - link "Share repo on WhatsApp" [ref=e171] [cursor=pointer]:
+            - /url: https://wa.me/?text=Schooi's%20Multitool%20-%20free%2C%20open-source%20Windows%20toolkit.%20Source%20code%20on%20GitHub%20https%3A%2F%2Fgithub.com%2FSchooiCodes%2Fsmt
+            - generic [ref=e172]: 
+          - link "Share repo on Telegram" [ref=e173] [cursor=pointer]:
+            - /url: https://t.me/share/url?url=https%3A%2F%2Fgithub.com%2FSchooiCodes%2Fsmt&text=Schooi's%20Multitool%20-%20free%2C%20open-source%20Windows%20toolkit.%20Source%20code%20on%20GitHub
+            - generic [ref=e174]: 
+          - link "Share repo on Reddit" [ref=e175] [cursor=pointer]:
+            - /url: https://www.reddit.com/submit?url=https%3A%2F%2Fgithub.com%2FSchooiCodes%2Fsmt&title=Schooi's%20Multitool%20-%20free%2C%20open-source%20Windows%20toolkit.%20Source%20code%20on%20GitHub
+            - generic [ref=e176]: 
+          - link "Share repo by email" [ref=e177] [cursor=pointer]:
+            - /url: mailto:?subject=Try%20Schooi's%20Multitool%20(SMT)&body=Schooi's%20Multitool%20-%20free%2C%20open-source%20Windows%20toolkit.%20Source%20code%20on%20GitHub%0A%0Ahttps%3A%2F%2Fgithub.com%2FSchooiCodes%2Fsmt
+            - generic [ref=e178]: 
+          - button "Copy repo link" [ref=e179] [cursor=pointer]:
+            - generic [ref=e180]: 
+      - generic [ref=e181]:
+        - generic [ref=e182]: 
+        - heading [level=4] [ref=e183]:
+          - link "Install invite" [ref=e184] [cursor=pointer]:
+            - /url: https://smt.xubi.org/
+        - paragraph [ref=e185]: Send a ready-made invite.
+        - paragraph [ref=e186]: Try Schooi's Multitool (SMT) - the free, open-source Windows toolkit for Windows 10 and 11. Details at https://smt.xubi.org/ - source at https://github.com/SchooiCodes/smt
+        - generic [ref=e187]:
+          - link "Share invite on X":
+            - /url: https://twitter.com/intent/tweet?text=Try%20Schooi's%20Multitool%20(SMT)%20-%20the%20free%2C%20open-source%20Windows%20toolkit%20for%20Windows%2010%20and%2011.%20Details%20at%20https%3A%2F%2Fsmt.xubi.org%2F%20-%20source%20at%20https%3A%2F%2Fgithub.com%2FSchooiCodes%2Fsmt&url=https%3A%2F%2Fsmt.xubi.org%2F
+          - link "Share invite on Facebook" [ref=e188] [cursor=pointer]:
+            - /url: https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fsmt.xubi.org%2F
+            - generic [ref=e189]: 
+          - link "Share invite on WhatsApp" [ref=e190] [cursor=pointer]:
+            - /url: https://wa.me/?text=Try%20Schooi's%20Multitool%20(SMT)%20-%20the%20free%2C%20open-source%20Windows%20toolkit%20for%20Windows%2010%20and%2011.%20Details%20at%20https%3A%2F%2Fsmt.xubi.org%2F%20-%20source%20at%20https%3A%2F%2Fgithub.com%2FSchooiCodes%2Fsmt%20https%3A%2F%2Fsmt.xubi.org%2F
+            - generic [ref=e191]: 
+          - link "Share invite on Telegram" [ref=e192] [cursor=pointer]:
+            - /url: https://t.me/share/url?url=https%3A%2F%2Fsmt.xubi.org%2F&text=Try%20Schooi's%20Multitool%20(SMT)%20-%20the%20free%2C%20open-source%20Windows%20toolkit%20for%20Windows%2010%20and%2011.%20Details%20at%20https%3A%2F%2Fsmt.xubi.org%2F%20-%20source%20at%20https%3A%2F%2Fgithub.com%2FSchooiCodes%2Fsmt
+            - generic [ref=e193]: 
+          - link "Share invite on Reddit" [ref=e194] [cursor=pointer]:
+            - /url: https://www.reddit.com/submit?url=https%3A%2F%2Fsmt.xubi.org%2F&title=Try%20Schooi's%20Multitool%20(SMT)%20-%20the%20free%2C%20open-source%20Windows%20toolkit%20for%20Windows%2010%20and%2011.%20Details%20at%20https%3A%2F%2Fsmt.xubi.org%2F%20-%20source%20at%20https%3A%2F%2Fgithub.com%2FSchooiCodes%2Fsmt
+            - generic [ref=e195]: 
+          - link "Share invite by email" [ref=e196] [cursor=pointer]:
+            - /url: mailto:?subject=Try%20Schooi's%20Multitool%20(SMT)&body=Try%20Schooi's%20Multitool%20(SMT)%20-%20the%20free%2C%20open-source%20Windows%20toolkit%20for%20Windows%2010%20and%2011.%20Details%20at%20https%3A%2F%2Fsmt.xubi.org%2F%20-%20source%20at%20https%3A%2F%2Fgithub.com%2FSchooiCodes%2Fsmt%0A%0Ahttps%3A%2F%2Fsmt.xubi.org%2F
+            - generic [ref=e197]: 
+          - button "Copy invite text" [ref=e198] [cursor=pointer]:
+            - generic [ref=e199]: 
+      - generic [ref=e200]:
+        - generic [ref=e201]: 
+        - heading [level=4] [ref=e202]:
+          - link "GitHub profile" [ref=e203] [cursor=pointer]:
+            - /url: https://github.com/SchooiCodes
+        - paragraph [ref=e204]: Send my profile.
+        - generic [ref=e205]:
+          - link "Share profile on X":
+            - /url: https://twitter.com/intent/tweet?text=SchooiCodes%20on%20GitHub%20-%20creator%20of%20Schooi's%20Multitool&url=https%3A%2F%2Fgithub.com%2FSchooiCodes
+          - link "Share profile on Facebook" [ref=e206] [cursor=pointer]:
+            - /url: https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fgithub.com%2FSchooiCodes
+            - generic [ref=e207]: 
+          - link "Share profile on WhatsApp" [ref=e208] [cursor=pointer]:
+            - /url: https://wa.me/?text=SchooiCodes%20on%20GitHub%20-%20creator%20of%20Schooi's%20Multitool%20https%3A%2F%2Fgithub.com%2FSchooiCodes
+            - generic [ref=e209]: 
+          - link "Share profile on Telegram" [ref=e210] [cursor=pointer]:
+            - /url: https://t.me/share/url?url=https%3A%2F%2Fgithub.com%2FSchooiCodes&text=SchooiCodes%20on%20GitHub%20-%20creator%20of%20Schooi's%20Multitool
+            - generic [ref=e211]: 
+          - link "Share profile on Reddit" [ref=e212] [cursor=pointer]:
+            - /url: https://www.reddit.com/submit?url=https%3A%2F%2Fgithub.com%2FSchooiCodes&title=SchooiCodes%20on%20GitHub%20-%20creator%20of%20Schooi's%20Multitool
+            - generic [ref=e213]: 
+          - link "Share profile by email" [ref=e214] [cursor=pointer]:
+            - /url: mailto:?subject=Try%20Schooi's%20Multitool%20(SMT)&body=SchooiCodes%20on%20GitHub%20-%20creator%20of%20Schooi's%20Multitool%0A%0Ahttps%3A%2F%2Fgithub.com%2FSchooiCodes
+            - generic [ref=e215]: 
+          - button "Copy profile link" [ref=e216] [cursor=pointer]:
+            - generic [ref=e217]: 
+      - generic [ref=e218]:
+        - generic [ref=e219]: 
+        - heading "QR code" [level=4] [ref=e220]
+        - paragraph [ref=e221]: Scan to open the site.
+        - img "QR code linking to https://smt.xubi.org/" [ref=e222]
+  - generic [ref=e227]:
+    - heading "Contact" [level=2] [ref=e229]
+    - generic [ref=e230]:
+      - generic [ref=e231]:
+        - generic [ref=e232]: 
+        - heading "Report a bug" [level=4] [ref=e233]
+        - paragraph [ref=e234]: Something broken? Tell us on GitHub.
+        - link "Open issue " [ref=e235] [cursor=pointer]:
+          - /url: https://github.com/SchooiCodes/smt/issues
+          - text: Open issue
+          - generic [ref=e236]: 
+      - generic [ref=e237]:
+        - generic [ref=e238]: 
+        - heading "Suggest a feature" [level=4] [ref=e239]
+        - paragraph [ref=e240]: Have an idea? Share it with us.
+        - link "Suggest " [ref=e241] [cursor=pointer]:
+          - /url: https://github.com/SchooiCodes/smt/discussions
+          - text: Suggest
+          - generic [ref=e242]: 
+      - generic [ref=e243]:
+        - generic [ref=e244]: 
+        - heading "Email us" [level=4] [ref=e245]
+        - paragraph [ref=e246]: For anything else, send an email.
+        - link "Send email " [ref=e247] [cursor=pointer]:
+          - /url: mailto:schooibusinessinquiries@gmail.com
+          - text: Send email
+          - generic [ref=e248]: 
+    - generic [ref=e249]:
+      - link "Discord" [ref=e250] [cursor=pointer]:
+        - /url: https://discord.gg/REj54yP7Qa
+        - generic [ref=e251]: 
+      - link "GitHub" [ref=e252] [cursor=pointer]:
+        - /url: https://github.com/SchooiCodes
+        - generic [ref=e253]: 
+      - link "YouTube" [ref=e254] [cursor=pointer]:
+        - /url: https://youtube.com/@SchooiYT
+        - generic [ref=e255]: 
+  - contentinfo [ref=e256]:
+    - generic [ref=e257]:
+      - generic [ref=e258]:
+        - generic [ref=e259]:
+          - heading " SMT" [level=3] [ref=e260]:
+            - generic [ref=e261]: 
+            - text: SMT
+          - paragraph [ref=e262]: Schooi's Multitool (SMT) - free, open-source toolkit for Windows 10 & 11. 145 tools in one console.
+        - generic [ref=e263]:
+          - link "About" [ref=e264] [cursor=pointer]:
+            - /url: "#about"
+          - link "Tools" [ref=e265] [cursor=pointer]:
+            - /url: features/
+          - link "Install" [ref=e266] [cursor=pointer]:
+            - /url: "#install"
+          - link "Share" [ref=e267] [cursor=pointer]:
+            - /url: "#share"
+          - link "Contact" [ref=e268] [cursor=pointer]:
+            - /url: "#contact"
+          - link "Guide" [ref=e269] [cursor=pointer]:
+            - /url: guide/
+          - link "Privacy" [ref=e270] [cursor=pointer]:
+            - /url: privacy.html
+          - link "Terms" [ref=e271] [cursor=pointer]:
+            - /url: terms.html
+          - link "Accessibility" [ref=e272] [cursor=pointer]:
+            - /url: accessibility.html
+          - link "License" [ref=e273] [cursor=pointer]:
+            - /url: license.html
+      - paragraph [ref=e275]:
+        - text: © 2026 Schooi. All rights reserved. Made with
+        - generic [ref=e276]: 
