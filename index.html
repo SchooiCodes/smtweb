@@ -573,12 +573,12 @@
             Promise.all([fileReq, commitsReq]).then(([t, commits]) => {
                 const seen = new Set();
                 const items = [];
-                // The notes file is written commit-message style (subject line
-                // plus body lines), so each blank-line-separated block is one
-                // entry - never one bullet per line.
-                t.split(/\r?\n\s*\r?\n/).map(b => b.split(/\r?\n/).map(s => s.trim()).filter(Boolean).join(' ')).filter(Boolean).slice(0, 8).forEach(entry => {
-                    seen.add(entry.toLowerCase());
-                    items.push({ text: entry });
+                // The notes file is written commit-message style: each
+                // blank-line-separated block is one release, first line is
+                // the title, the rest are detail lines. Keep that shape.
+                t.split(/\r?\n\s*\r?\n/).map(b => b.split(/\r?\n/).map(s => s.trim()).filter(Boolean)).filter(b => b.length).slice(0, 8).forEach(lines => {
+                    seen.add(lines.join(' ').toLowerCase());
+                    items.push({ title: lines[0], body: lines.slice(1) });
                 });
                 (Array.isArray(commits) ? commits : []).forEach(c => {
                     if (items.length >= 8) return;
@@ -598,13 +598,26 @@
                 list.innerHTML = '';
                 items.forEach(it => {
                     const li = document.createElement('li');
-                    li.appendChild(document.createTextNode(it.text));
-                    if (it.date) {
-                        li.appendChild(document.createTextNode(' '));
-                        const tm = document.createElement('span');
-                        tm.className = 'changelog-date';
-                        tm.textContent = it.date;
-                        li.appendChild(tm);
+                    if (it.title) {
+                        const h = document.createElement('div');
+                        h.className = 'changelog-subject';
+                        h.textContent = it.title;
+                        li.appendChild(h);
+                        it.body.forEach(line => {
+                            const p = document.createElement('div');
+                            p.className = 'changelog-body';
+                            p.textContent = line;
+                            li.appendChild(p);
+                        });
+                    } else {
+                        li.appendChild(document.createTextNode(it.text));
+                        if (it.date) {
+                            li.appendChild(document.createTextNode(' '));
+                            const tm = document.createElement('span');
+                            tm.className = 'changelog-date';
+                            tm.textContent = it.date;
+                            li.appendChild(tm);
+                        }
                     }
                     list.appendChild(li);
                 });

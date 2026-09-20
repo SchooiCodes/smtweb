@@ -1362,6 +1362,13 @@ section {
     white-space: nowrap;
     margin-left: 4px;
 }
+.changelog-subject {
+    color: var(--text-primary);
+    font-weight: 700;
+}
+.changelog-body {
+    margin-top: 4px;
+}
 
 /* ===== Tidy: screenshot lightbox ===== */
 .shot-open {
