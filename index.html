@@ -286,7 +286,9 @@
     <section id="changelog" style="padding:72px 0;background:var(--bg);border-top:1px solid var(--card-border)">
         <div class="container" style="max-width:880px">
             <div class="section-header">
+                <span class="section-badge"><i class="fas fa-clock-rotate-left"></i> Changelog</span>
                 <h2 class="section-title">Latest changes</h2>
+                <p class="section-description">Fresh out of the repo - releases first, then recent commits. Select any entry for details.</p>
             </div>
             <ul class="changelog-list" id="changelogList">
                 <li>Loading latest changes...</li>
@@ -661,48 +663,143 @@
                 // the title, the rest are detail lines. Keep that shape.
                 t.split(/\r?\n\s*\r?\n/).map(b => b.split(/\r?\n/).map(s => s.trim()).filter(Boolean)).filter(b => b.length).slice(0, 8).forEach(lines => {
                     seen.add(lines.join(' ').toLowerCase());
-                    items.push({ title: lines[0], body: lines.slice(1) });
+                    items.push({ title: lines[0], body: lines.slice(1), ver: extractVer(lines.join(' ')) });
                 });
                 (Array.isArray(commits) ? commits : []).forEach(c => {
                     if (items.length >= 8) return;
                     const msg = (c && c.commit && c.commit.message) || '';
-                    const subject = msg.split('\n')[0].trim();
+                    const parts = msg.split('\n').map(s => s.trim());
+                    const subject = parts[0];
                     const stamp = (c && c.commit && c.commit.author && c.commit.author.date) || '';
                     if (!subject) return;
                     const sub = subject.toLowerCase();
                     for (const s of seen) { if (s.includes(sub)) return; }
                     seen.add(sub);
                     let date = '';
+                    let fullDate = '';
                     const d = new Date(stamp);
-                    if (!isNaN(d)) date = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-                    items.push({ text: subject, date: date });
+                    if (!isNaN(d)) {
+                        date = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+                        fullDate = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+                    }
+                    const who = (c.author && c.author.login) || (c.commit.author && c.commit.author.name) || '';
+                    items.push({ text: subject, date: date, body: parts.slice(1).filter(Boolean), author: who, fullDate: fullDate || date, url: c.html_url || '', sha: (c.sha || '').slice(0, 7), ver: extractVer(subject) });
                 });
                 if (!items.length) throw new Error('empty');
                 list.innerHTML = '';
-                items.forEach(it => {
+                const siteVer = 'v' + String(window.SMT_VERSION || '2.3').replace(/^v/i, '');
+                items.forEach((it, idx) => {
                     const li = document.createElement('li');
+                    const head = document.createElement('button');
+                    head.type = 'button';
+                    head.className = 'cl-toggle';
+                    const chev = document.createElement('span');
+                    chev.className = 'cl-chev';
+                    chev.innerHTML = '<i class="fas fa-chevron-down" aria-hidden="true"></i>';
                     if (it.title) {
-                        const h = document.createElement('div');
+                        li.className = 'is-release open';
+                        head.classList.add('cl-head');
+                        head.setAttribute('aria-expanded', 'true');
+                        head.setAttribute('aria-label', 'Collapse details for ' + it.title);
+                        const icon = document.createElement('span');
+                        icon.className = 'cl-icon';
+                        icon.innerHTML = '<i class="fas fa-tag" aria-hidden="true"></i>';
+                        head.appendChild(icon);
+                        const h = document.createElement('span');
                         h.className = 'changelog-subject';
                         h.textContent = it.title;
-                        li.appendChild(h);
+                        head.appendChild(h);
+                        const ver = it.ver || (idx === 0 ? siteVer : '');
+                        if (ver) {
+                            const pill = document.createElement('span');
+                            pill.className = 'cl-ver';
+                            pill.textContent = ver;
+                            head.appendChild(pill);
+                        }
+                        if (idx === 0) {
+                            const pill = document.createElement('span');
+                            pill.className = 'cl-latest';
+                            pill.textContent = 'Latest';
+                            head.appendChild(pill);
+                        }
+                        head.appendChild(chev);
+                        li.appendChild(head);
+                        const wrap = document.createElement('div');
+                        wrap.className = 'cl-body-wrap';
                         it.body.forEach(line => {
                             const p = document.createElement('div');
                             p.className = 'changelog-body';
                             p.textContent = line;
-                            li.appendChild(p);
+                            wrap.appendChild(p);
                         });
+                        li.appendChild(wrap);
                     } else {
-                        li.appendChild(document.createTextNode(it.text));
+                        li.className = 'is-commit';
+                        head.classList.add('cl-commit-head');
+                        head.setAttribute('aria-expanded', 'false');
+                        head.setAttribute('aria-label', 'Expand details for ' + it.text);
+                        const icon = document.createElement('span');
+                        icon.className = 'cl-icon';
+                        icon.innerHTML = '<i class="fas fa-code-commit" aria-hidden="true"></i>';
+                        head.appendChild(icon);
+                        const sub = document.createElement('span');
+                        sub.className = 'cl-commit-text';
+                        sub.textContent = it.text;
+                        head.appendChild(sub);
+                        if (it.ver) {
+                            const pill = document.createElement('span');
+                            pill.className = 'cl-ver';
+                            pill.textContent = it.ver;
+                            head.appendChild(pill);
+                        }
                         if (it.date) {
-                            li.appendChild(document.createTextNode(' '));
                             const tm = document.createElement('span');
                             tm.className = 'changelog-date';
                             tm.textContent = it.date;
-                            li.appendChild(tm);
+                            head.appendChild(tm);
                         }
+                        head.appendChild(chev);
+                        li.appendChild(head);
+                        const det = document.createElement('div');
+                        det.className = 'cl-detail';
+                        det.hidden = true;
+                        it.body.forEach(line => {
+                            const p = document.createElement('div');
+                            p.className = 'changelog-body';
+                            p.textContent = line;
+                            det.appendChild(p);
+                        });
+                        const meta = [it.author, it.fullDate, it.sha].filter(Boolean).join('  .  ');
+                        if (meta) {
+                            const m = document.createElement('div');
+                            m.className = 'cl-meta';
+                            m.textContent = meta;
+                            det.appendChild(m);
+                        }
+                        if (it.url) {
+                            const a = document.createElement('a');
+                            a.className = 'cl-link';
+                            a.href = it.url;
+                            a.target = '_blank';
+                            a.rel = 'noopener';
+                            a.textContent = 'View commit on GitHub ->';
+                            det.appendChild(a);
+                        }
+                        li.appendChild(det);
                     }
                     list.appendChild(li);
+                });
+                list.addEventListener('click', e => {
+                    const btn = e.target.closest('.cl-toggle');
+                    if (!btn || !list.contains(btn)) return;
+                    const li = btn.closest('li');
+                    const panel = li && li.querySelector('.cl-body-wrap, .cl-detail');
+                    if (!li || !panel) return;
+                    const open = li.classList.toggle('open');
+                    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+                    const label = (btn.classList.contains('cl-head') ? li.querySelector('.changelog-subject') : li.querySelector('.cl-commit-text')) || '';
+                    btn.setAttribute('aria-label', (open ? 'Collapse details for ' : 'Expand details for ') + (label.textContent || 'entry'));
+                    panel.hidden = !open;
                 });
             })
                 .catch(err => {
@@ -711,6 +808,7 @@
                 });
         })();
         function esc(s) { return s.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c])); }
+        function extractVer(s) { const m = /v?(\d+\.\d+(?:\.\d+)?)/i.exec(s || ''); return m ? ('v' + m[1]) : ''; }
         function runHeroFind() {
             const q = (heroSearch.value || '').trim().toLowerCase();
             // global search across every tool
