@@ -125,6 +125,7 @@
                 <li><a href="#about">About</a></li>
                 <li><a href="features/">Tools</a></li>
                 <li><a href="#install" class="nav-install">Install</a></li>
+                <li><a href="#share">Share</a></li>
                 <li><a href="#contact">Contact</a></li>
                 <li>
                     <button id="darkModeToggle" class="theme-toggle" aria-label="Toggle light mode">
@@ -294,6 +295,87 @@
         </div>
     </section>
 
+    <!-- Share Section -->
+    <section id="share" class="share-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Share SMT</h2>
+                <p class="section-subtitle">Know someone on Windows? Send them SMT in one tap.</p>
+            </div>
+            <div class="share-bar">
+                <button class="btn btn-primary" id="sysShareBtn" type="button" hidden><i class="fas fa-share-nodes"></i> Share...</button>
+                <a href="https://github.com/SchooiCodes/smt" class="btn btn-outline-sm" target="_blank" rel="noopener"><i class="fas fa-star"></i> Star on GitHub</a>
+            </div>
+            <div class="share-grid">
+                <div class="share-card contact-card">
+                    <i class="fas fa-globe"></i>
+                    <h4><a href="https://smt.xubi.org/" target="_blank" rel="noopener">Website</a></h4>
+                    <p>Send the homepage.</p>
+                    <div class="share-net">
+                        <a class="sn-x" href="https://twitter.com/intent/tweet?text=Schooi's%20Multitool%20(SMT)%20-%20free%2C%20open-source%20Windows%20toolkit%20for%20Windows%2010%20and%2011&amp;url=https%3A%2F%2Fsmt.xubi.org%2F" target="_blank" rel="noopener" aria-label="Share website on X"><i class="fab fa-x-twitter"></i></a>
+                        <a class="sn-fb" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fsmt.xubi.org%2F" target="_blank" rel="noopener" aria-label="Share website on Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a class="sn-wa" href="https://wa.me/?text=Schooi's%20Multitool%20(SMT)%20-%20free%2C%20open-source%20Windows%20toolkit%20for%20Windows%2010%20and%2011%20https%3A%2F%2Fsmt.xubi.org%2F" target="_blank" rel="noopener" aria-label="Share website on WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a class="sn-tg" href="https://t.me/share/url?url=https%3A%2F%2Fsmt.xubi.org%2F&amp;text=Schooi's%20Multitool%20(SMT)%20-%20free%2C%20open-source%20Windows%20toolkit%20for%20Windows%2010%20and%2011" target="_blank" rel="noopener" aria-label="Share website on Telegram"><i class="fab fa-telegram"></i></a>
+                        <a class="sn-rd" href="https://www.reddit.com/submit?url=https%3A%2F%2Fsmt.xubi.org%2F&amp;title=Schooi's%20Multitool%20(SMT)%20-%20free%2C%20open-source%20Windows%20toolkit%20for%20Windows%2010%20and%2011" target="_blank" rel="noopener" aria-label="Share website on Reddit"><i class="fab fa-reddit-alien"></i></a>
+                        <a class="sn-mail" href="mailto:?subject=Try%20Schooi's%20Multitool%20(SMT)&amp;body=Schooi's%20Multitool%20(SMT)%20-%20free%2C%20open-source%20Windows%20toolkit%20for%20Windows%2010%20and%2011%0A%0Ahttps%3A%2F%2Fsmt.xubi.org%2F" target="_blank" rel="noopener" aria-label="Share website by email"><i class="fas fa-envelope"></i></a>
+                        <button class="sn-copy copy-btn" type="button" data-copy="https://smt.xubi.org/" aria-label="Copy website link"><i class="fas fa-link"></i></button>
+                    </div>
+                </div>
+                <div class="share-card contact-card">
+                    <i class="fas fa-code-branch"></i>
+                    <h4><a href="https://github.com/SchooiCodes/smt" target="_blank" rel="noopener">GitHub repo</a></h4>
+                    <p>Send the source code.</p>
+                    <div class="share-net">
+                        <a class="sn-x" href="https://twitter.com/intent/tweet?text=Schooi's%20Multitool%20-%20free%2C%20open-source%20Windows%20toolkit.%20Source%20code%20on%20GitHub&amp;url=https%3A%2F%2Fgithub.com%2FSchooiCodes%2Fsmt" target="_blank" rel="noopener" aria-label="Share repo on X"><i class="fab fa-x-twitter"></i></a>
+                        <a class="sn-fb" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fgithub.com%2FSchooiCodes%2Fsmt" target="_blank" rel="noopener" aria-label="Share repo on Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a class="sn-wa" href="https://wa.me/?text=Schooi's%20Multitool%20-%20free%2C%20open-source%20Windows%20toolkit.%20Source%20code%20on%20GitHub%20https%3A%2F%2Fgithub.com%2FSchooiCodes%2Fsmt" target="_blank" rel="noopener" aria-label="Share repo on WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a class="sn-tg" href="https://t.me/share/url?url=https%3A%2F%2Fgithub.com%2FSchooiCodes%2Fsmt&amp;text=Schooi's%20Multitool%20-%20free%2C%20open-source%20Windows%20toolkit.%20Source%20code%20on%20GitHub" target="_blank" rel="noopener" aria-label="Share repo on Telegram"><i class="fab fa-telegram"></i></a>
+                        <a class="sn-rd" href="https://www.reddit.com/submit?url=https%3A%2F%2Fgithub.com%2FSchooiCodes%2Fsmt&amp;title=Schooi's%20Multitool%20-%20free%2C%20open-source%20Windows%20toolkit.%20Source%20code%20on%20GitHub" target="_blank" rel="noopener" aria-label="Share repo on Reddit"><i class="fab fa-reddit-alien"></i></a>
+                        <a class="sn-mail" href="mailto:?subject=Try%20Schooi's%20Multitool%20(SMT)&amp;body=Schooi's%20Multitool%20-%20free%2C%20open-source%20Windows%20toolkit.%20Source%20code%20on%20GitHub%0A%0Ahttps%3A%2F%2Fgithub.com%2FSchooiCodes%2Fsmt" target="_blank" rel="noopener" aria-label="Share repo by email"><i class="fas fa-envelope"></i></a>
+                        <button class="sn-copy copy-btn" type="button" data-copy="https://github.com/SchooiCodes/smt" aria-label="Copy repo link"><i class="fas fa-link"></i></button>
+                    </div>
+                </div>
+                <div class="share-card contact-card">
+                    <i class="fas fa-envelope-open-text"></i>
+                    <h4><a href="https://smt.xubi.org/" target="_blank" rel="noopener">Install invite</a></h4>
+                    <p>Send a ready-made invite.</p>
+                    <p class="share-invite" id="inviteText">Try Schooi's Multitool (SMT) - the free, open-source Windows toolkit for Windows 10 and 11. Details at https://smt.xubi.org/ - source at https://github.com/SchooiCodes/smt</p>
+                    <div class="share-net">
+                        <a class="sn-x" href="https://twitter.com/intent/tweet?text=Try%20Schooi's%20Multitool%20(SMT)%20-%20the%20free%2C%20open-source%20Windows%20toolkit%20for%20Windows%2010%20and%2011.%20Details%20at%20https%3A%2F%2Fsmt.xubi.org%2F%20-%20source%20at%20https%3A%2F%2Fgithub.com%2FSchooiCodes%2Fsmt&amp;url=https%3A%2F%2Fsmt.xubi.org%2F" target="_blank" rel="noopener" aria-label="Share invite on X"><i class="fab fa-x-twitter"></i></a>
+                        <a class="sn-fb" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fsmt.xubi.org%2F" target="_blank" rel="noopener" aria-label="Share invite on Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a class="sn-wa" href="https://wa.me/?text=Try%20Schooi's%20Multitool%20(SMT)%20-%20the%20free%2C%20open-source%20Windows%20toolkit%20for%20Windows%2010%20and%2011.%20Details%20at%20https%3A%2F%2Fsmt.xubi.org%2F%20-%20source%20at%20https%3A%2F%2Fgithub.com%2FSchooiCodes%2Fsmt%20https%3A%2F%2Fsmt.xubi.org%2F" target="_blank" rel="noopener" aria-label="Share invite on WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a class="sn-tg" href="https://t.me/share/url?url=https%3A%2F%2Fsmt.xubi.org%2F&amp;text=Try%20Schooi's%20Multitool%20(SMT)%20-%20the%20free%2C%20open-source%20Windows%20toolkit%20for%20Windows%2010%20and%2011.%20Details%20at%20https%3A%2F%2Fsmt.xubi.org%2F%20-%20source%20at%20https%3A%2F%2Fgithub.com%2FSchooiCodes%2Fsmt" target="_blank" rel="noopener" aria-label="Share invite on Telegram"><i class="fab fa-telegram"></i></a>
+                        <a class="sn-rd" href="https://www.reddit.com/submit?url=https%3A%2F%2Fsmt.xubi.org%2F&amp;title=Try%20Schooi's%20Multitool%20(SMT)%20-%20the%20free%2C%20open-source%20Windows%20toolkit%20for%20Windows%2010%20and%2011.%20Details%20at%20https%3A%2F%2Fsmt.xubi.org%2F%20-%20source%20at%20https%3A%2F%2Fgithub.com%2FSchooiCodes%2Fsmt" target="_blank" rel="noopener" aria-label="Share invite on Reddit"><i class="fab fa-reddit-alien"></i></a>
+                        <a class="sn-mail" href="mailto:?subject=Try%20Schooi's%20Multitool%20(SMT)&amp;body=Try%20Schooi's%20Multitool%20(SMT)%20-%20the%20free%2C%20open-source%20Windows%20toolkit%20for%20Windows%2010%20and%2011.%20Details%20at%20https%3A%2F%2Fsmt.xubi.org%2F%20-%20source%20at%20https%3A%2F%2Fgithub.com%2FSchooiCodes%2Fsmt%0A%0Ahttps%3A%2F%2Fsmt.xubi.org%2F" target="_blank" rel="noopener" aria-label="Share invite by email"><i class="fas fa-envelope"></i></a>
+                        <button class="sn-copy copy-btn" type="button" data-copy="Try Schooi's Multitool (SMT) - the free, open-source Windows toolkit for Windows 10 and 11. Details at https://smt.xubi.org/ - source at https://github.com/SchooiCodes/smt" aria-label="Copy invite text"><i class="fas fa-copy"></i></button>
+                    </div>
+                </div>
+                <div class="share-card contact-card">
+                    <i class="fas fa-user"></i>
+                    <h4><a href="https://github.com/SchooiCodes" target="_blank" rel="noopener">GitHub profile</a></h4>
+                    <p>Send my profile.</p>
+                    <div class="share-net">
+                        <a class="sn-x" href="https://twitter.com/intent/tweet?text=SchooiCodes%20on%20GitHub%20-%20creator%20of%20Schooi's%20Multitool&amp;url=https%3A%2F%2Fgithub.com%2FSchooiCodes" target="_blank" rel="noopener" aria-label="Share profile on X"><i class="fab fa-x-twitter"></i></a>
+                        <a class="sn-fb" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fgithub.com%2FSchooiCodes" target="_blank" rel="noopener" aria-label="Share profile on Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a class="sn-wa" href="https://wa.me/?text=SchooiCodes%20on%20GitHub%20-%20creator%20of%20Schooi's%20Multitool%20https%3A%2F%2Fgithub.com%2FSchooiCodes" target="_blank" rel="noopener" aria-label="Share profile on WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a class="sn-tg" href="https://t.me/share/url?url=https%3A%2F%2Fgithub.com%2FSchooiCodes&amp;text=SchooiCodes%20on%20GitHub%20-%20creator%20of%20Schooi's%20Multitool" target="_blank" rel="noopener" aria-label="Share profile on Telegram"><i class="fab fa-telegram"></i></a>
+                        <a class="sn-rd" href="https://www.reddit.com/submit?url=https%3A%2F%2Fgithub.com%2FSchooiCodes&amp;title=SchooiCodes%20on%20GitHub%20-%20creator%20of%20Schooi's%20Multitool" target="_blank" rel="noopener" aria-label="Share profile on Reddit"><i class="fab fa-reddit-alien"></i></a>
+                        <a class="sn-mail" href="mailto:?subject=Try%20Schooi's%20Multitool%20(SMT)&amp;body=SchooiCodes%20on%20GitHub%20-%20creator%20of%20Schooi's%20Multitool%0A%0Ahttps%3A%2F%2Fgithub.com%2FSchooiCodes" target="_blank" rel="noopener" aria-label="Share profile by email"><i class="fas fa-envelope"></i></a>
+                        <button class="sn-copy copy-btn" type="button" data-copy="https://github.com/SchooiCodes" aria-label="Copy profile link"><i class="fas fa-link"></i></button>
+                    </div>
+                </div>
+                <div class="share-card contact-card">
+                    <i class="fas fa-qrcode"></i>
+                    <h4>QR code</h4>
+                    <p>Scan to open the site.</p>
+                    <div class="share-qr" role="img" aria-label="QR code linking to https://smt.xubi.org/">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 27 27" shape-rendering="crispEdges"><path fill="#ffffff" d="M0 0h27v27H0z"/><path stroke="#000000" d="M1 1.5h7m2 0h1m2 0h2m2 0h1m1 0h7M1 2.5h1m5 0h1m3 0h6m2 0h1m5 0h1M1 3.5h1m1 0h3m1 0h1m1 0h1m5 0h1m1 0h1m1 0h1m1 0h3m1 0h1M1 4.5h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h3m3 0h1m1 0h3m1 0h1M1 5.5h1m1 0h3m1 0h1m1 0h1m5 0h1m3 0h1m1 0h3m1 0h1M1 6.5h1m5 0h1m1 0h1m1 0h4m1 0h2m1 0h1m5 0h1M1 7.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M9 8.5h2m5 0h1M1 9.5h1m1 0h5m3 0h2m1 0h2m3 0h5M1 10.5h1m1 0h2m1 0h1m2 0h1m1 0h2m4 0h1m2 0h1m3 0h1M4 11.5h1m2 0h2m1 0h1m2 0h4m1 0h1m1 0h3m1 0h2M2 12.5h4m3 0h1m5 0h1m2 0h2m5 0h1M1 13.5h1m5 0h1m1 0h1m1 0h1m1 0h2m1 0h1m1 0h4m1 0h3M1 14.5h1m1 0h4m7 0h1m2 0h2m1 0h1m1 0h1m1 0h1M1 15.5h1m4 0h2m1 0h2m1 0h11m1 0h2M1 16.5h1m1 0h1m1 0h2m1 0h1m1 0h3m2 0h3m1 0h3m3 0h1M1 17.5h1m1 0h1m1 0h4m3 0h1m3 0h6m1 0h1M9 18.5h1m3 0h2m2 0h1m3 0h2M1 19.5h7m2 0h2m2 0h2m1 0h1m1 0h1m1 0h1m1 0h3M1 20.5h1m5 0h1m1 0h3m1 0h2m2 0h1m3 0h2m1 0h2M1 21.5h1m1 0h3m1 0h1m1 0h2m2 0h1m1 0h7m1 0h3M1 22.5h1m1 0h3m1 0h1m1 0h2m5 0h1m2 0h1m1 0h5M1 23.5h1m1 0h3m1 0h1m1 0h1m2 0h2m2 0h2m4 0h2m1 0h1M1 24.5h1m5 0h1m3 0h2m2 0h1m1 0h2m1 0h3m2 0h1M1 25.5h7m1 0h1m1 0h2m7 0h6"/></svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact Section -->
     <section id="contact" class="contact-section">
         <div class="container">
@@ -352,6 +434,7 @@
                     <a href="#about">About</a>
                     <a href="features/">Tools</a>
                     <a href="#install">Install</a>
+                    <a href="#share">Share</a>
                     <a href="#contact">Contact</a>
                     <a href="guide/">Guide</a>
                     <a href="privacy.html">Privacy</a>
@@ -657,7 +740,7 @@
         // Copy-to-clipboard for install command blocks
         document.querySelectorAll('.copy-btn').forEach(function(btn) {
             btn.addEventListener('click', function() {
-                var block = btn.closest('.install-block') || btn.closest('.install-option');
+                var block = btn.closest('.install-block') || btn.closest('.install-option') || btn.closest('.share-card');
                 var code = block && block.querySelector('.install-cmd code');
                 if (!code) return;
                 navigator.clipboard.writeText(code.textContent.trim()).then(function() {
@@ -681,6 +764,21 @@
                 });
             });
         });
+        // Share section: native share sheet where supported, otherwise hidden.
+        // The copy cards are the fallback, so share failures stay silent.
+        (function systemShare() {
+            var shareBtn = document.getElementById('sysShareBtn');
+            if (!shareBtn || !navigator.share) return;
+            shareBtn.hidden = false;
+            shareBtn.addEventListener('click', function() {
+                var invite = document.getElementById('inviteText');
+                navigator.share({
+                    title: "Schooi's Multitool (SMT)",
+                    text: invite ? invite.textContent.trim() : 'https://smt.xubi.org/',
+                    url: 'https://smt.xubi.org/'
+                }).catch(function() {});
+            });
+        })();
         // Screenshot lightbox: expand the About screenshot.
         (function lightbox() {
             const openBtn = document.getElementById('shotOpen');

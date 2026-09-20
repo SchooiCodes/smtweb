@@ -762,6 +762,60 @@ section {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
+/* ===== Share Section ===== */
+.share-section {
+    background: var(--bg);
+    border-top: 1px solid var(--card-border);
+    padding: 72px 0;
+}
+
+.share-bar {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 32px;
+}
+
+/* .btn sets display:inline-flex, which beats the UA [hidden] rule. */
+#sysShareBtn[hidden] { display: none; }
+
+.share-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+.share-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.share-card .install-cmd {
+    width: 100%;
+    margin-bottom: 12px;
+}
+
+.share-card .install-cmd code {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    word-break: break-all;
+    font-size: 0.85rem;
+}
+
+.share-qr {
+    background: #ffffff;
+    padding: 12px;
+    border-radius: 12px;
+    line-height: 0;
+}
+
+.share-qr svg {
+    width: 160px;
+    height: 160px;
+}
+
 /* ===== Footer ===== */
 .footer {
     background: var(--footer-bg);
