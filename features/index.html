@@ -158,6 +158,8 @@
         .tool-card.is-dangerous .tos-tag { top: 52px; }
         .details-switch .danger-track { border-color: rgba(239, 68, 68, 0.5); }
         .details-switch input:checked + .danger-track { background: #ef4444; border-color: #ef4444; }
+        .details-switch .tos-track { border-color: rgba(245, 158, 11, 0.5); }
+        .details-switch input:checked + .tos-track { background: #f59e0b; border-color: #f59e0b; }
         .gate-overlay[hidden] { display: none !important; }
         .gate-overlay {
             position: fixed; inset: 0; z-index: 2500;
@@ -270,6 +272,7 @@
         <div class="toolbar-controls">
             <label class="details-switch"><input type="checkbox" id="detailsToggle"><span class="switch-track" aria-hidden="true"></span> Show details</label>
             <label class="details-switch"><input type="checkbox" id="dangerToggle"><span class="switch-track danger-track" aria-hidden="true"></span> Show dangerous</label>
+            <label class="details-switch"><input type="checkbox" id="tosToggle"><span class="switch-track tos-track" aria-hidden="true"></span> Show ToS-bypass</label>
             <div class="cat-drop" id="catDrop">
                 <button type="button" class="category-select" id="categoryButton" aria-haspopup="listbox" aria-expanded="false">
                     <span id="categoryLabel">All tools (145)</span>
@@ -442,7 +445,7 @@
             { name: "Portable Creator", desc: "Packs SMT into a portable zip.", icon: "fa-box-open", cat: "system", tags: "portable zip package", added: "v2.x", info: "Packs the launcher plus a portable config into Downloads as a zip-ready folder.", menu: 'Type "port" on the main menu', file: "Files/createportable.bat" },
 
             // Windows & Office
-            { name: "Windows & Office Activator", desc: "Runs a third-party activation script. Only use with licenses you own.", admin: true, danger: true, tos: true, icon: "fa-key", cat: "windows", tags: "windows office activation license", added: "v1.8", info: "Runs the MassGrave activation script for Windows and Office. Only use with licenses you own; other use violates Microsoft's terms.", menu: "Tools > Cracks > 2", file: "Files/WA.bat" },
+            { name: "Windows & Office Activator", desc: "Runs a third-party activation script. Only use with licenses you own.", admin: true, tos: true, icon: "fa-key", cat: "windows", tags: "windows office activation license", added: "v1.8", info: "Runs the MassGrave activation script for Windows and Office. Only use with licenses you own; other use violates Microsoft's terms.", menu: "Tools > Cracks > 2", file: "Files/WA.bat" },
             { name: "Windows User Manager", desc: "Manage users, reset passwords.", admin: true, icon: "fa-users", cat: "windows", tags: "user manager password reset", added: "v1.2", info: "Lists users, resets passwords without the old one, and renames accounts.", menu: "Tools > System Administration > 1", file: "Files/RAUP.bat" },
             { name: "Windows Password Cracker", desc: "Recover passwords on your own PC.", admin: true, danger: true, icon: "fa-lock-open", cat: "windows", tags: "password crack recover wsl", added: "v2.3", info: "Dumps SAM hashes on your own PC, then cracks them with hashcat under Kali WSL. Own devices only.", menu: "Tools > Cracks > 5", file: "Files/pc.bat" },
             { name: "UAC Disabler", desc: "Disable User Account Control prompts on PCs you own.", admin: true, danger: true, icon: "fa-user-shield", cat: "windows", tags: "uac disable administrator", added: "v2.3", info: "Sets UAC prompts to never-notify via registry.", menu: "Tools > Danger Zone > 6", file: "Files/uacd.bat" },
@@ -456,7 +459,7 @@
             { name: "RockYou Downloader", desc: "Download the RockYou wordlist for authorized testing.", icon: "fa-file-zipper", cat: "security", tags: "rockyou wordlist password", added: "v1.7", info: "Downloads the RockYou password wordlist for authorized testing.", menu: "Tools > Utilities > 9", file: "Files/rockyou.bat" },
             { name: ".zip Password Cracker", desc: "Recover passwords from your own zip files.", danger: true, info: "Tries passwords from a wordlist against your own protected archives using 7-Zip. Needs 7-Zip installed.", menu: "Tools > Cracks > 4", file: "Files/zicrack.bat", icon: "fa-key", cat: "security", tags: "zip password crack recover", added: "v2.x" },
             { name: "Credentials Storer", desc: "Store account credentials locally.", icon: "fa-vault", cat: "security", tags: "credentials store vault", added: "v2.x", info: "Stores account credentials in a local plaintext file. Not encrypted.", menu: "Tools > Utilities > 6", file: "Files/creds.bat" },
-            { name: "Malwarebytes Premium Resetter", desc: "Resets the Malwarebytes trial by spoofing the machine ID. Violates their ToS.", admin: true, danger: true, tos: true, icon: "fa-shield-virus", cat: "security", tags: "malwarebytes reset premium", added: "v2.x", info: "Spoofs the machine GUID and schedules a weekly re-spoof to reset the trial. Violates Malwarebytes' terms; demo only.", menu: "Tools > Cracks > 1", file: "Files/Malwarebytes-Premium-Reset.bat" },
+            { name: "Malwarebytes Premium Resetter", desc: "Resets the Malwarebytes trial by spoofing the machine ID. Violates their ToS.", admin: true, tos: true, icon: "fa-shield-virus", cat: "security", tags: "malwarebytes reset premium", added: "v2.x", info: "Spoofs the machine GUID and schedules a weekly re-spoof to reset the trial. Violates Malwarebytes' terms; demo only.", menu: "Tools > Cracks > 1", file: "Files/Malwarebytes-Premium-Reset.bat" },
             { name: "Anti-Piracy Measures", desc: "Setup marker that blocks copies.", icon: "fa-lock", cat: "security", tags: "anti-piracy protection", added: "v1.3", info: "Checks for the setup marker file before launching.", menu: "Automatic on launch" },
             { name: "User Agreement", desc: "Terms of use displayed during setup.", icon: "fa-file-contract", cat: "security", tags: "user agreement terms", added: "v1.6", info: "Shows the I AGREE disclaimer on first run.", menu: "First launch only", file: "Files/setup.bat" },
 
@@ -552,7 +555,7 @@
             { name: "utilman Trick Applier", desc: "Accessibility recovery trick for your own PC.", admin: true, danger: true, icon: "fa-user-secret", cat: "advanced", tags: "utilman accessibility trick", added: "v2.x", info: "Replaces utilman.exe with cmd.exe for a logon-screen system shell. Recovery use only.", menu: "Tools > Danger Zone > 7", file: "Files/uta.bat" },
             { name: "Info Stealer (OLD)", desc: "Old local recon dump (Info Grabber). Your own PCs only.", danger: true, icon: "fa-skull", cat: "advanced", tags: "info stealer legacy research", added: "v1.x", info: "An older local recon dump without exfiltration. Your own PCs only.", menu: "Tools > Danger Zone > 2", file: "Files/InfoFinder.bat" },
             { name: "Disk Space Filler", desc: "Fills disk space. Lab use only.", danger: true, icon: "fa-hard-drive", cat: "advanced", tags: "disk fill danger test", added: "v2.x", info: "Floods the disk with filler files up to a size you set. Lab only.", menu: "Tools > Danger Zone > 4", file: "Files/dsf.bat" },
-            { name: "FGRDown", desc: "Downloads game repacks. Only for games you own; nothing hosted here.", admin: true, danger: true, tos: true, icon: "fa-download", cat: "advanced", tags: "fitgirl repack downloader", added: "v2.x", info: "Scrapes the repack list and drives the download for you. Only use for games you own; nothing hosted here.", menu: "Tools > Cracks > 3", file: "Files/fgrdown.bat" }
+            { name: "FGRDown", desc: "Downloads game repacks. Only for games you own; nothing hosted here.", admin: true, tos: true, icon: "fa-download", cat: "advanced", tags: "fitgirl repack downloader", added: "v2.x", info: "Scrapes the repack list and drives the download for you. Only use for games you own; nothing hosted here.", menu: "Tools > Cracks > 3", file: "Files/fgrdown.bat" }
         ];
 
         // Render cards
@@ -562,7 +565,7 @@
         const BRAND_ICONS = new Set(['fa-spotify', 'fa-steam', 'fa-chrome', 'fa-firefox-browser', 'fa-telegram', 'fa-discord', 'fa-git-alt', 'fa-github', 'fa-node-js', 'fa-python', 'fa-windows']);
         function iconPrefix(icon) { return BRAND_ICONS.has(icon) ? 'fab' : 'fas'; }
         function renderTools(filteredTools) {
-            filteredTools = filteredTools.filter(t => showDangerous || !t.danger);
+            filteredTools = filteredTools.filter(t => (showDangerous || !t.danger) && (showTos || !t.tos));
             if (filteredTools.length === 0) {
                 container.innerHTML = '';
                 noResults.hidden = false;
@@ -597,6 +600,7 @@
         let activeCategory = 'all';
         let showDetails = false;
         let showDangerous = false;
+        let showTos = false;
         const searchInput = document.getElementById('toolSearch');
         const categoryButton = document.getElementById('categoryButton');
         const categoryList = document.getElementById('categoryList');
@@ -628,14 +632,19 @@
             document.querySelectorAll('.tool-detail').forEach(p => { p.hidden = !showDetails; });
         });
 
-        // Dangerous gate: hidden until the user accepts the disclaimer modal.
+        // Restricted-tools gate: danger-flagged and tos-flagged tools stay hidden
+        // until the user accepts the disclaimer modal. Each switch grants only
+        // its own flag.
         const dangerToggle = document.getElementById('dangerToggle');
+        const tosToggle = document.getElementById('tosToggle');
         const dangerGate = document.getElementById('dangerGate');
         const dangerAccept = document.getElementById('dangerAccept');
         const dangerDecline = document.getElementById('dangerDecline');
         let gateReturnFocus = null;
         let pendingDeepLinkId = null;
-        function openGate() {
+        let gatePurpose = 'danger';
+        function openGate(purpose) {
+            gatePurpose = purpose || 'danger';
             gateReturnFocus = document.activeElement;
             dangerGate.hidden = false;
             document.body.style.overflow = 'hidden';
@@ -650,23 +659,33 @@
         function closeGate(accepted) {
             dangerGate.hidden = true;
             document.body.style.overflow = '';
-            if (accepted) {
-                showDangerous = true;
-                dangerToggle.checked = true;
-                filterTools();
-                scrollToPendingCard();
-            } else {
+            if (!accepted) {
                 pendingDeepLinkId = null;
-                dangerToggle.checked = false;
-                dangerToggle.focus();
+                if (gatePurpose === 'tos') tosToggle.checked = false;
+                else dangerToggle.checked = false;
+                (gatePurpose === 'tos' ? tosToggle : dangerToggle).focus();
+                return;
             }
+            if (gatePurpose === 'tos') { showTos = true; tosToggle.checked = true; }
+            else { showDangerous = true; dangerToggle.checked = true; }
+            filterTools();
+            scrollToPendingCard();
         }
         dangerToggle.addEventListener('change', () => {
             if (dangerToggle.checked) {
                 dangerToggle.checked = false;
-                openGate();
+                openGate('danger');
             } else {
                 showDangerous = false;
+                filterTools();
+            }
+        });
+        tosToggle.addEventListener('change', () => {
+            if (tosToggle.checked) {
+                tosToggle.checked = false;
+                openGate('tos');
+            } else {
+                showTos = false;
                 filterTools();
             }
         });
@@ -751,7 +770,7 @@
         })();
 
         // Deep links: features/#tool-dns-changer clears filters and jumps to the card.
-        // Dangerous targets stay hidden until the gate is accepted - then we scroll.
+        // Gated targets stay hidden until the gate is accepted - then we scroll.
         (function deepLink() {
             const h = location.hash;
             if (!h || h.indexOf('#tool-') !== 0) return;
@@ -761,10 +780,13 @@
             const card = document.getElementById(id);
             if (card) { card.scrollIntoView({ block: 'center' }); return; }
             const slug = s => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
-            const gated = tools.some(t => t.danger && ('tool-' + slug(t.name)) === id);
-            if (gated) {
+            const tool = tools.find(t => ('tool-' + slug(t.name)) === id);
+            if (!tool) return;
+            const needDanger = tool.danger && !showDangerous;
+            const needTos = tool.tos && !showTos;
+            if (needDanger || needTos) {
                 pendingDeepLinkId = id;
-                openGate();
+                openGate(needDanger ? 'danger' : 'tos');
             }
         })();
 
