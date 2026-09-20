@@ -10,7 +10,7 @@ Static site for Schooi's Multitool (SMT). No build step, no framework. Edit file
 - `tools-search.js` - search index for the homepage hero (`window.SMT_TOOLS`, `{ n, t }` entries). Loaded by `index.html`.
 - `styles.css` - all shared styles, dark/light themes via CSS vars (`body.light-mode`).
 - `privacy.html`, `terms.html`, `accessibility.html`, `license.html`, `404.html`, `error.html` - standalone pages with duplicated nav/footer (no templating; update each file).
-- `get/index.html` - NOT a page. It is the PowerShell installer payload served as static content. Never "fix" its markup, and keep it out of search indexes (`robots.txt` disallows `/get/`).
+- `get/` was removed (Sep 2026). The installer payload no longer lives in this repo - the `irm` mirror domains need repointing wherever they are managed. Do not recreate it here.
 
 ## The two tool indexes (must stay in sync)
 
@@ -24,8 +24,9 @@ There are two sources of truth for the tool list. Every tool must exist in BOTH 
    - `tags` is lowercase space-separated search keywords.
    - `added` is a version label like `v1.x` / `v2.x` / `v2.3`. Do NOT add `new` flags or badges - NEW badges were deliberately removed.
    - Optional enrichment for the global Details toggle: `info` (1-2 factual sentences), `menu` (launcher path like `Tools > Network > 6`), `file` (repo path like `Files/ednsc.bat`, linked to GitHub automatically), `src` (full URL override when the real source lives in its own repo instead of `smt`). Only cards with `info` render a details panel.
-   - Destructive/offensive entries also get `danger: true`. They stay hidden until the visitor accepts the `#dangerGate` disclaimer modal (wired to `#dangerToggle`), and render with red `.is-dangerous` styling plus a `Danger` tag. Never list a dangerous tool without the flag.
-   - License/ToS-bypassing entries (activators, trial resetters, repack downloaders, client mods) also get `tos: true` instead of `danger: true`. They render an amber `ToS Bypass` tag and stay hidden until the visitor accepts the gate via `#tosToggle` (same `#dangerGate` modal as `#dangerToggle`, license paragraph). No tool carries both flags; the two gates are fully independent.
+   - Destructive/offensive entries also get `danger: true`. They stay hidden until the visitor flips the `#dangerToggle` switch, and render with red `.is-dangerous` styling plus a `Danger` tag. Never list a dangerous tool without the flag.
+   - License/ToS-bypassing entries (activators, trial resetters, repack downloaders, client mods) also get `tos: true` instead of `danger: true`. They render an amber `ToS Bypass` tag and stay hidden until the visitor flips the `#tosToggle` switch. No tool carries both flags; the two switches are fully independent.
+   - The three display switches (`#detailsToggle`, `#dangerToggle`, `#tosToggle`) live in the `#optionsPop` popup behind the gear `#optionsButton` (`#optsDrop` wrapper). Each row has a plain `.opt-desc` description - the danger/tos rows carry their full warning + legal copy there. Keep it plain, no AI tells. The button gets `.is-on` whenever any switch is on (synced from `filterTools`).
    - Elevation is structured, not prose: tools needing admin get `admin: true` (renders a green check / red cross `Needs admin` row). Never write "needs admin" into descriptions.
    - Keep entries grouped by category (network -> system -> windows -> security -> apps -> dev -> school -> advanced).
 2. `tools-search.js` -> `window.SMT_TOOLS`, objects shaped `{ n, t }` (`n` = exact same name, `t` = same keywords as `tags`).

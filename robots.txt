@@ -1,7 +1,4 @@
 User-agent: *
 Allow: /
 
-# Block installer endpoint (PowerShell payload) from indexing
-Disallow: /get/
-
 Sitemap: https://smt.xubi.org/sitemap.xml

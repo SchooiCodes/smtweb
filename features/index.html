@@ -155,25 +155,10 @@
             font-size: 0.7rem; font-weight: 700; padding: 4px 12px; border-radius: 20px;
             text-transform: uppercase; letter-spacing: 0.5px;
         }
-        .tool-card.is-dangerous .tos-tag { top: 52px; }
         .details-switch .danger-track { border-color: rgba(239, 68, 68, 0.5); }
         .details-switch input:checked + .danger-track { background: #ef4444; border-color: #ef4444; }
         .details-switch .tos-track { border-color: rgba(245, 158, 11, 0.5); }
         .details-switch input:checked + .tos-track { background: #f59e0b; border-color: #f59e0b; }
-        .gate-overlay[hidden] { display: none !important; }
-        .gate-overlay {
-            position: fixed; inset: 0; z-index: 2500;
-            display: flex; align-items: center; justify-content: center;
-            padding: 24px; background: var(--bg);
-        }
-        .gate-box {
-            max-width: 520px; background: var(--card-bg);
-            border: 1px solid rgba(239, 68, 68, 0.5); border-radius: 20px;
-            padding: 32px; text-align: center; box-shadow: var(--card-shadow);
-        }
-        .gate-box h3 { font-size: 1.5rem; margin-bottom: 12px; color: var(--text-primary); font-family: 'Bricolage Grotesque', 'Inter', sans-serif; }
-        .gate-box p { color: var(--text-secondary); line-height: 1.7; margin-bottom: 24px; }
-        .gate-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
         .details-switch { display: inline-flex; align-items: center; gap: 10px; margin: 0; white-space: nowrap; color: var(--text-secondary); font-weight: 600; font-size: 0.92rem; font-family: 'Bricolage Grotesque', 'Inter', sans-serif; cursor: pointer; }
         .details-switch input { position: absolute; opacity: 0; width: 1px; height: 1px; }
         .details-switch .switch-track { width: 42px; height: 24px; border-radius: 999px; background: var(--card-bg); border: 1px solid var(--card-border); position: relative; transition: background 0.2s ease, border-color 0.2s ease; flex-shrink: 0; }
@@ -181,12 +166,43 @@
         .details-switch input:checked + .switch-track { background: var(--accent); border-color: var(--accent); }
         .details-switch input:checked + .switch-track::after { transform: translateX(18px); background: #fff; }
         .details-switch input:focus-visible + .switch-track { outline: 3px solid var(--accent); outline-offset: 2px; }
+        .opts-drop { position: relative; }
+        .options-btn {
+            display: inline-flex; align-items: center; gap: 10px;
+            white-space: nowrap;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--card-border); color: var(--text-primary);
+            border-radius: 50px; padding: 12px 22px;
+            font-family: 'Bricolage Grotesque', 'Inter', sans-serif; font-weight: 700; font-size: 0.95rem; letter-spacing: 0.02em;
+            cursor: pointer;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+        .options-btn i { color: var(--accent); }
+        .options-btn:hover { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.18); }
+        .options-btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+        .options-btn[aria-expanded="true"], .options-btn.is-on { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.18); }
+        .options-pop[hidden] { display: none; }
+        .options-pop {
+            position: absolute; top: calc(100% + 8px); right: 0;
+            width: min(320px, 80vw); z-index: 1200;
+            background: #16162a; border: 1px solid var(--card-border); border-radius: 16px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            padding: 20px; text-align: left;
+        }
+        body.light-mode .options-pop { background: #ffffff; box-shadow: 0 20px 50px rgba(20, 20, 42, 0.18); }
+        .options-pop h3 {
+            color: var(--text-primary); font-size: 1rem; font-weight: 700;
+            font-family: 'Bricolage Grotesque', 'Inter', sans-serif;
+            margin-bottom: 14px;
+        }
+        .opt-row + .opt-row { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--card-border); }
+        .opt-desc { font-size: 0.82rem; line-height: 1.6; color: var(--text-secondary); margin: 8px 0 0; font-weight: 400; }
         .tool-detail { margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--card-border); font-size: 0.9rem; color: var(--text-secondary); text-align: left; }
         .tool-detail p { margin-bottom: 10px; line-height: 1.6; }
         .tool-meta { display: grid; gap: 4px; font-size: 0.82rem; margin-bottom: 10px; }
         .tool-meta b { color: var(--text-primary); font-weight: 600; }
-        .admin-yes { color: #4ade80; font-weight: 700; }
-        .admin-no { color: #ef4444; font-weight: 700; }
+        .admin-emoji { width: 1.15em; height: 1.15em; vertical-align: -0.2em; }
         .tool-meta code { font-family: ui-monospace, monospace; font-size: 0.78rem; }
         .tool-src { color: var(--accent); font-weight: 600; font-size: 0.85rem; }
         @media (max-width: 768px) {
@@ -270,9 +286,26 @@
             <input type="text" id="toolSearch" aria-label="Search tools" placeholder="Search tools... try &quot;dns&quot;, &quot;usb&quot;, &quot;password&quot;">
         </div>
         <div class="toolbar-controls">
-            <label class="details-switch"><input type="checkbox" id="detailsToggle"><span class="switch-track" aria-hidden="true"></span> Show details</label>
-            <label class="details-switch"><input type="checkbox" id="dangerToggle"><span class="switch-track danger-track" aria-hidden="true"></span> Show dangerous</label>
-            <label class="details-switch"><input type="checkbox" id="tosToggle"><span class="switch-track tos-track" aria-hidden="true"></span> Show ToS-bypass</label>
+            <div class="opts-drop" id="optsDrop">
+                <button type="button" class="options-btn" id="optionsButton" aria-haspopup="dialog" aria-expanded="false" aria-controls="optionsPop">
+                    <i class="fas fa-gear" aria-hidden="true"></i> Options
+                </button>
+                <div class="options-pop" id="optionsPop" role="dialog" aria-labelledby="optionsTitle" hidden>
+                    <h3 id="optionsTitle">Display options</h3>
+                    <div class="opt-row">
+                        <label class="details-switch"><input type="checkbox" id="detailsToggle" checked><span class="switch-track" aria-hidden="true"></span> Show details</label>
+                        <p class="opt-desc">Expands every card with source info, launcher paths, and admin notes.</p>
+                    </div>
+                    <div class="opt-row">
+                        <label class="details-switch"><input type="checkbox" id="dangerToggle"><span class="switch-track danger-track" aria-hidden="true"></span> Show dangerous</label>
+                        <p class="opt-desc">Shows tools that can damage systems or break the law if misused. Only use them on PCs you own or are allowed to test. Unauthorized access, malware distribution, and piracy are prohibited and may be illegal.</p>
+                    </div>
+                    <div class="opt-row">
+                        <label class="details-switch"><input type="checkbox" id="tosToggle"><span class="switch-track tos-track" aria-hidden="true"></span> Show ToS-bypass</label>
+                        <p class="opt-desc">Shows tools that break vendor terms and can get your accounts banned. Only use them for content you own or are licensed for. Activators, trial resetters, repack downloaders, and client mods violate vendor terms. Microsoft, Malwarebytes, Discord, and game publishers can ban accounts or revoke licenses.</p>
+                    </div>
+                </div>
+            </div>
             <div class="cat-drop" id="catDrop">
                 <button type="button" class="category-select" id="categoryButton" aria-haspopup="listbox" aria-expanded="false">
                     <span id="categoryLabel">All tools (145)</span>
@@ -301,19 +334,6 @@
             No matches. Try another word or category.
         </p>
     </section>
-
-    <!-- Dangerous tools gate -->
-    <div class="gate-overlay" id="dangerGate" hidden role="alertdialog" aria-modal="true" aria-labelledby="dangerGateTitle" aria-describedby="dangerGateDesc">
-        <div class="gate-box">
-            <h3 id="dangerGateTitle">Restricted tools</h3>
-            <p id="dangerGateDesc"><b>Destructive tools</b> can damage systems, bypass protections, or break the law if misused. Only use them on PCs you own or have explicit permission to test. Unauthorized access, malware distribution, and piracy are prohibited and may be illegal.</p>
-            <p><b>License / ToS-bypass tools</b> (activators, trial resetters, repack downloaders, client mods) violate vendor terms. Microsoft, Malwarebytes, Discord, and game publishers can ban accounts or revoke licenses. Only use them where you hold a valid license or own the content.</p>
-            <div class="gate-actions">
-                <button type="button" class="btn btn-primary" id="dangerAccept">I understand - show them</button>
-                <button type="button" class="btn btn-outline-sm" id="dangerDecline">Keep them hidden</button>
-            </div>
-        </div>
-    </div>
 
     <!-- Footer -->
     <footer class="footer">
@@ -587,7 +607,7 @@
                                 ${t.file ? `<div><b>Script:</b> <code>${esc(t.file)}</code></div>` : ''}
                                 <div><b>Category:</b> ${esc(CATLABEL[t.cat] || t.cat)}</div>
                                 <div><b>Added in:</b> ${esc(t.added)}</div>
-                                <div><b>Needs admin:</b> ${t.admin ? '<span class="admin-yes">:white_check_mark:</span>' : '<span class="admin-no">:x:</span>'}</div>
+                                <div><b>Needs admin:</b> ${t.admin ? '<img class="admin-emoji" src="../images/emoji-check.png" alt="Yes">' : '<img class="admin-emoji" src="../images/emoji-cross.png" alt="No">'}</div>
                             </div>
                             ${(t.src || t.file) ? `<a class="tool-src" href="${esc(t.src || ('https://github.com/SchooiCodes/smt/blob/main/' + t.file))}" target="_blank" rel="noopener">View source on GitHub -></a>` : ''}
                         </div>
@@ -598,7 +618,7 @@
 
         // Filtering
         let activeCategory = 'all';
-        let showDetails = false;
+        let showDetails = true;
         let showDangerous = false;
         let showTos = false;
         const searchInput = document.getElementById('toolSearch');
@@ -624,75 +644,49 @@
                 );
             }
             renderTools(filtered);
+            syncOptionsBtn();
         }
 
         searchInput.addEventListener('input', filterTools);
         detailsToggle.addEventListener('change', () => {
             showDetails = detailsToggle.checked;
             document.querySelectorAll('.tool-detail').forEach(p => { p.hidden = !showDetails; });
+            syncOptionsBtn();
         });
 
-        // Restricted-tools gate: danger-flagged and tos-flagged tools stay hidden
-        // until the user accepts the disclaimer modal. Each switch grants only
-        // its own flag.
+        // Restricted tools render hidden until their switch is flipped on.
         const dangerToggle = document.getElementById('dangerToggle');
         const tosToggle = document.getElementById('tosToggle');
-        const dangerGate = document.getElementById('dangerGate');
-        const dangerAccept = document.getElementById('dangerAccept');
-        const dangerDecline = document.getElementById('dangerDecline');
-        let gateReturnFocus = null;
-        let pendingDeepLinkId = null;
-        let gatePurpose = 'danger';
-        function openGate(purpose) {
-            gatePurpose = purpose || 'danger';
-            gateReturnFocus = document.activeElement;
-            dangerGate.hidden = false;
-            document.body.style.overflow = 'hidden';
-            dangerAccept.focus();
-        }
-        function scrollToPendingCard() {
-            if (!pendingDeepLinkId) return;
-            const card = document.getElementById(pendingDeepLinkId);
-            if (card) card.scrollIntoView({ block: 'center' });
-            pendingDeepLinkId = null;
-        }
-        function closeGate(accepted) {
-            dangerGate.hidden = true;
-            document.body.style.overflow = '';
-            if (!accepted) {
-                pendingDeepLinkId = null;
-                if (gatePurpose === 'tos') tosToggle.checked = false;
-                else dangerToggle.checked = false;
-                (gatePurpose === 'tos' ? tosToggle : dangerToggle).focus();
-                return;
-            }
-            if (gatePurpose === 'tos') { showTos = true; tosToggle.checked = true; }
-            else { showDangerous = true; dangerToggle.checked = true; }
-            filterTools();
-            scrollToPendingCard();
-        }
         dangerToggle.addEventListener('change', () => {
-            if (dangerToggle.checked) {
-                dangerToggle.checked = false;
-                openGate('danger');
-            } else {
-                showDangerous = false;
-                filterTools();
-            }
+            showDangerous = dangerToggle.checked;
+            filterTools();
         });
         tosToggle.addEventListener('change', () => {
-            if (tosToggle.checked) {
-                tosToggle.checked = false;
-                openGate('tos');
-            } else {
-                showTos = false;
-                filterTools();
-            }
+            showTos = tosToggle.checked;
+            filterTools();
         });
-        dangerAccept.addEventListener('click', () => closeGate(true));
-        dangerDecline.addEventListener('click', () => closeGate(false));
-        dangerGate.addEventListener('click', e => { if (e.target === dangerGate) closeGate(false); });
-        document.addEventListener('keydown', e => { if (e.key === 'Escape' && !dangerGate.hidden) closeGate(false); });
+        // Options popup: the three display switches live behind the gear button.
+        const optionsButton = document.getElementById('optionsButton');
+        const optionsPop = document.getElementById('optionsPop');
+        const optsDrop = document.getElementById('optsDrop');
+        function setOptions(open) {
+            optionsPop.hidden = !open;
+            optionsButton.setAttribute('aria-expanded', String(open));
+        }
+        function syncOptionsBtn() {
+            const anyOn = detailsToggle.checked || dangerToggle.checked || tosToggle.checked;
+            optionsButton.classList.toggle('is-on', anyOn);
+        }
+        optionsButton.addEventListener('click', e => {
+            e.stopPropagation();
+            setOptions(optionsPop.hidden);
+        });
+        document.addEventListener('click', e => {
+            if (!optionsPop.hidden && !optsDrop.contains(e.target)) setOptions(false);
+        });
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape' && !optionsPop.hidden) { setOptions(false); optionsButton.focus(); }
+        });
         function applyCategory(value) {
             const valid = value === 'all' || !!categoryList.querySelector('[data-value="' + value + '"]');
             if (!valid) return;
@@ -755,6 +749,7 @@
 
         // Initial render
         renderTools(tools);
+        syncOptionsBtn();
 
         // Single source of truth: the tools array drives every visible count.
         // Static HTML keeps the last-known number as a no-JS fallback.
@@ -770,24 +765,22 @@
         })();
 
         // Deep links: features/#tool-dns-changer clears filters and jumps to the card.
-        // Gated targets stay hidden until the gate is accepted - then we scroll.
+        // Hidden targets flip their switch on automatically, then we scroll.
         (function deepLink() {
             const h = location.hash;
             if (!h || h.indexOf('#tool-') !== 0) return;
             searchInput.value = '';
             applyCategory('all');
             const id = h.slice(1);
-            const card = document.getElementById(id);
-            if (card) { card.scrollIntoView({ block: 'center' }); return; }
             const slug = s => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
             const tool = tools.find(t => ('tool-' + slug(t.name)) === id);
-            if (!tool) return;
-            const needDanger = tool.danger && !showDangerous;
-            const needTos = tool.tos && !showTos;
-            if (needDanger || needTos) {
-                pendingDeepLinkId = id;
-                openGate(needDanger ? 'danger' : 'tos');
+            if (tool) {
+                if (tool.danger && !showDangerous) { showDangerous = true; dangerToggle.checked = true; }
+                if (tool.tos && !showTos) { showTos = true; tosToggle.checked = true; }
+                filterTools();
             }
+            const card = document.getElementById(id);
+            if (card) card.scrollIntoView({ block: 'center' });
         })();
 
         // Deep-link: pre-filter from ?q= (used by the terminal hero search)
