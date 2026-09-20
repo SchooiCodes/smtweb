@@ -1,6 +1,10 @@
 # Define a log file to store script actions
 $LogFile = Join-Path -Path $env:TEMP -ChildPath "SMT_Log.txt"
-Clear-Content -Path "$LogFile"
+if (-not (Test-Path -Path $LogFile)) {
+    New-Item -Path $LogFile -ItemType File | Out-Null
+} else {
+    Clear-Content -Path $LogFile
+}
 
 
 # Function to log messages
@@ -23,27 +27,15 @@ function Show-Status {
 }
 
 # Check if the script is running as an administrator
-if (([Security.Principal.WindowsIdentity]::GetCurrent()).Owner.Value -ne "S-1-5-32-544") {
+$principal = New-Object Security.Principal.WindowsPrincipal([Security.Principal.WindowsIdentity]::GetCurrent())
+if (-not $principal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
 	Show-Status ""
     Show-Status "===========================================" 'Red'
     Show-Status "--- Script must be run as Administrator ---" 'Red'
     Show-Status "===========================================" 'Red'
     Show-Status "Please start Powershell or Terminal as an Administrator and run the command again." 'White'
     Show-Status "(Right click on Start -> Terminal/Powershell (Admin) or WIN + R -> powershell -> CTRL + SHIFT + ENTER)" 'Cyan'
-    # Prompt the user to restart using choice.exe
-#    $choiceCmd = "$env:SystemRoot\System32\choice.exe /c YN /t 60 /D Y /N /M `"Would you like to restart as Administrator? (Y/N)`""
-#    Invoke-Expression $choiceCmd
-#    if ($LASTEXITCODE -eq 1) {
-#        Show-Status "Restarting as Administrator.."
-#        if ([int](Get-CimInstance -Class Win32_OperatingSystem | Select-Object -ExpandProperty BuildNumber) -ge 6000) {
-#            $CommandLine = "-File `"" + $MyInvocation.MyCommand.Path + "`" " + ($MyInvocation.UnboundArguments -join ' ')
-#            Start-Process -FilePath PowerShell.exe -Verb RunAs -ArgumentList $CommandLine
 	exit
-#        }
-#    } else {
-#        Show-Status "User declined to restart as Administrator. Exiting.." 'Yellow'
-#        exit
-#    }
 }
 
 Show-Status "Creating temporary directory for setup files.."
@@ -64,18 +56,34 @@ if (-Not (Test-Path -Path $SkipMsgBoxPath)) {
 
 
 Show-Status "Adding antivirus exclusion for setup executable.."
-Add-MpPreference -ExclusionPath "$SMTTempPath\SMTSetup.exe"
+try {
+    Add-MpPreference -ExclusionPath "$SMTTempPath\SMTSetup.exe" -ErrorAction Stop
+} catch {
+    Show-Status "Warning: could not add Defender exclusion (Defender may be absent). Continuing.." 'Yellow'
+}
 
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 $ProgressPreference = 'SilentlyContinue'
 
 Show-Status "Downloading setup executable.." 'Cyan'
 $setupPath = Join-Path -Path $SMTTempPath -ChildPath "SMTSetup.exe"
-try {
-    Invoke-RestMethod -Uri "https://github.com/SchooiCodes/smt/raw/main/Schooi's%20Multitool%20Setup.exe" -OutFile $setupPath
-    Show-Status "Download completed successfully." 'Green'
-} catch {
-    Show-Status "Error: Failed to download setup executable. $_" 'Red'
+$setupUrls = @(
+    "https://raw.githubusercontent.com/SchooiCodes/smt/main/Schooi's%20Multitool%20Setup.exe",
+    "https://cdn.jsdelivr.net/gh/SchooiCodes/smt@main/Schooi's%20Multitool%20Setup.exe"
+)
+$downloaded = $false
+foreach ($url in $setupUrls) {
+    try {
+        Invoke-RestMethod -Uri $url -OutFile $setupPath
+        $downloaded = $true
+        Show-Status "Download completed successfully." 'Green'
+        break
+    } catch {
+        Show-Status "Warning: download failed from $url. Trying next mirror.." 'Yellow'
+    }
+}
+if (-not $downloaded) {
+    Show-Status "Error: Failed to download setup executable from all mirrors." 'Red'
     exit
 }
 
@@ -88,7 +96,11 @@ try {
 }
 
 Show-Status "Cleaning up temporary files and antivirus exclusion.."
-Remove-Item -Path $SMTTempPath -Recurse -Force
-Remove-MpPreference -ExclusionPath "$setupPath"
+try {
+    Remove-MpPreference -ExclusionPath "$setupPath" -ErrorAction Stop
+} catch {
+    Show-Status "Warning: could not remove Defender exclusion. Continuing.." 'Yellow'
+}
+Remove-Item -Path $SMTTempPath -Recurse -Force -ErrorAction SilentlyContinue
 
 Show-Status "Script execution completed." 'Green'
