@@ -202,7 +202,6 @@
         .tool-detail p { margin-bottom: 10px; line-height: 1.6; }
         .tool-meta { display: grid; gap: 4px; font-size: 0.82rem; margin-bottom: 10px; }
         .tool-meta b { color: var(--text-primary); font-weight: 600; }
-        .admin-emoji { width: 1.15em; height: 1.15em; vertical-align: -0.2em; }
         .tool-meta code { font-family: ui-monospace, monospace; font-size: 0.78rem; }
         .tool-src { color: var(--accent); font-weight: 600; font-size: 0.85rem; }
         @media (max-width: 768px) {
@@ -607,7 +606,7 @@
                                 ${t.file ? `<div><b>Script:</b> <code>${esc(t.file)}</code></div>` : ''}
                                 <div><b>Category:</b> ${esc(CATLABEL[t.cat] || t.cat)}</div>
                                 <div><b>Added in:</b> ${esc(t.added)}</div>
-                                <div><b>Needs admin:</b> ${t.admin ? '<img class="admin-emoji" src="../images/emoji-check.png" alt="Yes">' : '<img class="admin-emoji" src="../images/emoji-cross.png" alt="No">'}</div>
+                                <div><b>Needs admin:</b> ${t.admin ? '✅' : '❌'}</div>
                             </div>
                             ${(t.src || t.file) ? `<a class="tool-src" href="${esc(t.src || ('https://github.com/SchooiCodes/smt/blob/main/' + t.file))}" target="_blank" rel="noopener">View source on GitHub -></a>` : ''}
                         </div>
@@ -645,6 +644,7 @@
             }
             renderTools(filtered);
             syncOptionsBtn();
+            savePrefs();
         }
 
         searchInput.addEventListener('input', filterTools);
@@ -652,7 +652,27 @@
             showDetails = detailsToggle.checked;
             document.querySelectorAll('.tool-detail').forEach(p => { p.hidden = !showDetails; });
             syncOptionsBtn();
+            savePrefs();
         });
+
+        // Persist switch states; also trust the boxes on load (browsers
+        // restore checkbox state on refresh without telling the script).
+        function savePrefs() {
+            try {
+                localStorage.setItem('smt-prefs', JSON.stringify({ details: showDetails, danger: showDangerous, tos: showTos }));
+            } catch (e) {}
+        }
+        function loadPrefs() {
+            showDetails = detailsToggle.checked;
+            showDangerous = dangerToggle.checked;
+            showTos = tosToggle.checked;
+            try {
+                const p = JSON.parse(localStorage.getItem('smt-prefs') || '{}');
+                if (typeof p.details === 'boolean') { showDetails = p.details; detailsToggle.checked = p.details; }
+                if (typeof p.danger === 'boolean') { showDangerous = p.danger; dangerToggle.checked = p.danger; }
+                if (typeof p.tos === 'boolean') { showTos = p.tos; tosToggle.checked = p.tos; }
+            } catch (e) {}
+        }
 
         // Restricted tools render hidden until their switch is flipped on.
         const dangerToggle = document.getElementById('dangerToggle');
@@ -687,6 +707,7 @@
         document.addEventListener('keydown', e => {
             if (e.key === 'Escape' && !optionsPop.hidden) { setOptions(false); optionsButton.focus(); }
         });
+        loadPrefs();
         function applyCategory(value) {
             const valid = value === 'all' || !!categoryList.querySelector('[data-value="' + value + '"]');
             if (!valid) return;
