@@ -1288,7 +1288,7 @@ section {
 @media print {
     .navbar, .footer, .offline-banner, .skip-link, .theme-toggle,
     .social-links, .terminal, .hero-cta, .hero-search, .contact-cta,
-    .copy-btn, .filter-tabs, .term-results, .no-results, .btn { display: none !important; }
+    .copy-btn, .toolbar, .cat-drop, .guide-search, .term-results, .no-results, .btn { display: none !important; }
     html, body { background: #ffffff !important; color: #000000 !important; }
     *, *::before, *::after { box-shadow: none !important; text-shadow: none !important; }
     .hero, .features-section, .downloads-section, .legal-hero, .legal-content, .contact-section {
