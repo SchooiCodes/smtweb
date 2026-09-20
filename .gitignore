@@ -3,3 +3,15 @@
 .agents/
 .claude/
 skills-lock.json
+# local specs - explicitly do-not-commit per file header
+docs/
+
+# standard static-site hygiene (no build step; keeps `npx serve` / editor droppings out)
+node_modules/
+.env
+.env.*
+*.log
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
