@@ -121,7 +121,7 @@
             <a href="#home" class="nav-logo" aria-label="Schooi's Multitool SMT Windows multitool home">
                 <img src="images/smt.ico" alt="Schooi's Multitool SMT Windows multitool logo" class="nav-logo-img">
             </a>
-            <ul class="nav-menu">
+            <ul class="nav-menu" id="navMenu">
                 <li><a href="#about">About</a></li>
                 <li><a href="features/">Tools</a></li>
                 <li><a href="#install" class="nav-install">Install</a></li>
@@ -132,7 +132,7 @@
                     </button>
                 </li>
             </ul>
-            <div class="hamburger" id="hamburger">
+            <div class="hamburger" id="hamburger" role="button" tabindex="0" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navMenu">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -221,7 +221,7 @@
                 <div class="about-image">
                     <div class="image-wrapper">
                         <button type="button" class="shot-open" id="shotOpen" aria-label="Expand screenshot">
-                            <img src="images/SMT_v2.3.png" alt="Schooi's Multitool SMT Windows multitool console menu v2.3 - 145 Windows tools overview" class="about-img" loading="lazy" decoding="async" width="1919" height="1040">
+                            <img src="images/SMT_about.png" alt="Schooi's Multitool SMT Windows multitool console menu v2.3 - 145 Windows tools overview" class="about-img" loading="lazy" decoding="async" width="1919" height="1040">
                         </button>
                         <div class="image-glow"></div>
                     </div>
@@ -268,7 +268,7 @@
                     <p>Or clone the repo and run it yourself.</p>
                     <div class="install-cmd small"><code id="cloneCmd">git clone https://github.com/SchooiCodes/smt</code></div>
                     <button class="copy-btn small" type="button"><i class="fas fa-copy"></i></button>
-                    <a href="https://github.com/SchooiCodes/smt" class="btn btn-outline-sm" target="_blank"<i class="fas fa-star"></i> Star on GitHub</a>
+                    <a href="https://github.com/SchooiCodes/smt" class="btn btn-outline-sm" target="_blank" rel="noopener"><i class="fas fa-star"></i> Star on GitHub</a>
                 </div>
             </div>
             <div class="install-block">
@@ -368,7 +368,7 @@
 
     <!-- Screenshot lightbox -->
     <div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Expanded screenshot">
-        <img src="images/SMT_v2.3.png" alt="">
+        <img src="images/SMT_about.png" alt="">
         <button type="button" class="lightbox-close" aria-label="Close">&times;</button>
     </div>
 
@@ -400,34 +400,46 @@
 
         // Navbar Scroll Effect
         const navbar = document.getElementById('navbar');
-        if (navbar && window.matchMedia('(min-width: 641px)').matches) {
-            window.addEventListener('scroll', () => {
+        if (navbar) {
+            const onScroll = () => {
                 navbar.classList.toggle('scrolled', window.scrollY > 50);
-            }, { passive: true });
+            };
+            window.addEventListener('scroll', onScroll, { passive: true });
+            onScroll();
         }
 
         // Mobile Menu Toggle
         const hamburger = document.getElementById('hamburger');
         const navMenu = document.querySelector('.nav-menu');
 
+        function setMenu(open) {
+            hamburger.classList.toggle('active', open);
+            navMenu.classList.toggle('active', open);
+            hamburger.setAttribute('aria-expanded', String(open));
+        }
         hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
+            setMenu(!navMenu.classList.contains('active'));
+        });
+        hamburger.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setMenu(!navMenu.classList.contains('active')); }
         });
 
         document.querySelectorAll('.nav-menu a').forEach(link => {
             link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
+                setMenu(false);
             });
         });
 
-        // Smooth scroll for anchor links
+        // Smooth scroll for anchor links (skip skip-links so keyboard focus still jumps correctly)
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            if (anchor.classList.contains('skip-link')) return;
             anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
+                const href = this.getAttribute('href');
+                if (!href || href === '#') return;
+                let target = null;
+                try { target = document.querySelector(href); } catch (err) { return; }
                 if (target) {
+                    e.preventDefault();
                     target.scrollIntoView({
                         behavior: 'smooth',
                         block: 'start'
@@ -455,7 +467,6 @@
         const heroCountLabel = document.getElementById('heroCountLabel');
         const heroResults = document.getElementById('heroResults');
         const browseAll = document.getElementById('browseAll');
-        const featuredCards = Array.from(document.querySelectorAll('.features-grid .feature-card:not(.cta-tile)'));
         const ALL_TOOLS = window.SMT_TOOLS || [];
         const TOTAL = ALL_TOOLS.length || 0;
         // Single source of truth: the search index drives every visible count.
@@ -512,7 +523,8 @@
         }
 
         // Live installer hash: downloads Setup.exe from GitHub main and checksums it in-browser,
-        // so the displayed hash is always the current release.
+        // so the displayed hash is always the current release. Cached per tab via sessionStorage
+        // so repeat views don't re-download the exe.
         (function liveHash() {
             const hashEl = document.getElementById('setupHash');
             const vtEl = document.getElementById('vtLink');
@@ -521,16 +533,24 @@
                 if (hashEl) hashEl.textContent = 'unavailable - check manually on GitHub';
                 return;
             }
+            function showHash(hex) {
+                hashEl.textContent = hex;
+                if (vtEl) vtEl.href = 'https://www.virustotal.com/gui/file/' + hex + '/detection';
+                if (copyBtn) copyBtn.disabled = false;
+            }
+            try {
+                const cached = sessionStorage.getItem('smt-setup-hash');
+                if (cached && /^[0-9A-F]{64}$/.test(cached)) { showHash(cached); return; }
+            } catch (e) {}
             fetchFirst([
                 'https://raw.githubusercontent.com/SchooiCodes/smt/refs/heads/main/Schooi%27s%20Multitool%20Setup.exe',
-                'https://api.github.com/repos/SchooiCodes/smt/contents/Schooi%27s%20Multitool%20Setup.exe?ref=main'
+                'https://cdn.jsdelivr.net/gh/SchooiCodes/smt@main/Schooi%27s%20Multitool%20Setup.exe'
             ])
                 .then(b => crypto.subtle.digest('SHA-256', b))
                 .then(d => Array.from(new Uint8Array(d)).map(x => x.toString(16).padStart(2, '0')).join('').toUpperCase())
                 .then(hex => {
-                    hashEl.textContent = hex;
-                    if (vtEl) vtEl.href = 'https://www.virustotal.com/gui/file/' + hex + '/detection';
-                    if (copyBtn) copyBtn.disabled = false;
+                    showHash(hex);
+                    try { sessionStorage.setItem('smt-setup-hash', hex); } catch (e) {}
                 })
                 .catch(err => {
                     console.warn('[SMT] live hash failed:', err && err.message);
@@ -551,10 +571,11 @@
                     const lines = t.split(/\r?\n/).map(s => s.trim()).filter(Boolean);
                     if (!lines.length) throw new Error('empty');
                     list.innerHTML = '';
-                    const li = document.createElement('li');
-                    li.style.whiteSpace = 'pre-line';
-                    li.textContent = lines.slice(0, 8).join('\n');
-                    list.appendChild(li);
+                    lines.slice(0, 8).forEach(line => {
+                        const li = document.createElement('li');
+                        li.textContent = line;
+                        list.appendChild(li);
+                    });
                 })
                 .catch(err => {
                     console.warn('[SMT] live changelog failed:', err && err.message);
@@ -564,11 +585,6 @@
         function esc(s) { return s.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c])); }
         function runHeroFind() {
             const q = (heroSearch.value || '').trim().toLowerCase();
-            // keep the featured bento responsive
-            featuredCards.forEach(c => {
-                const ok = !q || (c.dataset.tags || '').toLowerCase().includes(q);
-                c.classList.toggle('hidden', !ok);
-            });
             // global search across every tool
             const matches = !q ? ALL_TOOLS : ALL_TOOLS.filter(t =>
                 t.n.toLowerCase().includes(q) || (t.t || '').toLowerCase().includes(q)
@@ -619,6 +635,7 @@
                     setTimeout(function() { btn.innerHTML = orig; btn.classList.remove('copied'); }, 1500);
                 });
             });
+        });
         // Screenshot lightbox: expand the About screenshot.
         (function lightbox() {
             const openBtn = document.getElementById('shotOpen');
@@ -642,7 +659,6 @@
             box.addEventListener('click', e => { if (e.target === box) close(); });
             document.addEventListener('keydown', e => { if (e.key === 'Escape' && !box.hidden) close(); });
         })();
-        });
     </script>
 </body>
 </html>
