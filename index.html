@@ -567,7 +567,7 @@
                 'https://raw.githubusercontent.com/SchooiCodes/smt/refs/heads/main/updatelogs.txt',
                 'https://cdn.jsdelivr.net/gh/SchooiCodes/smt@main/updatelogs.txt'
             ]).then(b => new TextDecoder().decode(b)).catch(() => '');
-            const commitsReq = fetch('https://api.github.com/SchooiCodes/smt/commits?per_page=20')
+            const commitsReq = fetch('https://api.github.com/repos/SchooiCodes/smt/commits?per_page=20')
                 .then(r => { if (!r.ok) throw new Error('commits ' + r.status); return r.json(); })
                 .catch(() => []);
             Promise.all([fileReq, commitsReq]).then(([t, commits]) => {
