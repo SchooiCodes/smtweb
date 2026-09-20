@@ -837,46 +837,6 @@ section {
     flex-wrap: wrap;
 }
 
-.share-socials {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(104px, 1fr));
-    gap: 10px;
-}
-
-.share-soc {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    padding: 16px 8px 14px;
-    border: 1px solid var(--card-border);
-    border-radius: 14px;
-    background: var(--bg-primary);
-    color: var(--text-secondary);
-    text-decoration: none;
-    font-size: 0.8rem;
-    font-weight: 600;
-    transition: transform 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.share-soc i {
-    font-size: 1.35rem;
-}
-
-.share-soc:hover {
-    transform: translateY(-3px);
-    border-color: var(--border-hover);
-    color: var(--text-primary);
-    box-shadow: 0 12px 28px rgba(99, 102, 241, 0.18);
-}
-
-.share-soc .fa-facebook-f { color: #1877F2; }
-.share-soc .fa-whatsapp { color: #25D366; }
-.share-soc .fa-telegram { color: #229ED9; }
-.share-soc .fa-reddit-alien { color: #FF4500; }
-.share-soc .fa-linkedin-in { color: #0A66C2; }
-.share-soc .fa-envelope { color: var(--accent); }
-
 .share-invite-box {
     border: 1px dashed var(--card-border);
     border-radius: 16px;
@@ -1569,6 +1529,7 @@ section {
 .changelog-list {
     list-style: none;
     display: grid;
+    grid-template-columns: minmax(0, 1fr);
     gap: 16px;
     text-align: left;
     padding: 0 24px;
@@ -1588,6 +1549,7 @@ section {
 }
 .changelog-list li {
     position: relative;
+    min-width: 0;
     background: var(--card-bg);
     border: 1px solid var(--card-border);
     border-radius: 14px;
@@ -1601,7 +1563,7 @@ section {
 .changelog-list li::before {
     content: "";
     position: absolute;
-    left: -33px;
+    left: -20px;
     top: 20px;
     width: 12px;
     height: 12px;
@@ -1633,6 +1595,7 @@ section {
     font-size: 0.8rem;
 }
 .changelog-subject {
+    overflow-wrap: anywhere;
     color: var(--text-primary);
     font-weight: 700;
     font-family: var(--display);
@@ -1653,6 +1616,7 @@ section {
 }
 .changelog-body {
     position: relative;
+    overflow-wrap: anywhere;
     margin-top: 8px;
     padding-left: 12px;
     font-size: 0.94rem;
@@ -1741,7 +1705,7 @@ li.open .cl-chev { transform: rotate(180deg); }
 .changelog-list li.is-commit::before {
     width: 10px;
     height: 10px;
-    left: -32px;
+    left: -19px;
     top: 50%;
     margin-top: -5px;
     background: var(--text-dim);
@@ -1779,8 +1743,8 @@ li.open .cl-chev { transform: rotate(180deg); }
 @media (max-width: 640px) {
     .changelog-list { padding: 0 28px; }
     .changelog-list::before { left: 7px; }
-    .changelog-list li::before { left: -27px; }
-    .changelog-list li.is-commit::before { left: -26px; }
+    .changelog-list li::before { left: -26px; }
+    .changelog-list li.is-commit::before { left: -25px; }
     .cl-commit-text { white-space: normal; }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -1900,7 +1864,6 @@ li.open .cl-chev { transform: rotate(180deg); }
     .tool-card { padding: 24px 20px; }
     .contact-card { padding: 32px 24px; }
     .share-panel { padding: 24px 20px; }
-    .share-socials { grid-template-columns: repeat(3, 1fr); }
     .footer-content { flex-direction: column; text-align: center; }
     .footer-links { justify-content: center; flex-wrap: wrap; }
 
@@ -1957,7 +1920,6 @@ body .nav-menu { overflow-y: auto; }
     .hero-stats { gap: 16px; }
     .stat-number { font-size: 1.6rem; }
     .about-highlights { grid-template-columns: 1fr; }
-    .share-socials { grid-template-columns: repeat(2, 1fr); }
     .btn-lg { padding: 16px 24px; font-size: 1rem; width: 100%; }
     .tool-card { padding: 20px 16px; }
     .install-block { padding: 20px 14px; }
