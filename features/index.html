@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; base-uri 'self'; form-action 'self'; object-src 'none'; connect-src 'self'">
-    <title>All 145 Windows Tools - Schooi's Multitool (SMT) | Windows Multitool &amp; Toolkit Features</title>
+    <title>All 147 Windows Tools - Schooi's Multitool (SMT) | Windows Multitool &amp; Toolkit Features</title>
     <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="../images/SMT.png">
 
     <link rel="canonical" href="https://smt.xubi.org/features/">
-    <meta name="description" content="Browse all 145 Windows tools inside Schooi's Multitool (SMT) - the Windows multitool &amp; Windows toolkit for Windows 10/11. Networking, Windows &amp; Office activation, system utilities, app installers &amp; more. Search instantly.">
+    <meta name="description" content="Browse all 147 Windows tools inside Schooi's Multitool (SMT) - the Windows multitool &amp; Windows toolkit for Windows 10/11. Networking, Windows &amp; Office activation, system utilities, app installers &amp; more. Search instantly.">
     <meta name="keywords" content="schooi's multitool tools, smt tools, windows multitool tools, windows toolkit tools, windows tools list, windows utilities, schooi multitool features">
     <meta name="robots" content="index, follow, max-image-preview:large">
     <meta name="theme-color" content="#667eea">
@@ -17,15 +17,15 @@
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Schooi's Multitool">
     <meta property="og:locale" content="en_US">
-    <meta property="og:title" content="All 145 Windows Tools - Schooi's Multitool (SMT) Windows Multitool">
-    <meta property="og:description" content="Every Windows tool in SMT - 145 Windows utilities across networking, system, Windows &amp; Office, security, app installers &amp; more. Search the Windows toolkit.">
+    <meta property="og:title" content="All 147 Windows Tools - Schooi's Multitool (SMT) Windows Multitool">
+    <meta property="og:description" content="Every Windows tool in SMT - 147 Windows utilities across networking, system, Windows &amp; Office, security, app installers &amp; more. Search the Windows toolkit.">
     <meta property="og:url" content="https://smt.xubi.org/features/">
     <meta property="og:image" content="https://smt.xubi.org/images/SMT.png">
-    <meta property="og:image:alt" content="Schooi's Multitool Windows multitool - all 145 Windows tools">
+    <meta property="og:image:alt" content="Schooi's Multitool Windows multitool - all 147 Windows tools">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="All 145 Windows Tools - Schooi's Multitool Windows Multitool">
-    <meta name="twitter:description" content="Browse 145 Windows tools in SMT - Windows multitool toolkit for Windows 10/11. Search &amp; filter by category.">
+    <meta name="twitter:title" content="All 147 Windows Tools - Schooi's Multitool Windows Multitool">
+    <meta name="twitter:description" content="Browse 147 Windows tools in SMT - Windows multitool toolkit for Windows 10/11. Search &amp; filter by category.">
     <meta name="twitter:image" content="https://smt.xubi.org/images/SMT.png">
     
     <!-- Google Fonts -->
@@ -119,7 +119,7 @@
         .search-box input::placeholder { color: var(--text-secondary); }
         .search-box .search-icon { flex-shrink: 0; margin-left: 4px; color: var(--accent); }
         .tools-grid {
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
             gap: 24px; padding: 40px 0;
         }
         .tool-card {
@@ -227,8 +227,8 @@
     {
       "@context": "https://schema.org",
       "@type": "CollectionPage",
-      "name": "All 145 Windows Tools - Schooi's Multitool Windows Multitool",
-      "description": "Complete list of 145 Windows tools inside Schooi's Multitool (SMT) Windows multitool and Windows toolkit for Windows 10/11.",
+      "name": "All 147 Windows Tools - Schooi's Multitool Windows Multitool",
+      "description": "Complete list of 147 Windows tools inside Schooi's Multitool (SMT) Windows multitool and Windows toolkit for Windows 10/11.",
       "url": "https://smt.xubi.org/features/",
       "isPartOf": {"@type": "WebSite", "name": "Schooi's Multitool", "url": "https://smt.xubi.org/"},
       "about": {"@type": "SoftwareApplication", "name": "Schooi's Multitool", "operatingSystem": "Windows 10, Windows 11"}
@@ -438,6 +438,7 @@
             { name: "U* Miner Remover", desc: "Removes the XMRig USB-miner infection.", info: "Hunts the XMRig USB-miner infection (a hidden sysvolume folder plus shortcut remnants) across removable drives and removes it.", menu: "Tools > Fixes > 6", file: "Files/UXM_R.bat", src: "https://github.com/SchooiCodes/uxm_r", icon: "fa-shield-virus", cat: "system", tags: "xmrig miner virus usb remover", added: "v2.x" },
             { name: "Hibernation Enabler/Disabler", desc: "Toggle hibernation.", admin: true, icon: "fa-moon", cat: "system", tags: "hibernate sleep power", added: "v2.0", info: "Toggles hibernation (and the hiberfil.sys file) via powercfg.", menu: "Tools > System Administration > 10", file: "Files/hibern.bat" },
             { name: "Registry Backupper", desc: "Back up the registry.", admin: true, icon: "fa-database", cat: "system", tags: "registry backup restore", added: "v1.4", info: "Exports registry hives to backup files for later restore.", menu: "Tools > Fixes > 3", file: "Files/BR.bat" },
+            { name: "Import Registry Backups", desc: "Import registry backups.", admin: true, icon: "fa-file-import", cat: "system", tags: "registry import restore backup", added: "v1.4", info: "Imports hive backup files made by Registry Backupper from a folder you choose.", menu: "Tools > Fixes > 4", file: "Files/IB.bat" },
             { name: "Driver Backupper", desc: "Export device drivers.", admin: true, info: "Exports all third-party drivers with DISM to a folder you choose, so you can reinstall them after a reset.", menu: "Tools > Fixes > 5", file: "Files/db.bat", icon: "fa-hard-drive", cat: "system", tags: "driver backup restore", added: "v1.4" },
             { name: "System Info Viewer", desc: "Show system information.", icon: "fa-info-circle", cat: "system", tags: "system info hardware", added: "v1.4", info: "Prints full Windows systeminfo output.", menu: "Tools > System Administration > 9", file: "Files/sysinfo.bat" },
             { name: "Create A System Restore Point", desc: "One-click restore point.", admin: true, icon: "fa-rotate-left", cat: "system", tags: "system restore point rollback", added: "v2.x", info: "Creates a Windows system restore point.", menu: "Tools > System Administration > 8", file: "Files/autorespo.bat" },
@@ -544,6 +545,7 @@
             { name: "ExifCleaner", desc: "Install ExifCleaner metadata remover.", icon: "fa-eraser", cat: "apps", tags: "exif metadata cleaner", added: "v2.x", info: "Installs ExifCleaner via winget.", menu: "Tools > Apps > 53", file: "Files/Apps/exf.bat" },
             { name: "Keyviz", desc: "Install Keyviz keystroke visualizer.", icon: "fa-eye", cat: "apps", tags: "keyviz keystrokes", added: "v2.x", info: "Installs Keyviz via winget.", menu: "Tools > Apps > 54", file: "Files/Apps/kvz.bat" },
             { name: "Python Install Manager", desc: "Install Python Install Manager.", icon: "fa-python", cat: "apps", tags: "python", added: "v2.x", info: "Installs Python Install Manager via winget.", menu: "Tools > Apps > 44", file: "Files/Apps/pim.bat" },
+            { name: "VS Code", desc: "Install VS Code.", icon: "fa-code", cat: "apps", tags: "vscode visual studio code editor", added: "v2.3", info: "Downloads the stable user installer from code.visualstudio.com and runs it (not on winget).", menu: "Tools > Apps > 61", file: "Files/Apps/vsc.bat" },
 
             // Developer Tools
             { name: "ASCII Art Generator", desc: "Opens an ASCII art site.", icon: "fa-font", cat: "dev", tags: "ascii art text gradient", added: "v2.1", info: "Opens an ASCII art website in your browser.", menu: "Tools > Utilities > 4", file: "Files/ascii.bat" },

@@ -144,5 +144,7 @@ window.SMT_TOOLS = [
   { n: "pnpm", t: "pnpm package manager node" },
   { n: "Scoop", t: "scoop package manager" },
   { n: "Stacher7", t: "stacher7 download manager" },
-  { n: "Update Every App", t: "update upgrade all apps" }
+  { n: "Update Every App", t: "update upgrade all apps" },
+  { n: "VS Code", t: "vscode visual studio code editor" },
+  { n: "Import Registry Backups", t: "registry import restore backup" }
 ];
