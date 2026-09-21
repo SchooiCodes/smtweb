@@ -749,14 +749,6 @@ section {
     padding: 72px 0;
 }
 
-/* .btn sets display:inline-flex, which beats the UA [hidden] rule. */
-[data-share][hidden] { display: none; }
-
-.btn-sm {
-    padding: 10px 20px;
-    font-size: 0.9rem;
-}
-
 .share-panel {
     position: relative;
     display: grid;
@@ -836,6 +828,53 @@ section {
     gap: 10px;
     flex-wrap: wrap;
 }
+
+.share-socials {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(104px, 1fr));
+    gap: 10px;
+}
+
+.share-soc {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 8px 14px;
+    border: 1px solid var(--card-border);
+    border-radius: 14px;
+    background: var(--bg-primary);
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 600;
+    transition: transform 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.share-soc i {
+    font-size: 1.35rem;
+}
+
+.share-soc:hover {
+    transform: translateY(-3px);
+    border-color: var(--border-hover);
+    color: var(--text-primary);
+    box-shadow: 0 12px 28px rgba(99, 102, 241, 0.18);
+}
+
+.share-soc .brand-img {
+    width: 36px;
+    height: 36px;
+    padding: 7px;
+    border-radius: 10px;
+}
+.brand-instagram { background: linear-gradient(45deg, #FEDA75, #FA7E1E, #D62976, #962FBF, #4F5BD5); }
+.brand-facebook { background: #1877F2; }
+.brand-telegram { background: #229ED9; }
+.brand-x { background: #000000; }
+.brand-tiktok { background: #000000; }
+.share-soc .fa-comment-sms { color: var(--accent); }
+.share-soc .fa-envelope { color: var(--accent); }
 
 .share-invite-box {
     border: 1px dashed var(--card-border);
@@ -1936,3 +1975,15 @@ body .nav-menu { overflow-y: auto; }
 body .tool-card, body .feature-card, body .contact-card, body .install-option { min-width: 0; }
 body .cat-list { max-width: calc(100vw - 32px); }
 body .options-pop { max-width: calc(100vw - 32px); }
+
+/* ===== Mobile polish: error pages, tap targets, changelog indent ===== */
+body .notfound, body .errorpage { padding: 110px 16px 60px; overflow-wrap: break-word; }
+body .notfound .code { font-size: clamp(4rem, 22vw, 8rem); }
+body .errorpage .code { font-size: clamp(3.5rem, 18vw, 6rem); }
+body .notfound h1, body .errorpage h1 { font-size: clamp(1.5rem, 6vw, 2rem); text-wrap: balance; }
+.theme-toggle { width: 44px; height: 44px; }
+.hamburger { padding: 10px; margin: -10px; }
+@media (max-width: 640px) {
+    .cl-body-wrap { padding-left: 24px; }
+    .cl-detail { padding-left: 24px; }
+}
