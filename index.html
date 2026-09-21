@@ -840,6 +840,31 @@
                 copyText(btn, code && code.textContent.trim());
             });
         });
+        // Share section: system-native share with clipboard fallback.
+        // Site button carries title+text+url; invite button carries title+text only.
+        document.querySelectorAll('.share-btn').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var title = btn.getAttribute('data-share-title') || document.title;
+                var text = btn.getAttribute('data-share-text') || '';
+                var url = btn.getAttribute('data-share-url');
+                var data = { title: title, text: text };
+                if (url) { data.url = url; }
+                var fallback = url ? (text + ' ' + url) : text;
+                if (navigator.share) {
+                    try {
+                        var canShare = !navigator.canShare || navigator.canShare(data);
+                    } catch (e) { canShare = true; }
+                    if (canShare) {
+                        navigator.share(data).catch(function(err) {
+                            if (err && err.name === 'AbortError') return;
+                            copyText(btn, fallback);
+                        });
+                        return;
+                    }
+                }
+                copyText(btn, fallback);
+            });
+        });
 
         // Click-to-copy for mirror command buttons
         document.querySelectorAll('.mirror-pick').forEach(function(btn) {
