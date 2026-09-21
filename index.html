@@ -851,8 +851,9 @@
                 if (url) { data.url = url; }
                 var fallback = url ? (text + ' ' + url) : text;
                 if (navigator.share) {
+                    var canShare = true;
                     try {
-                        var canShare = !navigator.canShare || navigator.canShare(data);
+                        canShare = !navigator.canShare || navigator.canShare(data);
                     } catch (e) { canShare = true; }
                     if (canShare) {
                         navigator.share(data).catch(function(err) {
