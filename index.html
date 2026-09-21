@@ -309,16 +309,24 @@
                     <div class="share-linkrow">
                         <span class="share-url"><i class="fas fa-link"></i> smt.xubi.org</span>
                         <span class="share-linkbtns">
-                            <button class="copy-btn small" type="button" data-copy="https://smt.xubi.org/"><i class="fas fa-copy"></i> Copy</button>
-                            <button class="btn btn-primary btn-sm" id="sysShareBtn" type="button" data-share data-url="https://smt.xubi.org/" data-text="Try Schooi's Multitool (SMT) - the free, open-source Windows toolkit for Windows 10 and 11." hidden><i class="fas fa-share-nodes"></i> Share...</button>
+                            <button class="share-btn small" type="button" data-share-title="Schooi's Multitool (SMT)" data-share-text="Schooi's Multitool (SMT) - free, open-source Windows toolkit for Windows 10 and 11" data-share-url="https://smt.xubi.org/"><i class="fas fa-share-nodes"></i> Share</button>
                         </span>
+                    </div>
+                    <p class="share-label">Share in an app</p>
+                    <div class="share-socials">
+                        <a class="share-soc" data-app="instagram://app" href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Open Instagram"><img class="brand-img brand-instagram" src="images/brands/instagram.svg" alt="" width="36" height="36"><span>Instagram</span></a>
+                        <a class="share-soc" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fsmt.xubi.org%2F" target="_blank" rel="noopener" aria-label="Share on Facebook"><img class="brand-img brand-facebook" src="images/brands/facebook.svg" alt="" width="36" height="36"><span>Facebook</span></a>
+                        <a class="share-soc" data-app="tg://msg_url?url=https%3A%2F%2Fsmt.xubi.org%2F&amp;text=Schooi%27s%20Multitool%20(SMT)%20-%20free%2C%20open-source%20Windows%20toolkit%20for%20Windows%2010%20and%2011" href="https://t.me/share/url?url=https%3A%2F%2Fsmt.xubi.org%2F&amp;text=Schooi%27s%20Multitool%20(SMT)%20-%20free%2C%20open-source%20Windows%20toolkit%20for%20Windows%2010%20and%2011" target="_blank" rel="noopener" aria-label="Share in Telegram"><img class="brand-img brand-telegram" src="images/brands/telegram.svg" alt="" width="36" height="36"><span>Telegram</span></a>
+                        <a class="share-soc" data-app="twitter://post?message=Schooi%27s%20Multitool%20(SMT)%20-%20free%2C%20open-source%20Windows%20toolkit%20for%20Windows%2010%20and%2011%20https%3A%2F%2Fsmt.xubi.org%2F" href="https://twitter.com/intent/tweet?text=Schooi%27s%20Multitool%20(SMT)%20-%20free%2C%20open-source%20Windows%20toolkit%20for%20Windows%2010%20and%2011&amp;url=https%3A%2F%2Fsmt.xubi.org%2F" target="_blank" rel="noopener" aria-label="Share in X"><img class="brand-img brand-x" src="images/brands/x.svg" alt="" width="36" height="36"><span>X</span></a>
+                        <a class="share-soc" data-app="tiktok://" href="https://www.tiktok.com/" target="_blank" rel="noopener" aria-label="Open TikTok"><img class="brand-img brand-tiktok" src="images/brands/tiktok.svg" alt="" width="36" height="36"><span>TikTok</span></a>
+                        <a class="share-soc" href="sms:?&amp;body=Schooi%27s%20Multitool%20(SMT)%20-%20free%2C%20open-source%20Windows%20toolkit%20for%20Windows%2010%20and%2011%20https%3A%2F%2Fsmt.xubi.org%2F" aria-label="Share by text message"><i class="fas fa-comment-sms"></i><span>SMS</span></a>
+                        <a class="share-soc" href="mailto:?subject=Schooi%27s%20Multitool%20(SMT)&amp;body=Schooi%27s%20Multitool%20(SMT)%20-%20free%2C%20open-source%20Windows%20toolkit%20for%20Windows%2010%20and%2011%20https%3A%2F%2Fsmt.xubi.org%2F" aria-label="Share by email"><i class="fas fa-envelope"></i><span>Email</span></a>
                     </div>
                     <p class="share-label">Send an invite</p>
                     <div class="share-invite-box">
                         <p class="share-invite" id="inviteText">Try Schooi's Multitool (SMT) - the free, open-source Windows toolkit for Windows 10 and 11. Details at https://smt.xubi.org/ - source at https://github.com/SchooiCodes/smt</p>
                         <div class="share-actions">
-                            <button class="copy-btn small" type="button" data-copy="Try Schooi's Multitool (SMT) - the free, open-source Windows toolkit for Windows 10 and 11. Details at https://smt.xubi.org/ - source at https://github.com/SchooiCodes/smt"><i class="fas fa-copy"></i> Copy invite</button>
-                            <button class="btn btn-outline-sm" type="button" data-share data-text="Try Schooi's Multitool (SMT) - the free, open-source Windows toolkit for Windows 10 and 11. Details at https://smt.xubi.org/ - source at https://github.com/SchooiCodes/smt" hidden><i class="fas fa-share-nodes"></i> Share</button>
+                            <button class="share-btn small" type="button" data-share-title="Schooi's Multitool (SMT)" data-share-text="Try Schooi's Multitool (SMT) - the free, open-source Windows toolkit for Windows 10 and 11. Details at https://smt.xubi.org/ - source at https://github.com/SchooiCodes/smt"><i class="fas fa-share-nodes"></i> Share invite</button>
                         </div>
                     </div>
                 </div>
@@ -846,28 +854,34 @@
                 });
             });
         });
-        // Share section: every [data-share] button opens the OS-native share
-        // sheet via the Web Share API (title/text/url are sent as separate
-        // fields, only the ones the button defines). Browsers without the API
-        // (e.g. Firefox desktop) fall back to copying so the button still does
-        // something. Dismissing the sheet (AbortError) stays silent.
-        (function nativeShare() {
-            var TITLE = "Schooi's Multitool (SMT)";
-            document.querySelectorAll('[data-share]').forEach(function(btn) {
-                btn.hidden = false;
-                btn.addEventListener('click', function() {
-                    var text = btn.getAttribute('data-text') || '';
-                    var url = btn.getAttribute('data-url') || '';
-                    var data = { title: TITLE };
-                    if (text) data.text = text;
-                    if (url) data.url = url;
-                    if (!text && !url) data.url = url = location.href;
-                    var fallback = function() { copyText(btn, text && url ? text + ' ' + url : (text || url)); };
-                    if (!navigator.share) { fallback(); return; }
-                    try { if (navigator.canShare && !navigator.canShare(data)) { fallback(); return; } } catch (e) {}
-                    navigator.share(data).catch(function(err) {
-                        if (!err || err.name !== 'AbortError') fallback();
-                    });
+        // Share section: per-app tiles open the installed NATIVE app first
+        // (whatsapp://, tg://, twitter://) and fall back to the web share
+        // page when the app isn't installed. Ctrl/middle-click skips the app
+        // attempt and opens the web fallback in a new tab as usual. SMS and
+        // Email tiles need no fallback - those schemes are natively handled.
+        (function nativeApps() {
+            document.querySelectorAll('.share-soc[data-app]').forEach(function(a) {
+                a.addEventListener('click', function(e) {
+                    if (e.button === 1 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+                    e.preventDefault();
+                    var app = a.getAttribute('data-app');
+                    var web = a.href;
+                    var done = false;
+                    var cleanup = function() {
+                        document.removeEventListener('visibilitychange', onVis);
+                        window.removeEventListener('pagehide', onHide);
+                        window.removeEventListener('blur', onHide);
+                    };
+                    var onHide = function() { done = true; cleanup(); };
+                    var onVis = function() { if (document.hidden) onHide(); };
+                    document.addEventListener('visibilitychange', onVis);
+                    window.addEventListener('pagehide', onHide);
+                    window.addEventListener('blur', onHide);
+                    window.location.href = app;
+                    setTimeout(function() {
+                        cleanup();
+                        if (!done && !document.hidden) window.location.href = web;
+                    }, 1100);
                 });
             });
         })();
