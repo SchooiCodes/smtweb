@@ -1211,7 +1211,7 @@ section {
 }
 .install-cmd.small { flex: 1 1 auto; margin-bottom: 12px; }
 .install-cmd code { white-space: pre; font-family: inherit; }
-.copy-btn {
+.copy-btn, .share-btn {
     background: var(--accent);
     color: #fff;
     border: none;
@@ -1224,9 +1224,9 @@ section {
     gap: 8px;
     white-space: nowrap;
 }
-.copy-btn.small { padding: 10px 12px; }
-.copy-btn:hover { background: var(--accent-hover); }
-.copy-btn:disabled { opacity: 0.55; cursor: wait; }
+.copy-btn.small, .share-btn.small { padding: 10px 12px; }
+.copy-btn:hover, .share-btn:hover { background: var(--accent-hover); }
+.copy-btn:disabled, .share-btn:disabled { opacity: 0.55; cursor: wait; }
 .install-note {
     color: var(--text-secondary);
     font-size: 0.9rem;
@@ -1466,7 +1466,7 @@ section {
 @media print {
     .navbar, .footer, .offline-banner, .skip-link, .theme-toggle,
     .social-links, .terminal, .hero-cta, .hero-search, .contact-cta,
-    .copy-btn, .toolbar, .cat-drop, .guide-search, .term-results, .no-results, .btn { display: none !important; }
+    .copy-btn, .share-btn, .toolbar, .cat-drop, .guide-search, .term-results, .no-results, .btn { display: none !important; }
     html, body { background: #ffffff !important; color: #000000 !important; }
     *, *::before, *::after { box-shadow: none !important; text-shadow: none !important; }
     .hero, .features-section, .downloads-section, .legal-hero, .legal-content, .contact-section {
