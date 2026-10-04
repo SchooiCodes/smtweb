@@ -13,7 +13,7 @@ About
 -
 Static website for [Schooi's Multitool (SMT)](https://github.com/SchooiCodes/smt), live at [smt.xubi.org](https://smt.xubi.org).
 
-No build step, no framework - just HTML, CSS, and vanilla JS served via GitHub Pages (`CNAME` -> `smt.xubi.org`). Covers the homepage with live tool search, the **148**-tool catalog, the field guide, and the legal pages. Version display is currently **v2.3**.
+No build step, no framework - just HTML, CSS, and vanilla JS served via GitHub Pages (`CNAME` -> `smt.xubi.org`). Covers the homepage with live tool search, the **150**-tool catalog, the field guide, and the legal pages. Version display is currently **v2.3**.
 
 Features
 -
@@ -68,7 +68,7 @@ Every tool must exist in **both** with the **same name**:
 1. `features/index.html` -> `const tools = [...]` (`{ name, desc, icon, cat, tags, added }`, plus `info` / `menu` / `file` / `admin` / `danger` / `tos` where applicable)
 2. `tools-search.js` -> `window.SMT_TOOLS` (`{ n, t }`)
 
-Verify counts match (currently **148** each):
+Verify counts match (currently **150** each):
 ```
 Get-Content tools-search.js | Select-String '\{ n:' | Measure-Object
 Get-Content features\index.html | Select-String '\{ name:' | Measure-Object

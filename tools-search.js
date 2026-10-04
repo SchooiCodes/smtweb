@@ -147,5 +147,7 @@ window.SMT_TOOLS = [
   { n: "Update Every App", t: "update upgrade all apps" },
   { n: "VS Code", t: "vscode visual studio code editor" },
   { n: "uv", t: "uv python package manager" },
+  { n: "Supermium (Chromium fork for legacy machines)", t: "supermium browser chromium legacy" },
+  { n: "K-Lite Codec Pack Standard", t: "k-lite codec pack media" },
   { n: "Import Registry Backups", t: "registry import restore backup" }
 ];
