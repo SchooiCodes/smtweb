@@ -146,5 +146,6 @@ window.SMT_TOOLS = [
   { n: "Stacher7", t: "stacher7 download manager" },
   { n: "Update Every App", t: "update upgrade all apps" },
   { n: "VS Code", t: "vscode visual studio code editor" },
+  { n: "uv", t: "uv python package manager" },
   { n: "Import Registry Backups", t: "registry import restore backup" }
 ];
