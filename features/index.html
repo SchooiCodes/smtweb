@@ -6,7 +6,10 @@
     <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; base-uri 'self'; form-action 'self'; object-src 'none'; connect-src 'self'">
     <title>All 150 Windows Tools - Schooi's Multitool (SMT) | Windows Multitool &amp; Toolkit Features</title>
     <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" href="../images/SMT.png">
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../images/icon-192.png">
 
     <link rel="canonical" href="https://smt.xubi.org/features/">
     <meta name="description" content="Browse all 150 Windows tools inside Schooi's Multitool (SMT) - the Windows multitool &amp; Windows toolkit for Windows 10/11. Networking, Windows &amp; Office activation, system utilities, app installers &amp; more. Search instantly.">
@@ -320,6 +323,18 @@
                     <li role="option" data-value="dev" aria-selected="false">Developer</li>
                     <li role="option" data-value="school" aria-selected="false">School</li>
                     <li role="option" data-value="advanced" aria-selected="false">Advanced</li>
+                </ul>
+            </div>
+            <div class="cat-drop" id="sortDrop">
+                <button type="button" class="category-select" id="sortButton" aria-haspopup="listbox" aria-expanded="false" aria-label="Sort tools">
+                    <span id="sortLabel">Sort: Default</span>
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+                </button>
+                <ul class="cat-list" id="sortList" role="listbox" aria-label="Sort tools" hidden>
+                    <li role="option" data-value="default" aria-selected="true">Default order</li>
+                    <li role="option" data-value="name-asc" aria-selected="false">Name A&ndash;Z</li>
+                    <li role="option" data-value="name-desc" aria-selected="false">Name Z&ndash;A</li>
+                    <li role="option" data-value="added" aria-selected="false">Recently added</li>
                 </ul>
             </div>
         </div>
@@ -649,7 +664,7 @@
                     (t.file || '').toLowerCase().includes(searchTerm)
                 );
             }
-            renderTools(filtered);
+            renderTools(sortTools(filtered));
             syncOptionsBtn();
             savePrefs();
         }
@@ -666,7 +681,7 @@
         // restore checkbox state on refresh without telling the script).
         function savePrefs() {
             try {
-                localStorage.setItem('smt-prefs', JSON.stringify({ details: showDetails, danger: showDangerous, tos: showTos }));
+                localStorage.setItem('smt-prefs', JSON.stringify({ details: showDetails, danger: showDangerous, tos: showTos, sort: activeSort }));
             } catch (e) {}
         }
         function loadPrefs() {
@@ -791,6 +806,99 @@
             if (_lbl && activeCategory === 'all') _lbl.textContent = 'All tools (' + n + ')';
             set('footerTag', "Schooi's Multitool - free, open-source toolkit for Windows 10 & 11. " + n + ' tools in one console.');
         })();
+
+        // Sorting: default keeps the curated category order; the rest sort a copy,
+        // never the tools array itself.
+        const SORTS = {
+            default: 'Sort: Default',
+            'name-asc': 'Sort: Name A-Z',
+            'name-desc': 'Sort: Name Z-A',
+            added: 'Sort: Recently added'
+        };
+        let activeSort = 'default';
+        const sortButton = document.getElementById('sortButton');
+        const sortList = document.getElementById('sortList');
+        const sortLabel = document.getElementById('sortLabel');
+        // Version labels look like v1.x / v2.3 - coarse "higher means newer"
+        // ordering, good enough for a recently-added view. Ties fall back to name.
+        function verNum(v) {
+            const parts = String(v || '').replace(/^v/i, '').split('.');
+            const major = parseInt(parts[0], 10) || 0;
+            const minor = (parts[1] && parts[1].toLowerCase() !== 'x') ? (parseInt(parts[1], 10) || 0) : 0;
+            return major * 1000 + minor;
+        }
+        function sortTools(list) {
+            if (activeSort === 'name-asc') return [...list].sort((a, b) => a.name.localeCompare(b.name));
+            if (activeSort === 'name-desc') return [...list].sort((a, b) => b.name.localeCompare(a.name));
+            if (activeSort === 'added') return [...list].sort((a, b) => verNum(b.added) - verNum(a.added) || a.name.localeCompare(b.name));
+            return list;
+        }
+        function applySort(value, silent) {
+            if (!SORTS[value]) return;
+            activeSort = value;
+            sortList.querySelectorAll('[role="option"]').forEach(o => {
+                o.setAttribute('aria-selected', o.dataset.value === value ? 'true' : 'false');
+            });
+            sortLabel.textContent = SORTS[value];
+            if (!silent) filterTools();
+        }
+        function setSortOpen(open) {
+            sortList.hidden = !open;
+            sortButton.setAttribute('aria-expanded', String(open));
+        }
+        sortButton.addEventListener('click', () => {
+            setSortOpen(sortList.hidden);
+        });
+        function focusSortOption(i) {
+            const opts = Array.from(sortList.querySelectorAll('[role="option"]'));
+            if (!opts.length) return 0;
+            const n = ((i % opts.length) + opts.length) % opts.length;
+            opts.forEach(o => o.setAttribute('tabindex', '-1'));
+            opts[n].setAttribute('tabindex', '0');
+            opts[n].focus();
+            return n;
+        }
+        sortButton.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowDown' || e.key === 'Enter' || e.key === ' ') {
+                if (sortList.hidden) { e.preventDefault(); setSortOpen(true); focusSortOption(0); }
+            }
+        });
+        sortList.addEventListener('keydown', (e) => {
+            const opts = Array.from(sortList.querySelectorAll('[role="option"]'));
+            const cur = opts.indexOf(document.activeElement);
+            if (e.key === 'Escape') { setSortOpen(false); sortButton.focus(); }
+            else if (e.key === 'ArrowDown') { e.preventDefault(); focusSortOption(cur + 1); }
+            else if (e.key === 'ArrowUp') { e.preventDefault(); focusSortOption(cur - 1); }
+            else if (e.key === 'Enter' || e.key === ' ') {
+                const opt = e.target.closest('[role="option"]');
+                if (opt) { e.preventDefault(); setSortOpen(false); sortButton.focus(); applySort(opt.dataset.value); }
+            }
+        });
+        sortList.addEventListener('click', e => {
+            const opt = e.target.closest('[role="option"]');
+            if (!opt) return;
+            setSortOpen(false);
+            sortButton.focus();
+            applySort(opt.dataset.value);
+        });
+        document.addEventListener('click', e => {
+            if (!sortList.hidden && !document.getElementById('sortDrop').contains(e.target)) setSortOpen(false);
+        });
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape' && !sortList.hidden) {
+                setSortOpen(false);
+                sortButton.focus();
+            }
+        });
+        // Restore the persisted sort before deep links / ?q run below, so they
+        // render through it. Runs filterTools only when it changes the render.
+        try {
+            const sp = JSON.parse(localStorage.getItem('smt-prefs') || '{}');
+            if (typeof sp.sort === 'string' && sp.sort !== 'default' && SORTS[sp.sort]) {
+                applySort(sp.sort, true);
+                filterTools();
+            }
+        } catch (e) {}
 
         // Deep links: features/#tool-dns-changer clears filters and jumps to the card.
         // Hidden targets flip their switch on automatically, then we scroll.
