@@ -332,9 +332,11 @@
                 </button>
                 <ul class="cat-list" id="sortList" role="listbox" aria-label="Sort tools" hidden>
                     <li role="option" data-value="default" aria-selected="true">Default order</li>
+                    <li role="option" data-value="category" aria-selected="false">Category</li>
                     <li role="option" data-value="name-asc" aria-selected="false">Name A&ndash;Z</li>
                     <li role="option" data-value="name-desc" aria-selected="false">Name Z&ndash;A</li>
                     <li role="option" data-value="added" aria-selected="false">Recently added</li>
+                    <li role="option" data-value="added-old" aria-selected="false">Oldest first</li>
                 </ul>
             </div>
         </div>
@@ -811,9 +813,11 @@
         // never the tools array itself.
         const SORTS = {
             default: 'Sort: Default',
+            category: 'Sort: Category',
             'name-asc': 'Sort: Name A-Z',
             'name-desc': 'Sort: Name Z-A',
-            added: 'Sort: Recently added'
+            added: 'Sort: Recently added',
+            'added-old': 'Sort: Oldest first'
         };
         let activeSort = 'default';
         const sortButton = document.getElementById('sortButton');
@@ -828,9 +832,11 @@
             return major * 1000 + minor;
         }
         function sortTools(list) {
+            if (activeSort === 'category') return [...list].sort((a, b) => a.cat.localeCompare(b.cat) || a.name.localeCompare(b.name));
             if (activeSort === 'name-asc') return [...list].sort((a, b) => a.name.localeCompare(b.name));
             if (activeSort === 'name-desc') return [...list].sort((a, b) => b.name.localeCompare(a.name));
             if (activeSort === 'added') return [...list].sort((a, b) => verNum(b.added) - verNum(a.added) || a.name.localeCompare(b.name));
+            if (activeSort === 'added-old') return [...list].sort((a, b) => verNum(a.added) - verNum(b.added) || a.name.localeCompare(b.name));
             return list;
         }
         function applySort(value, silent) {
